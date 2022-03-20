@@ -9,6 +9,8 @@ public class SwapWorldsTest : MonoBehaviour
     public GameObject world2;
     public GameObject player1;
     public GameObject player2;
+    public GameObject linked;
+    public GameObject unlinked;
     private bool trigger = true;
     private bool battlemode = true;
 
@@ -34,6 +36,16 @@ public class SwapWorldsTest : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.B))
         {
             battlemode = !battlemode;
+            if (battlemode)
+            {
+                linked.SetActive(true);
+                unlinked.SetActive(false);
+            }
+            else
+            {
+                unlinked.SetActive(true);
+                linked.SetActive(false);
+            }
         }
 
         if (battlemode == true && trigger == true)
