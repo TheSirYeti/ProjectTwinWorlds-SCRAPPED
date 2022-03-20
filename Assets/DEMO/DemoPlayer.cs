@@ -17,7 +17,6 @@ public class DemoPlayer : MonoBehaviour
 
         transform.position += _vMovement * _speed * Time.deltaTime;
 
-        //y si te invito a una copa y me hacerco a tu boca <3
-
+        //NT
     }
 }
