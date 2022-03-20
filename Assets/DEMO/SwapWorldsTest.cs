@@ -10,13 +10,14 @@ public class SwapWorldsTest : MonoBehaviour
     public GameObject player1;
     public GameObject player2;
     private bool trigger = true;
-    private bool battlemode = false;
-    
-    
+    private bool battlemode = true;
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            trigger = !trigger;
+
             if (trigger == true)
             {
                 world1.SetActive(true);
@@ -28,8 +29,6 @@ public class SwapWorldsTest : MonoBehaviour
                 world2.SetActive(true);
                 world1.SetActive(false);
             }
-            
-            trigger = !trigger;
         }
 
         if (Input.GetKeyDown(KeyCode.B))
@@ -39,11 +38,11 @@ public class SwapWorldsTest : MonoBehaviour
 
         if (battlemode == true && trigger == true)
         {
-            player1.transform.position = player2.transform.position;
+            player2.transform.position = player1.transform.position;
         }
         else if (battlemode == true && trigger == false)
         {
-            player2.transform.position = player1.transform.position;
+            player1.transform.position = player2.transform.position;
         }
 
     }

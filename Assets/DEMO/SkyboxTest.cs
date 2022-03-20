@@ -19,6 +19,8 @@ public class SkyboxTest : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
+
+            trigger = !trigger;
             if (trigger == true)
             {
                 RenderSettings.skybox = mat1;
@@ -28,8 +30,6 @@ public class SkyboxTest : MonoBehaviour
             {
                 RenderSettings.skybox = mat2;
             }
-            
-            trigger = !trigger;
         }
     }
 }
