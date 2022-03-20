@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SwapWorldsTest : MonoBehaviour
 {
@@ -16,6 +17,10 @@ public class SwapWorldsTest : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(0);
+        }
         if (Input.GetKeyDown(KeyCode.Space))
         {
             trigger = !trigger;
