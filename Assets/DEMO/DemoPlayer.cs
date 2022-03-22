@@ -7,15 +7,27 @@ public class DemoPlayer : MonoBehaviour
     private Vector3 _vMovement;
     public Transform direction;
     [SerializeField] private float _speed = 2;
+    [SerializeField] private bool _world1;
 
     private bool _isFighting = false;
 
     // Update is called once per frame
     void Update()
     {
-        _vMovement = Input.GetAxis("Horizontal") * direction.right + Input.GetAxis("Vertical") * direction.forward;
+        if(_world1 && SwapWorldsTest.trigger)
+        {
+            _vMovement = Input.GetAxis("Horizontal") * direction.right + Input.GetAxis("Vertical") * direction.forward;
 
-        transform.position += _vMovement * _speed * Time.deltaTime;
+            transform.position += _vMovement * _speed * Time.deltaTime;
+        }
+
+        if (!_world1 && !SwapWorldsTest.trigger)
+        {
+            _vMovement = Input.GetAxis("Horizontal") * direction.right + Input.GetAxis("Vertical") * direction.forward;
+
+            transform.position += _vMovement * _speed * Time.deltaTime;
+        }
+        
 
         //NT
     }

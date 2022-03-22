@@ -12,8 +12,13 @@ public class SwapWorldsTest : MonoBehaviour
     public GameObject player2;
     public GameObject linked;
     public GameObject unlinked;
-    private bool trigger = true;
+    public static bool trigger = true;
     private bool battlemode = true;
+
+    public Material basem;
+    public Material redm;
+    public Material bluem;
+
 
     private void Update()
     {
@@ -29,12 +34,16 @@ public class SwapWorldsTest : MonoBehaviour
             {
                 world1.SetActive(true);
                 world2.SetActive(false);
+                player1.GetComponent<Renderer>().material = basem;
+                player2.GetComponent<Renderer>().material = bluem;
             }
             
             if (trigger == false)
             {
                 world2.SetActive(true);
                 world1.SetActive(false);
+                player1.GetComponent<Renderer>().material = redm;
+                player2.GetComponent<Renderer>().material = basem;
             }
         }
 
@@ -52,6 +61,7 @@ public class SwapWorldsTest : MonoBehaviour
                 linked.SetActive(false);
             }
         }
+
 
         if (battlemode == true && trigger == true)
         {
