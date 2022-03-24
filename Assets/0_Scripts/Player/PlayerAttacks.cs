@@ -6,8 +6,9 @@ using UnityEngine;
 public class PlayerAttacks : MonoBehaviour
 {
     [SerializeField] private float attackCooldown;
-    [SerializeField] float cooldownTimer;
-
+    [SerializeField] private float cooldownTimer;
+    
+    public Observer _playerObserver;
     private Action attackDelegate;
 
     private void Start()
@@ -15,21 +16,23 @@ public class PlayerAttacks : MonoBehaviour
         attackDelegate = GenerateBasicAttack;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         cooldownTimer -= Time.fixedDeltaTime;
+        
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             attackDelegate();
         }
     }
-
+ 
     void GenerateBasicAttack()
     {
         if (cooldownTimer <= 0)
         {
-            cooldownTimer = attackCooldown ;
+            cooldownTimer = attackCooldown;
             Debug.Log("ATAQUE");
+            _playerObserver.NotifySubscribers("BasicAttack");
         }
     }
 }

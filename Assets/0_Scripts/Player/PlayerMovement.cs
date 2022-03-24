@@ -18,12 +18,17 @@ public class PlayerMovement : MonoBehaviour
     {
         float hMov = Input.GetAxis("Horizontal");
         float vMov = Input.GetAxis("Vertical");
-        movementDelegate(hMov, vMov);
+        if (hMov != 0 || vMov != 0)
+        {
+            movementDelegate(hMov, vMov);
+        }
     }
 
     void GenerateMovement(float h, float v)
     {
         Vector3 movement = h * direction.right + v * direction.forward;
-        transform.position += movement * speed * Time.fixedDeltaTime;
+        transform.forward = movement;
+        transform.position += transform.forward * speed * Time.fixedDeltaTime;
+        
     }
 }
