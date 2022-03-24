@@ -3,15 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour, ISubscriber
 {
     public float speed;
     public Action<float,float> movementDelegate;
     [SerializeField] private Transform direction;
-
+    public Observer playerObserver;
+    public bool canMove;
+    
     private void Start()
     {
         movementDelegate = GenerateMovement;
+        playerObserver.Subscribe(this);
     }
 
     private void Update()
@@ -29,6 +32,23 @@ public class PlayerMovement : MonoBehaviour
         Vector3 movement = h * direction.right + v * direction.forward;
         transform.forward = movement;
         transform.position += transform.forward * speed * Time.fixedDeltaTime;
+    }
+
+    void NoMovement(float h, float v)
+    {
         
+    }
+
+    public void OnNotify(string eventID)
+    {
+        if (eventID == "BasicAttack")
+        {
+            movementDelegate = NoMovement;
+        }
+
+        if (eventID == "NoAttack")
+        {
+            movementDelegate = GenerateMovement;
+        }
     }
 }

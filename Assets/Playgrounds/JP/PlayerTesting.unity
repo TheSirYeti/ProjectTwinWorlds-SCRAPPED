@@ -1544,6 +1544,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3
   direction: {fileID: 2045802682}
+  playerObserver: {fileID: 828566223}
+  canMove: 0
 --- !u!114 &2069139007
 MonoBehaviour:
   m_ObjectHideFlags: 0

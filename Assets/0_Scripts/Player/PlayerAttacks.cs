@@ -35,4 +35,9 @@ public class PlayerAttacks : MonoBehaviour
             _playerObserver.NotifySubscribers("BasicAttack");
         }
     }
+
+    void StopAttacking()
+    {
+        _playerObserver.NotifySubscribers("NoAttack");
+    }
 }
