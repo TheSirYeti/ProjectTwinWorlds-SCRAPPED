@@ -1589,7 +1589,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1500c62d9175984bb175040324f6c3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackCooldown: 1.5
+  attackCooldown: 0.5
   cooldownTimer: 0
   _playerObserver: {fileID: 828566223}
 --- !u!95 &2069139010

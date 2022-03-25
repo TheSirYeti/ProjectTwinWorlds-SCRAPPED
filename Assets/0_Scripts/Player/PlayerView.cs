@@ -21,7 +21,7 @@ public class PlayerView : MonoBehaviour, ISubscriber
             BasicAttack();
         }
 
-        if (eventID == "Walking")
+        /*if (eventID == "Walking")
         {
             animator.SetBool("isWalking", true);
         }
@@ -29,7 +29,7 @@ public class PlayerView : MonoBehaviour, ISubscriber
         if (eventID == "Idle")
         {
             animator.SetBool("isWalking", false);
-        }
+        }*/
     }
 
     public void BasicAttack()

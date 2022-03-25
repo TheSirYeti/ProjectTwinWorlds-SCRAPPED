@@ -20,7 +20,7 @@ public class PlayerAttacks : MonoBehaviour
     {
         cooldownTimer -= Time.fixedDeltaTime;
         
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0) && cooldownTimer <= 0)
         {
             attackDelegate();
         }
@@ -28,12 +28,9 @@ public class PlayerAttacks : MonoBehaviour
  
     void GenerateBasicAttack()
     {
-        if (cooldownTimer <= 0)
-        {
-            cooldownTimer = attackCooldown;
-            Debug.Log("ATAQUE");
-            _playerObserver.NotifySubscribers("BasicAttack");
-        }
+        cooldownTimer = attackCooldown;
+        Debug.Log("ATAQUE");
+        _playerObserver.NotifySubscribers("BasicAttack");
     }
 
     void StopAttacking()
