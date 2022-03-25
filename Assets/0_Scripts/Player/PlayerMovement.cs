@@ -24,7 +24,8 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
         if (hMov != 0 || vMov != 0)
         {
             movementDelegate(hMov, vMov);
-        }
+            playerObserver.NotifySubscribers("Walking");
+        } else playerObserver.NotifySubscribers("Idle");
     }
 
     void GenerateMovement(float h, float v)
