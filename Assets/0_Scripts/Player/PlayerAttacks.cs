@@ -3,13 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAttacks : MonoBehaviour
+public abstract class PlayerAttacks : MonoBehaviour
 {
-    [SerializeField] private float attackCooldown;
-    [SerializeField] private float cooldownTimer;
+    public float attackCooldown;
+    public float cooldownTimer;
     
     public Observer _playerObserver;
-    private Action attackDelegate;
+    public Action attackDelegate;
 
     private void Start()
     {
@@ -25,13 +25,8 @@ public class PlayerAttacks : MonoBehaviour
             attackDelegate();
         }
     }
- 
-    void GenerateBasicAttack()
-    {
-        cooldownTimer = attackCooldown;
-        Debug.Log("ATAQUE");
-        _playerObserver.NotifySubscribers("BasicAttack");
-    }
+
+    public abstract void GenerateBasicAttack();
 
     void StopAttacking()
     {

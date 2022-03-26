@@ -1435,11 +1435,11 @@ GameObject:
   - component: {fileID: 2069139005}
   - component: {fileID: 2069139008}
   - component: {fileID: 2069139006}
-  - component: {fileID: 2069139009}
   - component: {fileID: 2069139007}
   - component: {fileID: 2069139011}
+  - component: {fileID: 2069139012}
   m_Layer: 0
-  m_Name: Amogus
+  m_Name: Amogus Demonio
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1542,7 +1542,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39571be7df47d9445a5c9c6745b9be5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 2
   direction: {fileID: 2045802682}
   playerObserver: {fileID: 828566223}
   canMove: 0
@@ -1577,21 +1577,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 10
   m_CollisionDetection: 0
---- !u!114 &2069139009
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2069138999}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1500c62d9175984bb175040324f6c3f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackCooldown: 0.5
-  cooldownTimer: 0
-  _playerObserver: {fileID: 828566223}
 --- !u!95 &2069139010
 Animator:
   serializedVersion: 4
@@ -1625,6 +1610,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 2069139010}
+  _playerObserver: {fileID: 828566223}
+--- !u!114 &2069139012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2069138999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0548945ff6791b4fb1cdf328e2faf80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackCooldown: 0.5
+  cooldownTimer: 0
   _playerObserver: {fileID: 828566223}
 --- !u!1001 &2090990349
 PrefabInstance:
