@@ -31,8 +31,9 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
     void GenerateMovement(float h, float v)
     {
         Vector3 movement = h * direction.right + v * direction.forward;
+        movement.Normalize();
+        transform.position += movement * speed * Time.fixedDeltaTime;
         transform.forward = movement;
-        transform.position += transform.forward * speed * Time.fixedDeltaTime;
     }
 
     void NoMovement(float h, float v)
