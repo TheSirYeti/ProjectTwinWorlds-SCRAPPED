@@ -14,6 +14,7 @@ public class DemonAttacks : PlayerAttacks
 
     public override void AimAbility()
     {
+        weapon.gameObject.SetActive(true);
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, wallLayer))
@@ -26,6 +27,6 @@ public class DemonAttacks : PlayerAttacks
 
     public override void ThrowAbility()
     {
-        throw new System.NotImplementedException();
+        weapon.gameObject.SetActive(false);
     }
 }

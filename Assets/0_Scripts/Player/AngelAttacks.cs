@@ -12,9 +12,13 @@ public class AngelAttacks : PlayerAttacks
     
     private void FixedUpdate()
     {
-        if (isConnected)
+        if (isConnected && weapon.activeSelf)
         {
             lineRenderer.SetPosition(0, transform.position);
+        }
+        else
+        {
+            ThrowAbility();
         }
     }
 

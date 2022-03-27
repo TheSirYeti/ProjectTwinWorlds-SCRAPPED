@@ -14,6 +14,7 @@ public abstract class PlayerAttacks : MonoBehaviour
     public float distance;
     public Camera cam;
     public LayerMask wallLayer;
+    public bool usedAbility;
     
     private void Start()
     {
@@ -31,7 +32,15 @@ public abstract class PlayerAttacks : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
-            AimAbility();
+            if (usedAbility)
+            {
+                AimAbility();
+            }
+            else
+            {
+                ThrowAbility();
+            }
+            usedAbility = !usedAbility;
         }
     }
 
