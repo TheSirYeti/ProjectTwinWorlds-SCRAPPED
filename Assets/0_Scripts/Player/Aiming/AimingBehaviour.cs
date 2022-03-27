@@ -6,11 +6,10 @@ using UnityEngine;
 
 public class AimingBehaviour : MonoBehaviour, ISubscriber
 {
-    private Vector3 lookAtPosition;
-    private Vector3 direction;
     [SerializeField] private float distance;
     public Camera cam;
     public Observer _playerObserver;
+    public LayerMask wallLayer;
     
     private Action aimingDelegate;
 
@@ -29,12 +28,27 @@ public class AimingBehaviour : MonoBehaviour, ISubscriber
             transform.LookAt(new Vector3(hit.point.x, transform.position.y, hit.point.z));
         }
     }
+    
+    void GenerateAbilityAim()
+    {
+        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, distance, wallLayer))
+        {
+            transform.LookAt(new Vector3(hit.point.x, transform.position.y, hit.point.z));
+        }
+    }
 
     public void OnNotify(string eventID)
     {
         if (eventID == "BasicAttack")
         {
             GenerateNormalAim();
+        }
+
+        if (eventID == "ThrowAbility")
+        {
+            GenerateAbilityAim();
         }
     }
 }

@@ -10,4 +10,14 @@ public class AngelAttacks : PlayerAttacks
         Debug.Log("ATAQUE DEMONIO");
         _playerObserver.NotifySubscribers("BasicAttack");
     }
+
+    public override void AimAbility()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void ThrowAbility()
+    {
+        throw new System.NotImplementedException();
+    }
 }

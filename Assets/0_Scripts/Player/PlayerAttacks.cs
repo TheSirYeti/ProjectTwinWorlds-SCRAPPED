@@ -11,18 +11,27 @@ public abstract class PlayerAttacks : MonoBehaviour
     public Observer _playerObserver;
     public Action attackDelegate;
 
+    public float distance;
+    public Camera cam;
+    public LayerMask wallLayer;
+    
     private void Start()
     {
         attackDelegate = GenerateBasicAttack;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         cooldownTimer -= Time.fixedDeltaTime;
         
         if (Input.GetKeyDown(KeyCode.Mouse0) && cooldownTimer <= 0)
         {
             attackDelegate();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            AimAbility();
         }
     }
 
@@ -32,4 +41,8 @@ public abstract class PlayerAttacks : MonoBehaviour
     {
         _playerObserver.NotifySubscribers("NoAttack");
     }
+
+    public abstract void AimAbility();
+
+    public abstract void ThrowAbility();
 }
