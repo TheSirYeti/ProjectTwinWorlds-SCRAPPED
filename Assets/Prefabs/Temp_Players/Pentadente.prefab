@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6764079490697098574}
   - component: {fileID: 6764079490697098575}
+  - component: {fileID: 8017026106330619906}
   m_Layer: 8
   m_Name: Pentadente
   m_TagString: Untagged
@@ -46,6 +47,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.09, z: 2.1390269}
   m_Center: {x: -2.094809e-15, y: 0, z: 0.8525907}
+--- !u!114 &8017026106330619906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6764079490697098573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a24eae5de01a9640ad0fc67d8a3b538, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collider: {fileID: 6764079490697098575}
+  duration: 3
+  currentDestination: {x: 0, y: 0, z: 0}
+  minDistance: 0.25
 --- !u!1001 &6764079491995688414
 PrefabInstance:
   m_ObjectHideFlags: 0
