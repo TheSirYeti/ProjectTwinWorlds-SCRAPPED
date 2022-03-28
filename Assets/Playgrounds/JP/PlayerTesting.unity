@@ -4079,16 +4079,10 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6764079490697098573, guid: a5633eec4e1ac57468ab44be66bd8895, type: 3}
   m_PrefabInstance: {fileID: 6764079492358042412}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &1694500450 stripped
-BoxCollider:
-  m_CorrespondingSourceObject: {fileID: 6764079490697098575, guid: a5633eec4e1ac57468ab44be66bd8895, type: 3}
-  m_PrefabInstance: {fileID: 6764079492358042412}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1694500452
+--- !u!114 &1694500452 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 8017026106330619906, guid: a5633eec4e1ac57468ab44be66bd8895, type: 3}
+  m_PrefabInstance: {fileID: 6764079492358042412}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1694500449}
   m_Enabled: 1
@@ -4096,10 +4090,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a24eae5de01a9640ad0fc67d8a3b538, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collider: {fileID: 1694500450}
-  duration: 3
-  currentDestination: {x: 0, y: 0, z: 0}
-  minDistance: 0.05
 --- !u!1 &1753815937
 GameObject:
   m_ObjectHideFlags: 0
@@ -5202,7 +5192,7 @@ GameObject:
   - component: {fileID: 1931964557}
   - component: {fileID: 1931964556}
   - component: {fileID: 1931964561}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6589,7 +6579,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6764079490697098573, guid: a5633eec4e1ac57468ab44be66bd8895, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6764079490697098574, guid: a5633eec4e1ac57468ab44be66bd8895, type: 3}
       propertyPath: m_RootOrder
