@@ -39,12 +39,40 @@ public class DemonAttacks : PlayerAttacks
             {
                 weapon.GetComponent<BoxCollider>().enabled = true;
             }
+
+            if (Vector3.Distance(weapon.transform.position, destiny) <= 0.25)
+            {
+                SearchForParent();
+            }
             yield return new WaitForSeconds(0.005f);
+        }
+    }
+
+    public void SearchForParent()
+    {
+        Collider[] colliders = Physics.OverlapSphere(weapon.transform.position, 2f);
+        
+        List<Collider> filteredColliders = new List<Collider>();
+        foreach (Collider collider in colliders)
+        {
+            if (collider.gameObject.layer != LayerMask.NameToLayer("Default")
+                && collider.gameObject.layer != LayerMask.NameToLayer("Wall")
+                && collider.gameObject.layer != LayerMask.NameToLayer("Floor")
+                && collider.gameObject.layer != LayerMask.NameToLayer("Pentadente"))
+            {
+                filteredColliders.Add(collider);
+            }
+        }
+
+        if (filteredColliders.Count == 1)
+        {
+            weapon.transform.SetParent(filteredColliders[0].transform);
         }
     }
     
     public override void ThrowAbility(object[] parameters)
     {
+        weapon.transform.SetParent(null);
         weapon.gameObject.SetActive(false);
     }
 }
