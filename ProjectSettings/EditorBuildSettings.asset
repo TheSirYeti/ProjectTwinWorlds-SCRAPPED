@@ -5,7 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/TestChangeWorlds.unity
     guid: e6815061da51b284e9f4a808c29836fa
+  - enabled: 1
+    path: Assets/Playgrounds/JP/PlayerTesting.unity
+    guid: a30b2134db9d3e3478620651ad5e86e5
   m_configObjects: {}

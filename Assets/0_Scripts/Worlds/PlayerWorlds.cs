@@ -14,7 +14,6 @@ public class PlayerWorlds : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Tab)) 
         {
-            Debug.Log("cambio?");
             demonPlayer.SetActive(!demonPlayer.activeSelf);
             angelPlayer.SetActive(!angelPlayer.activeSelf);
         }

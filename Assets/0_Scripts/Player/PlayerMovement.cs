@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
     public Action<float,float> movementDelegate;
     [SerializeField] private Transform direction;
     public Observer playerObserver;
+    public Rigidbody rb;
     public bool canMove;
     
     private void Start()
@@ -34,6 +35,7 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
         movement.Normalize();
         transform.position += movement * speed * Time.fixedDeltaTime;
         transform.forward = movement;
+        //rb.AddForce(transform.forward * speed * Time.fixedDeltaTime, ForceMode.Impulse);
     }
 
     void NoMovement(float h, float v)

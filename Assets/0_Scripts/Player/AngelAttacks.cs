@@ -17,6 +17,7 @@ public class AngelAttacks : PlayerAttacks
         if (isConnected && weapon.activeSelf)
         {
             lineRenderer.SetPosition(0, transform.position);
+            lineRenderer.SetPosition(1, weapon.transform.position);
             if (Input.GetKeyDown(KeyCode.F))
             {
                 ExecuteAbility();

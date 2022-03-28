@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class DemonAttacks : PlayerAttacks
 {
-    public GameObject weapon;
+    public PentadentCollision weapon;
     public float flightDuration;
     public override void GenerateBasicAttack()
     {
@@ -22,29 +22,10 @@ public class DemonAttacks : PlayerAttacks
         if (Physics.Raycast(ray, out hit, Mathf.Infinity))
         {
             transform.LookAt(new Vector3(hit.point.x, transform.position.y, hit.point.z));
+            weapon.transform.position = transform.position;
             weapon.transform.forward = transform.position - hit.point;
-            StartCoroutine(ThrowPentadent(flightDuration, hit.point));
-        }
-    }
-
-    IEnumerator ThrowPentadent(float duration, Vector3 destiny)
-    {
-        weapon.GetComponent<BoxCollider>().enabled = false;
-        float time = 0;
-        while (time <= duration)
-        {
-            time += Time.fixedDeltaTime;
-            weapon.transform.position = Vector3.Lerp(transform.position, destiny, time / 2);
-            if (duration % time >= 0.5f)
-            {
-                weapon.GetComponent<BoxCollider>().enabled = true;
-            }
-
-            if (Vector3.Distance(weapon.transform.position, destiny) <= 0.25)
-            {
-                SearchForParent();
-            }
-            yield return new WaitForSeconds(0.005f);
+            weapon.currentDestination = hit.point;
+            StartCoroutine(weapon.ThrowPentadent());
         }
     }
 
@@ -72,7 +53,9 @@ public class DemonAttacks : PlayerAttacks
     
     public override void ThrowAbility(object[] parameters)
     {
+        weapon.StopCoroutine(weapon.ThrowPentadent());
         weapon.transform.SetParent(null);
+        weapon.transform.position = transform.position;
         weapon.gameObject.SetActive(false);
     }
 }

@@ -1,8 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Mono.Cecil;
-using UnityEditor.Experimental.GraphView;
+
 using UnityEngine;
 
 public class RopeCollision : MonoBehaviour
