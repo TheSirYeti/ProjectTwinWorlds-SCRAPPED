@@ -74,7 +74,8 @@ public class AngelAttacks : PlayerAttacks
 
             if (filteredColliders[0].gameObject.layer == LayerMask.NameToLayer("Movable Object"))
             {
-                StartCoroutine(GrabObject(3, filteredColliders[0].gameObject, transform.position));
+                Vector3 pos = new Vector3(transform.position.x, transform.position.y - 1f, transform.position.z);
+                StartCoroutine(GrabObject(8, filteredColliders[0].gameObject, pos));
             }
 
             else if (filteredColliders[0].gameObject.layer == LayerMask.NameToLayer("Breakable Object"))
@@ -84,7 +85,8 @@ public class AngelAttacks : PlayerAttacks
 
             else if (filteredColliders[0].gameObject.layer == LayerMask.NameToLayer("Grab Spot"))
             {
-                transform.position = weapon.transform.position;
+                //transform.position = weapon.transform.position;
+                StartCoroutine(ClimbHook(1, weapon.transform.position));
             }
             else Debug.Log("Otro");
         }
@@ -120,6 +122,17 @@ public class AngelAttacks : PlayerAttacks
             {
                 weapon.GetComponent<BoxCollider>().enabled = true;
             }
+            yield return new WaitForSeconds(0.01f);
+        }
+    }
+    
+    IEnumerator ClimbHook(float duration, Vector3 destiny)
+    {
+        float time = 0;
+        while (time <= duration)
+        {
+            time += Time.fixedDeltaTime;
+            transform.position = Vector3.Lerp(transform.position, destiny, time / 2);
             yield return new WaitForSeconds(0.01f);
         }
     }

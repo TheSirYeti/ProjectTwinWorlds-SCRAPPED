@@ -5,7 +5,8 @@ using UnityEngine;
 public class DoorTrigger : MonoBehaviour
 {
     public List<Interactable> interactables;
-
+    public Transform finalPos, initialPos;
+    
     public void CheckInteractableStatus()
     {
         bool flag = false;
@@ -19,7 +20,11 @@ public class DoorTrigger : MonoBehaviour
 
         if (!flag)
         {
-            gameObject.SetActive(false);
+            transform.position = finalPos.position;
+        }
+        else
+        {
+            transform.position = initialPos.position;
         }
     }
 }

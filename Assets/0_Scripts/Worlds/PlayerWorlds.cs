@@ -25,6 +25,7 @@ public class PlayerWorlds : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R))
         {
+            EventManager.ResetEventDictionary();
             SceneManager.LoadScene(0);
         }
         
