@@ -30,7 +30,7 @@ public class PentadentCollision : MonoBehaviour
                 StopCoroutine(ThrowPentadent());
             }
             
-            yield return new WaitForSeconds(0.005f);
+            yield return new WaitForSeconds(0.001f);
         }
     }
     
@@ -57,5 +57,5 @@ public class PentadentCollision : MonoBehaviour
             transform.SetParent(filteredColliders[0].transform);
             StopCoroutine(ThrowPentadent());
         }
-    }
+    }                 
 }
