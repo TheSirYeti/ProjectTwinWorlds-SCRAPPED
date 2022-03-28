@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public abstract class PlayerAttacks : MonoBehaviour
@@ -19,6 +20,7 @@ public abstract class PlayerAttacks : MonoBehaviour
     private void Start()
     {
         attackDelegate = GenerateBasicAttack;
+        EventManager.Subscribe("ResetAbility", ThrowAbility);
     }
 
     private void Update()
@@ -38,7 +40,7 @@ public abstract class PlayerAttacks : MonoBehaviour
             }
             else
             {
-                ThrowAbility();
+                ThrowAbility(null);
             }
             usedAbility = !usedAbility;
         }
@@ -53,5 +55,5 @@ public abstract class PlayerAttacks : MonoBehaviour
 
     public abstract void AimAbility();
 
-    public abstract void ThrowAbility();
+    public abstract void ThrowAbility(object[] parameters);
 }
