@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ndeaaa : MonoBehaviour
+public class BossBeheivor : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] private RotationShields _r;
+    [SerializeField] private GameObject _player;
     void Start()
     {
         
