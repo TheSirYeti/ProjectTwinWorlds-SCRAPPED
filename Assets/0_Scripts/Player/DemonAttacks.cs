@@ -20,11 +20,22 @@ public class DemonAttacks : PlayerAttacks
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, wallLayer))
         {
             transform.LookAt(new Vector3(hit.point.x, transform.position.y, hit.point.z));
-            weapon.transform.position = hit.point;
             weapon.transform.LookAt(transform.forward);
+            StartCoroutine(ThrowPentadent(2f, hit.point));
         }
     }
 
+    IEnumerator ThrowPentadent(float duration, Vector3 destiny)
+    {
+        float time = 0;
+        while (time <= duration)
+        {
+            time += Time.fixedDeltaTime;
+            weapon.transform.position = Vector3.Lerp(transform.position, destiny, time / 2);
+            yield return new WaitForSeconds(0.01f);
+        }
+    }
+    
     public override void ThrowAbility()
     {
         weapon.gameObject.SetActive(false);
