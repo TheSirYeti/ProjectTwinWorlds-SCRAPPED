@@ -12,10 +12,11 @@ public class PlayerWorlds : MonoBehaviour
     
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (Input.GetKeyDown(KeyCode.Tab)) 
         {
-            angelPlayer.SetActive(!angelPlayer.activeSelf);
+            Debug.Log("cambio?");
             demonPlayer.SetActive(!demonPlayer.activeSelf);
+            angelPlayer.SetActive(!angelPlayer.activeSelf);
         }
 
         if (Input.GetKeyDown(KeyCode.B))
@@ -26,6 +27,21 @@ public class PlayerWorlds : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             SceneManager.LoadScene(0);
+        }
+        
+        if (angelPlayer.activeSelf)
+        {
+            if (isLinked)
+            {
+                demonPlayer.transform.position = angelPlayer.transform.position;
+            }
+        }
+        else
+        {
+            if (isLinked)
+            {
+                angelPlayer.transform.position = demonPlayer.transform.position;
+            }
         }
     }
 }

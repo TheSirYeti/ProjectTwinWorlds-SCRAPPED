@@ -7,6 +7,7 @@ public class AngelAttacks : PlayerAttacks
 {
     public GameObject weapon;
     public LayerMask pentadenteMask;
+    public LayerMask filterMask;
     public LineRenderer lineRenderer;
     public bool isConnected;
     public GameObject ropeCollision;
@@ -52,16 +53,15 @@ public class AngelAttacks : PlayerAttacks
 
     public void ExecuteAbility()
     {
-        Collider[] colliders = Physics.OverlapSphere(ropeCollision.transform.position, 2f);
+        Collider[] colliders = Physics.OverlapSphere(weapon.transform.position, 2f);
+        
         List<Collider> filteredColliders = new List<Collider>();
         foreach (Collider collider in colliders)
         {
-            Debug.Log(collider.gameObject.layer);
-            
-            if (collider.gameObject.layer != LayerMask.NameToLayer("Wall") 
+            if (collider.gameObject.layer != LayerMask.NameToLayer("Default")
+                && collider.gameObject.layer != LayerMask.NameToLayer("Wall")
                 && collider.gameObject.layer != LayerMask.NameToLayer("Floor")
-                && collider.gameObject.layer != LayerMask.NameToLayer("Pentadente")
-                && collider.gameObject.layer != LayerMask.NameToLayer("Default"))
+                && collider.gameObject.layer != LayerMask.NameToLayer("Pentadente"))
             {
                 filteredColliders.Add(collider);
             }
@@ -83,7 +83,7 @@ public class AngelAttacks : PlayerAttacks
 
             else if (filteredColliders[0].gameObject.layer == LayerMask.NameToLayer("Grab Spot"))
             {
-                transform.position = filteredColliders[0].transform.position;
+                transform.position = weapon.transform.position;
             }
             else Debug.Log("Otro");
         }
@@ -96,6 +96,7 @@ public class AngelAttacks : PlayerAttacks
                 Debug.Log("Mas de 1");
         }
         
+        EventManager.Trigger("ResetAbility");
         ThrowAbility(null);
     }
 
