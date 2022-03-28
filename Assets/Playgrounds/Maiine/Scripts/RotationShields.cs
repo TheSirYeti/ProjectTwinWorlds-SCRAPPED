@@ -6,6 +6,7 @@ public class RotationShields : MonoBehaviour
 {
     [SerializeField] private float _rotationSpeed;
     private bool isRotate = true;
+    [SerializeField] private List<GameObject> _shields;
 
     void Update()
     {
@@ -16,5 +17,13 @@ public class RotationShields : MonoBehaviour
     public void ChangeRotateState()
     {
         isRotate = !isRotate;
+    }
+
+    public void RestartShields()
+    {
+        foreach (var s in _shields)
+        {
+            s.gameObject.SetActive(true);
+        }
     }
 }
