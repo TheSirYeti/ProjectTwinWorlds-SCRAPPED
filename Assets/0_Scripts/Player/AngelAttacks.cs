@@ -76,19 +76,28 @@ public class AngelAttacks : PlayerAttacks
             {
                 Vector3 pos = new Vector3(transform.position.x, transform.position.y - 1f, transform.position.z);
                 StartCoroutine(GrabObject(8, filteredColliders[0].gameObject, pos));
+                EventManager.Trigger("ResetAbility");
             }
 
             else if (filteredColliders[0].gameObject.layer == LayerMask.NameToLayer("Breakable Object"))
             {
                 filteredColliders[0].gameObject.SetActive(false);
+                EventManager.Trigger("ResetAbility");
             }
 
             else if (filteredColliders[0].gameObject.layer == LayerMask.NameToLayer("Grab Spot"))
             {
-                //transform.position = weapon.transform.position;
                 StartCoroutine(ClimbHook(1, weapon.transform.position));
             }
-            else Debug.Log("Otro");
+            else if (filteredColliders[0].gameObject.layer == LayerMask.NameToLayer("Swing"))
+            {
+                StartCoroutine(ClimbHook(1, filteredColliders[0].GetComponent<SwingProperties>().GetFurthestLandingPosition(transform).position));
+            }
+            else
+            {
+                Debug.Log("Otro");
+                EventManager.Trigger("ResetAbility");
+            }
         }
         else
         {
@@ -97,10 +106,9 @@ public class AngelAttacks : PlayerAttacks
             
             if(filteredColliders.Count > 1)
                 Debug.Log("Mas de 1");
+            
+            EventManager.Trigger("ResetAbility");
         }
-        
-        EventManager.Trigger("ResetAbility");
-        ThrowAbility(null);
     }
 
     public override void ThrowAbility(object[] parameters)
@@ -133,6 +141,8 @@ public class AngelAttacks : PlayerAttacks
         {
             time += Time.fixedDeltaTime;
             transform.position = Vector3.Lerp(transform.position, destiny, time / 2);
+            if(Vector3.Distance(transform.position, destiny) <= 0.3f)
+                EventManager.Trigger("ResetAbility");
             yield return new WaitForSeconds(0.01f);
         }
     }
