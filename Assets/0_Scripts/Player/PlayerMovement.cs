@@ -33,7 +33,7 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
     {
         Vector3 movement = h * direction.right + v * direction.forward;
         movement.Normalize();
-        transform.position += movement * speed * Time.fixedDeltaTime;
+        transform.position += movement * speed * Time.deltaTime;
         transform.forward = movement;
         //rb.AddForce(transform.forward * speed * Time.fixedDeltaTime, ForceMode.Impulse);
     }

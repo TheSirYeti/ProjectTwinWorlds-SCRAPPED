@@ -40,6 +40,8 @@ public class Switch : Interactable
         renderer.material = matOff;
         lever.position = posOff.position;
         lever.rotation = posOff.rotation;
+        
+        doorTrigger.CheckInteractableStatus();
     }
 
     private void OnTriggerEnter(Collider other)

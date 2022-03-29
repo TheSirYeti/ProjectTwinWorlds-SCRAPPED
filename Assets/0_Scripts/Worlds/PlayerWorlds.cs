@@ -23,12 +23,6 @@ public class PlayerWorlds : MonoBehaviour
             isLinked = !isLinked;
         }
 
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            EventManager.ResetEventDictionary();
-            SceneManager.LoadScene(0);
-        }
-        
         if (angelPlayer.activeSelf)
         {
             if (isLinked)
