@@ -161,7 +161,7 @@ MonoBehaviour:
   speed: 2
   direction: {fileID: 0}
   playerObserver: {fileID: 6473481858107889866}
-  rb: {fileID: 0}
+  rb: {fileID: 6473481857686227952}
   canMove: 0
 --- !u!114 &6473481857686227966
 MonoBehaviour:
@@ -199,6 +199,7 @@ MonoBehaviour:
     m_Bits: 128
   usedAbility: 0
   weapon: {fileID: 0}
+  arrowPrefab: {fileID: 1619186496151047395, guid: bcc080946d47d844bba0fccf67e1825e, type: 3}
   pentadenteMask:
     serializedVersion: 2
     m_Bits: 256

@@ -10,6 +10,13 @@ public class DemonAttacks : PlayerAttacks
     public override void GenerateBasicAttack()
     {
         cooldownTimer = attackCooldown;
+        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+        {
+            transform.LookAt(new Vector3(hit.point.x, transform.position.y, hit.point.z));
+        }
+
         _playerObserver.NotifySubscribers("BasicAttack");
     }
 

@@ -6,6 +6,7 @@ using UnityEngine;
 public class AngelAttacks : PlayerAttacks
 {
     public GameObject weapon;
+    public GameObject arrowPrefab;
     public LayerMask pentadenteMask;
     public LayerMask filterMask;
     public LineRenderer lineRenderer;
@@ -32,6 +33,16 @@ public class AngelAttacks : PlayerAttacks
     public override void GenerateBasicAttack()
     {
         cooldownTimer = attackCooldown;
+        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+        {
+            transform.LookAt(new Vector3(hit.point.x, transform.position.y, hit.point.z));
+            GameObject arrow = Instantiate(arrowPrefab);
+            arrow.transform.position = transform.position;
+            arrow.transform.forward = transform.forward;
+        }
+
         _playerObserver.NotifySubscribers("BasicAttack");
     }
 
