@@ -4,7 +4,14 @@ using UnityEngine;
 
 public class BossBeheivor : MonoBehaviour
 {
-    [SerializeField] private RotationShields _rotation;
+    [SerializeField] private List<GameObject> _shields;
+    [SerializeField] private List<GameObject> _shieldsFaseTwo;
+
+    [SerializeField] private GameObject _secondFase;
+    [SerializeField] private GameObject _thirdFase;
+
+    private int _actualFase = 1;
+
     [SerializeField] private GameObject _demonPlayer;
     [SerializeField] private GameObject _angelPlayer;
     private GameObject _player;
@@ -22,8 +29,6 @@ public class BossBeheivor : MonoBehaviour
 
     public delegate void _BossDelegate();
     public _BossDelegate _move;
-
-    private Vector3 _dir;
 
     [SerializeField] private LayerMask _pentadente;
 
@@ -56,8 +61,7 @@ public class BossBeheivor : MonoBehaviour
 
     void Movement()
     {
-        _dir = _player.transform.position - transform.position;
-        transform.forward = _dir;
+        transform.LookAt(_player.transform);
         transform.position += transform.forward * _speed * Time.deltaTime;
         _timer += Time.deltaTime;
     }
@@ -65,8 +69,6 @@ public class BossBeheivor : MonoBehaviour
     void SetCharge()
     {
         _playerPos = _player.transform.position;
-        _dir = _playerPos - transform.position;
-        transform.forward = _dir;
         _timer = 0;
         _move = Charge;
     }
@@ -74,21 +76,22 @@ public class BossBeheivor : MonoBehaviour
     void Charge()
     {
         transform.position += transform.forward * _chargeSpeed * Time.deltaTime;
-        if(Vector3.Distance(transform.position, _playerPos) < 0.5f)
+        _timer += Time.deltaTime;
+        if(_timer > 2)
         {
+            _timer = 0;
             _move = Movement;
         }
     }
 
-    void LookAt()
+    void Follow()
     {
-        _dir = _playerPos - transform.position;
-        transform.forward = _dir;
+        transform.LookAt(_player.transform);
     }
 
     IEnumerator PrepareCharge()
     {
-        _move = LookAt;
+        _move = Follow;
         yield return new WaitForSeconds(1.5f);
         SetCharge();
     }
@@ -100,14 +103,36 @@ public class BossBeheivor : MonoBehaviour
         _renderer.material = _mBase;
     }
 
-
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if(other.gameObject.layer == _pentadente)
+        Debug.Log("trigger");
+
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Pentadente"))
         {
             Debug.Log("dmg");
             _life--;
             StartCoroutine(ChangeMat());
+            _actualFase++;
+            if(_actualFase == 2)
+            {
+                _secondFase.gameObject.SetActive(true);
+                foreach (var item in _shields)
+                {
+                    item.gameObject.SetActive(true);
+                }
+            }
+            else if (_actualFase == 3)
+            {
+                _thirdFase.gameObject.SetActive(true);
+                foreach (var item in _shieldsFaseTwo)
+                {
+                    item.gameObject.SetActive(true);
+                }
+            }
+            else if(_actualFase == 4)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }
