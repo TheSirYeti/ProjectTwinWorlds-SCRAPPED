@@ -8,7 +8,6 @@ public class AngelAttacks : PlayerAttacks
     public GameObject weapon;
     public GameObject arrowPrefab;
     public LayerMask pentadenteMask;
-    public LayerMask filterMask;
     public LineRenderer lineRenderer;
     public bool isConnected;
     public GameObject ropeCollision;
@@ -19,6 +18,7 @@ public class AngelAttacks : PlayerAttacks
         {
             lineRenderer.SetPosition(0, transform.position);
             lineRenderer.SetPosition(1, weapon.transform.position);
+            
             if (Input.GetKeyDown(KeyCode.F))
             {
                 ExecuteAbility();
@@ -81,35 +81,36 @@ public class AngelAttacks : PlayerAttacks
 
         if (filteredColliders.Count == 1)
         {
-            //Debug.Log(filteredColliders[0].gameObject.layer);
+            GameObject objectCollided = filteredColliders[0].gameObject;
 
-            if (filteredColliders[0].gameObject.layer == LayerMask.NameToLayer("Movable Object"))
+            switch (objectCollided.layer)
             {
-                Vector3 pos = new Vector3(transform.position.x, transform.position.y - 1f, transform.position.z);
-                StartCoroutine(GrabObject(8, filteredColliders[0].gameObject, pos));
-                EventManager.Trigger("ResetAbility");
-            }
-
-            else if (filteredColliders[0].gameObject.layer == LayerMask.NameToLayer("Breakable Object"))
-            {
-                filteredColliders[0].gameObject.SetActive(false);
-                EventManager.Trigger("ResetAbility");
-            }
-
-            else if (filteredColliders[0].gameObject.layer == LayerMask.NameToLayer("Grab Spot"))
-            {
-                StartCoroutine(ClimbHook(1, weapon.transform.position));
-            }
-            else if (filteredColliders[0].gameObject.layer == LayerMask.NameToLayer("Swing"))
-            {
-                StartCoroutine(ClimbHook(1, filteredColliders[0].GetComponent<SwingProperties>().GetFurthestLandingPosition(transform).position));
-            }
-            else
-            {
-                Debug.Log("Otro");
-                EventManager.Trigger("ResetAbility");
+                case (int)LayerStruct.LayerID.MOVABLE_OBJECT:
+                    Vector3 movablePos = new Vector3(transform.position.x, transform.position.y - 1f, transform.position.z);
+                    StartCoroutine(GrabObject(8, objectCollided, movablePos));
+                    EventManager.Trigger("ResetAbility");
+                    break;
+                
+                case (int)LayerStruct.LayerID.BREAKABLE_OBJECT:
+                    filteredColliders[0].gameObject.SetActive(false);
+                    EventManager.Trigger("ResetAbility");
+                    break;
+                
+                case (int)LayerStruct.LayerID.GRAB_SPOT:
+                    StartCoroutine(ClimbHook(1, weapon.transform.position));
+                    break;
+                
+                case (int)LayerStruct.LayerID.SWING:
+                    StartCoroutine(ClimbHook(1, objectCollided.GetComponent<SwingProperties>().GetFurthestLandingPosition(transform).position));
+                    break;
+                
+                default:
+                    Debug.Log("Otro");
+                    EventManager.Trigger("ResetAbility");
+                    break;
             }
         }
+        
         else
         {
             if(filteredColliders.Count == 0)
@@ -133,14 +134,17 @@ public class AngelAttacks : PlayerAttacks
     {
         weapon.GetComponent<BoxCollider>().enabled = false;
         float time = 0;
+        
         while (time <= duration)
         {
             time += Time.fixedDeltaTime;
             obj.transform.position = Vector3.Lerp(obj.transform.position, destiny, time / 2);
+            
             if (duration % time >= 0.5f)
             {
                 weapon.GetComponent<BoxCollider>().enabled = true;
             }
+            
             yield return new WaitForSeconds(0.01f);
         }
     }
@@ -152,8 +156,10 @@ public class AngelAttacks : PlayerAttacks
         {
             time += Time.fixedDeltaTime;
             transform.position = Vector3.Lerp(transform.position, destiny, time / 2);
+            
             if(Vector3.Distance(transform.position, destiny) <= 0.3f)
                 EventManager.Trigger("ResetAbility");
+            
             yield return new WaitForSeconds(0.01f);
         }
     }

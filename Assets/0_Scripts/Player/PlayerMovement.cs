@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
     {
         float hMov = Input.GetAxis("Horizontal");
         float vMov = Input.GetAxis("Vertical");
+
         if (hMov != 0 || vMov != 0)
         {
             movementDelegate(hMov, vMov);
@@ -33,9 +34,9 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
     {
         Vector3 movement = h * direction.right + v * direction.forward;
         movement.Normalize();
-        transform.position += movement * speed * Time.deltaTime;
+        //transform.position += movement * speed * Time.deltaTime;
         transform.forward = movement;
-        //rb.AddForce(transform.forward * speed * Time.fixedDeltaTime, ForceMode.Impulse);
+        rb.AddForce(movement * speed * Time.deltaTime, ForceMode.Impulse);
     }
 
     void NoMovement(float h, float v)
