@@ -33,10 +33,13 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
     void GenerateMovement(float h, float v)
     {
         Vector3 movement = h * direction.right + v * direction.forward;
-        movement.Normalize();
+        if(movement.magnitude > 1)
+            movement.Normalize();
         //transform.position += movement * speed * Time.deltaTime;
         transform.forward = movement;
-        rb.AddForce(movement * speed * Time.deltaTime, ForceMode.Impulse);
+        //rb.velocity = movement * speed;
+        //rb.AddForce(movement * speed * Time.deltaTime, ForceMode.Impulse);
+        rb.MovePosition(transform.position + movement * speed * Time.deltaTime);
     }
 
     void NoMovement(float h, float v)

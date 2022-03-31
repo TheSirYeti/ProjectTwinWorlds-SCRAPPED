@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 public class AngelAttacks : PlayerAttacks
@@ -65,8 +67,8 @@ public class AngelAttacks : PlayerAttacks
 
     public void ExecuteAbility()
     {
-        Collider[] colliders = Physics.OverlapSphere(weapon.transform.position, 2f);
-        
+        Collider[] colliders = Physics.OverlapSphere(weapon.transform.position, 1f);
+
         List<Collider> filteredColliders = new List<Collider>();
         foreach (Collider collider in colliders)
         {

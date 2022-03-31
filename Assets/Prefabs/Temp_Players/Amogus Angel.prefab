@@ -158,7 +158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39571be7df47d9445a5c9c6745b9be5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 200
+  speed: 100
   direction: {fileID: 0}
   playerObserver: {fileID: 6473481858107889866}
   rb: {fileID: 6473481857686227952}
@@ -197,7 +197,7 @@ MonoBehaviour:
   wallLayer:
     serializedVersion: 2
     m_Bits: 128
-  usedAbility: 0
+  usedAbility: 1
   weapon: {fileID: 0}
   arrowPrefab: {fileID: 1619186496151047395, guid: bcc080946d47d844bba0fccf67e1825e, type: 3}
   pentadenteMask:
