@@ -6,6 +6,17 @@ using UnityEngine;
 public class PaladinLogic : MonoBehaviour
 {
     public ShieldStruct shieldRing1, shieldRing2, shieldRing3;
+    public FiniteStateMachine fsm;
+    public Animator animator;
+
+    [Header("Rest")] 
+    public float timeToRest;
+    
+    private void Start()
+    {
+        fsm = new FiniteStateMachine();
+        fsm.AddState(PaladinState.REST, new PaladinRestState(fsm, animator, timeToRest));
+    }
 
     public void StartRingPhase(int phaseID)
     {
@@ -25,6 +36,7 @@ public class PaladinLogic : MonoBehaviour
                 break;
         }
     }
+    
     public void EnableRings(List<GameObject> rings)
     {
         foreach (GameObject gameObj in rings)

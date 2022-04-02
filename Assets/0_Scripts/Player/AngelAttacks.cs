@@ -134,7 +134,7 @@ public class AngelAttacks : PlayerAttacks
     
     IEnumerator GrabObject(float duration, GameObject obj, Vector3 destiny)
     {
-        weapon.GetComponent<BoxCollider>().enabled = false;
+        weapon.GetComponent<Collider>().enabled = false;
         float time = 0;
         
         while (time <= duration)
@@ -144,7 +144,7 @@ public class AngelAttacks : PlayerAttacks
             
             if (duration % time >= 0.5f)
             {
-                weapon.GetComponent<BoxCollider>().enabled = true;
+                weapon.GetComponent<Collider>().enabled = true;
             }
             
             yield return new WaitForSeconds(0.01f);

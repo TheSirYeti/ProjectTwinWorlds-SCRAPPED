@@ -13,7 +13,7 @@ public class PentadentCollision : MonoBehaviour
     
     private void Update()
     {
-        SearchForParent();
+        //SearchForParent();
     }
 
     public IEnumerator ThrowPentadent()
