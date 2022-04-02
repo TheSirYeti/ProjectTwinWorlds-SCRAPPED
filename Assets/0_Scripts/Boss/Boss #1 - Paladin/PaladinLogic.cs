@@ -5,17 +5,25 @@ using UnityEngine;
 
 public class PaladinLogic : MonoBehaviour
 {
-    public ShieldStruct shieldRing1, shieldRing2, shieldRing3;
     public FiniteStateMachine fsm;
     public Animator animator;
+    public List<ShieldObject> shieldRings;
 
     [Header("Rest")] 
     public float timeToRest;
     
     private void Start()
     {
+        StartRingPhase(1);
         fsm = new FiniteStateMachine();
-        fsm.AddState(PaladinState.REST, new PaladinRestState(fsm, animator, timeToRest));
+        fsm.AddState(PaladinState.REST, new PaladinRestState(fsm, animator, timeToRest, shieldRings));
+        fsm.AddState(PaladinState.CHASE, new NullState());
+        fsm.ChangeState(PaladinState.REST);
+    }
+
+    private void Update()
+    {
+        fsm.OnUpdate();
     }
 
     public void StartRingPhase(int phaseID)
@@ -23,25 +31,22 @@ public class PaladinLogic : MonoBehaviour
         switch (phaseID)
         {
             case 1:
-                EnableRings(shieldRing1.shields);
+                EnableRings(shieldRings[0]);
                 break;
             case 2:
-                EnableRings(shieldRing1.shields);
-                EnableRings(shieldRing2.shields);
+                EnableRings(shieldRings[0]);
+                EnableRings(shieldRings[1]);
                 break;
             case 3:
-                EnableRings(shieldRing1.shields);
-                EnableRings(shieldRing2.shields);
-                EnableRings(shieldRing3.shields);
+                EnableRings(shieldRings[0]);
+                EnableRings(shieldRings[1]);
+                EnableRings(shieldRings[2]);
                 break;
         }
     }
-    
-    public void EnableRings(List<GameObject> rings)
+
+    public void EnableRings(ShieldObject shield)
     {
-        foreach (GameObject gameObj in rings)
-        {
-            gameObj.SetActive(true);
-        }
+        shield.gameObject.SetActive(true);
     }
 }

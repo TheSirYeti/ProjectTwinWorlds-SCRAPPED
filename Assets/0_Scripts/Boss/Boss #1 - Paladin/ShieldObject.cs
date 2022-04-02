@@ -5,15 +5,9 @@ using UnityEngine;
 
 public class ShieldObject : MonoBehaviour
 {
-    public float normalSpeed, slowedSpeed, fastSpeed, currentSpeed;
+    public float currentSpeed;
+    public List<float> speedValues;
     public bool shouldSpin;
-    public Transform rotationPoint;
-
-    private void Start()
-    {
-        currentSpeed = normalSpeed;
-        StartCoroutine(Test());
-    }
 
     private void Update()
     {
@@ -23,16 +17,15 @@ public class ShieldObject : MonoBehaviour
         }
     }
 
-    IEnumerator Test()
+    public void SetSpeed(SpeedState state)
     {
-        while (true)
-        {
-            yield return new WaitForSeconds(2f);
-            currentSpeed = slowedSpeed;
-            yield return new WaitForSeconds(2f);
-            currentSpeed = fastSpeed;
-            yield return new WaitForSeconds(2f);
-            currentSpeed = normalSpeed;
-        }
+        currentSpeed = speedValues[(int) state];
+    }
+    
+    public enum SpeedState
+    {
+        SLOW,
+        NORMAL,
+        FAST
     }
 }
