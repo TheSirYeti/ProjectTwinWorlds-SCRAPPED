@@ -2,18 +2,26 @@ using UnityEngine;
 
 public class PaladinChaseState : IState
 {
-    public Transform target;
+    public Transform target, hunter;
     private FiniteStateMachine _fsm;
     private Animator _animator;
+    private float speed;
+    private float minDistance;
     
     public void OnStart()
     {
-        throw new System.NotImplementedException();
+        
     }
 
     public void OnUpdate()
     {
-        throw new System.NotImplementedException();
+        Vector3 direction = target.transform.position - hunter.transform.position;
+        direction.Normalize();
+        hunter.transform.position = direction * speed * Time.deltaTime;
+        if (Vector3.Distance(target.transform.position, hunter.transform.position) <= minDistance)
+        {
+            
+        }
     }
 
     public void OnExit()

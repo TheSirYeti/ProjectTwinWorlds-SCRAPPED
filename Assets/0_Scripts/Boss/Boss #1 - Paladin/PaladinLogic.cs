@@ -8,6 +8,7 @@ public class PaladinLogic : MonoBehaviour
     public FiniteStateMachine fsm;
     public Animator animator;
     public List<ShieldObject> shieldRings;
+    public FloorAttack floorAttack;
 
     [Header("Rest")] 
     public float timeToRest;
