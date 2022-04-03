@@ -5,26 +5,40 @@ using UnityEngine;
 public class PaladinSummonState : MonoBehaviour, IState
 {
     private PaladinLogic paladin;
-    private GameObject shieldPrefab;
-    private GameObject warningPrefab;
     private FiniteStateMachine fsm;
     
     private float currentTime;
+    private float attackTime;
     private float timeSummoning;
     private float summonAmount;
-    
+
+    public PaladinSummonState(PaladinLogic paladin, FiniteStateMachine fsm, float timeSummoning, float summonAmount)
+    {
+        this.paladin = paladin;
+        this.fsm = fsm;
+        this.timeSummoning = timeSummoning;
+        this.summonAmount = summonAmount;
+    }
+
     public void OnStart()
     {
-        
+        paladin.animator.SetBool("isSummoning", true);
+        paladin.animator.Play("Paladin_Summon");
+        currentTime = 0f;
     }
 
     public void OnUpdate()
     {
-        currentTime += timeSummoning;
+        currentTime += Time.deltaTime;
 
         if (currentTime < timeSummoning)
         {
-            //summon
+            attackTime += Time.deltaTime;
+            if (attackTime >=  summonAmount)
+            {
+                paladin.SummonDropShield();
+                attackTime = 0f;
+            }
         }
         else
         {
@@ -34,6 +48,7 @@ public class PaladinSummonState : MonoBehaviour, IState
 
     public void OnExit()
     {
-        
+        paladin.animator.SetBool("isSummoning", false);
+        paladin.attackNumber++;
     }
 }

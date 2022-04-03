@@ -11,12 +11,13 @@ public class PaladinRestState : IState
     private List<ShieldObject> shields;
     private PaladinLogic paladin;
 
-    public PaladinRestState(FiniteStateMachine fsm, Animator animator, float timeToRest, List<ShieldObject> shields)
+    public PaladinRestState(FiniteStateMachine fsm, Animator animator, float timeToRest, List<ShieldObject> shields, PaladinLogic paladin)
     {
         _fsm = fsm;
         _animator = animator;
         this.timeToRest = timeToRest;
         this.shields = shields;
+        this.paladin = paladin;
     }
 
     public void OnStart()

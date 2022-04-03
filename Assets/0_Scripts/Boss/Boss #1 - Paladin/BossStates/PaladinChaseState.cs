@@ -24,6 +24,7 @@ public class PaladinChaseState : IState
         if (paladin.attackNumber >= paladin.maxAttackNumber)
         {
             _fsm.ChangeState(PaladinState.RETURN);
+            Debug.Log("MAX");
         }
         
         _animator.SetBool("isWalking", true);
@@ -34,7 +35,8 @@ public class PaladinChaseState : IState
     {
         Vector3 direction = target.transform.position - paladin.transform.position;
         direction.Normalize();
-        paladin.transform.position = direction * speed * Time.deltaTime;
+        paladin.transform.position += direction * speed * Time.deltaTime;
+        paladin.transform.LookAt(new Vector3(target.transform.position.x, paladin.transform.position.y, target.transform.position.z));
         if (Vector3.Distance(target.transform.position, paladin.transform.position) <= minDistance)
         {
             ChooseAttack();
@@ -44,7 +46,6 @@ public class PaladinChaseState : IState
     public void OnExit()
     {
         _animator.SetBool("isWalking", false);
-        paladin.attackNumber++;
     }
 
     void ChooseAttack()
@@ -62,7 +63,7 @@ public class PaladinChaseState : IState
                 break;
             
             case 3:
-                _fsm.ChangeState(PaladinState.TACKLE);
+                //_fsm.ChangeState(PaladinState.TACKLE);
                 break;
         }
         
