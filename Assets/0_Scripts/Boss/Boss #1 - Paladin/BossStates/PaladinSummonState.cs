@@ -6,10 +6,12 @@ public class PaladinSummonState : MonoBehaviour, IState
 {
     private PaladinLogic paladin;
     private GameObject shieldPrefab;
+    private GameObject warningPrefab;
     private FiniteStateMachine fsm;
     
     private float currentTime;
     private float timeSummoning;
+    private float summonAmount;
     
     public void OnStart()
     {
