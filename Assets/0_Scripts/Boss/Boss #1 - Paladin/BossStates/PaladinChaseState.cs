@@ -8,7 +8,17 @@ public class PaladinChaseState : IState
     private Animator _animator;
     private float speed;
     private float minDistance;
-    
+
+    public PaladinChaseState(Transform target, PaladinLogic paladin, FiniteStateMachine fsm, Animator animator, float speed, float minDistance)
+    {
+        this.target = target;
+        this.paladin = paladin;
+        _fsm = fsm;
+        _animator = animator;
+        this.speed = speed;
+        this.minDistance = minDistance;
+    }
+
     public void OnStart()
     {
         if (paladin.attackNumber >= paladin.maxAttackNumber)

@@ -24,9 +24,9 @@ public class PaladinLogic : MonoBehaviour
         fsm = new FiniteStateMachine();
         transform.LookAt(new Vector3(target.transform.position.x, transform.position.y, target.transform.position.z));
         fsm.AddState(PaladinState.REST, new PaladinRestState(fsm, animator, timeToRest, shieldRings));
-        fsm.AddState(PaladinState.CHASE, new NullState());
-        fsm.AddState(PaladinState.BREACH, new PaladinBreachState(floorAttack, animator, fsm, target, 3.3f, shieldRings));
-        fsm.ChangeState(PaladinState.BREACH);
+        fsm.AddState(PaladinState.CHASE, new PaladinChaseState(target, this, fsm,animator,2,1));
+        fsm.AddState(PaladinState.BREACH, new PaladinBreachState(floorAttack, animator, fsm, target, 3.3f, shieldRings, this));
+        fsm.ChangeState(PaladinState.CHASE);
     }
 
     private void Update()

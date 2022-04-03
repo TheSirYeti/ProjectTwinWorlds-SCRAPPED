@@ -16,7 +16,8 @@ public class PaladinBreachState : IState
     private float attackTime;
     private float currentTime;
 
-    public PaladinBreachState(FloorAttack floorAttack, Animator animator, FiniteStateMachine fsm, Transform target, float attackTime, List<ShieldObject> shields)
+    public PaladinBreachState(FloorAttack floorAttack, Animator animator, FiniteStateMachine fsm, Transform target, float attackTime, 
+        List<ShieldObject> shields, PaladinLogic paladin)
     {
         this.floorAttack = floorAttack;
         this.animator = animator;
@@ -24,6 +25,7 @@ public class PaladinBreachState : IState
         this.target = target;
         this.attackTime = attackTime;
         this.shields = shields;
+        this.paladin = paladin;
     }
 
     public void OnStart()
