@@ -9,11 +9,11 @@ public class FloorAttack : MonoBehaviour
 
     public void DoAttack()
     {
-        animator.SetBool("canAttack", true);
+        animator.SetTrigger("attack");
     }
 
     public void StopAttack()
     {
-        animator.SetBool("canAttack", false);
+        //animator.SetBool("canAttack", false);
     }
 }

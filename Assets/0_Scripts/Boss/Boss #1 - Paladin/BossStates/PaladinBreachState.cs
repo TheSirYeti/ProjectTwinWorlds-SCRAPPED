@@ -31,6 +31,7 @@ public class PaladinBreachState : IState
     public void OnStart()
     {
         currentTime = 0f;
+        flag = false;
         DoAttack();
         foreach (ShieldObject shield in shields)
         {

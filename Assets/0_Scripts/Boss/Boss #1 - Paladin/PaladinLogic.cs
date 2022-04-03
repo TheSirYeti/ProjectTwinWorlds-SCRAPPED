@@ -26,7 +26,7 @@ public class PaladinLogic : MonoBehaviour
         fsm = new FiniteStateMachine();
         transform.LookAt(new Vector3(target.transform.position.x, transform.position.y, target.transform.position.z));
         fsm.AddState(PaladinState.REST, new PaladinRestState(fsm, animator, timeToRest, shieldRings, this));
-        fsm.AddState(PaladinState.CHASE, new PaladinChaseState(target, this, fsm, animator, speed, 2));
+        fsm.AddState(PaladinState.CHASE, new PaladinChaseState(target, this, fsm, animator, speed, 10));
         fsm.AddState(PaladinState.BREACH,
             new PaladinBreachState(floorAttack, animator, fsm, target, 3.3f, shieldRings, this));
         fsm.AddState(PaladinState.RETURN, new PaladinReturnState(returnPoint, fsm, this, 0.2f, speed));
@@ -72,7 +72,7 @@ public class PaladinLogic : MonoBehaviour
         float vValue = randV / 100f;
 
         GameObject shieldPrefab = Instantiate(this.shieldPrefab);
-        shieldPrefab.transform.position = new Vector3(transform.position.x + hValue, transform.position.y,
-            transform.position.z + vValue);
+        shieldPrefab.transform.position = new Vector3(target.transform.position.x + hValue, target.transform.position.y,
+            target.transform.position.z + vValue);
     }
 }

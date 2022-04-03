@@ -7,9 +7,10 @@ public class DestroyableObject : MonoBehaviour
 {
     public float timeToDie;
     public bool goDown;
+    public bool goOut;
     public float speed;
     public Transform objectToMove;
-    
+
     private void Start()
     {
         StartCoroutine(DestroyTimer());
@@ -19,7 +20,7 @@ public class DestroyableObject : MonoBehaviour
     {
         if (goDown)
         {
-            objectToMove.transform.position += Vector3.down * speed * Time.deltaTime;
+            MovementGoDown();
         }
     }
 
@@ -27,5 +28,10 @@ public class DestroyableObject : MonoBehaviour
     {
         yield return new WaitForSeconds(timeToDie);
         Destroy(gameObject);
+    }
+
+    public void MovementGoDown()
+    {
+        objectToMove.transform.position += Vector3.down * speed * Time.deltaTime;
     }
 }
