@@ -9,6 +9,7 @@ public class PaladinRestState : IState
     private float timeToRest;
     private float currentTime;
     private List<ShieldObject> shields;
+    private PaladinLogic paladin;
 
     public PaladinRestState(FiniteStateMachine fsm, Animator animator, float timeToRest, List<ShieldObject> shields)
     {
@@ -44,7 +45,9 @@ public class PaladinRestState : IState
 
     public void OnExit()
     {
+        
         _animator.SetBool("isResting", false);
+        paladin.attackNumber = 0;
         foreach (var shield in shields)
         {
             shield.SetSpeed(ShieldObject.SpeedState.NORMAL);

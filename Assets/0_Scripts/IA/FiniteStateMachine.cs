@@ -33,6 +33,8 @@ public enum PaladinState
 {
     REST,
     CHASE,
+    BREACH,
     SUMMON,
-    TACKLE
+    TACKLE,
+    RETURN
 }

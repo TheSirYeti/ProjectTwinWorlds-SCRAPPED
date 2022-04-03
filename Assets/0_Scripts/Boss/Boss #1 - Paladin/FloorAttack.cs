@@ -14,6 +14,6 @@ public class FloorAttack : MonoBehaviour
 
     public void StopAttack()
     {
-        animator.SetBool("stopAttack", true);
+        animator.SetBool("canAttack", false);
     }
 }

@@ -9,7 +9,12 @@ public class PaladinLogic : MonoBehaviour
     public Animator animator;
     public List<ShieldObject> shieldRings;
     public FloorAttack floorAttack;
+    public GameObject shieldPrefab;
+    public Transform target;
 
+    public int attackNumber;
+    public int maxAttackNumber;
+    
     [Header("Rest")] 
     public float timeToRest;
     
@@ -17,9 +22,11 @@ public class PaladinLogic : MonoBehaviour
     {
         StartRingPhase(1);
         fsm = new FiniteStateMachine();
+        transform.LookAt(new Vector3(target.transform.position.x, transform.position.y, target.transform.position.z));
         fsm.AddState(PaladinState.REST, new PaladinRestState(fsm, animator, timeToRest, shieldRings));
         fsm.AddState(PaladinState.CHASE, new NullState());
-        fsm.ChangeState(PaladinState.REST);
+        fsm.AddState(PaladinState.BREACH, new PaladinBreachState(floorAttack, animator, fsm, target, 3.3f, shieldRings));
+        fsm.ChangeState(PaladinState.BREACH);
     }
 
     private void Update()
