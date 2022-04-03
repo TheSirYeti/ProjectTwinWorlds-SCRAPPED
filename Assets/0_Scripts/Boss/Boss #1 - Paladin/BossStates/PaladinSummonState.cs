@@ -2,16 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PaladinSummonState : MonoBehaviour
+public class PaladinSummonState : MonoBehaviour, IState
 {
-    // Start is called before the first frame update
-    void Start()
+    private PaladinLogic paladin;
+    private GameObject shieldPrefab;
+    private FiniteStateMachine fsm;
+    
+    private float currentTime;
+    private float timeSummoning;
+    
+    public void OnStart()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnUpdate()
+    {
+        currentTime += timeSummoning;
+
+        if (currentTime < timeSummoning)
+        {
+            //summon
+        }
+        else
+        {
+            fsm.ChangeState(PaladinState.CHASE);
+        }
+    }
+
+    public void OnExit()
     {
         
     }
