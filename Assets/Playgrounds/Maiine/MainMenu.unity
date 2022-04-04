@@ -97,8 +97,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 8374aed0e8177de4e893dc2cc17d758d, type: 2}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: 224de42e329be39469fb5c040eb6779a, type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -181,6 +181,10 @@ PrefabInstance:
     - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
       propertyPath: m_Name
       value: Cubo tresis prueba (52)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
@@ -307,6 +311,104 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!1 &18422135
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 18422139}
+  - component: {fileID: 18422138}
+  - component: {fileID: 18422137}
+  - component: {fileID: 18422136}
+  m_Layer: 0
+  m_Name: Cube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &18422136
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 18422135}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &18422137
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 18422135}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &18422138
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 18422135}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &18422139
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 18422135}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -17.13, y: 4.577756, z: 31.25}
+  m_LocalScale: {x: 0.21315, y: 0.2945, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1438360424}
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &26742858
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -365,6 +467,10 @@ PrefabInstance:
     - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
       propertyPath: m_Name
       value: Cubo tresis prueba (50)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
@@ -432,6 +538,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cubo tresis prueba (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
 --- !u!4 &40216148 stripped
@@ -497,6 +607,10 @@ PrefabInstance:
     - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
       propertyPath: m_Name
       value: Cubo tresis prueba (45)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
@@ -564,6 +678,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cubo tresis prueba (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
 --- !u!4 &81297491 stripped
@@ -630,6 +748,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cubo tresis prueba (70)
       objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
 --- !u!4 &119039397 stripped
@@ -695,6 +817,10 @@ PrefabInstance:
     - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
       propertyPath: m_Name
       value: Cubo tresis prueba (44)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
@@ -884,6 +1010,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cubo tresis prueba (30)
       objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
 --- !u!4 &152779948 stripped
@@ -949,6 +1079,10 @@ PrefabInstance:
     - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
       propertyPath: m_Name
       value: Cubo tresis prueba (23)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
@@ -1138,6 +1272,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cubo tresis prueba (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
 --- !u!4 &203398827 stripped
@@ -1203,6 +1341,10 @@ PrefabInstance:
     - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
       propertyPath: m_Name
       value: Cubo tresis prueba (41)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
@@ -1343,6 +1485,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cubo tresis prueba (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
 --- !u!4 &292117372 stripped
@@ -1408,6 +1554,10 @@ PrefabInstance:
     - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
       propertyPath: m_Name
       value: Cubo tresis prueba (39)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
@@ -1525,6 +1675,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cubo tresis prueba (17)
       objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
 --- !u!4 &364232789 stripped
@@ -1590,6 +1744,10 @@ PrefabInstance:
     - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
       propertyPath: m_Name
       value: Cubo tresis prueba (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
@@ -1657,6 +1815,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cubo tresis prueba (68)
       objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
 --- !u!4 &450462998 stripped
@@ -1722,6 +1884,10 @@ PrefabInstance:
     - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
       propertyPath: m_Name
       value: Cubo tresis prueba (35)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
@@ -1789,6 +1955,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cubo tresis prueba (66)
       objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
 --- !u!4 &511273326 stripped
@@ -1806,6 +1976,7 @@ GameObject:
   m_Component:
   - component: {fileID: 548213807}
   - component: {fileID: 548213806}
+  - component: {fileID: 548213808}
   m_Layer: 0
   m_Name: Directional Light Whit Shadows
   m_TagString: Untagged
@@ -1890,6 +2061,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &548213808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 548213805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!1001 &560896682
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1944,6 +2135,10 @@ PrefabInstance:
     - target: {fileID: 5487317737433520733, guid: e22c48f215ab2194581950938e7ba38e, type: 3}
       propertyPath: m_Name
       value: Pilar Tesis (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5487317737433520733, guid: e22c48f215ab2194581950938e7ba38e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 6279744219234139016, guid: e22c48f215ab2194581950938e7ba38e, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -2014,6 +2209,10 @@ PrefabInstance:
     - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
       propertyPath: m_Name
       value: Cubo tresis prueba (73)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
@@ -2161,6 +2360,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cubo tresis prueba (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
 --- !u!4 &599530364 stripped
@@ -2226,6 +2429,10 @@ PrefabInstance:
     - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
       propertyPath: m_Name
       value: Cubo tresis prueba (60)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
@@ -2293,6 +2500,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cubo tresis prueba (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
 --- !u!4 &659156688 stripped
@@ -2358,6 +2569,10 @@ PrefabInstance:
     - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
       propertyPath: m_Name
       value: Cubo tresis prueba (43)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
@@ -2425,6 +2640,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cubo tresis prueba (55)
       objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
 --- !u!4 &670501073 stripped
@@ -2490,6 +2709,10 @@ PrefabInstance:
     - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
       propertyPath: m_Name
       value: Cubo tresis prueba (51)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
@@ -2658,6 +2881,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pilar Tesis (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 5487317737433520733, guid: e22c48f215ab2194581950938e7ba38e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 6279744219234139016, guid: e22c48f215ab2194581950938e7ba38e, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -2728,6 +2955,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cubo tresis prueba (67)
       objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
 --- !u!4 &757331783 stripped
@@ -2793,6 +3024,10 @@ PrefabInstance:
     - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
       propertyPath: m_Name
       value: Cubo tresis prueba (64)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
@@ -2860,6 +3095,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cubo tresis prueba (36)
       objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
 --- !u!4 &827882692 stripped
@@ -2926,6 +3165,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cubo tresis prueba (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
 --- !u!4 &828061072 stripped
@@ -2987,6 +3230,10 @@ PrefabInstance:
     - target: {fileID: 5487317737433520733, guid: e22c48f215ab2194581950938e7ba38e, type: 3}
       propertyPath: m_Name
       value: Pilar Tesis (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5487317737433520733, guid: e22c48f215ab2194581950938e7ba38e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 6279744219234139016, guid: e22c48f215ab2194581950938e7ba38e, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -3138,6 +3385,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cubo tresis prueba (26)
       objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
 --- !u!4 &875405128 stripped
@@ -3283,6 +3534,10 @@ PrefabInstance:
     - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
       propertyPath: m_Name
       value: Cubo tresis prueba (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
@@ -3472,6 +3727,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cubo tresis prueba (61)
       objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
 --- !u!4 &979295060 stripped
@@ -3537,6 +3796,10 @@ PrefabInstance:
     - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
       propertyPath: m_Name
       value: Cubo tresis prueba (62)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
@@ -3604,6 +3867,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cubo tresis prueba (48)
       objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
 --- !u!4 &1019395385 stripped
@@ -3669,6 +3936,10 @@ PrefabInstance:
     - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
       propertyPath: m_Name
       value: Cubo tresis prueba (46)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
@@ -3736,6 +4007,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cubo tresis prueba (47)
       objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
 --- !u!4 &1025683178 stripped
@@ -3801,6 +4076,10 @@ PrefabInstance:
     - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
       propertyPath: m_Name
       value: Cubo tresis prueba (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
@@ -3868,6 +4147,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cubo tresis prueba (57)
       objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
 --- !u!4 &1086029698 stripped
@@ -3933,6 +4216,10 @@ PrefabInstance:
     - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
       propertyPath: m_Name
       value: Cubo tresis prueba (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
@@ -4000,6 +4287,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cubo tresis prueba (72)
       objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
 --- !u!4 &1127992559 stripped
@@ -4043,7 +4334,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 1
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -4076,7 +4367,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 2
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -4181,6 +4472,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cubo tresis prueba (31)
       objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
 --- !u!4 &1179800808 stripped
@@ -4246,6 +4541,10 @@ PrefabInstance:
     - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
       propertyPath: m_Name
       value: Cubo tresis prueba (53)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
@@ -4313,6 +4612,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cubo tresis prueba (58)
       objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
 --- !u!4 &1254716673 stripped
@@ -4378,6 +4681,10 @@ PrefabInstance:
     - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
       propertyPath: m_Name
       value: Cubo tresis prueba (37)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
@@ -4445,6 +4752,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cubo tresis prueba (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
 --- !u!4 &1269016782 stripped
@@ -4510,6 +4821,10 @@ PrefabInstance:
     - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
       propertyPath: m_Name
       value: Cubo tresis prueba (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
@@ -4577,6 +4892,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cubo tresis prueba (20)
       objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
 --- !u!4 &1361419569 stripped
@@ -4643,6 +4962,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cubo tresis prueba (29)
       objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
 --- !u!4 &1364736753 stripped
@@ -4708,6 +5031,10 @@ PrefabInstance:
     - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
       propertyPath: m_Name
       value: Cubo tresis prueba (21)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
@@ -4855,6 +5182,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cubo tresis prueba (49)
       objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
 --- !u!4 &1407367421 stripped
@@ -4862,6 +5193,146 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6160040558405800355, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
   m_PrefabInstance: {fileID: 1407367420}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1438360423
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1438360424}
+  - component: {fileID: 1438360425}
+  m_Layer: 0
+  m_Name: PentadentTrail
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1438360424
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1438360423}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.437}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 18422139}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!96 &1438360425
+TrailRenderer:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1438360423}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 0
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: e823cd5b5d27c0f4b8256e7c12ee3e6d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Time: 0.3
+  m_Parameters:
+    serializedVersion: 3
+    widthMultiplier: 1
+    widthCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0.06374359
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorGradient:
+      serializedVersion: 2
+      key0: {r: 0.5849056, g: 0.5435208, b: 0.5435208, a: 1}
+      key1: {r: 1, g: 1, b: 1, a: 1}
+      key2: {r: 0, g: 0, b: 0, a: 0}
+      key3: {r: 0, g: 0, b: 0, a: 0}
+      key4: {r: 0, g: 0, b: 0, a: 0}
+      key5: {r: 0, g: 0, b: 0, a: 0}
+      key6: {r: 0, g: 0, b: 0, a: 0}
+      key7: {r: 0, g: 0, b: 0, a: 0}
+      ctime0: 0
+      ctime1: 65535
+      ctime2: 0
+      ctime3: 0
+      ctime4: 0
+      ctime5: 0
+      ctime6: 0
+      ctime7: 0
+      atime0: 0
+      atime1: 65535
+      atime2: 0
+      atime3: 0
+      atime4: 0
+      atime5: 0
+      atime6: 0
+      atime7: 0
+      m_Mode: 0
+      m_NumColorKeys: 2
+      m_NumAlphaKeys: 2
+    numCornerVertices: 0
+    numCapVertices: 0
+    alignment: 0
+    textureMode: 0
+    shadowBias: 0.5
+    generateLightingData: 0
+  m_MinVertexDistance: 0.1
+  m_Autodestruct: 0
+  m_Emitting: 1
 --- !u!1001 &1441223937
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4920,6 +5391,10 @@ PrefabInstance:
     - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
       propertyPath: m_Name
       value: Cubo tresis prueba (59)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
@@ -4986,6 +5461,10 @@ PrefabInstance:
     - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
       propertyPath: m_Name
       value: Cubo tresis prueba (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
@@ -5175,6 +5654,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cubo tresis prueba (40)
       objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
 --- !u!4 &1534122847 stripped
@@ -5240,6 +5723,10 @@ PrefabInstance:
     - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
       propertyPath: m_Name
       value: Cubo tresis prueba (42)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
@@ -5307,6 +5794,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cubo tresis prueba (38)
       objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
 --- !u!4 &1598812904 stripped
@@ -5372,6 +5863,10 @@ PrefabInstance:
     - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
       propertyPath: m_Name
       value: Cubo tresis prueba (27)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
@@ -5439,6 +5934,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cubo tresis prueba (65)
       objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
 --- !u!4 &1655072237 stripped
@@ -5460,7 +5959,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1669964929
 Transform:
@@ -5610,6 +6109,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cubo tresis prueba (25)
       objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
 --- !u!4 &1686309145 stripped
@@ -5675,6 +6178,10 @@ PrefabInstance:
     - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
       propertyPath: m_Name
       value: Cubo tresis prueba (19)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
@@ -5742,6 +6249,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cubo tresis prueba (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
 --- !u!4 &1771823545 stripped
@@ -5807,6 +6318,10 @@ PrefabInstance:
     - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
       propertyPath: m_Name
       value: Cubo tresis prueba (28)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
@@ -5874,6 +6389,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cubo tresis prueba (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
 --- !u!4 &1790050909 stripped
@@ -5895,7 +6414,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1793061602
 Transform:
@@ -5982,6 +6501,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cubo tresis prueba (32)
       objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
 --- !u!4 &1894822556 stripped
@@ -6047,6 +6570,10 @@ PrefabInstance:
     - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
       propertyPath: m_Name
       value: Cubo tresis prueba (56)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
@@ -6114,6 +6641,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cubo tresis prueba (24)
       objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
 --- !u!4 &1956389570 stripped
@@ -6179,6 +6710,10 @@ PrefabInstance:
     - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
       propertyPath: m_Name
       value: Cubo tresis prueba (22)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
@@ -6246,6 +6781,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cubo tresis prueba (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
 --- !u!4 &1981689828 stripped
@@ -6311,6 +6850,10 @@ PrefabInstance:
     - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
       propertyPath: m_Name
       value: Cubo tresis prueba (54)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
@@ -6378,6 +6921,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cubo tresis prueba (69)
       objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
 --- !u!4 &2011051986 stripped
@@ -6443,6 +6990,10 @@ PrefabInstance:
     - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
       propertyPath: m_Name
       value: Cubo tresis prueba (63)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
@@ -6518,61 +7069,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2097333738
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2097333740}
-  - component: {fileID: 2097333739}
-  m_Layer: 0
-  m_Name: Decal Projector
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &2097333739
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2097333738}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_DrawDistance: 1000
-  m_FadeScale: 0.9
-  m_StartAngleFade: 180
-  m_EndAngleFade: 180
-  m_UVScale: {x: 1, y: 1}
-  m_UVBias: {x: 0, y: 0}
-  m_ScaleMode: 0
-  m_Offset: {x: 0, y: 0, z: 0.5}
-  m_Size: {x: 1, y: 1, z: 1}
-  m_FadeFactor: 1
---- !u!4 &2097333740
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2097333738}
-  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 14.075519, y: 5.06814, z: 14.134663}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2109257341
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6631,6 +7127,10 @@ PrefabInstance:
     - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
       propertyPath: m_Name
       value: Cubo tresis prueba (33)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
@@ -6698,6 +7198,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cubo tresis prueba (34)
       objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
 --- !u!4 &2112139240 stripped
@@ -6764,6 +7268,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cubo tresis prueba (71)
       objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
 --- !u!4 &2128730869 stripped
@@ -6826,6 +7334,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pilar Tesis
       objectReference: {fileID: 0}
+    - target: {fileID: 5487317737433520733, guid: e22c48f215ab2194581950938e7ba38e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 6279744219234139016, guid: e22c48f215ab2194581950938e7ba38e, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -6851,6 +7363,10 @@ PrefabInstance:
     - target: {fileID: 1504422119876388447, guid: b6a99234c68ffe34185f9e3a96fd91ae, type: 3}
       propertyPath: m_Name
       value: Grillete con cadena Tesis
+      objectReference: {fileID: 0}
+    - target: {fileID: 1504422119876388447, guid: b6a99234c68ffe34185f9e3a96fd91ae, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 2281943332542790885, guid: b6a99234c68ffe34185f9e3a96fd91ae, type: 3}
       propertyPath: m_RootOrder
@@ -6958,6 +7474,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Jarron Tesis
       objectReference: {fileID: 0}
+    - target: {fileID: 3126580825125728954, guid: 719d3dfba26c3cb4ca9cb3c3963f5d53, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 3486670951176016751, guid: 719d3dfba26c3cb4ca9cb3c3963f5d53, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -7024,6 +7544,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Arco_Estructura Tesis
       objectReference: {fileID: 0}
+    - target: {fileID: 2899203581746587807, guid: d0143e52f031e1a4fb50f9b241719c9b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 3692096532953434442, guid: d0143e52f031e1a4fb50f9b241719c9b, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -7042,13 +7566,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1669964929}
     m_Modifications:
+    - target: {fileID: 447366276706219123, guid: e495d453092a21d409b9a8ecca2965a8, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 857919602285494232, guid: e495d453092a21d409b9a8ecca2965a8, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: bcc4ad15fe8086641b419d54f5958513, type: 2}
+    - target: {fileID: 1217956676837940749, guid: e495d453092a21d409b9a8ecca2965a8, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1301828538308807473, guid: e495d453092a21d409b9a8ecca2965a8, type: 3}
       propertyPath: m_Name
       value: Escalera General
+      objectReference: {fileID: 0}
+    - target: {fileID: 1301828538308807473, guid: e495d453092a21d409b9a8ecca2965a8, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 2104765637275391398, guid: e495d453092a21d409b9a8ecca2965a8, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -7116,6 +7652,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Antorcha mano Tesis
       objectReference: {fileID: 0}
+    - target: {fileID: 1216501731760458293, guid: c94620acf2d04404c91e6788fbd98844, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1993459994741870735, guid: c94620acf2d04404c91e6788fbd98844, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -7159,6 +7699,14 @@ PrefabInstance:
     - target: {fileID: 1993459994741870735, guid: c94620acf2d04404c91e6788fbd98844, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3194773168603598342, guid: c94620acf2d04404c91e6788fbd98844, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 3658927840718128676, guid: c94620acf2d04404c91e6788fbd98844, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 6408324475519971231, guid: c94620acf2d04404c91e6788fbd98844, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -7230,6 +7778,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pedestal Tesis
       objectReference: {fileID: 0}
+    - target: {fileID: 3213087222799822613, guid: 543b65e6a0d01f346a1eddd06e486623, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4005901007643725504, guid: 543b65e6a0d01f346a1eddd06e486623, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -7299,6 +7851,10 @@ PrefabInstance:
     - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
       propertyPath: m_Name
       value: Cubo tresis prueba
+      objectReference: {fileID: 0}
+    - target: {fileID: 6788909174248344345, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2833eff91414189418b5a3a7a1d1f62c, type: 3}
