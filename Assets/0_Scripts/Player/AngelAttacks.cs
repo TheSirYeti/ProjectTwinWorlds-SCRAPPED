@@ -106,6 +106,11 @@ public class AngelAttacks : PlayerAttacks
                     StartCoroutine(ClimbHook(1, objectCollided.GetComponent<SwingProperties>().GetFurthestLandingPosition(transform).position));
                     break;
                 
+                case (int)LayerStruct.LayerID.BOSS_DAMAGABLE:
+                    EventManager.Trigger("OnBossDamagableTriggered", objectCollided.GetComponent<PaladinStake>().stakeId);
+                    EventManager.Trigger("ResetAbility");
+                    break;
+
                 default:
                     Debug.Log("Otro");
                     EventManager.Trigger("ResetAbility");

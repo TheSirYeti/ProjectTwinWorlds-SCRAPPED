@@ -63,7 +63,7 @@ public class PaladinChaseState : IState
                 break;
             
             case 3:
-                //_fsm.ChangeState(PaladinState.TACKLE);
+                _fsm.ChangeState(PaladinState.TACKLE);
                 break;
         }
         

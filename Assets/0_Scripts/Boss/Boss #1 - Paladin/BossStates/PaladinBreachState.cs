@@ -33,10 +33,7 @@ public class PaladinBreachState : IState
         currentTime = 0f;
         flag = false;
         DoAttack();
-        foreach (ShieldObject shield in shields)
-        {
-            shield.SetSpeed(ShieldObject.SpeedState.FAST);
-        }
+        paladin.SetShieldSpeeds(ShieldObject.SpeedState.FAST);
         floorAttack.transform.LookAt(new Vector3(target.transform.position.x, floorAttack.transform.position.y, target.transform.position.z));
     }
 
@@ -58,10 +55,7 @@ public class PaladinBreachState : IState
 
     public void OnExit()
     {
-        foreach (ShieldObject shield in shields)
-        {
-            shield.SetSpeed(ShieldObject.SpeedState.NORMAL);
-        }
+        paladin.SetShieldSpeeds(ShieldObject.SpeedState.NORMAL);
         StopAttack();
         paladin.attackNumber++;
     }

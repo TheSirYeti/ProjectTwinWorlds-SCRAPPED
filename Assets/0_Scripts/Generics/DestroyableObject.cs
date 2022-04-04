@@ -22,6 +22,11 @@ public class DestroyableObject : MonoBehaviour
         {
             MovementGoDown();
         }
+
+        if (goOut)
+        {
+            MovementGoOut();
+        }
     }
 
     private IEnumerator DestroyTimer()
@@ -33,5 +38,10 @@ public class DestroyableObject : MonoBehaviour
     public void MovementGoDown()
     {
         objectToMove.transform.position += Vector3.down * speed * Time.deltaTime;
+    }
+
+    public void MovementGoOut()
+    {
+        objectToMove.transform.position += objectToMove.transform.forward * speed * Time.deltaTime;
     }
 }

@@ -2042,7 +2042,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c32808265f862a640abf3014b7d45523, type: 2}
+  - {fileID: 2100000, guid: f918509a35b2dbf45993e0fcbd2d3881, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2083,7 +2083,7 @@ GameObject:
   - component: {fileID: 2447386723030171417}
   - component: {fileID: 2447386723030171416}
   m_Layer: 0
-  m_Name: ShieldDrop
+  m_Name: ShieldDropDown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2120,6 +2120,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeToDie: 2
   goDown: 1
+  goOut: 0
   speed: 45
   objectToMove: {fileID: 5130466790734401048}
 --- !u!1 &5510370686592996514

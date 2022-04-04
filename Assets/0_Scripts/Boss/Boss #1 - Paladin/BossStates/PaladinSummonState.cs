@@ -24,6 +24,7 @@ public class PaladinSummonState : MonoBehaviour, IState
     {
         paladin.animator.SetBool("isSummoning", true);
         paladin.animator.Play("Paladin_Summon");
+        paladin.SetShieldSpeeds(ShieldObject.SpeedState.FAST);
         currentTime = 0f;
     }
 
@@ -50,5 +51,6 @@ public class PaladinSummonState : MonoBehaviour, IState
     {
         paladin.animator.SetBool("isSummoning", false);
         paladin.attackNumber++;
+        paladin.SetShieldSpeeds(ShieldObject.SpeedState.NORMAL);
     }
 }

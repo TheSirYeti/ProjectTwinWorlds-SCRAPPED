@@ -16,6 +16,9 @@ public struct LayerStruct
         GRAB_SPOT,
         DEMON_PLAYER,
         ANGEL_PLAYER,
-        SWING
+        SWING,
+        ENEMY_ATTACK,
+        BOSS,
+        BOSS_DAMAGABLE
     }
 }

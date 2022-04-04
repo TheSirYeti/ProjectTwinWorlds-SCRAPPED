@@ -8,6 +8,7 @@ public class ShieldObject : MonoBehaviour
     public float currentSpeed;
     public List<float> speedValues;
     public bool shouldSpin;
+    public List<GameObject> shields;
 
     private void Update()
     {
@@ -27,5 +28,13 @@ public class ShieldObject : MonoBehaviour
         SLOW,
         NORMAL,
         FAST
+    }
+
+    public void ResetShields()
+    {
+        foreach (var shield in shields)
+        {
+            shield.SetActive(true);
+        }
     }
 }
