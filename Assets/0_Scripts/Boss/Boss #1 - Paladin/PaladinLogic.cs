@@ -103,7 +103,7 @@ public class PaladinLogic : MonoBehaviour
         fsm.AddState(PaladinState.BREACH,
             new PaladinBreachState(floorAttack, animator, fsm, target, 3.8f, shieldRings, this));
         fsm.AddState(PaladinState.RETURN, new PaladinReturnState(returnPoint, fsm, this, 0.2f, speed));
-        fsm.AddState(PaladinState.SUMMON, new PaladinSummonState(this, fsm, 7, 0.35f));
+        fsm.AddState(PaladinState.SUMMON, new PaladinSummonState(this, fsm, 7, 0.8f));
         fsm.AddState(PaladinState.TACKLE, new PaladinTackleState(1f, 4f, fsm, animator, this, shieldSpawnpoints, shieldPrefabOut));
         fsm.ChangeState(PaladinState.CHASE);
     }

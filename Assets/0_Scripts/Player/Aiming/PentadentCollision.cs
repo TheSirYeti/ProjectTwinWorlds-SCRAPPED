@@ -28,11 +28,13 @@ public class PentadentCollision : MonoBehaviour
             {
                 SearchForParent();
                 StopCoroutine(ThrowPentadent());
-                SoundManager.instance.PlaySound(SoundID.HIT_PENTADENT);
             }
             
             yield return new WaitForSeconds(0.001f);
         }
+
+        SoundManager.instance.PlaySound(SoundID.HIT_PENTADENT);
+        yield return new WaitForSeconds(0.0001f);
     }
     
     public void SearchForParent()

@@ -85,6 +85,9 @@ MonoBehaviour:
   demonPlayer: {fileID: 3913398195166920752}
   angelTotem: {fileID: 6395470161261868533}
   demonTotem: {fileID: 7025559550424097906}
+  cameraPosDemon: {fileID: 0}
+  cameraPosAngel: {fileID: 0}
+  cameraPosition: {fileID: 0}
   isLinked: 1
 --- !u!1 &1912477546769320423
 GameObject:
@@ -616,6 +619,7 @@ GameObject:
   - component: {fileID: 3913398195166920761}
   - component: {fileID: 3913398195166920772}
   - component: {fileID: 4918263188809921723}
+  - component: {fileID: 5791903405164493758}
   - component: {fileID: 3913398195166920771}
   m_Layer: 12
   m_Name: Amogus Demonio
@@ -791,6 +795,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 3
   isDemon: 1
+--- !u!114 &5791903405164493758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3913398195166920752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!114 &3913398195166920771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1643,6 +1665,7 @@ GameObject:
   - component: {fileID: 5594684078624446217}
   - component: {fileID: 5594684078624446216}
   - component: {fileID: 8301785634907056974}
+  - component: {fileID: 7400785629276064593}
   - component: {fileID: 5594684078624446219}
   - component: {fileID: 5594684078624446208}
   m_Layer: 13
@@ -1820,6 +1843,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 3
   isDemon: 0
+--- !u!114 &7400785629276064593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5594684078624446218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!114 &5594684078624446219
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1849,6 +1890,7 @@ MonoBehaviour:
   lineRenderer: {fileID: 5594684078624446208}
   isConnected: 0
   isSwinging: 0
+  isPulling: 0
   ropeCollision: {fileID: 5594684080474551745}
 --- !u!120 &5594684078624446208
 LineRenderer:

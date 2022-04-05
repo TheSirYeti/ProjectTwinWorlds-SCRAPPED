@@ -33,34 +33,9 @@ public class LevelManager : MonoBehaviour
             currentId = 0;
             ReloadScene();
         }
-        
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             currentId = 1;
-            ReloadScene();
-        }
-        
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            currentId = 2;
-            ReloadScene();
-        }
-        
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            currentId = 3;
-            ReloadScene();
-        }
-        
-        if (Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            currentId = 4;
-            ReloadScene();
-        }
-        
-        if (Input.GetKeyDown(KeyCode.Alpha6))
-        {
-            currentId = 5;
             ReloadScene();
         }
     }
@@ -68,6 +43,8 @@ public class LevelManager : MonoBehaviour
     public void ReloadScene()
     {
         EventManager.ResetEventDictionary();
+        SoundManager.instance.StopAllMusic();
+        SoundManager.instance.StopAllSounds();
         SceneManager.LoadScene(currentId);
     }
 }
