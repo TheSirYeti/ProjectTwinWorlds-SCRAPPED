@@ -26,7 +26,7 @@ public class PlayerWorlds : MonoBehaviour
                     angelTotem.SetActive(true);
                 }
 
-                EventManager.Trigger("OnPlayerChange", demonPlayer);
+                EventManager.Trigger("OnPlayerChange", demonPlayer, isLinked);
             }
             else
             {
@@ -39,7 +39,7 @@ public class PlayerWorlds : MonoBehaviour
                     angelTotem.SetActive(false);
                 }
 
-                EventManager.Trigger("OnPlayerChange", angelPlayer);
+                EventManager.Trigger("OnPlayerChange", angelPlayer, isLinked);
             }
         }
 
