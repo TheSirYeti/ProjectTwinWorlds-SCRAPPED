@@ -183,23 +183,12 @@ public class SoundManager : MonoBehaviour
 
 public enum SoundID
 {
-    TRANSITION,
-    JUMP,
-    HURT,
-    SLIDE,
-    CHANGE_LANE,
-    EXTRA_LIFE,
-    COIN,
-    HIGH_JUMP,
-    SHIELD,
-    YEAH,
-    SHOT,
-    KICK,
-    HIT,
-    MINIGAME_W,
-    MINIGAME_L,
-    YEAH_2,
-    IMPACT
+    HIT_PENTADENT,
+    ROPE_SWING,
+    SWAP,
+    SWAP_2,
+    FOOTSTEP,
+    PLAYER_DAMAGE
 }
 
 public enum MusicID

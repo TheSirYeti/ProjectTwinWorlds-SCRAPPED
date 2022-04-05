@@ -11,11 +11,13 @@ public class MovableObject : MonoBehaviour
     public float minDistance;
     public float speed;
 
+    public Transform grappablePoint;
+    
+    
     public int id;
     
     private void Start()
     {
-        EventManager.Subscribe("OnPlayerChange", ChangeTarget);
         EventManager.Subscribe("OnMovableCollided", EnableFollow);
         EventManager.Subscribe("ResetAbility", DisableFollow);
     }
@@ -24,15 +26,10 @@ public class MovableObject : MonoBehaviour
     {
         if (isActive && Vector3.Distance(transform.position, target.position) > minDistance)
         {
-            Vector3 direction = transform.position - target.position;
+            Vector3 direction = target.position - transform.position;
+            direction.Normalize();
             rb.MovePosition(transform.position + direction * speed * Time.deltaTime);
         }
-    }
-
-    public void ChangeTarget(object[] parameters)
-    {
-        GameObject newTarget = (GameObject)parameters[0];
-        target = newTarget.transform;
     }
 
     public void EnableFollow(object[] parameters)

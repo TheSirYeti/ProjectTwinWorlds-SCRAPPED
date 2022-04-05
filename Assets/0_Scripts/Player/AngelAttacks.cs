@@ -65,6 +65,7 @@ public class AngelAttacks : PlayerAttacks
             isConnected = true;
             
             CheckColliders();
+            Debug.Log("Ojjjj");
         }
     }
 

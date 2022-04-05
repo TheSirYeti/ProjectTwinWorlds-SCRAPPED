@@ -615,6 +615,7 @@ GameObject:
   - component: {fileID: 3913398195166920775}
   - component: {fileID: 3913398195166920761}
   - component: {fileID: 3913398195166920772}
+  - component: {fileID: 4918263188809921723}
   - component: {fileID: 3913398195166920771}
   m_Layer: 12
   m_Name: Amogus Demonio
@@ -755,11 +756,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39571be7df47d9445a5c9c6745b9be5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 60
+  speed: 20
   direction: {fileID: 0}
   playerObserver: {fileID: 3913398196342236360}
   rb: {fileID: 3913398195166920775}
   canMove: 0
+  canGrapple: 0
+  grappable: {fileID: 0}
 --- !u!114 &3913398195166920772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -774,6 +777,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 3913398195166920773}
   _playerObserver: {fileID: 3913398196342236360}
+--- !u!114 &4918263188809921723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3913398195166920752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b84878ac2de02d4ba54bb955757f9ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 3
+  isDemon: 1
 --- !u!114 &3913398195166920771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1436,7 +1453,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5002827730269739306}
   m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
-  m_LocalPosition: {x: -0, y: 0, z: 1.156}
+  m_LocalPosition: {x: 0, y: -0, z: 0.95}
   m_LocalScale: {x: 6.2406044, y: 6.240603, z: -148.8192}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1558,7 +1575,7 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 1.25
-  m_Center: {x: 0, y: 0, z: 0.86}
+  m_Center: {x: 0, y: 0, z: 0.56}
 --- !u!114 &493847911572254106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1572,8 +1589,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMode: 2
-  outlineColor: {r: 0, g: 0, b: 0, a: 1}
-  outlineWidth: 3
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 3.19
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
@@ -1625,6 +1642,7 @@ GameObject:
   - component: {fileID: 5594684078624446214}
   - component: {fileID: 5594684078624446217}
   - component: {fileID: 5594684078624446216}
+  - component: {fileID: 8301785634907056974}
   - component: {fileID: 5594684078624446219}
   - component: {fileID: 5594684078624446208}
   m_Layer: 13
@@ -1767,11 +1785,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39571be7df47d9445a5c9c6745b9be5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 60
+  speed: 20
   direction: {fileID: 0}
   playerObserver: {fileID: 5594684079411266620}
   rb: {fileID: 5594684078624446214}
   canMove: 0
+  canGrapple: 0
+  grappable: {fileID: 0}
 --- !u!114 &5594684078624446216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1786,6 +1806,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 5594684078624446210}
   _playerObserver: {fileID: 5594684079411266620}
+--- !u!114 &8301785634907056974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5594684078624446218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b84878ac2de02d4ba54bb955757f9ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 3
+  isDemon: 0
 --- !u!114 &5594684078624446219
 MonoBehaviour:
   m_ObjectHideFlags: 0

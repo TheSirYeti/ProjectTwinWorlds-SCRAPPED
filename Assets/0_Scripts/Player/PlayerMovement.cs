@@ -11,6 +11,9 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
     public Observer playerObserver;
     public Rigidbody rb;
     public bool canMove;
+
+    public bool canGrapple;
+    public Transform grappable;
     
     private void Start()
     {
@@ -31,13 +34,21 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
             movementDelegate(hMov, vMov);
             playerObserver.NotifySubscribers("Walking");
         } else playerObserver.NotifySubscribers("Idle");
+
+        if (Input.GetKeyDown(KeyCode.Space) && canGrapple)
+        {
+            transform.position = grappable.position;
+            grappable = null;
+        }
     }
 
     void GenerateMovement(float h, float v)
     {
         Vector3 movement = h * direction.right + v * direction.forward;
+        
         if(movement.magnitude > 1)
             movement.Normalize();
+        
         transform.forward = movement;
         rb.MovePosition(transform.position + movement * speed * Time.deltaTime);
     }
@@ -70,5 +81,23 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
     {
         movementDelegate = GenerateMovement;
         rb.useGravity = true;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Movable Object"))
+        {
+            grappable = other.gameObject.GetComponent<MovableObject>().grappablePoint;
+            canGrapple = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Movable Object"))
+        {
+            grappable = null;
+            canGrapple = false;
+        }
     }
 }
