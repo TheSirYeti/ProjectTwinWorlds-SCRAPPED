@@ -9,6 +9,7 @@ public class PlayerWorlds : MonoBehaviour
 {
     public GameObject angelPlayer, demonPlayer;
     public GameObject angelTotem, demonTotem;
+    public Transform cameraPosDemon, cameraPosAngel, cameraPosition;
     public bool isLinked;
     
     private void Update()
@@ -18,6 +19,7 @@ public class PlayerWorlds : MonoBehaviour
             if (angelPlayer.activeSelf)
             {
                 demonPlayer.SetActive(true);
+                cameraPosition.position = cameraPosDemon.position;
                 angelPlayer.SetActive(false);
 
                 if (!isLinked)
@@ -27,10 +29,12 @@ public class PlayerWorlds : MonoBehaviour
                 }
 
                 EventManager.Trigger("OnPlayerChange", demonPlayer, isLinked);
+                SoundManager.instance.PlaySound(SoundID.SWAP);
             }
             else
             {
                 demonPlayer.SetActive(false);
+                cameraPosition.position = cameraPosAngel.position;
                 angelPlayer.SetActive(true);
 
                 if (!isLinked)
@@ -40,6 +44,7 @@ public class PlayerWorlds : MonoBehaviour
                 }
 
                 EventManager.Trigger("OnPlayerChange", angelPlayer, isLinked);
+                SoundManager.instance.PlaySound(SoundID.SWAP_2);
             }
         }
 
@@ -66,6 +71,7 @@ public class PlayerWorlds : MonoBehaviour
 
         if (angelPlayer.activeSelf)
         {
+            cameraPosition.position = cameraPosAngel.position;
             if (isLinked)
             {
                 demonPlayer.transform.position = angelPlayer.transform.position;
@@ -73,6 +79,7 @@ public class PlayerWorlds : MonoBehaviour
         }
         else
         {
+            cameraPosition.position = cameraPosDemon.position;
             if (isLinked)
             {
                 angelPlayer.transform.position = demonPlayer.transform.position;

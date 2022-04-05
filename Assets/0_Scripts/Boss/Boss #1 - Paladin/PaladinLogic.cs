@@ -26,6 +26,7 @@ public class PaladinLogic : MonoBehaviour
  
     private void Start()
     {
+        SoundManager.instance.PlayMusic(MusicID.BOSS);
         EventManager.Subscribe("OnBossDamaged", SetPhaseState);
         EventManager.Subscribe("OnPlayerChange", ChangeTarget);
         currentPhase = 1;

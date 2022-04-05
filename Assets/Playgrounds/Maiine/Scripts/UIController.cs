@@ -28,7 +28,7 @@ public class UIController : MonoBehaviour
     {
         c.a = 1;
 
-        EventManager.Subscribe("OnPlayerHPUpdate", TakeUIDMG);
+        EventManager.Subscribe("OnPlayerHPUpdated", TakeUIDMG);
         EventManager.Subscribe("OnPlayerChange", ChangeUI);
     }
 
@@ -90,6 +90,7 @@ public class UIController : MonoBehaviour
             _uiAngelLife--;
             _angelHearths[_uiAngelLife].gameObject.SetActive(false);
         }
+        Debug.Log("Entro UI9");
     }
 
     void FadeOut()

@@ -13,6 +13,7 @@ public class AngelAttacks : PlayerAttacks
     public LineRenderer lineRenderer;
     public bool isConnected;
     public bool isSwinging;
+    public bool isPulling;
     public GameObject ropeCollision;
     
     private void LateUpdate()
@@ -65,7 +66,6 @@ public class AngelAttacks : PlayerAttacks
             isConnected = true;
             
             CheckColliders();
-            Debug.Log("Ojjjj");
         }
     }
 
@@ -92,8 +92,8 @@ public class AngelAttacks : PlayerAttacks
             switch (objectCollided.layer)
             {
                 case (int)LayerStruct.LayerID.MOVABLE_OBJECT:
-                    Vector3 movablePos = new Vector3(transform.position.x, transform.position.y - 1f, transform.position.z);
-                    StartCoroutine(GrabObject(8, objectCollided, movablePos));
+                    //Vector3 movablePos = new Vector3(transform.position.x, transform.position.y - 1f, transform.position.z);
+                    //StartCoroutine(GrabObject(8, objectCollided, movablePos));
                     EventManager.Trigger("ResetAbility");
                     break;
                 

@@ -193,8 +193,8 @@ public enum SoundID
 
 public enum MusicID
 {
-    MAIN_THEME,
-    GAME_THEME,
-    MEGALOVANIA,
-    FIGHT
+    BOSS,
+    CHILLING_1,
+    CHILLING_2,
+    CHINESE
 }

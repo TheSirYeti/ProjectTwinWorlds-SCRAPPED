@@ -28,6 +28,7 @@ public class PentadentCollision : MonoBehaviour
             {
                 SearchForParent();
                 StopCoroutine(ThrowPentadent());
+                SoundManager.instance.PlaySound(SoundID.HIT_PENTADENT);
             }
             
             yield return new WaitForSeconds(0.001f);
@@ -44,7 +45,8 @@ public class PentadentCollision : MonoBehaviour
             if (collider.gameObject.layer != LayerMask.NameToLayer("Default")
                 && collider.gameObject.layer != LayerMask.NameToLayer("Pentadente")
                 && collider.gameObject.layer != LayerMask.NameToLayer("DemonPlayer")
-                && collider.gameObject.layer != LayerMask.NameToLayer("AngelPlayer"))
+                && collider.gameObject.layer != LayerMask.NameToLayer("AngelPlayer")
+                && collider.gameObject.layer != LayerMask.NameToLayer("EnemyAttack"))
             {
                 filteredColliders.Add(collider);
             }
