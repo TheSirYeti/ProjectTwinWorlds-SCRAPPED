@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1366533056708626685}
   - component: {fileID: 1366533056708626686}
   m_Layer: 0
-  m_Name: Pentadente Trail
+  m_Name: Pentadente Trail Bow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -53,7 +53,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fc2c557f9db373c439c4cae223ba5d26, type: 2}
+  - {fileID: 2100000, guid: e90228b1d81845c4b8b8cef09304d195, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

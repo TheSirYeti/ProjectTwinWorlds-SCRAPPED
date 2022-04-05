@@ -1,19 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SwingProperties : MonoBehaviour
 {
-    public Transform landingPosition1, landingPosition2;
+    public List<Transform> swingPositions;
 
-    public Transform GetFurthestLandingPosition(Transform transform)
+    public int GetNearestLandingPosition(Transform  transformTarget)
     {
-        if (Vector3.Distance(transform.position, landingPosition1.position) >=
-            Vector3.Distance(transform.position, landingPosition2.position))
+        float minDistance = Mathf.Infinity;
+        int nearestId = -1;
+        
+        for (int i = 0; i < swingPositions.Count; i++)
         {
-            return landingPosition1;
+            var currentDistance = Vector3.Distance(transformTarget.position, swingPositions[i].position);
+            if (currentDistance <= minDistance)
+            {
+                minDistance = currentDistance;
+                nearestId = i;
+            }
         }
-        else return landingPosition2;
+
+        return nearestId;
     }
-    
+
+    public int DetermineOrientation(int positionId)
+    {
+        float total = positionId / swingPositions.Count - 1;
+
+        if (total > 0.5f)
+        {
+            return 1;
+        }
+        else return -1;
+    }
+
 }

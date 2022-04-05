@@ -9,6 +9,8 @@ public class PaladinChaseState : IState
     private float speed;
     private float minDistance;
 
+    
+    
     public PaladinChaseState(Transform target, PaladinLogic paladin, FiniteStateMachine fsm, Animator animator, float speed, float minDistance)
     {
         this.target = target;
@@ -21,10 +23,12 @@ public class PaladinChaseState : IState
 
     public void OnStart()
     {
+        EventManager.UnSubscribe("OnPlayerChange", ChangeTarget);
+        EventManager.Subscribe("OnPlayerChange", ChangeTarget);
+        target = paladin.target;
         if (paladin.attackNumber >= paladin.maxAttackNumber)
         {
             _fsm.ChangeState(PaladinState.RETURN);
-            Debug.Log("MAX");
         }
         
         _animator.SetBool("isWalking", true);
@@ -67,5 +71,12 @@ public class PaladinChaseState : IState
                 break;
         }
         
+    }
+
+    void ChangeTarget(object[] parameters)
+    {
+        Debug.Log("Change Chase");
+        GameObject newTarget = (GameObject)parameters[0];
+        target = newTarget.transform;
     }
 }

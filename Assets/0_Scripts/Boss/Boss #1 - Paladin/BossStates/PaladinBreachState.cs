@@ -35,6 +35,7 @@ public class PaladinBreachState : IState
         DoAttack();
         paladin.SetShieldSpeeds(ShieldObject.SpeedState.FAST);
         floorAttack.transform.LookAt(new Vector3(target.transform.position.x, floorAttack.transform.position.y, target.transform.position.z));
+        floorAttack.transform.position = new Vector3(paladin.transform.position.x, floorAttack.transform.position.y, paladin.transform.position.z);
     }
 
     public void OnUpdate()
@@ -46,7 +47,7 @@ public class PaladinBreachState : IState
             fsm.ChangeState(PaladinState.CHASE);
         }
 
-        if (currentTime >= 0.8f && !flag)
+        if (currentTime >= 1.2f && !flag)
         {
             flag = !flag;
             floorAttack.DoAttack();

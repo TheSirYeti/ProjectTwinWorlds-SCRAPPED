@@ -32,6 +32,7 @@ public class PaladinTackleState : MonoBehaviour, IState
     public void OnStart()
     {
         currentTime = 0;
+        isTackling = false;
         animator.Play("Paladin_Idle");
         paladin.SetShieldSpeeds(ShieldObject.SpeedState.FAST);
     }
@@ -72,7 +73,9 @@ public class PaladinTackleState : MonoBehaviour, IState
         foreach (Transform spawnPoint in spawnPoints)
         {
             GameObject shield = Instantiate(shieldPrefab);
-            shield.transform.position = spawnPoint.transform.position;
+            shield.transform.position =
+                new Vector3(spawnPoint.transform.position.x, spawnPoint.transform.position.y - 0.3f,
+                    spawnPoint.transform.position.z);
             shield.transform.rotation = spawnPoint.transform.rotation;
         }
     }

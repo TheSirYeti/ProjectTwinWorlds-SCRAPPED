@@ -12,6 +12,7 @@ public class AngelAttacks : PlayerAttacks
     public LayerMask pentadenteMask;
     public LineRenderer lineRenderer;
     public bool isConnected;
+    public bool isSwinging;
     public GameObject ropeCollision;
     
     private void LateUpdate()
@@ -62,6 +63,8 @@ public class AngelAttacks : PlayerAttacks
             lineRenderer.SetPosition(1, hit.point);
             ropeCollision.transform.position = hit.point;
             isConnected = true;
+            
+            CheckColliders();
         }
     }
 
@@ -103,7 +106,10 @@ public class AngelAttacks : PlayerAttacks
                     break;
                 
                 case (int)LayerStruct.LayerID.SWING:
-                    StartCoroutine(ClimbHook(1, objectCollided.GetComponent<SwingProperties>().GetFurthestLandingPosition(transform).position));
+                    SwingProperties swingProperties = objectCollided.GetComponent<SwingProperties>();
+                    isSwinging = true;
+                    EventManager.Trigger("OnSwingStart");
+                    StartCoroutine(SwingMovement(swingProperties));
                     break;
                 
                 case (int)LayerStruct.LayerID.BOSS_DAMAGABLE:
@@ -130,11 +136,38 @@ public class AngelAttacks : PlayerAttacks
         }
     }
 
+    void CheckColliders()
+    {
+        Collider[] colliders = Physics.OverlapSphere(weapon.transform.position, 1f);
+
+        List<Collider> filteredColliders = new List<Collider>();
+        foreach (Collider collider in colliders)
+        {
+            if (collider.gameObject.layer != LayerMask.NameToLayer("Default")
+                && collider.gameObject.layer != LayerMask.NameToLayer("Wall")
+                && collider.gameObject.layer != LayerMask.NameToLayer("Floor")
+                && collider.gameObject.layer != LayerMask.NameToLayer("Pentadente"))
+            {
+                filteredColliders.Add(collider);
+            }
+        }
+
+        if (filteredColliders.Count == 1)
+        {
+            if (filteredColliders[0].gameObject.layer == (int) LayerStruct.LayerID.MOVABLE_OBJECT)
+            {
+                EventManager.Trigger("OnMovableCollided", filteredColliders[0].GetComponent<MovableObject>().id);
+            }
+        }
+    }
+
     public override void ThrowAbility(object[] parameters)
     {
         isConnected = false;
         ropeCollision.transform.position = transform.position;
         lineRenderer.enabled = false;
+        isSwinging = false;
+        EventManager.Trigger("OnSwingStop");
     }
     
     IEnumerator GrabObject(float duration, GameObject obj, Vector3 destiny)
@@ -166,6 +199,36 @@ public class AngelAttacks : PlayerAttacks
             
             if(Vector3.Distance(transform.position, destiny) <= 0.3f)
                 EventManager.Trigger("ResetAbility");
+            
+            yield return new WaitForSeconds(0.01f);
+        }
+    }
+
+    IEnumerator SwingMovement(SwingProperties swingProperties)
+    {
+        float time = 0;
+        int currentWaypoint = swingProperties.GetNearestLandingPosition(transform);
+
+        int nextWaypoint = swingProperties.DetermineOrientation(currentWaypoint);
+
+        while (isSwinging)
+        {
+            time += Time.deltaTime;
+            transform.position = Vector3.Lerp(transform.position, swingProperties.swingPositions[currentWaypoint].position, time / 0.2f);
+            
+            
+            if (Vector3.Distance(transform.position, swingProperties.swingPositions[currentWaypoint].position) <= 0.2f)
+            if (Vector3.Distance(transform.position, swingProperties.swingPositions[currentWaypoint].position) <= 0.2f)
+            {
+                currentWaypoint += nextWaypoint;
+
+                if (currentWaypoint >= swingProperties.swingPositions.Count - 1 || currentWaypoint < 1)
+                {
+                    nextWaypoint *= -1;
+                }
+
+                time = 0f;
+            }
             
             yield return new WaitForSeconds(0.01f);
         }

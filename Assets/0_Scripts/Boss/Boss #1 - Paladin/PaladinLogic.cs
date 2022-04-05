@@ -27,6 +27,7 @@ public class PaladinLogic : MonoBehaviour
     private void Start()
     {
         EventManager.Subscribe("OnBossDamaged", SetPhaseState);
+        EventManager.Subscribe("OnPlayerChange", ChangeTarget);
         currentPhase = 1;
         StartRingPhase(currentPhase);
         SetFSM();
@@ -99,7 +100,7 @@ public class PaladinLogic : MonoBehaviour
         fsm.AddState(PaladinState.REST, new PaladinRestState(fsm, animator, timeToRest, shieldRings, this));
         fsm.AddState(PaladinState.CHASE, new PaladinChaseState(target, this, fsm, animator, speed, 13));
         fsm.AddState(PaladinState.BREACH,
-            new PaladinBreachState(floorAttack, animator, fsm, target, 3.3f, shieldRings, this));
+            new PaladinBreachState(floorAttack, animator, fsm, target, 3.8f, shieldRings, this));
         fsm.AddState(PaladinState.RETURN, new PaladinReturnState(returnPoint, fsm, this, 0.2f, speed));
         fsm.AddState(PaladinState.SUMMON, new PaladinSummonState(this, fsm, 7, 0.35f));
         fsm.AddState(PaladinState.TACKLE, new PaladinTackleState(1f, 4f, fsm, animator, this, shieldSpawnpoints, shieldPrefabOut));
@@ -112,5 +113,12 @@ public class PaladinLogic : MonoBehaviour
         {
             shield.SetSpeed(state);
         }
+    }
+
+    public void ChangeTarget(object[] parameters)
+    {
+        Debug.Log("Change paladin");
+        GameObject newTarget = (GameObject)parameters[0];
+        target = newTarget.transform;
     }
 }

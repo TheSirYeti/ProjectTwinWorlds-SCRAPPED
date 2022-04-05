@@ -14,6 +14,9 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
     
     private void Start()
     {
+        EventManager.Subscribe("OnSwingStart", StopMovement);
+        EventManager.Subscribe("OnSwingStop", ResumeMovement);
+        
         movementDelegate = GenerateMovement;
         playerObserver.Subscribe(this);
     }
@@ -35,10 +38,7 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
         Vector3 movement = h * direction.right + v * direction.forward;
         if(movement.magnitude > 1)
             movement.Normalize();
-        //transform.position += movement * speed * Time.deltaTime;
         transform.forward = movement;
-        //rb.velocity = movement * speed;
-        //rb.AddForce(movement * speed * Time.deltaTime, ForceMode.Impulse);
         rb.MovePosition(transform.position + movement * speed * Time.deltaTime);
     }
 
@@ -58,5 +58,17 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
         {
             movementDelegate = GenerateMovement;
         }
+    }
+
+    void StopMovement(object[] parameters)
+    {
+        movementDelegate = NoMovement;
+        rb.useGravity = false;
+    }
+
+    void ResumeMovement(object[] parameters)
+    {
+        movementDelegate = GenerateMovement;
+        rb.useGravity = true;
     }
 }
