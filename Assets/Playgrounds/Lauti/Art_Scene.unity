@@ -602,6 +602,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 521ca2e64782e214a907832dd521abb9, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f1d26599e2c96b143aabf3a82b0d95ce, type: 2}
     - target: {fileID: 919132149155446097, guid: 521ca2e64782e214a907832dd521abb9, type: 3}
       propertyPath: m_Name
       value: Arco Estructura
@@ -1620,6 +1624,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pilar Tesis (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6279744219234139016, guid: e22c48f215ab2194581950938e7ba38e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f1d26599e2c96b143aabf3a82b0d95ce, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e22c48f215ab2194581950938e7ba38e, type: 3}
 --- !u!1001 &573592311
@@ -2111,6 +2119,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pilar Tesis (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 6279744219234139016, guid: e22c48f215ab2194581950938e7ba38e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f1d26599e2c96b143aabf3a82b0d95ce, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e22c48f215ab2194581950938e7ba38e, type: 3}
 --- !u!1001 &757331782
@@ -2416,6 +2428,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pilar Tesis (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 6279744219234139016, guid: e22c48f215ab2194581950938e7ba38e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f1d26599e2c96b143aabf3a82b0d95ce, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e22c48f215ab2194581950938e7ba38e, type: 3}
 --- !u!1001 &875405127
@@ -5490,6 +5506,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pilar Tesis
       objectReference: {fileID: 0}
+    - target: {fileID: 6279744219234139016, guid: e22c48f215ab2194581950938e7ba38e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f1d26599e2c96b143aabf3a82b0d95ce, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e22c48f215ab2194581950938e7ba38e, type: 3}
 --- !u!1001 &512219465745845049
@@ -5661,6 +5681,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Jarron Tesis
       objectReference: {fileID: 0}
+    - target: {fileID: 3486670951176016751, guid: 719d3dfba26c3cb4ca9cb3c3963f5d53, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f1d26599e2c96b143aabf3a82b0d95ce, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 719d3dfba26c3cb4ca9cb3c3963f5d53, type: 3}
 --- !u!1001 &2782216054838057342
@@ -5837,6 +5861,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pedestal Tesis
       objectReference: {fileID: 0}
+    - target: {fileID: 4005901007643725504, guid: 543b65e6a0d01f346a1eddd06e486623, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f1d26599e2c96b143aabf3a82b0d95ce, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 543b65e6a0d01f346a1eddd06e486623, type: 3}
 --- !u!1001 &7499029112098457335
