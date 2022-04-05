@@ -17,6 +17,8 @@ public class UIController : MonoBehaviour
     [SerializeField] private GameObject _demonPlayer;
     [SerializeField] private GameObject _angelPlayer;
 
+    [SerializeField] private Image _demon, _angel, _link;
+
     private bool _isDemond = true;
     private int _uiDemondLife = 3;
     private int _uiAngelLife = 3;
@@ -54,6 +56,25 @@ public class UIController : MonoBehaviour
         {
             _demonUI.gameObject.SetActive(false);
             _angelUI.gameObject.SetActive(true);
+        }
+
+        if ((bool)parameters[1])
+        {
+            _demon.gameObject.SetActive(false);
+            _angel.gameObject.SetActive(false);
+            _link.gameObject.SetActive(true);
+        }
+        else if ((bool)parameters[1] == false && _isDemond)
+        {
+            _demon.gameObject.SetActive(true);
+            _angel.gameObject.SetActive(false);
+            _link.gameObject.SetActive(false);
+        }
+        else if ((bool)parameters[1] == false && !_isDemond)
+        {
+            _demon.gameObject.SetActive(false);
+            _angel.gameObject.SetActive(true);
+            _link.gameObject.SetActive(false);
         }
     }
 
