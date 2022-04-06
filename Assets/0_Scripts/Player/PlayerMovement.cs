@@ -50,7 +50,8 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
             movement.Normalize();
         
         transform.forward = movement;
-        rb.MovePosition(transform.position + movement * speed * Time.deltaTime);
+        //rb.MovePosition(transform.position + movement * speed * Time.deltaTime);
+        rb.velocity = movement * speed * Time.deltaTime;
     }
 
     void NoMovement(float h, float v)
@@ -98,6 +99,16 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
         {
             grappable = null;
             canGrapple = false;
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Wall"))
+        {
+            rb.velocity = new Vector3(0, rb.velocity.y, 0);
+            Debug.Log("VELOCITY 0 PA");
         }
     }
 }
