@@ -6,8 +6,7 @@ using UnityEngine;
 public class DemonAttacks : PlayerAttacks
 {
     public PentadentCollision weapon;
-    public float flightDuration , radius;
-    public LayerMask collidableLayer;
+    public float flightDuration;
     public override void GenerateBasicAttack()
     {
         cooldownTimer = attackCooldown;
@@ -21,7 +20,7 @@ public class DemonAttacks : PlayerAttacks
         _playerObserver.NotifySubscribers("BasicAttack");
     }
 
-    public override void AimAbility()
+    public override void AimAbility(Vector3 position)
     {
         weapon.gameObject.SetActive(true);
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
@@ -64,7 +63,18 @@ public class DemonAttacks : PlayerAttacks
 
         if (collisions.Length == 1)
         {
+            InteractableObject intObj = collisions[0].GetComponent<InteractableObject>();
+
+            var dirToTarget = objectPosition - transform.position;
             
+            if (LayerMask.NameToLayer(intObj.layerTrigger) == gameObject.layer)
+            {
+                intObj.OnObjectStart();
+            }
+            else
+            {
+                EventManager.Trigger("ResetAbility");
+            }
         }
     }
 }

@@ -50,7 +50,7 @@ public class AngelAttacks : PlayerAttacks
         _playerObserver.NotifySubscribers("BasicAttack");
     }
 
-    public override void AimAbility()
+    public override void AimAbility(Vector3 position)
     {
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
