@@ -529,6 +529,10 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 212593157}
+    - target: {fileID: 3913398195166920771, guid: 305d90f54d62b64449c4b245eddabd14, type: 3}
+      propertyPath: collidableLayer.m_Bits
+      value: 19968
+      objectReference: {fileID: 0}
     - target: {fileID: 5594684078624446219, guid: 305d90f54d62b64449c4b245eddabd14, type: 3}
       propertyPath: cam
       value: 

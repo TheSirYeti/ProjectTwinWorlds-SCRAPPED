@@ -6,7 +6,8 @@ using UnityEngine;
 public class DemonAttacks : PlayerAttacks
 {
     public PentadentCollision weapon;
-    public float flightDuration;
+    public float flightDuration , radius;
+    public LayerMask collidableLayer;
     public override void GenerateBasicAttack()
     {
         cooldownTimer = attackCooldown;
@@ -44,5 +45,26 @@ public class DemonAttacks : PlayerAttacks
         weapon.transform.position = transform.position;
         weapon.foundParent = false;
         weapon.gameObject.SetActive(false);
+    }
+
+    public void AimPentadente()
+    {
+        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, collidableLayer))
+        {
+            CheckForCollisions(hit.point);
+        }
+        
+    }
+
+    public void CheckForCollisions(Vector3 objectPosition)
+    {
+        Collider[] collisions = Physics.OverlapSphere(objectPosition, radius, collidableLayer);
+
+        if (collisions.Length == 1)
+        {
+            
+        }
     }
 }

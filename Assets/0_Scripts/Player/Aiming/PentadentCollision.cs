@@ -5,16 +5,12 @@ using UnityEngine;
 
 public class PentadentCollision : MonoBehaviour
 {
-    public Collider collider;
     public float duration;
     public Vector3 currentDestination;
     public float minDistance;
     public bool foundParent;
-    
-    private void Update()
-    {
-        //SearchForParent();
-    }
+
+    public GameObject currentParent;
 
     public IEnumerator ThrowPentadent()
     {
