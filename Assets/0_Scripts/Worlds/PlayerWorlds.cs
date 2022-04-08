@@ -14,7 +14,7 @@ public class PlayerWorlds : MonoBehaviour
     
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab)) 
+        if (Input.GetKeyDown(KeyCode.Q)) 
         {
             if (angelPlayer.activeSelf)
             {

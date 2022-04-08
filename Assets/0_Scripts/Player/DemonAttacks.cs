@@ -52,7 +52,6 @@ public class DemonAttacks : PlayerAttacks
         {
             CheckForCollisions(hit.point);
         }
-        
     }
 
     public void CheckForCollisions(Vector3 objectPosition)

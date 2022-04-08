@@ -8,6 +8,7 @@ using UnityEngine;
 public class AngelAttacks : PlayerAttacks
 {
     public GameObject weapon;
+    public Transform arrowEndPoint;
     public GameObject arrowPrefab;
     public LayerMask pentadenteMask;
     public LineRenderer lineRenderer;
@@ -18,10 +19,10 @@ public class AngelAttacks : PlayerAttacks
     
     private void LateUpdate()
     {
-        if (isConnected && weapon.activeSelf)
+        if (isConnected)
         {
             lineRenderer.SetPosition(0, transform.position);
-            lineRenderer.SetPosition(1, weapon.transform.position);
+            lineRenderer.SetPosition(1, arrowEndPoint.position);
             
             if (Input.GetKeyDown(KeyCode.F))
             {
@@ -52,20 +53,18 @@ public class AngelAttacks : PlayerAttacks
 
     public override void AimAbility(Transform position)
     {
-        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-        
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity, collidableLayer))
-        {
-            
-        }
+        lineRenderer.SetPosition(0, transform.position);
+        arrowEndPoint = position;
+        lineRenderer.SetPosition(1, arrowEndPoint.position);
+        isConnected = true;
+        lineRenderer.enabled = true;
     }
 
     public override void ExecuteAbility()
     {
         var collidedObject = CheckColliders();
 
-        if (collidedObject != null && collidedObject.isFirstTriggered && LayerMask.NameToLayer(collidedObject.layerTrigger) == gameObject.layer)
+        if (collidedObject != null && collidedObject.CheckForFirstTrigger() && LayerMask.NameToLayer(collidedObject.layerTrigger) == gameObject.layer)
         {
             collidedObject.OnObjectEnd();
         }

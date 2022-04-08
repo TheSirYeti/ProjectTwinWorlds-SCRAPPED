@@ -17,6 +17,7 @@ public class BreakableWall : InteractableObject
     public override void OnObjectEnd()
     {
         ResetVariables(null);
+        EventManager.Trigger("ResetAbility");
         gameObject.SetActive(false);
     }
 }

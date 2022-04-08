@@ -88,8 +88,8 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Movable Object"))
         {
-            grappable = other.gameObject.GetComponent<MovableObject>().grappablePoint;
-            canGrapple = true;
+            //grappable = other.gameObject.GetComponent<MovableObject>().grappablePoint;
+            //canGrapple = true;
         }
     }
 

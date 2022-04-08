@@ -59,11 +59,11 @@ public abstract class PlayerAttacks : MonoBehaviour
     {
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
+        
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, collidableLayer))
         {
             CheckForCollisions(hit.point);
         }
-
     }
 
     public void CheckForCollisions(Vector3 objectPosition)
@@ -76,7 +76,9 @@ public abstract class PlayerAttacks : MonoBehaviour
 
             var dirToTarget = objectPosition - transform.position;
             
-            if (LayerMask.NameToLayer(intObj.layerTrigger) == gameObject.layer && intObj.CheckForTrigger() && !Physics.Raycast(transform.position, dirToTarget, dirToTarget.magnitude, wallLayer))
+            if (LayerMask.NameToLayer(intObj.layerTrigger) == gameObject.layer 
+                && intObj.CheckForFirstTrigger() 
+                && !Physics.Raycast(transform.position, dirToTarget, dirToTarget.magnitude, wallLayer))
             {
                 intObj.OnObjectStart();
                 
