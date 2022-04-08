@@ -50,116 +50,36 @@ public class AngelAttacks : PlayerAttacks
         _playerObserver.NotifySubscribers("BasicAttack");
     }
 
-    public override void AimAbility(Vector3 position)
+    public override void AimAbility(Transform position)
     {
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity, pentadenteMask))
-        {
-            lineRenderer.enabled = true;
-            lineRenderer.startColor = Color.gray;
-            lineRenderer.startWidth = 0.3f;
-            transform.LookAt(new Vector3(hit.point.x, transform.position.y, hit.point.z));
-            lineRenderer.SetPosition(0, transform.position);
-            lineRenderer.SetPosition(1, hit.point);
-            ropeCollision.transform.position = hit.point;
-            isConnected = true;
-            
-            CheckColliders();
-        }
-    }
-
-    public void ExecuteAbility()
-    {
-        Collider[] colliders = Physics.OverlapSphere(weapon.transform.position, 1f);
-
-        List<Collider> filteredColliders = new List<Collider>();
-        foreach (Collider collider in colliders)
-        {
-            if (collider.gameObject.layer != LayerMask.NameToLayer("Default")
-                && collider.gameObject.layer != LayerMask.NameToLayer("Wall")
-                && collider.gameObject.layer != LayerMask.NameToLayer("Floor")
-                && collider.gameObject.layer != LayerMask.NameToLayer("Pentadente"))
-            {
-                filteredColliders.Add(collider);
-            }
-        }
-
-        if (filteredColliders.Count == 1)
-        {
-            GameObject objectCollided = filteredColliders[0].gameObject;
-
-            switch (objectCollided.layer)
-            {
-                case (int)LayerStruct.LayerID.MOVABLE_OBJECT:
-                    //Vector3 movablePos = new Vector3(transform.position.x, transform.position.y - 1f, transform.position.z);
-                    //StartCoroutine(GrabObject(8, objectCollided, movablePos));
-                    EventManager.Trigger("ResetAbility");
-                    break;
-                
-                case (int)LayerStruct.LayerID.BREAKABLE_OBJECT:
-                    filteredColliders[0].gameObject.SetActive(false);
-                    EventManager.Trigger("ResetAbility");
-                    break;
-                
-                case (int)LayerStruct.LayerID.GRAB_SPOT:
-                    StartCoroutine(ClimbHook(1, weapon.transform.position));
-                    break;
-                
-                case (int)LayerStruct.LayerID.SWING:
-                    SwingProperties swingProperties = objectCollided.GetComponent<SwingProperties>();
-                    isSwinging = true;
-                    EventManager.Trigger("OnSwingStart");
-                    StartCoroutine(SwingMovement(swingProperties));
-                    break;
-                
-                case (int)LayerStruct.LayerID.BOSS_DAMAGABLE:
-                    EventManager.Trigger("OnBossDamagableTriggered", objectCollided.GetComponent<PaladinStake>().stakeId);
-                    EventManager.Trigger("ResetAbility");
-                    break;
-
-                default:
-                    Debug.Log("Otro");
-                    EventManager.Trigger("ResetAbility");
-                    break;
-            }
-        }
         
-        else
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, collidableLayer))
         {
-            if(filteredColliders.Count == 0)
-                Debug.Log("Menos de 1");
             
-            if(filteredColliders.Count > 1)
-                Debug.Log("Mas de 1");
-            
-            EventManager.Trigger("ResetAbility");
         }
     }
 
-    void CheckColliders()
+    public override void ExecuteAbility()
     {
-        Collider[] colliders = Physics.OverlapSphere(weapon.transform.position, 1f);
+        var collidedObject = CheckColliders();
 
-        List<Collider> filteredColliders = new List<Collider>();
-        foreach (Collider collider in colliders)
+        if (collidedObject != null && collidedObject.isFirstTriggered && LayerMask.NameToLayer(collidedObject.layerTrigger) == gameObject.layer)
         {
-            if (collider.gameObject.layer != LayerMask.NameToLayer("Default")
-                && collider.gameObject.layer != LayerMask.NameToLayer("Wall")
-                && collider.gameObject.layer != LayerMask.NameToLayer("Floor")
-                && collider.gameObject.layer != LayerMask.NameToLayer("Pentadente"))
-            {
-                filteredColliders.Add(collider);
-            }
+            collidedObject.OnObjectEnd();
         }
+    }
+    
+    InteractableObject CheckColliders()
+    {
+        Collider[] colliders = Physics.OverlapSphere(weapon.transform.position, 1f, collidableLayer);
 
-        if (filteredColliders.Count == 1)
+        if (colliders.Length == 1)
         {
-            if (filteredColliders[0].gameObject.layer == (int) LayerStruct.LayerID.MOVABLE_OBJECT)
-            {
-                EventManager.Trigger("OnMovableCollided", filteredColliders[0].GetComponent<MovableObject>().id);
-            }
+            return colliders[0].GetComponent<InteractableObject>();
         }
+        else return null;
     }
 
     public override void ThrowAbility(object[] parameters)

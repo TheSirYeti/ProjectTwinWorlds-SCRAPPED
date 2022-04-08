@@ -8,12 +8,13 @@ public abstract class InteractableObject : MonoBehaviour
     public string layerTrigger;
     public string firstTrigger;
     public bool isFirstTriggered;
-    public Transform insertionPoint;
+    public List<Transform> insertionPoints;
     public bool isObjectTriggered;
 
     private void Start()
     {
         EventManager.Subscribe("ResetAbility", ResetVariables);
+        EventManager.Subscribe("ResetObject", ResetVariables);
     }
 
     private void Update()
@@ -40,4 +41,24 @@ public abstract class InteractableObject : MonoBehaviour
         isFirstTriggered = false;
         isObjectTriggered = false;
     }
+
+    public int GetClosestInsertionPoint(Vector3 position)
+    {
+        int closest = -1;
+        float minDistance = Mathf.Infinity;
+        
+        for(int i = 0; i < insertionPoints.Count; i++)
+        {
+            float distance = Vector3.Distance(insertionPoints[i].position, position);
+
+            if (distance <= minDistance)
+            {
+                closest = i;
+                minDistance = distance;
+            }
+        }
+
+        return closest;
+    }
+
 }

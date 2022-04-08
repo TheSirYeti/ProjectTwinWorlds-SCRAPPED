@@ -870,12 +870,9 @@ MonoBehaviour:
   usedAbility: 1
   collidableLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 151040
   weapon: {fileID: 8876612664915679655}
   flightDuration: 3
-  collidableLayer:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!1 &3913398195202860324
 GameObject:
   m_ObjectHideFlags: 0
@@ -1652,7 +1649,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   duration: 3
-  currentDestination: {x: 0, y: 0, z: 0}
+  currentDestination: {fileID: 0}
   minDistance: 0.25
   foundParent: 0
   currentParent: {fileID: 0}

@@ -55,8 +55,6 @@ public abstract class PlayerAttacks : MonoBehaviour
         _playerObserver.NotifySubscribers("NoAttack");
     }
 
-    public abstract void AimAbility(Vector3 destination);
-
     public void CheckAbility()
     {
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
@@ -82,13 +80,13 @@ public abstract class PlayerAttacks : MonoBehaviour
             {
                 intObj.OnObjectStart();
                 
-                AimAbility(intObj.insertionPoint.position);
+                AimAbility(intObj.insertionPoints[intObj.GetClosestInsertionPoint(transform.position)]);
             }
             else
             {
                 if (LayerMask.NameToLayer(intObj.firstTrigger) == gameObject.layer)
                 {
-                    AimAbility(intObj.insertionPoint.position);
+                    AimAbility(intObj.insertionPoints[intObj.GetClosestInsertionPoint(transform.position)]);
                     intObj.isFirstTriggered = true;
                 }
             }
@@ -96,4 +94,8 @@ public abstract class PlayerAttacks : MonoBehaviour
     }
     
     public abstract void ThrowAbility(object[] parameters);
+    
+    public abstract void AimAbility(Transform destination);
+
+    public abstract void ExecuteAbility();
 }

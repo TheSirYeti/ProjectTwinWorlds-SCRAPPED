@@ -20,30 +20,28 @@ public class DemonAttacks : PlayerAttacks
         _playerObserver.NotifySubscribers("BasicAttack");
     }
 
-    public override void AimAbility(Vector3 position)
+    public override void AimAbility(Transform position)
     {
+        transform.LookAt(new Vector3(position.position.x, transform.position.y, position.position.z));
+        weapon.transform.position = transform.position;
         weapon.gameObject.SetActive(true);
-        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
+        weapon.transform.forward = transform.position - position.position;
+        weapon.currentDestination = position;
+        StartCoroutine(weapon.ThrowPentadent());
+    }
 
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity))
-        {
-            transform.LookAt(new Vector3(hit.point.x, transform.position.y, hit.point.z));
-            weapon.transform.position = transform.position;
-            weapon.transform.forward = transform.position - hit.point;
-            weapon.currentDestination = hit.point;
-            StartCoroutine(weapon.ThrowPentadent());
-        }
+    public override void ExecuteAbility()
+    {
+        throw new System.NotImplementedException();
     }
 
     public override void ThrowAbility(object[] parameters)
     {
-        Debug.Log(weapon.gameObject);
         weapon.StopCoroutine(weapon.ThrowPentadent());
         weapon.transform.SetParent(null);
         weapon.transform.position = transform.position;
-        weapon.foundParent = false;
         weapon.gameObject.SetActive(false);
+        EventManager.Trigger("ResetObject");
     }
 
     public void AimPentadente()
