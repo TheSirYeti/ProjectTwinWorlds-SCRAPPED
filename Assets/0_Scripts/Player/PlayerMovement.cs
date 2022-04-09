@@ -19,12 +19,14 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
     {
         EventManager.Subscribe("OnSwingStart", StopMovement);
         EventManager.Subscribe("OnSwingStop", ResumeMovement);
+        EventManager.Subscribe("OnMovableRestrict", RestrictSpeed);
+        EventManager.Subscribe("OnMovableUnrestrict", UnrestrictSpeed);
         
         movementDelegate = GenerateMovement;
         playerObserver.Subscribe(this);
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         float hMov = Input.GetAxis("Horizontal");
         float vMov = Input.GetAxis("Vertical");
@@ -50,8 +52,9 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
             movement.Normalize();
         
         transform.forward = movement;
-        //rb.MovePosition(transform.position + movement * speed * Time.deltaTime);
-        rb.velocity = movement * speed * Time.deltaTime;
+        
+        if(canMove)
+            rb.velocity = movement * speed * Time.deltaTime;
     }
 
     void NoMovement(float h, float v)
@@ -84,6 +87,16 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
         rb.useGravity = true;
     }
 
+    private void RestrictSpeed(object[] parameters)
+    {
+        canMove = false;
+    }
+
+    private void UnrestrictSpeed(object[] parameters)
+    {
+        canMove = true;
+    }
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Movable Object"))
@@ -104,11 +117,9 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
 
     private void OnCollisionEnter(Collision collision)
     {
-        
         if (collision.gameObject.layer == LayerMask.NameToLayer("Wall"))
         {
             rb.velocity = new Vector3(0, rb.velocity.y, 0);
-            Debug.Log("VELOCITY 0 PA");
         }
     }
 }

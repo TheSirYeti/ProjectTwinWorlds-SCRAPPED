@@ -876,9 +876,9 @@ MonoBehaviour:
   isObjectTriggered: 0
   itemToFollow: {fileID: 163453660}
   itemToRestrict: {fileID: 261327992}
-  minDistance: 3
-  speed: 6
-  velocity: 5000
+  minDistance: 6
+  speed: 35
+  velocity: 1200
   rb: {fileID: 276322594}
   isRestricting: 0
   isFollowing: 0

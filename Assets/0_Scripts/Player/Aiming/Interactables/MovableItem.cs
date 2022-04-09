@@ -54,7 +54,18 @@ public class MovableItem : InteractableObject
                 }
                 
                 Rigidbody itemBody = itemToRestrict.GetComponent<Rigidbody>();
-                itemBody.velocity = direction * velocity * Time.deltaTime;
+                
+                itemBody.constraints = RigidbodyConstraints.FreezePositionX;
+                itemBody.constraints = RigidbodyConstraints.FreezePositionZ;
+                itemBody.transform.position += direction * speed * Time.deltaTime;
+
+            }
+            else
+            {
+                Rigidbody itemBody = itemToRestrict.GetComponent<Rigidbody>();
+                
+                itemBody.constraints = RigidbodyConstraints.None;
+                itemBody.constraints = RigidbodyConstraints.FreezeRotation;
             }
 
             rb.constraints = RigidbodyConstraints.FreezePosition;
@@ -68,6 +79,7 @@ public class MovableItem : InteractableObject
         isRestricting = false;
 
         ResetVariables(null);
+        EventManager.Trigger("OnMovableUnrestrict");
         EventManager.Trigger("ResetAbility");
     }
 

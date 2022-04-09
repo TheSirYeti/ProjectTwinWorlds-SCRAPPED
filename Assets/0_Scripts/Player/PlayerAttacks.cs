@@ -42,7 +42,8 @@ public abstract class PlayerAttacks : MonoBehaviour
             }
             else
             {
-                ThrowAbility(null);
+                //ThrowAbility(null);
+                EventManager.Trigger("ResetAbility");
             }
             usedAbility = !usedAbility;
         }

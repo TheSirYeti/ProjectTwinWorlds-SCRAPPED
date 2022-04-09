@@ -41,7 +41,6 @@ public class DemonAttacks : PlayerAttacks
         weapon.transform.SetParent(null);
         weapon.transform.position = transform.position;
         weapon.gameObject.SetActive(false);
-        EventManager.Trigger("ResetObject");
     }
 
     public void AimPentadente()
