@@ -36,16 +36,22 @@ public abstract class PlayerAttacks : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
-            if (usedAbility)
+            if (!usedAbility)
             {
+                Debug.Log("Tiro");
                 CheckAbility();
             }
             else
             {
                 //ThrowAbility(null);
+                Debug.Log("Saco");
                 EventManager.Trigger("ResetAbility");
             }
-            usedAbility = !usedAbility;
+        }
+        
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            ExecuteAbility();
         }
     }
 
@@ -76,14 +82,13 @@ public abstract class PlayerAttacks : MonoBehaviour
             InteractableObject intObj = collisions[0].GetComponent<InteractableObject>();
 
             var dirToTarget = objectPosition - transform.position;
-            
-            if (LayerMask.NameToLayer(intObj.layerTrigger) == gameObject.layer 
-                && intObj.CheckForFirstTrigger() 
-                && !Physics.Raycast(transform.position, dirToTarget, dirToTarget.magnitude, wallLayer))
+
+            if (LayerMask.NameToLayer(intObj.layerTrigger) == gameObject.layer
+                && intObj.CheckForFirstTrigger())
             {
                 intObj.OnObjectStart();
-                
                 AimAbility(intObj.insertionPoints[intObj.GetClosestInsertionPoint(transform.position)]);
+                usedAbility = true;
             }
             else
             {
@@ -91,9 +96,11 @@ public abstract class PlayerAttacks : MonoBehaviour
                 {
                     AimAbility(intObj.insertionPoints[intObj.GetClosestInsertionPoint(transform.position)]);
                     intObj.isFirstTriggered = true;
+                    usedAbility = true;
                 }
             }
         }
+        else usedAbility = false;
     }
     
     public abstract void ThrowAbility(object[] parameters);

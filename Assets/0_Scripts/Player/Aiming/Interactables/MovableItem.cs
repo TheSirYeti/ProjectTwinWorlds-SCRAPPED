@@ -78,6 +78,9 @@ public class MovableItem : InteractableObject
         isFollowing = false;
         isRestricting = false;
 
+        Debug.Log("Termine cubo");
+        
+        
         ResetVariables(null);
         EventManager.Trigger("OnMovableUnrestrict");
         EventManager.Trigger("ResetAbility");

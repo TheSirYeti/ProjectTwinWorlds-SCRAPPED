@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PentadentCollision : MonoBehaviour
 {
-    public float duration;
+    public float duration, minDistance;
     public Transform currentDestination;
 
     public IEnumerator ThrowPentadent()
@@ -16,12 +16,15 @@ public class PentadentCollision : MonoBehaviour
             yield return new WaitForSeconds(0.001f);
             time += Time.fixedDeltaTime;
             transform.position = Vector3.Lerp(transform.position, currentDestination.position, time / duration);
+
+            if (Vector3.Distance(transform.position, currentDestination.position) <= minDistance)
+            {
+                transform.SetParent(currentDestination);
+                SoundManager.instance.PlaySound(SoundID.HIT_PENTADENT);
+                StopCoroutine(ThrowPentadent());
+                break;
+            }
         }
-
-
-        transform.SetParent(currentDestination);
-        SoundManager.instance.PlaySound(SoundID.HIT_PENTADENT);
-        yield return new WaitForSeconds(0.0001f);
     }
     
     

@@ -188,7 +188,8 @@ public enum SoundID
     SWAP,
     SWAP_2,
     FOOTSTEP,
-    PLAYER_DAMAGE
+    PLAYER_DAMAGE,
+    ARROW_ROPE
 }
 
 public enum MusicID

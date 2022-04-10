@@ -23,15 +23,6 @@ public class AngelAttacks : PlayerAttacks
         {
             lineRenderer.SetPosition(0, transform.position);
             lineRenderer.SetPosition(1, arrowEndPoint.position);
-            
-            if (Input.GetKeyDown(KeyCode.F))
-            {
-                ExecuteAbility();
-            }
-        }
-        else
-        {
-            ThrowAbility(null);
         }
     }
 
@@ -58,6 +49,7 @@ public class AngelAttacks : PlayerAttacks
         lineRenderer.SetPosition(1, arrowEndPoint.position);
         isConnected = true;
         lineRenderer.enabled = true;
+        SoundManager.instance.PlaySound(SoundID.ARROW_ROPE);
     }
 
     public override void ExecuteAbility()
@@ -87,6 +79,7 @@ public class AngelAttacks : PlayerAttacks
         ropeCollision.transform.position = transform.position;
         lineRenderer.enabled = false;
         isSwinging = false;
+        usedAbility = false;
         EventManager.Trigger("OnSwingStop");
     }
     

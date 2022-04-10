@@ -32,7 +32,23 @@ public class DemonAttacks : PlayerAttacks
 
     public override void ExecuteAbility()
     {
-        throw new System.NotImplementedException();
+        var collidedObject = CheckColliders();
+
+        if (collidedObject != null && collidedObject.CheckForFirstTrigger() && LayerMask.NameToLayer(collidedObject.layerTrigger) == gameObject.layer)
+        {
+            collidedObject.OnObjectEnd();
+        }
+    }
+    
+    InteractableObject CheckColliders()
+    {
+        Collider[] colliders = Physics.OverlapSphere(weapon.transform.position, 1f, collidableLayer);
+
+        if (colliders.Length == 1)
+        {
+            return colliders[0].GetComponent<InteractableObject>();
+        }
+        else return null;
     }
 
     public override void ThrowAbility(object[] parameters)
@@ -41,6 +57,7 @@ public class DemonAttacks : PlayerAttacks
         weapon.transform.SetParent(null);
         weapon.transform.position = transform.position;
         weapon.gameObject.SetActive(false);
+        usedAbility = false;
     }
 
     public void AimPentadente()
