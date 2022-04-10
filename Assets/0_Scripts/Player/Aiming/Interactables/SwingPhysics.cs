@@ -6,10 +6,12 @@ public class SwingPhysics : InteractableObject
 {
     public Rigidbody lastPoint;
     public Transform holdPoint;
+
+    public bool isOnLeft;
     
     public override void OnObjectStart()
     {
-        EventManager.Trigger("OnSwingStart", lastPoint, holdPoint);
+        EventManager.Trigger("OnSwingStart", lastPoint, holdPoint, isOnLeft);
         isObjectTriggered = true;
     }
 

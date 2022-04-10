@@ -14,13 +14,16 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
     public bool canMove;
 
     public Transform myParent;
+    public bool isDemon;
+    public bool isSwingLeft;
+    
     public bool canGrapple;
     public Transform grappable;
     
     private void Start()
     {
         EventManager.Subscribe("OnSwingStart", StartSwing);
-        EventManager.Subscribe("OnSwingStop", ResumeMovement);
+        //EventManager.Subscribe("OnSwingStop", ResumeMovement);
         EventManager.Subscribe("OnSwingStop", StopSwing);
         EventManager.Subscribe("OnMovableRestrict", RestrictSpeed);
         EventManager.Subscribe("OnMovableUnrestrict", UnrestrictSpeed);
@@ -47,10 +50,34 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
         }
     }
 
-    void GenerateMovement(float h, float v)
+    public void GenerateMovement(float h, float v)
     {
-        //Vector3 movement = h * direction.right + v * direction.forward;
-        Vector3 movement = new Vector3(h, 0, v);
+        Vector3 movement = h * direction.right + v * direction.forward;
+
+        if(movement.magnitude > 1)
+            movement.Normalize();
+        
+        transform.forward = movement;
+
+        if (canMove)
+        {
+            rb.velocity = new Vector3(movement.x * speed * Time.deltaTime, rb.velocity.y, movement.z * speed * Time.deltaTime);
+        }
+    }
+    
+    public void PostSwingMovement(float h, float v)
+    {
+        Vector3 movement;
+        
+        if (isSwingLeft)
+        {
+            movement = new Vector3(h, 0, v);
+        }
+        else
+        {
+            movement = new Vector3(v, 0, h * -1);
+        }
+        
         
         if(movement.magnitude > 1)
             movement.Normalize();
@@ -63,16 +90,25 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
         }
     }
 
-    void NoMovement(float h, float v)
+    public void NoMovement(float h, float v)
     {
         
     }
 
-    void SwingMovement(float h, float v)
+    public void SwingMovement(float h, float v)
     {
         if (currentSwing != null)
         {
-            Vector3 movement = new Vector3(h, 0, v);
+            Vector3 movement;
+
+            if (isSwingLeft)
+            {
+                movement = new Vector3(h, 0, 0);
+            }
+            else
+            {
+                movement = new Vector3(0, 0, h * -1);
+            }
             
             currentSwing.AddForce(movement * swingForce, ForceMode.Acceleration);
         }
@@ -107,23 +143,31 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
 
     void StartSwing(object[] parameters)
     {
-        rb.constraints = RigidbodyConstraints.FreezeAll;
-        rb.useGravity = false;
-        currentSwing = (Rigidbody) parameters[0];
-        Transform newPos = (Transform) parameters[1];
-        transform.position = newPos.position;
-        transform.SetParent(newPos);
-        movementDelegate = SwingMovement;
+        if (!isDemon)
+        {
+            rb.constraints = RigidbodyConstraints.FreezeAll;
+            rb.useGravity = false;
+            currentSwing = (Rigidbody) parameters[0];
+            Transform newPos = (Transform) parameters[1];
+            isSwingLeft = (bool) parameters[2];
+            transform.position = newPos.position;
+            transform.SetParent(newPos);
+            movementDelegate = SwingMovement;
+        }
     }
     
     void StopSwing(object[] parameters)
     {
-        rb.useGravity = true;
-        rb.constraints = RigidbodyConstraints.None;
-        rb.constraints = RigidbodyConstraints.FreezeRotation;
-        rb.velocity = currentSwing.velocity;
-        currentSwing = null;
-        transform.SetParent(myParent);
+        if (!isDemon)
+        {
+            rb.useGravity = true;
+            rb.constraints = RigidbodyConstraints.None;
+            rb.constraints = RigidbodyConstraints.FreezeRotation;
+            rb.velocity = currentSwing.velocity;
+            currentSwing = null;
+            transform.SetParent(myParent);
+            movementDelegate = PostSwingMovement;
+        }
     }
 
     private void RestrictSpeed(object[] parameters)

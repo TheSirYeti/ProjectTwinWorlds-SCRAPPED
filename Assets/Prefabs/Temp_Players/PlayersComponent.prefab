@@ -802,6 +802,7 @@ MonoBehaviour:
   currentSwing: {fileID: 0}
   canMove: 1
   myParent: {fileID: 1685628404458212400}
+  isDemon: 1
   canGrapple: 0
   grappable: {fileID: 0}
 --- !u!114 &3913398195166920772
@@ -1887,6 +1888,7 @@ MonoBehaviour:
   currentSwing: {fileID: 0}
   canMove: 1
   myParent: {fileID: 1685628404458212400}
+  isDemon: 0
   canGrapple: 0
   grappable: {fileID: 0}
 --- !u!114 &5594684078624446216
@@ -3275,6 +3277,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4544258444044643439}
   - component: {fileID: 4242990910250254714}
+  - component: {fileID: 6694818604206222555}
   m_Layer: 12
   m_Name: floorTrigger
   m_TagString: Untagged
@@ -3310,6 +3313,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.99999976, y: 1, z: 0.99999976}
   m_Center: {x: 0.00000011920926, y: 0.00000023841858, z: -0.00000047683704}
+--- !u!114 &6694818604206222555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8486864458670666754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e1a0cf560a99d04fb24da668afe0f73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  angelMovement: {fileID: 5594684078624446217}
+  demonMovement: {fileID: 3913398195166920761}
 --- !u!1 &8742987750783706162
 GameObject:
   m_ObjectHideFlags: 0
@@ -3320,6 +3337,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1321797256680001512}
   - component: {fileID: 4695772354871567484}
+  - component: {fileID: 4478285534667678131}
   m_Layer: 12
   m_Name: floorTrigger
   m_TagString: Untagged
@@ -3355,6 +3373,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.99999976, y: 1, z: 0.99999976}
   m_Center: {x: 0.00000011920926, y: 0.00000023841858, z: -0.00000047683704}
+--- !u!114 &4478285534667678131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8742987750783706162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e1a0cf560a99d04fb24da668afe0f73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  angelMovement: {fileID: 5594684078624446217}
+  demonMovement: {fileID: 3913398195166920761}
 --- !u!1 &8940782219092248226
 GameObject:
   m_ObjectHideFlags: 0
