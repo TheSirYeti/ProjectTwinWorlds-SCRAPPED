@@ -10,6 +10,7 @@ public class MovableItem : InteractableObject
     public float minDistance, speed, velocity;
     public Rigidbody rb;
     public bool isRestricting, isFollowing;
+    public Transform jumpSpot;
     public override void OnObjectStart()
     {
         EventManager.UnSubscribe("OnPlayerChange", ChangeMovingMode);

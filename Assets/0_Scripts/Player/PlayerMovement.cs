@@ -17,8 +17,8 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
     public bool isDemon;
     public bool isSwingLeft;
     
-    public bool canGrapple;
-    public Transform grappable;
+    public bool canJump;
+    public Transform jumpSpot;
     
     private void Start()
     {
@@ -43,10 +43,11 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
             playerObserver.NotifySubscribers("Walking");
         } else playerObserver.NotifySubscribers("Idle");
 
-        if (Input.GetKeyDown(KeyCode.Space) && canGrapple)
+        if (Input.GetKeyDown(KeyCode.Space) && canJump)
         {
-            transform.position = grappable.position;
-            grappable = null;
+            transform.position = jumpSpot.position;
+            jumpSpot = null;
+            canJump = false;
         }
     }
 
@@ -182,19 +183,19 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
     
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Movable Object"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Movable Object") && !isDemon)
         {
-            //grappable = other.gameObject.GetComponent<MovableObject>().grappablePoint;
-            //canGrapple = true;
+            jumpSpot = other.gameObject.GetComponent<MovableItem>().jumpSpot;
+            canJump = true;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Movable Object"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Movable Object") && !isDemon)
         {
-            grappable = null;
-            canGrapple = false;
+            jumpSpot = null;
+            canJump = false;
         }
     }
 
