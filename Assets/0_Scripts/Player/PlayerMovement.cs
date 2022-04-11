@@ -15,11 +15,11 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
 
     public Transform myParent;
     public bool isDemon;
-    public bool isSwingLeft;
-    public bool isClimbLeft;
-    
+    public bool isSwingLeft, isClimbLeft, isPulleyLeft;
+
     public bool canJump;
     public Transform jumpSpot;
+    public Rigidbody pulleyObject;
     
     private void Start()
     {
@@ -29,6 +29,8 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
         EventManager.Subscribe("OnMovableUnrestrict", UnrestrictSpeed);
         EventManager.Subscribe("OnClimbStart", StartClimb);
         EventManager.Subscribe("OnClimbStop", StopClimb);
+        EventManager.Subscribe("OnPulleyStart", StartPulley);
+        
         
         movementDelegate = GenerateMovement;
         playerObserver.Subscribe(this);
@@ -129,6 +131,25 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
         rb.velocity = movement * (speed / 2) * Time.deltaTime;
     }
 
+    public void PulleyMovement(float h, float v)
+    {
+        Vector3 movementPlayer, movementObject;
+
+        if (isPulleyLeft)
+        {
+            movementPlayer = new Vector3(v, 0, 0);
+            movementObject = new Vector3(0, v, 0);
+        }
+        else
+        {
+            movementPlayer = new Vector3(0, 0, v);
+            movementObject = new Vector3(0, v, 0);
+        }
+        
+        rb.velocity = movementPlayer * (speed / 3.5f) * Time.deltaTime;
+        pulleyObject.velocity = movementObject * (speed / 3.5f) * Time.deltaTime;
+    }
+
     public void OnNotify(string eventID)
     {
         if (eventID == "BasicAttack")
@@ -198,6 +219,28 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
         if (!isDemon)
         {
             rb.useGravity = true;
+            movementDelegate = GenerateMovement;
+        }
+    }
+
+    void StartPulley(object[] parameters)
+    {
+        if (isDemon)
+        {
+            pulleyObject = (Rigidbody) parameters[0];
+            pulleyObject.useGravity = false;
+            pulleyObject.velocity = Vector3.zero;
+            movementDelegate = PulleyMovement;
+        }
+    }
+    
+    void StopPulley(object[] parameters)
+    {
+        if (isDemon)
+        {
+            pulleyObject.useGravity = true;
+            pulleyObject.velocity = Vector3.zero;
+            pulleyObject = null;
             movementDelegate = GenerateMovement;
         }
     }
