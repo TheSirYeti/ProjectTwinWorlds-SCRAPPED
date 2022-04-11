@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
     public Transform myParent;
     public bool isDemon;
     public bool isSwingLeft;
+    public bool isClimbLeft;
     
     public bool canJump;
     public Transform jumpSpot;
@@ -23,10 +24,11 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
     private void Start()
     {
         EventManager.Subscribe("OnSwingStart", StartSwing);
-        //EventManager.Subscribe("OnSwingStop", ResumeMovement);
         EventManager.Subscribe("OnSwingStop", StopSwing);
         EventManager.Subscribe("OnMovableRestrict", RestrictSpeed);
         EventManager.Subscribe("OnMovableUnrestrict", UnrestrictSpeed);
+        EventManager.Subscribe("OnClimbStart", StartClimb);
+        EventManager.Subscribe("OnClimbStop", StopClimb);
         
         movementDelegate = GenerateMovement;
         playerObserver.Subscribe(this);
@@ -114,9 +116,19 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
             currentSwing.AddForce(movement * swingForce, ForceMode.Acceleration);
         }
     }
-    
-    
-    
+
+    public void ClimbMovement(float h, float v)
+    {
+        Vector3 movement;
+        
+        if(isClimbLeft)
+            movement = new Vector3(h, v, 0);
+        else
+            movement = new Vector3(0, v, h);
+
+        rb.velocity = movement * (speed / 2) * Time.deltaTime;
+    }
+
     public void OnNotify(string eventID)
     {
         if (eventID == "BasicAttack")
@@ -171,6 +183,25 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
         }
     }
 
+    void StartClimb(object[] parameters)
+    {
+        if (!isDemon)
+        {
+            rb.useGravity = false;
+            isClimbLeft = (bool) parameters[0];
+            movementDelegate = ClimbMovement;
+        }
+    }
+    
+    void StopClimb(object[] parameters)
+    {
+        if (!isDemon)
+        {
+            rb.useGravity = true;
+            movementDelegate = GenerateMovement;
+        }
+    }
+    
     private void RestrictSpeed(object[] parameters)
     {
         canMove = false;
