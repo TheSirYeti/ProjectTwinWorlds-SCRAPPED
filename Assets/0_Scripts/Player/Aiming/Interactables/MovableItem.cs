@@ -10,7 +10,7 @@ public class MovableItem : InteractableObject
     public Transform itemToRestrict;
     public float minDistance, speed, velocity;
     public Rigidbody rb;
-    public bool isRestricting, isFollowing, isSwinging;
+    public bool isRestricting, isFollowing, isSwinging, isFalling;
     public Transform jumpSpot;
 
     public Transform target;
@@ -160,4 +160,12 @@ public class MovableItem : InteractableObject
         lineRenderer.enabled = false;
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "BreakableOnFall" && isFalling)
+        {
+            Debug.Log("ENTRE A TOMPER");
+            other.gameObject.SetActive(false);
+        }
+    }
 }
