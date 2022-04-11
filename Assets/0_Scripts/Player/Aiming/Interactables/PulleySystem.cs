@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PulleySystem : InteractableObject
 {
@@ -21,6 +22,12 @@ public class PulleySystem : InteractableObject
             myObject.transform.position = objectStartPosition.position;
             demon.transform.position = playerStartPosition.position;
             EventManager.Trigger("OnPulleyStart", myObject);
+            Debug.Log("Start");
+        }
+        else
+        {
+            Debug.Log("Fail");
+            OnObjectEnd();
         }
     }
 
@@ -32,30 +39,26 @@ public class PulleySystem : InteractableObject
             lineRenderer.SetPosition(1, transform.position);
             lineRenderer.SetPosition(2, myObject.transform.position);
         }
+        else
+        {
+            lineRenderer.enabled = false;
+        }
     }
 
     public override void OnObjectEnd()
     {
+        lineRenderer.enabled = false;
         ResetVariables(null);
         EventManager.Trigger("ResetAbility");
         EventManager.Trigger("OnPulleyStop");
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Movable Object") && !isObjectTriggered)
+        if (other.gameObject.layer == LayerMask.NameToLayer("Movable Object") && isObjectTriggered)
         {
-            isObjectReady = true;
-            myObject = collision.gameObject.GetComponent<Rigidbody>();
-        }
-    }
-
-    private void OnCollisionExit(Collision other)
-    {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Movable Object") && !isObjectTriggered)
-        {
-            isObjectReady = false;
-            myObject = null;
+            myObject.transform.position = playerStartPosition.position;
+            OnObjectEnd();
         }
     }
 }

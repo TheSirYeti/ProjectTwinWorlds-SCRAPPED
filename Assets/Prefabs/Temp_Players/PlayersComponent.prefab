@@ -803,8 +803,12 @@ MonoBehaviour:
   canMove: 1
   myParent: {fileID: 1685628404458212400}
   isDemon: 1
-  canGrapple: 0
-  grappable: {fileID: 0}
+  isSwingLeft: 0
+  isClimbLeft: 0
+  isPulleyLeft: 0
+  canJump: 0
+  jumpSpot: {fileID: 0}
+  pulleyObject: {fileID: 0}
 --- !u!114 &3913398195166920772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -875,7 +879,7 @@ MonoBehaviour:
   usedAbility: 0
   collidableLayer:
     serializedVersion: 2
-    m_Bits: 151040
+    m_Bits: 675328
   weapon: {fileID: 8876612664915679655}
   flightDuration: 3
 --- !u!1 &3913398195202860324
@@ -1889,8 +1893,12 @@ MonoBehaviour:
   canMove: 1
   myParent: {fileID: 1685628404458212400}
   isDemon: 0
-  canGrapple: 0
-  grappable: {fileID: 0}
+  isSwingLeft: 0
+  isClimbLeft: 0
+  isPulleyLeft: 0
+  canJump: 0
+  jumpSpot: {fileID: 0}
+  pulleyObject: {fileID: 0}
 --- !u!114 &5594684078624446216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1961,7 +1969,7 @@ MonoBehaviour:
   usedAbility: 0
   collidableLayer:
     serializedVersion: 2
-    m_Bits: 151040
+    m_Bits: 675328
   weapon: {fileID: 5308886896461974760}
   arrowEndPoint: {fileID: 0}
   arrowPrefab: {fileID: 1619186496151047395, guid: bcc080946d47d844bba0fccf67e1825e, type: 3}
@@ -1972,6 +1980,7 @@ MonoBehaviour:
   isConnected: 0
   isSwinging: 0
   isPulling: 0
+  canHang: 0
   ropeCollision: {fileID: 5594684080474551745}
 --- !u!120 &5594684078624446208
 LineRenderer:

@@ -30,6 +30,7 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
         EventManager.Subscribe("OnClimbStart", StartClimb);
         EventManager.Subscribe("OnClimbStop", StopClimb);
         EventManager.Subscribe("OnPulleyStart", StartPulley);
+        EventManager.Subscribe("OnPulleyStop", StopPulley);
         
         
         movementDelegate = GenerateMovement;
@@ -146,8 +147,8 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
             movementObject = new Vector3(0, v, 0);
         }
         
-        rb.velocity = movementPlayer * (speed / 3.5f) * Time.deltaTime;
-        pulleyObject.velocity = movementObject * (speed / 3.5f) * Time.deltaTime;
+        rb.velocity = movementPlayer * (speed / 5f) * Time.deltaTime;
+        pulleyObject.velocity = movementObject * (speed / 5f) * Time.deltaTime;
     }
 
     public void OnNotify(string eventID)
@@ -236,7 +237,7 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
     
     void StopPulley(object[] parameters)
     {
-        if (isDemon)
+        if (isDemon && pulleyObject != null)
         {
             pulleyObject.useGravity = true;
             pulleyObject.velocity = Vector3.zero;

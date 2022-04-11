@@ -82,6 +82,7 @@ public class AngelAttacks : PlayerAttacks
         isSwinging = false;
         usedAbility = false;
         isConnected = false;
+        EventManager.Trigger("OnPulleyStop");
         EventManager.Trigger("OnSwingStop");
         Debug.Log("CHAU");
     }
