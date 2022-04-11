@@ -15,6 +15,7 @@ public class AngelAttacks : PlayerAttacks
     public bool isConnected;
     public bool isSwinging;
     public bool isPulling;
+    public bool canHang;
     public GameObject ropeCollision;
     
     private void LateUpdate()
@@ -50,6 +51,7 @@ public class AngelAttacks : PlayerAttacks
         isConnected = true;
         lineRenderer.enabled = true;
         SoundManager.instance.PlaySound(SoundID.ARROW_ROPE);
+        Debug.Log("AIMIE");
     }
 
     public override void ExecuteAbility()
@@ -75,12 +77,13 @@ public class AngelAttacks : PlayerAttacks
 
     public override void ThrowAbility(object[] parameters)
     {
-        isConnected = false;
         ropeCollision.transform.position = transform.position;
         lineRenderer.enabled = false;
         isSwinging = false;
         usedAbility = false;
+        isConnected = false;
         EventManager.Trigger("OnSwingStop");
+        Debug.Log("CHAU");
     }
     
     IEnumerator GrabObject(float duration, GameObject obj, Vector3 destiny)
@@ -117,33 +120,19 @@ public class AngelAttacks : PlayerAttacks
         }
     }
 
-    IEnumerator SwingMovement(SwingProperties swingProperties)
+    private void OnTriggerEnter(Collider other)
     {
-        float time = 0;
-        int currentWaypoint = swingProperties.GetNearestLandingPosition(transform);
-
-        int nextWaypoint = swingProperties.DetermineOrientation(currentWaypoint);
-
-        while (isSwinging)
+        if (other.gameObject.layer == LayerMask.NameToLayer("Movable Object"))
         {
-            time += Time.deltaTime;
-            transform.position = Vector3.Lerp(transform.position, swingProperties.swingPositions[currentWaypoint].position, time / 0.2f);
-            
-            
-            if (Vector3.Distance(transform.position, swingProperties.swingPositions[currentWaypoint].position) <= 0.2f)
-            if (Vector3.Distance(transform.position, swingProperties.swingPositions[currentWaypoint].position) <= 0.2f)
-            {
-                currentWaypoint += nextWaypoint;
+            canHang = true;
+        }
+    }
 
-                if (currentWaypoint >= swingProperties.swingPositions.Count - 1 || currentWaypoint < 1)
-                {
-                    nextWaypoint *= -1;
-                }
-
-                time = 0f;
-            }
-            
-            yield return new WaitForSeconds(0.01f);
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Movable Object"))
+        {
+            canHang = false;
         }
     }
 }

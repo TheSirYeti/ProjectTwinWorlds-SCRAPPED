@@ -164,7 +164,7 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
             rb.useGravity = true;
             rb.constraints = RigidbodyConstraints.None;
             rb.constraints = RigidbodyConstraints.FreezeRotation;
-            rb.velocity = currentSwing.velocity;
+            //rb.velocity = currentSwing.velocity;
             currentSwing = null;
             transform.SetParent(myParent);
             movementDelegate = PostSwingMovement;

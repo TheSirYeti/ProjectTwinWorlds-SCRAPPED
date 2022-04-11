@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -9,13 +10,28 @@ public class MovableItem : InteractableObject
     public Transform itemToRestrict;
     public float minDistance, speed, velocity;
     public Rigidbody rb;
-    public bool isRestricting, isFollowing;
+    public bool isRestricting, isFollowing, isSwinging;
     public Transform jumpSpot;
+
+    public Transform target;
+    public SwingPhysics mySwing;
+    public LineRenderer lineRenderer;
+
     public override void OnObjectStart()
     {
         EventManager.UnSubscribe("OnPlayerChange", ChangeMovingMode);
         EventManager.Subscribe("OnPlayerChange", ChangeMovingMode);
+        
+        EventManager.Subscribe("ResetAbility", OnItemCanceled);
 
+        if (mySwing != null)
+        {
+            CutSwingTies();
+            transform.position = itemToFollow.transform.position;
+        }
+
+        lineRenderer.enabled = true;
+        target = itemToFollow;
         isFollowing = true;
         isRestricting = false;
         
@@ -80,25 +96,68 @@ public class MovableItem : InteractableObject
         isRestricting = false;
 
         Debug.Log("Termine cubo");
-        
-        
+
         ResetVariables(null);
         EventManager.Trigger("OnMovableUnrestrict");
         EventManager.Trigger("ResetAbility");
+        lineRenderer.enabled = false;
+    }
+
+    private void LateUpdate()
+    {
+        if (mySwing != null)
+        {
+            lineRenderer.SetPosition(0, transform.position);
+            lineRenderer.SetPosition(1, mySwing.transform.position);
+        }
+        else if (isFollowing || isRestricting)
+        {
+            lineRenderer.SetPosition(0, transform.position);
+            lineRenderer.SetPosition(1, target.transform.position);
+        }
     }
 
     public void ChangeMovingMode(object[] parameters)
     {
-        GameObject player = (GameObject) parameters[0];
-        if (player.layer == LayerMask.NameToLayer("DemonPlayer"))
+        if (!isSwinging)
         {
-            isFollowing = true;
-            isRestricting = false;
-        }
-        else if (player.layer == LayerMask.NameToLayer("AngelPlayer"))
-        {
-            isFollowing = false;
-            isRestricting = true;
+            GameObject player = (GameObject) parameters[0];
+            if (player.layer == LayerMask.NameToLayer("DemonPlayer"))
+            {
+                isFollowing = true;
+                isRestricting = false;
+            }
+            else if (player.layer == LayerMask.NameToLayer("AngelPlayer"))
+            {
+                isFollowing = false;
+                isRestricting = true;
+            }
         }
     }
+
+    public void DisableGravity(object[] parameters)
+    {
+        rb.useGravity = false;
+    }
+
+    public void CutSwingTies()
+    {
+        rb.useGravity = true;
+        rb.constraints = RigidbodyConstraints.None;
+        rb.constraints = RigidbodyConstraints.FreezeRotation;
+        rb.velocity = mySwing.lastPoint.velocity;
+        mySwing.isHanging = false;
+        mySwing.ResetStats();
+        mySwing.currentItem = null;
+        mySwing = null;
+        transform.SetParent(null);
+        
+        OnItemCanceled(null);
+    }
+
+    public void OnItemCanceled(object[] parameters)
+    {
+        lineRenderer.enabled = false;
+    }
+
 }

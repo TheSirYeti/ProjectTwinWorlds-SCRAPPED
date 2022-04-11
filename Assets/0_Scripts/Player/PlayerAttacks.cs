@@ -86,8 +86,8 @@ public abstract class PlayerAttacks : MonoBehaviour
             if (LayerMask.NameToLayer(intObj.layerTrigger) == gameObject.layer
                 && intObj.CheckForFirstTrigger())
             {
-                intObj.OnObjectStart();
                 AimAbility(intObj.insertionPoints[intObj.GetClosestInsertionPoint(transform.position)]);
+                intObj.OnObjectStart();
                 usedAbility = true;
             }
             else
