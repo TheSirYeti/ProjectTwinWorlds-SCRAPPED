@@ -30,7 +30,7 @@ public class SwingPhysics : InteractableObject
             currentItem.rb.useGravity = false;
             currentItem.mySwing = this;
             currentItem.transform.SetParent(holdPoint);
-            //StartCoroutine(GoToSwing(1f));
+            currentItem.lineRenderer.enabled = true;
             currentItem.transform.position = holdPoint.transform.position;
             currentItem.transform.SetParent(holdPoint);
             
@@ -83,7 +83,6 @@ public class SwingPhysics : InteractableObject
         }
         
         EventManager.Trigger("ResetAbility");
-        Debug.Log("Termine");
     }
 
     private void LateUpdate()
@@ -91,12 +90,10 @@ public class SwingPhysics : InteractableObject
         if (isHanging && isFirstTriggered && isAfterHang)
         {
             currentItem.CutSwingTies();
-            Debug.Log("Sali After Hang");
         }
         else if (currentItem != null)
         {
             currentItem.transform.position = holdPoint.transform.position;
-            Debug.Log(lastPoint.velocity);
         }
 
 
