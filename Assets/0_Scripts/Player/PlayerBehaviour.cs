@@ -7,6 +7,7 @@ public class PlayerBehaviour : MonoBehaviour
 {
     public int hp;
     public bool isDemon;
+    public bool buffer;
     
     private void Start()
     {
@@ -15,11 +16,15 @@ public class PlayerBehaviour : MonoBehaviour
 
     public void TakeDamage(object[] parameters)
     {
-        hp--;
-        EventManager.Trigger("OnPlayerHPUpdated", isDemon);
-        SoundManager.instance.PlaySound(SoundID.PLAYER_DAMAGE);
-        
-        
+        if (!buffer)
+        {
+            hp--;
+            EventManager.Trigger("OnPlayerHPUpdated", isDemon);
+            SoundManager.instance.PlaySound(SoundID.PLAYER_DAMAGE);
+            StartCoroutine(GiveBuffer());
+        }
+
+
         if (hp <= 0)
         {
             EventManager.Trigger("OnPlayerDeath");
@@ -33,5 +38,12 @@ public class PlayerBehaviour : MonoBehaviour
         {
             TakeDamage(null);
         }
+    }
+
+    IEnumerator GiveBuffer()
+    {
+        buffer = true;
+        yield return new WaitForSeconds(1f);
+        buffer = false;
     }
 }

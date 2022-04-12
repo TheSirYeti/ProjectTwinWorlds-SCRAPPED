@@ -50,6 +50,7 @@ public class PaladinBreachState : IState
         if (currentTime >= 1.2f && !flag)
         {
             flag = !flag;
+            SoundManager.instance.PlaySound(SoundID.ROCK_SMASH);
             floorAttack.DoAttack();
         }
     }
