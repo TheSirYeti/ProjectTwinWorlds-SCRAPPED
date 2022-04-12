@@ -4,21 +4,51 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class PaladinStake : MonoBehaviour
+public class PaladinStake : InteractableObject
 {
     public Animator animator;
     public GameObject stake;
+    public Collider myCollider;
     public int stakeId;
-    private void Start(){
-    
+
+    private void Awake()
+    {
         EventManager.Subscribe("OnBossDamagableTriggered", MoveStake);
         EventManager.Subscribe("OnBossDamaged", StopStake);
         EventManager.Subscribe("OnBossRestingOver", ResetStake);
         EventManager.Subscribe("OnBossResting", SetStake);
     }
 
+    public override void OnObjectStart()
+    {
+        EventManager.UnSubscribe("OnBossDamagableTriggered", MoveStake);
+        EventManager.UnSubscribe("OnBossDamaged", StopStake);
+        EventManager.UnSubscribe("OnBossRestingOver", ResetStake);
+        EventManager.UnSubscribe("OnBossResting", SetStake);
+        EventManager.Subscribe("OnBossDamagableTriggered", MoveStake);
+        EventManager.Subscribe("OnBossDamaged", StopStake);
+        EventManager.Subscribe("OnBossRestingOver", ResetStake);
+        EventManager.Subscribe("OnBossResting", SetStake);
+
+        object[] ids = new object[1];
+        ids[0] = stakeId;
+        MoveStake(ids);
+    }
+
+    public override void OnObjectDuring()
+    {
+        //throw new NotImplementedException();
+    }
+
+    public override void OnObjectEnd()
+    {
+        ResetStake(null);
+        ResetVariables(null);
+    }
+
     private void SetStake(object[] parameters)
     {
+        myCollider.enabled = true;
         stake.SetActive(true);
     }
     
@@ -31,6 +61,7 @@ public class PaladinStake : MonoBehaviour
     private void ResetStake(object[] parameters)
     {
         animator.Play("Estaca_Idle");
+        myCollider.enabled = false;
         stake.SetActive(false);
     }
 
@@ -41,17 +72,17 @@ public class PaladinStake : MonoBehaviour
     
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("HOLA COLLIDERSSSS");
-        
         if (collision.gameObject.layer == (int)LayerStruct.LayerID.BOSS)
         {
             EventManager.Trigger("OnBossDamaged");
+            EventManager.Trigger("ResetAbility");
+            OnObjectEnd();
         }
         
         if (collision.gameObject.layer == (int)LayerStruct.LayerID.BREAKABLE_OBJECT)
         {
             animator.Play("Estaca_Idle");
-            stake.SetActive(false);
+            ResetStake(null);
         }
     }
 }

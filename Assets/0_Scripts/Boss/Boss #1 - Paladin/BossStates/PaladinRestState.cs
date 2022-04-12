@@ -25,6 +25,7 @@ public class PaladinRestState : IState
         currentTime = 0f;
         _animator.SetBool("isResting", true);
         _animator.Play("Paladin_Rest");
+        
         EventManager.Trigger("OnBossResting");
         
         foreach (var shield in shields)
