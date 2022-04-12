@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class PaladinChaseState : IState
 {
@@ -9,8 +11,7 @@ public class PaladinChaseState : IState
     private float speed;
     private float minDistance;
 
-    
-    
+
     public PaladinChaseState(Transform target, PaladinLogic paladin, FiniteStateMachine fsm, Animator animator, float speed, float minDistance)
     {
         this.target = target;

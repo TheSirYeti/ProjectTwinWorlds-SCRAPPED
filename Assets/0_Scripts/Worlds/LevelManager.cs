@@ -38,6 +38,16 @@ public class LevelManager : MonoBehaviour
             currentId = 1;
             ReloadScene();
         }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            currentId = 1;
+            ReloadScene();
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            currentId = 1;
+            ReloadScene();
+        }
     }
 
     public void ReloadScene()

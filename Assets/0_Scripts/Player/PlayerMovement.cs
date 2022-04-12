@@ -118,6 +118,7 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
             }
             
             currentSwing.AddForce(movement * swingForce, ForceMode.Acceleration);
+            transform.position = transform.parent.position;
         }
     }
 
@@ -259,7 +260,7 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
     
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Movable Object") && !isDemon)
+        if (other.gameObject.layer == LayerMask.NameToLayer("Movable Object"))
         {
             jumpSpot = other.gameObject.GetComponent<MovableItem>().jumpSpot;
             canJump = true;
@@ -268,7 +269,7 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Movable Object") && !isDemon)
+        if (other.gameObject.layer == LayerMask.NameToLayer("Movable Object"))
         {
             jumpSpot = null;
             canJump = false;

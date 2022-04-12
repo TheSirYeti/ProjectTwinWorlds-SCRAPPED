@@ -33,6 +33,7 @@ public class PlayerWorlds : MonoBehaviour
 
                 EventManager.Trigger("OnPlayerChange", demonPlayer, isLinked);
                 SoundManager.instance.PlaySound(SoundID.SWAP);
+                Debug.Log("holpa");
             }
             else
             {
@@ -50,6 +51,7 @@ public class PlayerWorlds : MonoBehaviour
 
                 EventManager.Trigger("OnPlayerChange", angelPlayer, isLinked);
                 SoundManager.instance.PlaySound(SoundID.SWAP_2);
+                Debug.Log("holpa2");
             }
         }
 

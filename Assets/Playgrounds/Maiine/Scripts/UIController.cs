@@ -57,25 +57,6 @@ public class UIController : MonoBehaviour
             _demonUI.gameObject.SetActive(false);
             _angelUI.gameObject.SetActive(true);
         }
-
-        if ((bool)parameters[1])
-        {
-            _demon.gameObject.SetActive(false);
-            _angel.gameObject.SetActive(false);
-            _link.gameObject.SetActive(true);
-        }
-        else if ((bool)parameters[1] == false && _isDemond)
-        {
-            _demon.gameObject.SetActive(true);
-            _angel.gameObject.SetActive(false);
-            _link.gameObject.SetActive(false);
-        }
-        else if ((bool)parameters[1] == false && !_isDemond)
-        {
-            _demon.gameObject.SetActive(false);
-            _angel.gameObject.SetActive(true);
-            _link.gameObject.SetActive(false);
-        }
     }
 
     public void TakeUIDMG(object[] parameters)

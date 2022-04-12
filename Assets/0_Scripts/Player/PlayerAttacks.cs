@@ -31,7 +31,7 @@ public abstract class PlayerAttacks : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.Mouse0) && cooldownTimer <= 0)
         {
-            attackDelegate();
+            //attackDelegate();
         }
 
         if (Input.GetKeyDown(KeyCode.Mouse1))
