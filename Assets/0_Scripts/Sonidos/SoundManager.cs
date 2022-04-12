@@ -199,5 +199,6 @@ public enum MusicID
     BOSS,
     CHILLING_1,
     CHILLING_2,
-    CHINESE
+    CHINESE,
+    SAD_SONG
 }

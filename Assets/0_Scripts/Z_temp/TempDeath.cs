@@ -14,7 +14,7 @@ public class TempDeath : MonoBehaviour
     {
         SoundManager.instance.StopAllMusic();
         SoundManager.instance.StopAllSounds();
-        
+        SoundManager.instance.PlayMusic(MusicID.SAD_SONG);
         objectToEnable.SetActive(true);
         Time.timeScale = 0f;
     }

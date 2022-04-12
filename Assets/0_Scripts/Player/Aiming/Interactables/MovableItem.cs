@@ -26,7 +26,7 @@ public class MovableItem : InteractableObject
 
         if (mySwing != null)
         {
-            CutSwingTies();
+            CutSwingTies(null);
             transform.position = itemToFollow.transform.position;
         }
 
@@ -140,12 +140,15 @@ public class MovableItem : InteractableObject
         rb.useGravity = false;
     }
 
-    public void CutSwingTies()
+    public void CutSwingTies(object[] parameters)
     {
         rb.useGravity = true;
         rb.constraints = RigidbodyConstraints.None;
         rb.constraints = RigidbodyConstraints.FreezeRotation;
-        rb.velocity = mySwing.lastPoint.velocity;
+        
+        if(mySwing != null)
+            rb.velocity = mySwing.lastPoint.velocity;
+        
         mySwing.isHanging = false;
         mySwing.ResetStats();
         mySwing.currentItem = null;
@@ -158,6 +161,7 @@ public class MovableItem : InteractableObject
     public void OnItemCanceled(object[] parameters)
     {
         lineRenderer.enabled = false;
+        CutSwingTies(null);
     }
 
     private void OnTriggerEnter(Collider other)

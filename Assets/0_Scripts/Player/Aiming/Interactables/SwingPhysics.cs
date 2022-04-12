@@ -89,7 +89,7 @@ public class SwingPhysics : InteractableObject
     {
         if (isHanging && isFirstTriggered && isAfterHang)
         {
-            currentItem.CutSwingTies();
+            currentItem.CutSwingTies(null);
         }
         else if (currentItem != null)
         {

@@ -17,4 +17,15 @@ public class PlayerFloorTrigger : MonoBehaviour
             }
         }
     }
+    
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Floor"))
+        {
+            if (angelMovement.movementDelegate == angelMovement.PostSwingMovement)
+            {
+                angelMovement.movementDelegate = angelMovement.GenerateMovement;
+            }
+        }
+    }
 }
