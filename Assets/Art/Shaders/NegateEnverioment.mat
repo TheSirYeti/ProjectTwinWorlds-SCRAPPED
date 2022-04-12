@@ -39,12 +39,12 @@ Material:
     m_Floats:
     - _ClampMax: 1.71
     - _ClampMin: -0.96
-    - _GradientWhitTexture: 0
-    - _NormalLerp: 0
+    - _GradientWhitTexture: 0.327
+    - _NormalLerp: 1
     - _Origin: -3.46
     - _Spread: 2.99
     - __dirty: 0
     m_Colors:
-    - _BottomColor: {r: 0.6980392, g: 0.9529412, b: 0.7764706, a: 0}
-    - _TopColor: {r: 0.945098, g: 0.8313726, b: 0.8313726, a: 0}
+    - _BottomColor: {r: 0.7528443, g: 0.6167675, b: 0.7924528, a: 0}
+    - _TopColor: {r: 0.6226415, g: 0.724293, b: 0.8301887, a: 0}
   m_BuildTextureStacks: []
