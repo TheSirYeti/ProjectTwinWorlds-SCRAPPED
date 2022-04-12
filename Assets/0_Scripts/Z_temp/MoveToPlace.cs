@@ -10,11 +10,13 @@ public class MoveToPlace : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-        other.transform.position = tpPoint.position;
+        if(other.gameObject.layer == LayerMask.NameToLayer("AngelPlayer") || other.gameObject.layer == LayerMask.NameToLayer("DemonPlayer"))
+            other.transform.position = tpPoint.position;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        collision.transform.position = tpPoint.position;
+        if(collision.gameObject.layer == LayerMask.NameToLayer("AngelPlayer") || collision.gameObject.layer == LayerMask.NameToLayer("DemonPlayer"))
+            collision.transform.position = tpPoint.position;
     }
 }
