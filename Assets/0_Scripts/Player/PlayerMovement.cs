@@ -78,7 +78,7 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
         
         if (isSwingLeft)
         {
-            movement = new Vector3(h, 0, v);
+            movement = new Vector3(h * -1, 0, v);
         }
         else
         {
@@ -110,7 +110,7 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
 
             if (isSwingLeft)
             {
-                movement = new Vector3(h, 0, 0);
+                movement = new Vector3(h * -1, 0, 0);
             }
             else
             {
@@ -118,6 +118,7 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
             }
             
             currentSwing.AddForce(movement * swingForce, ForceMode.Acceleration);
+            transform.position = transform.parent.position;
         }
     }
 
@@ -126,9 +127,9 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
         Vector3 movement;
         
         if(isClimbLeft)
-            movement = new Vector3(h, v, 0);
+            movement = new Vector3(h * -1, v, 0);
         else
-            movement = new Vector3(0, v, h);
+            movement = new Vector3(0, v, h * -1);
 
         rb.velocity = movement * (speed / 2) * Time.deltaTime;
     }
@@ -259,7 +260,7 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
     
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Movable Object") && !isDemon)
+        if (other.gameObject.layer == LayerMask.NameToLayer("Movable Object"))
         {
             jumpSpot = other.gameObject.GetComponent<MovableItem>().jumpSpot;
             canJump = true;
@@ -268,7 +269,7 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Movable Object") && !isDemon)
+        if (other.gameObject.layer == LayerMask.NameToLayer("Movable Object"))
         {
             jumpSpot = null;
             canJump = false;

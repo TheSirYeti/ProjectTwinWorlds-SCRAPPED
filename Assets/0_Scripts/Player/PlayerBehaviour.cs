@@ -14,6 +14,19 @@ public class PlayerBehaviour : MonoBehaviour
         EventManager.Subscribe("OnDamageRecieved", TakeDamage);
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            EventManager.Trigger("OnPlayerDeath");
+        }
+
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            hp = 9999;
+        }
+    }
+
     public void TakeDamage(object[] parameters)
     {
         if (!buffer)
