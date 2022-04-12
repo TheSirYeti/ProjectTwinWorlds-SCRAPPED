@@ -34,7 +34,15 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("EnemyAttack"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("EnemyAttack") || collision.gameObject.layer == LayerMask.NameToLayer("Boss"))
+        {
+            TakeDamage(null);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("EnemyAttack") || other.gameObject.layer == LayerMask.NameToLayer("Boss"))
         {
             TakeDamage(null);
         }

@@ -42,8 +42,7 @@ public class PaladinStake : InteractableObject
 
     public override void OnObjectEnd()
     {
-        ResetStake(null);
-        ResetVariables(null);
+        //
     }
 
     private void SetStake(object[] parameters)
@@ -76,13 +75,15 @@ public class PaladinStake : InteractableObject
         {
             EventManager.Trigger("OnBossDamaged");
             EventManager.Trigger("ResetAbility");
-            OnObjectEnd();
+            ResetStake(null);
+            ResetVariables(null);
         }
         
         if (collision.gameObject.layer == (int)LayerStruct.LayerID.BREAKABLE_OBJECT)
         {
             animator.Play("Estaca_Idle");
             ResetStake(null);
+            ResetVariables(null);
         }
     }
 }

@@ -42,9 +42,10 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
         float hMov = Input.GetAxis("Horizontal");
         float vMov = Input.GetAxis("Vertical");
 
+        movementDelegate(hMov, vMov);
+        
         if (hMov != 0 || vMov != 0)
         {
-            movementDelegate(hMov, vMov);
             playerObserver.NotifySubscribers("Walking");
         } else playerObserver.NotifySubscribers("Idle");
 
