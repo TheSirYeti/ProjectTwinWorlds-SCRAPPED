@@ -15,6 +15,7 @@ public class MovableItem : InteractableObject
 
     public Transform target;
     public SwingPhysics mySwing;
+    public HangItem hangItem;
     public LineRenderer lineRenderer;
 
     public override void OnObjectStart()
@@ -24,14 +25,21 @@ public class MovableItem : InteractableObject
         
         EventManager.Subscribe("ResetAbility", OnItemCanceled);
 
+        CutSwingTies(null);
         if (mySwing != null)
         {
-            CutSwingTies(null);
             transform.position = itemToFollow.transform.position;
+        }
+
+        if (hangItem != null)
+        {
+            hangItem.OnObjectEnd();
+            hangItem = null;
         }
 
         lineRenderer.enabled = true;
         target = itemToFollow;
+        Debug.Log("Di target");
         isFollowing = true;
         isRestricting = false;
         
@@ -107,14 +115,22 @@ public class MovableItem : InteractableObject
     {
         if (mySwing != null)
         {
+            lineRenderer.enabled = true;
             lineRenderer.SetPosition(0, transform.position);
             lineRenderer.SetPosition(1, mySwing.transform.position);
+        }
+        else if(hangItem != null)
+        {
+            lineRenderer.enabled = true;
+            lineRenderer.SetPosition(0, transform.position);
+            lineRenderer.SetPosition(1, hangItem.transform.position);
         }
         else if (isFollowing || isRestricting)
         {
             lineRenderer.SetPosition(0, transform.position);
             lineRenderer.SetPosition(1, target.transform.position);
         }
+        else lineRenderer.enabled = false;
     }
 
     public void ChangeMovingMode(object[] parameters)
@@ -145,30 +161,29 @@ public class MovableItem : InteractableObject
         rb.useGravity = true;
         rb.constraints = RigidbodyConstraints.None;
         rb.constraints = RigidbodyConstraints.FreezeRotation;
-        
-        if(mySwing != null)
+
+        if (mySwing != null)
+        {
             rb.velocity = mySwing.lastPoint.velocity;
-        
-        mySwing.isHanging = false;
-        mySwing.ResetStats();
-        mySwing.currentItem = null;
-        mySwing = null;
-        transform.SetParent(null);
-        
+            mySwing.isHanging = false;
+            mySwing.ResetStats();
+            mySwing.currentItem = null;
+            mySwing = null;
+            transform.SetParent(null); 
+        }
+
         OnItemCanceled(null);
     }
 
     public void OnItemCanceled(object[] parameters)
     {
         lineRenderer.enabled = false;
-        CutSwingTies(null);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "BreakableOnFall" && isFalling)
         {
-            Debug.Log("ENTRE A TOMPER");
             other.gameObject.SetActive(false);
         }
     }
