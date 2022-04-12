@@ -40,12 +40,12 @@ public class LevelManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            currentId = 1;
+            currentId = 2;
             ReloadScene();
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            currentId = 1;
+            currentId = 3;
             ReloadScene();
         }
     }

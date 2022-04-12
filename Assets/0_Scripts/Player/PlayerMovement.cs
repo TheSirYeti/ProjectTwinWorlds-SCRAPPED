@@ -82,7 +82,7 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
         }
         else
         {
-            movement = new Vector3(v, 0, h * -1);
+            movement = new Vector3(v, 0, h);
         }
         
         
