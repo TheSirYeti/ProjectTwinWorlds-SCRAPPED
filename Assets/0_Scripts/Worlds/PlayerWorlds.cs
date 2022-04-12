@@ -88,5 +88,6 @@ public class PlayerWorlds : MonoBehaviour
         
         demonTotem.transform.position = demonPlayer.transform.position;
         angelTotem.transform.position = angelPlayer.transform.position;
+        
     }
 }
