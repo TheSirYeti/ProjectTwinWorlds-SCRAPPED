@@ -41,11 +41,11 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
     {
         float hMov = Input.GetAxis("Horizontal");
         float vMov = Input.GetAxis("Vertical");
-
-        movementDelegate(hMov, vMov);
         
-        if (hMov != 0 || vMov != 0)
+        
+        if (new Vector3(hMov, 0, vMov) != Vector3.zero)
         {
+            movementDelegate(hMov, vMov);
             playerObserver.NotifySubscribers("Walking");
         } else playerObserver.NotifySubscribers("Idle");
 
@@ -59,16 +59,25 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
 
     public void GenerateMovement(float h, float v)
     {
-        Vector3 movement = h * direction.right + v * direction.forward;
+        Vector3 movement = new Vector3(h, 0, v);
 
-        if(movement.magnitude > 1)
+        if (movement.magnitude >= 1)
+        {
             movement.Normalize();
+        }
         
-        transform.forward = movement;
+        Matrix4x4 matrix = Matrix4x4.Rotate(Quaternion.Euler(0, 45, 0));
+
+        Vector3 rotatedInput = matrix.MultiplyPoint3x4(movement);
+        Vector3 relativeDistance = (transform.position + rotatedInput) - transform.position;
+
+        Quaternion rotation = Quaternion.LookRotation(relativeDistance, Vector3.up);
+
+        transform.rotation = rotation;
 
         if (canMove)
         {
-            rb.velocity = new Vector3(movement.x * speed * Time.deltaTime, rb.velocity.y, movement.z * speed * Time.deltaTime);
+            rb.velocity = new Vector3(rotatedInput.x * speed * Time.deltaTime, rb.velocity.y, rotatedInput.z * speed * Time.deltaTime);
         }
     }
     

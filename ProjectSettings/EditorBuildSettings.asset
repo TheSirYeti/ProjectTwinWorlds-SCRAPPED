@@ -32,16 +32,19 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/backup.unity
     guid: 2918479528e77fe4eb0199d1f70e9f6c
-  - enabled: 1
+  - enabled: 0
     path: Assets/backup2.unity
     guid: 3f58ca9975a474c459ee124690d4c36b
-  - enabled: 1
+  - enabled: 0
     path: Assets/Playgrounds/JP/Scenes/BossTesting.unity
     guid: 3c0d5d05470a8c546b80f7e7cc83e312
-  - enabled: 1
+  - enabled: 0
     path: Assets/Playgrounds/Maiine/InitialZone.unity
     guid: 2b91ff416c6dcb7418172b9528e1edc7
-  - enabled: 1
+  - enabled: 0
     path: Assets/Playgrounds/JP/Scenes/PlayerTesting.unity
     guid: a30b2134db9d3e3478620651ad5e86e5
+  - enabled: 1
+    path: Assets/Playgrounds/JP/Scenes/MovementTesting.unity
+    guid: fbd1533ac3391804d8d615232b220e70
   m_configObjects: {}
