@@ -13,6 +13,7 @@ public class SwingPhysics : InteractableObject
     public float minDistance, velocityForce;
     
     public List<MovableItem> movableItems;
+    public List<Rigidbody> hingePoints;
     
     public Transform angelAttack, demonAttack;
     public MovableItem currentItem;
@@ -23,6 +24,21 @@ public class SwingPhysics : InteractableObject
     
     public override void OnObjectStart()
     {
+        if (isOnLeft)
+        {
+            foreach (Rigidbody rb in hingePoints)
+            {
+                rb.constraints = RigidbodyConstraints.FreezePositionZ;
+            }
+        }
+        else
+        {
+            foreach (Rigidbody rb in hingePoints)
+            {
+                rb.constraints = RigidbodyConstraints.FreezePositionX;
+            }
+        }
+        
         if (angelAttack.GetComponent<AngelAttacks>().canHang)
         {
             isHanging = true;
@@ -33,8 +49,6 @@ public class SwingPhysics : InteractableObject
             currentItem.lineRenderer.enabled = true;
             currentItem.transform.position = holdPoint.transform.position;
             currentItem.transform.SetParent(holdPoint);
-            
-            lastPoint.AddForce(lastPoint.transform.right * velocityForce, ForceMode.Acceleration);
 
 
             Debug.Log("Cuelgo caja");
@@ -46,6 +60,8 @@ public class SwingPhysics : InteractableObject
             EventManager.Trigger("OnSwingStart", lastPoint, holdPoint, isOnLeft);
             isObjectTriggered = true;
         }
+        
+        lastPoint.AddForce(lastPoint.transform.right * velocityForce, ForceMode.Acceleration);
     }
 
     public override void OnObjectDuring()
@@ -83,6 +99,12 @@ public class SwingPhysics : InteractableObject
         }
         
         EventManager.Trigger("ResetAbility");
+
+        foreach (Rigidbody rb in hingePoints)
+        {
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+        }
     }
 
     private void LateUpdate()

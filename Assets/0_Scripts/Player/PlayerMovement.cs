@@ -43,13 +43,13 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
     {
         float hMov = Input.GetAxis("Horizontal");
         float vMov = Input.GetAxis("Vertical");
-        
-        
-        if (new Vector3(hMov, 0, vMov) != Vector3.zero)
+
+        if (new Vector3(hMov, 0, vMov) != Vector3.zero || movementDelegate == SwingMovement)
         {
             movementDelegate(hMov, vMov);
             playerObserver.NotifySubscribers("Walking");
-        } else playerObserver.NotifySubscribers("Idle");
+        } 
+        else playerObserver.NotifySubscribers("Idle");
 
         if (Input.GetKeyDown(KeyCode.Space) && canJump)
         {
@@ -130,8 +130,9 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
             }
             
             currentSwing.AddForce(movement * swingForce, ForceMode.Acceleration);
-            transform.position = transform.parent.position;
         }
+        
+        transform.position = transform.parent.position;
     }
 
     public void ClimbMovement(float h, float v)
