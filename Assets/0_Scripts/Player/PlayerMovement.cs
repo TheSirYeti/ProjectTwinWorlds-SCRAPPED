@@ -9,7 +9,6 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
 {
     public float speed, swingForce;
     public Action<float,float> movementDelegate;
-    [SerializeField] private Transform direction;
     public CinemachineVirtualCamera camera;
     public Observer playerObserver;
     public Rigidbody rb, currentSwing;
@@ -94,7 +93,7 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
         }
         else
         {
-            movement = new Vector3(v, 0, h);
+            movement = new Vector3(v, 0, h * -1);
         }
         
         
@@ -213,7 +212,8 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
             rb.useGravity = true;
             rb.constraints = RigidbodyConstraints.None;
             rb.constraints = RigidbodyConstraints.FreezeRotation;
-            //rb.velocity = currentSwing.velocity;
+            if(currentSwing != null)
+                rb.AddForce(currentSwing.velocity * 3f, ForceMode.Impulse);
             currentSwing = null;
             transform.SetParent(myParent);
             movementDelegate = PostSwingMovement;

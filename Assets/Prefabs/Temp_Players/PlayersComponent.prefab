@@ -288,8 +288,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1922627685119114019}
-  m_LocalRotation: {x: -0.104554266, y: 0.88281536, z: -0.23477858, w: -0.39317223}
-  m_LocalPosition: {x: 64.51027, y: 49.6748, z: 58.058918}
+  m_LocalRotation: {x: -0.104553945, y: 0.8828154, z: -0.23477858, w: -0.39317226}
+  m_LocalPosition: {x: 64.51029, y: 49.674778, z: 58.058918}
   m_LocalScale: {x: 1.0000001, y: 1, z: 1.0000001}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -326,7 +326,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7784522, y: 1}
+    m_SensorSize: {x: 1.7791411, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -1038,8 +1038,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1200
-  swingForce: 10
-  direction: {fileID: 7867370452250561985}
+  swingForce: 20
   camera: {fileID: 2877949674745233506}
   playerObserver: {fileID: 3913398196342236360}
   rb: {fileID: 3913398195166920775}
@@ -2847,8 +2846,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1200
-  swingForce: 10
-  direction: {fileID: 8549015696763187543}
+  swingForce: 20
   camera: {fileID: 2877949674745233506}
   playerObserver: {fileID: 5594684079411266620}
   rb: {fileID: 5594684078624446214}
