@@ -10,7 +10,8 @@ public class PlayerWorlds : MonoBehaviour
     public GameObject angelPlayer, demonPlayer;
     public GameObject angelTotem, demonTotem;
     public GameObject angelWorld, demonWorld;
-    public Transform cameraPosDemon, cameraPosAngel, cameraPosition;
+    public Cinemachine.CinemachineVirtualCamera vCamera;
+    
     public bool isLinked;
     
     private void Update()
@@ -21,59 +22,24 @@ public class PlayerWorlds : MonoBehaviour
             {
                 demonPlayer.SetActive(true);
                 demonWorld.SetActive(true);
-                cameraPosition.position = cameraPosDemon.position;
                 angelPlayer.SetActive(false);
                 angelWorld.SetActive(false);
-
-                if (!isLinked)
-                {
-                    demonTotem.SetActive(false);
-                    angelTotem.SetActive(true);
-                }
-
+                vCamera.Follow = demonPlayer.transform;
                 EventManager.Trigger("OnPlayerChange", demonPlayer, isLinked);
-                SoundManager.instance.PlaySound(SoundID.SWAP);
-                Debug.Log("holpa");
             }
             else
             {
                 demonWorld.SetActive(false);
                 demonPlayer.SetActive(false);
-                cameraPosition.position = cameraPosAngel.position;
                 angelPlayer.SetActive(true);
                 angelWorld.SetActive(true);
-
-                if (!isLinked)
-                {
-                    demonTotem.SetActive(true);
-                    angelTotem.SetActive(false);
-                }
-
+                vCamera.Follow = angelPlayer.transform;
                 EventManager.Trigger("OnPlayerChange", angelPlayer, isLinked);
-                SoundManager.instance.PlaySound(SoundID.SWAP_2);
-                Debug.Log("holpa2");
             }
+            SoundManager.instance.PlaySound(SoundID.SWAP);
         }
 
-        if (angelPlayer.activeSelf)
-        {
-            cameraPosition.position = cameraPosAngel.position;
-            if (isLinked)
-            {
-                demonPlayer.transform.position = angelPlayer.transform.position;
-            }
-        }
-        else
-        {
-            cameraPosition.position = cameraPosDemon.position;
-            if (isLinked)
-            {
-                angelPlayer.transform.position = demonPlayer.transform.position;
-            }
-        }
-        
         demonTotem.transform.position = demonPlayer.transform.position;
         angelTotem.transform.position = angelPlayer.transform.position;
-        
     }
 }

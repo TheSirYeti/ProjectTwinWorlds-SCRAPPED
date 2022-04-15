@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net.Sockets;
+using Cinemachine;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour, ISubscriber
@@ -9,6 +10,7 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
     public float speed, swingForce;
     public Action<float,float> movementDelegate;
     [SerializeField] private Transform direction;
+    public CinemachineVirtualCamera camera;
     public Observer playerObserver;
     public Rigidbody rb, currentSwing;
     public bool canMove;
@@ -59,6 +61,7 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
 
     public void GenerateMovement(float h, float v)
     {
+        Vector3 camDirection = camera.transform.position - camera.m_LookAt.position;
         Vector3 movement = new Vector3(h, 0, v);
 
         if (movement.magnitude >= 1)
