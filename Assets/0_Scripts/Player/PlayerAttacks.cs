@@ -82,24 +82,26 @@ public abstract class PlayerAttacks : MonoBehaviour
         {
             InteractableObject intObj = collisions[0].GetComponent<InteractableObject>();
 
-            var dirToTarget = objectPosition - transform.position;
-
-            if (LayerMask.NameToLayer(intObj.layerTrigger) == gameObject.layer
-                && intObj.CheckForFirstTrigger())
+            if (intObj.IsInSight(transform))
             {
-                AimAbility(intObj.insertionPoints[intObj.GetClosestInsertionPoint(transform.position)]);
-                intObj.OnObjectStart();
-                usedAbility = true;
-            }
-            else
-            {
-                if (LayerMask.NameToLayer(intObj.firstTrigger) == gameObject.layer)
+                if (LayerMask.NameToLayer(intObj.layerTrigger) == gameObject.layer
+                    && intObj.CheckForFirstTrigger())
                 {
                     AimAbility(intObj.insertionPoints[intObj.GetClosestInsertionPoint(transform.position)]);
-                    intObj.isFirstTriggered = true;
+                    intObj.OnObjectStart();
                     usedAbility = true;
                 }
+                else
+                {
+                    if (LayerMask.NameToLayer(intObj.firstTrigger) == gameObject.layer)
+                    {
+                        AimAbility(intObj.insertionPoints[intObj.GetClosestInsertionPoint(transform.position)]);
+                        intObj.isFirstTriggered = true;
+                        usedAbility = true;
+                    }
+                }
             }
+            
         }
         else usedAbility = false;
     }

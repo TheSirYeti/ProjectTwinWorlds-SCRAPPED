@@ -10,6 +10,7 @@ public abstract class InteractableObject : MonoBehaviour
     public bool isFirstTriggered;
     public List<Transform> insertionPoints;
     public bool isObjectTriggered;
+    public float triggerDistance;
 
     private void Start()
     {
@@ -65,6 +66,28 @@ public abstract class InteractableObject : MonoBehaviour
         }
 
         return closest;
+    }
+
+    public bool CanInteract(Transform myTransform)
+    {
+        Debug.Log(Vector3.Distance(transform.position, myTransform.position));
+        if (Vector3.Distance(transform.position, myTransform.position) <= triggerDistance)
+        {
+            return true;
+        }
+        else return false;
+    }
+
+    public bool IsInSight(Transform myTransform)
+    {
+        Vector3 dirToTarget = (myTransform.position - transform.position);
+        if (!Physics.Raycast(transform.position, dirToTarget, dirToTarget.magnitude,
+                LayerReference.instance.obstacleMask))
+        {
+            return true;
+        }
+        
+        return false;
     }
 
 }

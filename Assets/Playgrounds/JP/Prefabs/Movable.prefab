@@ -132,6 +132,7 @@ MonoBehaviour:
   isFirstTriggered: 0
   insertionPoints: []
   isObjectTriggered: 0
+  triggerDistance: 0
 --- !u!1 &8673747564253884845
 GameObject:
   m_ObjectHideFlags: 0
@@ -315,6 +316,7 @@ MonoBehaviour:
   - {fileID: 8673747564145434790}
   - {fileID: 8673747564610828606}
   isObjectTriggered: 0
+  triggerDistance: 14
   itemToFollow: {fileID: 0}
   itemToRestrict: {fileID: 0}
   minDistance: 6
@@ -559,3 +561,4 @@ MonoBehaviour:
   isFirstTriggered: 0
   insertionPoints: []
   isObjectTriggered: 0
+  triggerDistance: 0
