@@ -22,8 +22,8 @@ public class MovableItem : InteractableObject
     {
         EventManager.UnSubscribe("OnPlayerChange", ChangeMovingMode);
         EventManager.Subscribe("OnPlayerChange", ChangeMovingMode);
-        
         EventManager.Subscribe("ResetAbility", OnItemCanceled);
+        
 
         CutSwingTies(null);
         if (mySwing != null)
@@ -39,7 +39,6 @@ public class MovableItem : InteractableObject
 
         lineRenderer.enabled = true;
         target = itemToFollow;
-        Debug.Log("Di target");
         isFollowing = true;
         isRestricting = false;
         
@@ -164,7 +163,7 @@ public class MovableItem : InteractableObject
 
         if (mySwing != null)
         {
-            rb.velocity = mySwing.lastPoint.velocity;
+            rb.AddForce(mySwing.lastPoint.velocity * 1000f, ForceMode.Impulse);
             mySwing.isHanging = false;
             mySwing.ResetStats();
             mySwing.currentItem = null;

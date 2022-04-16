@@ -45,22 +45,17 @@ public class SwingPhysics : InteractableObject
             currentItem = movableItems[FindNearestItem(angelAttack)];
             currentItem.rb.useGravity = false;
             currentItem.mySwing = this;
-            currentItem.transform.SetParent(holdPoint);
             currentItem.lineRenderer.enabled = true;
             currentItem.transform.position = holdPoint.transform.position;
             currentItem.transform.SetParent(holdPoint);
-
-
-            Debug.Log("Cuelgo caja");
-            OnObjectEnd();
         }
         else
         {
             Debug.Log("Me cuelgo yo");
             EventManager.Trigger("OnSwingStart", lastPoint, holdPoint, isOnLeft);
-            isObjectTriggered = true;
         }
         
+        isObjectTriggered = true;
         lastPoint.AddForce(lastPoint.transform.right * velocityForce, ForceMode.Acceleration);
     }
 
@@ -81,9 +76,8 @@ public class SwingPhysics : InteractableObject
         {
             if (currentItem != null && !currentItem.isObjectTriggered)
             {
-                currentItem.rb.useGravity = true;
-                currentItem.transform.SetParent(null);
-                currentItem = null;
+                currentItem.CutSwingTies(null);
+                ResetVariables(null);
             }
             else
             {
@@ -96,29 +90,28 @@ public class SwingPhysics : InteractableObject
         {
             ResetVariables(null);
             isAfterHang = true;
+            
         }
         
         EventManager.Trigger("ResetAbility");
-
-        foreach (Rigidbody rb in hingePoints)
-        {
-            rb.velocity = Vector3.zero;
-            rb.angularVelocity = Vector3.zero;
-        }
     }
 
     private void LateUpdate()
     {
-        if (isHanging && isFirstTriggered && isAfterHang)
+        if (isHanging && !isFirstTriggered && isAfterHang)
         {
-            currentItem.CutSwingTies(null);
+            if (currentItem != null)
+            {
+                currentItem.CutSwingTies(null);
+                isHanging = false;
+                OnObjectEnd();
+                Debug.Log("ME FUI RAJE AL CUBO");
+            }
         }
         else if (currentItem != null)
         {
             currentItem.transform.position = holdPoint.transform.position;
         }
-
-
     }
 
     public int FindNearestItem(Transform myTransform)

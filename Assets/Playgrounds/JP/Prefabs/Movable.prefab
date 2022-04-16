@@ -328,6 +328,7 @@ MonoBehaviour:
   jumpSpot: {fileID: 8673747563132662258}
   target: {fileID: 0}
   mySwing: {fileID: 0}
+  hangItem: {fileID: 0}
   lineRenderer: {fileID: 8673747564451966613}
 --- !u!54 &8673747564451966611
 Rigidbody:
@@ -356,7 +357,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.25, y: 1.65, z: 2}
+  m_Size: {x: 7.2, y: 1.65, z: 3.44}
   m_Center: {x: 0, y: -0.24, z: 0}
 --- !u!120 &8673747564451966613
 LineRenderer:
