@@ -6,13 +6,16 @@ using UnityEngine;
 
 public class HangClimb : InteractableObject
 {
-    public Transform startPoint, heightPoint, angel;
+    public Transform heightPoint, angel;
+    public GameObject walls;
+    public List<Transform> startPoints;
     public bool isOnLeft;
     
     
     public override void OnObjectStart()
     {
-        angel.position = startPoint.position;
+        angel.position = startPoints[GetNearestPoint(angel)].position;
+        walls.SetActive(true);
         EventManager.Trigger("OnClimbStart", isOnLeft);
         isObjectTriggered = true;
     }
@@ -27,8 +30,28 @@ public class HangClimb : InteractableObject
 
     public override void OnObjectEnd()
     {
+        walls.SetActive(false);
         EventManager.Trigger("OnClimbStop");
         EventManager.Trigger("ResetAbility");
         ResetVariables(null);
+    }
+
+    public int GetNearestPoint(Transform myTransform)
+    {
+        int currentId = -1;
+        float minDistance = Mathf.Infinity;
+
+        for (int i = 0; i < startPoints.Count; i++)
+        {
+            float distance = Vector3.Distance(myTransform.position, startPoints[i].position);
+
+            if (distance <= minDistance)
+            {
+                currentId = i;
+                minDistance = distance;
+            }
+        }
+
+        return currentId;
     }
 }

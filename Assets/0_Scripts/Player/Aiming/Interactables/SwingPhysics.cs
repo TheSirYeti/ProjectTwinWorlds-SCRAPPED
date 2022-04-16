@@ -79,7 +79,7 @@ public class SwingPhysics : InteractableObject
     {
         if (!isHanging)
         {
-            if (!currentItem.isObjectTriggered && currentItem != null)
+            if (currentItem != null && !currentItem.isObjectTriggered)
             {
                 currentItem.rb.useGravity = true;
                 currentItem.transform.SetParent(null);

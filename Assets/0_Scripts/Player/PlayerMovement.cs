@@ -295,5 +295,7 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
         {
             rb.velocity = new Vector3(0, rb.velocity.y, 0);
         }
+        
+        
     }
 }

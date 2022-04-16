@@ -46,6 +46,7 @@ public abstract class PlayerAttacks : MonoBehaviour
                 //ThrowAbility(null);
                 Debug.Log("Saco");
                 EventManager.Trigger("ResetAbility");
+                EventManager.Trigger("OnAbilityCancel");
             }
         }
         

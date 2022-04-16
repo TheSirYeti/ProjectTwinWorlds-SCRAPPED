@@ -15,6 +15,7 @@ public abstract class InteractableObject : MonoBehaviour
     {
         EventManager.Subscribe("ResetAbility", ResetVariables);
         EventManager.Subscribe("ResetObject", ResetVariables);
+        EventManager.Subscribe("OnAbilityCancel", CancelAbility);
     }
 
     private void Update()
@@ -42,6 +43,11 @@ public abstract class InteractableObject : MonoBehaviour
         isObjectTriggered = false;
     }
 
+    public void CancelAbility(object[] parameters)
+    {
+        OnObjectEnd();
+    }
+    
     public int GetClosestInsertionPoint(Vector3 position)
     {
         int closest = -1;
