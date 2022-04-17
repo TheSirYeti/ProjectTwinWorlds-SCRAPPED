@@ -20,14 +20,14 @@ public class DemonAttacks : PlayerAttacks
         _playerObserver.NotifySubscribers("BasicAttack");
     }
 
-    public override void AimAbility(Transform position)
+    public override void AimAbility(Transform position, InteractableObject intObj, bool isFirst)
     {
         transform.LookAt(new Vector3(position.position.x, transform.position.y, position.position.z));
         weapon.transform.position = transform.position;
         weapon.gameObject.SetActive(true);
         weapon.transform.forward = transform.position - position.position;
-        weapon.currentDestination = position;
-        StartCoroutine(weapon.ThrowPentadent());
+        
+        StartCoroutine(ThrowPentadent(weapon.duration, weapon.minDistance, position, intObj, isFirst));
     }
 
     public override void ExecuteAbility()
@@ -53,7 +53,6 @@ public class DemonAttacks : PlayerAttacks
 
     public override void ThrowAbility(object[] parameters)
     {
-        weapon.StopCoroutine(weapon.ThrowPentadent());
         weapon.transform.SetParent(null);
         weapon.transform.position = transform.position;
         weapon.gameObject.SetActive(false);
@@ -91,6 +90,37 @@ public class DemonAttacks : PlayerAttacks
             {
                 EventManager.Trigger("ResetAbility");
             }
+        }
+    }
+    
+    public IEnumerator ThrowPentadent(float duration, float minDistance, Transform currentDestination, InteractableObject intObj, bool isFirst)
+    {
+        float time = 0;
+        while (time <= duration)
+        {
+            yield return new WaitForSeconds(0.001f);
+            time += Time.fixedDeltaTime;
+            weapon.transform.position = Vector3.Lerp(transform.position, currentDestination.position, time / duration);
+
+            if (Vector3.Distance(weapon.transform.position, currentDestination.position) <= minDistance)
+            {
+                weapon.transform.SetParent(currentDestination);
+                SoundManager.instance.PlaySound(SoundID.HIT_PENTADENT);
+
+                if (!isFirst)
+                    intObj.OnObjectStart();
+                else
+                    intObj.isFirstTriggered = true;
+                
+                break;
+            }
+
+            if (!weapon.gameObject.activeSelf)
+            {
+                break;
+            }
+            
+            Debug.Log("hmm");
         }
     }
 }

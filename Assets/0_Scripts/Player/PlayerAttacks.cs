@@ -87,16 +87,15 @@ public abstract class PlayerAttacks : MonoBehaviour
                 if (LayerMask.NameToLayer(intObj.layerTrigger) == gameObject.layer
                     && intObj.CheckForFirstTrigger())
                 {
-                    AimAbility(intObj.insertionPoints[intObj.GetClosestInsertionPoint(transform.position)]);
-                    intObj.OnObjectStart();
+                    Debug.Log("hola?!?!?!?");
+                    AimAbility(intObj.insertionPoints[intObj.GetClosestInsertionPoint(transform.position)], intObj, false);
                     usedAbility = true;
                 }
                 else
                 {
                     if (LayerMask.NameToLayer(intObj.firstTrigger) == gameObject.layer)
                     {
-                        AimAbility(intObj.insertionPoints[intObj.GetClosestInsertionPoint(transform.position)]);
-                        intObj.isFirstTriggered = true;
+                        AimAbility(intObj.insertionPoints[intObj.GetClosestInsertionPoint(transform.position)], intObj, true);
                         usedAbility = true;
                     }
                 }
@@ -108,7 +107,7 @@ public abstract class PlayerAttacks : MonoBehaviour
     
     public abstract void ThrowAbility(object[] parameters);
     
-    public abstract void AimAbility(Transform destination);
+    public abstract void AimAbility(Transform destination, InteractableObject intObj, bool isFirst);
 
     public abstract void ExecuteAbility();
 }

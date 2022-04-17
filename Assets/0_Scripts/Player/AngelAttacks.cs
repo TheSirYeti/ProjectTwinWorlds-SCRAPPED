@@ -43,36 +43,19 @@ public class AngelAttacks : PlayerAttacks
         _playerObserver.NotifySubscribers("BasicAttack");
     }
 
-    public override void AimAbility(Transform position)
+    public override void AimAbility(Transform position, InteractableObject intObj, bool isFirst)
     {
-        lineRenderer.SetPosition(0, transform.position);
-        arrowEndPoint = position;
-        lineRenderer.SetPosition(1, arrowEndPoint.position);
-        isConnected = true;
-        lineRenderer.enabled = true;
-        SoundManager.instance.PlaySound(SoundID.ARROW_ROPE);
-        Debug.Log("AIMIE");
+        transform.LookAt(new Vector3(position.position.x, transform.position.y, position.position.z));
+        weapon.transform.position = transform.position;
+        weapon.gameObject.SetActive(true);
+        weapon.transform.forward = transform.position - position.position;
+
+        StartCoroutine(AimArrow(position, 0.02f, intObj, isFirst));
     }
 
     public override void ExecuteAbility()
     {
-        var collidedObject = CheckColliders();
-
-        if (collidedObject != null && collidedObject.CheckForFirstTrigger() && LayerMask.NameToLayer(collidedObject.layerTrigger) == gameObject.layer)
-        {
-            collidedObject.OnObjectEnd();
-        }
-    }
-    
-    InteractableObject CheckColliders()
-    {
-        Collider[] colliders = Physics.OverlapSphere(weapon.transform.position, 1f, collidableLayer);
-
-        if (colliders.Length == 1)
-        {
-            return colliders[0].GetComponent<InteractableObject>();
-        }
-        else return null;
+        //
     }
 
     public override void ThrowAbility(object[] parameters)
@@ -82,43 +65,10 @@ public class AngelAttacks : PlayerAttacks
         isSwinging = false;
         usedAbility = false;
         isConnected = false;
+        weapon.gameObject.SetActive(false);
         EventManager.Trigger("OnPulleyStop");
         EventManager.Trigger("OnSwingStop");
         Debug.Log("CHAU");
-    }
-    
-    IEnumerator GrabObject(float duration, GameObject obj, Vector3 destiny)
-    {
-        weapon.GetComponent<Collider>().enabled = false;
-        float time = 0;
-        
-        while (time <= duration)
-        {
-            time += Time.fixedDeltaTime;
-            obj.transform.position = Vector3.Lerp(obj.transform.position, destiny, time / 2);
-            
-            if (duration % time >= 0.5f)
-            {
-                weapon.GetComponent<Collider>().enabled = true;
-            }
-            
-            yield return new WaitForSeconds(0.01f);
-        }
-    }
-    
-    IEnumerator ClimbHook(float duration, Vector3 destiny)
-    {
-        float time = 0;
-        while (time <= duration)
-        {
-            time += Time.fixedDeltaTime;
-            transform.position = Vector3.Lerp(transform.position, destiny, time / 2);
-            
-            if(Vector3.Distance(transform.position, destiny) <= 0.3f)
-                EventManager.Trigger("ResetAbility");
-            
-            yield return new WaitForSeconds(0.01f);
-        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -135,5 +85,34 @@ public class AngelAttacks : PlayerAttacks
         {
             canHang = false;
         }
+    }
+
+    IEnumerator AimArrow(Transform position, float minDistance, InteractableObject intObj, bool isFirst)
+    {
+        Debug.Log("hola?");
+        float time = 0f;
+        float duration = 0.5f;
+        
+        while(Vector3.Distance(weapon.transform.position, position.position) >= minDistance)
+        {
+            yield return new WaitForSeconds(0.001f);
+            time += Time.deltaTime;
+            weapon.transform.position = Vector3.Lerp(transform.position, position.position, time / duration);
+        }
+        
+        lineRenderer.SetPosition(0, transform.position);
+        arrowEndPoint = position;
+        lineRenderer.SetPosition(1, arrowEndPoint.position);
+        isConnected = true;
+        lineRenderer.enabled = true;
+        SoundManager.instance.PlaySound(SoundID.ARROW_ROPE);
+        Debug.Log("AIMIE");
+        
+        if(!isFirst)
+            intObj.OnObjectStart();
+        else
+            intObj.isFirstTriggered = true;
+        
+        yield return new WaitForSeconds(0.001f);
     }
 }
