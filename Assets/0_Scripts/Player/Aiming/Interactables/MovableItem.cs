@@ -163,7 +163,7 @@ public class MovableItem : InteractableObject
 
         if (mySwing != null)
         {
-            rb.AddForce(mySwing.lastPoint.velocity * 1000f, ForceMode.Impulse);
+            rb.AddForce(mySwing.lastPoint.velocity * 100f, ForceMode.Impulse);
             mySwing.isHanging = false;
             mySwing.ResetStats();
             mySwing.currentItem = null;

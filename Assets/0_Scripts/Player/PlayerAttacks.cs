@@ -82,7 +82,7 @@ public abstract class PlayerAttacks : MonoBehaviour
         {
             InteractableObject intObj = collisions[0].GetComponent<InteractableObject>();
 
-            if (intObj.IsInSight(transform))
+            if (intObj.IsInSight(transform) && intObj.CanInteract(transform))
             {
                 if (LayerMask.NameToLayer(intObj.layerTrigger) == gameObject.layer
                     && intObj.CheckForFirstTrigger())
