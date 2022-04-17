@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 249881855225109979}
   - component: {fileID: 3826338702171917350}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,6 +103,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b3f0deaf7e2774a458301cc5938f313f, type: 3}
       propertyPath: m_Name
       value: TheTrueEscalerasUwU Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b3f0deaf7e2774a458301cc5938f313f, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3f0deaf7e2774a458301cc5938f313f, type: 3}
