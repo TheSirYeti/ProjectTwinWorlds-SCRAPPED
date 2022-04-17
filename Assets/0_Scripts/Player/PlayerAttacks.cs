@@ -8,7 +8,8 @@ public abstract class PlayerAttacks : MonoBehaviour
 {
     public float attackCooldown;
     public float cooldownTimer;
-    
+    public bool isDemon;
+
     public Observer _playerObserver;
     public Action attackDelegate;
 
@@ -82,7 +83,7 @@ public abstract class PlayerAttacks : MonoBehaviour
         {
             InteractableObject intObj = collisions[0].GetComponent<InteractableObject>();
 
-            if (intObj.IsInSight(transform) && intObj.CanInteract(transform))
+            if (intObj.IsInSight(transform) && intObj.CanInteract(transform, isDemon))
             {
                 if (LayerMask.NameToLayer(intObj.layerTrigger) == gameObject.layer
                     && intObj.CheckForFirstTrigger())
@@ -96,6 +97,7 @@ public abstract class PlayerAttacks : MonoBehaviour
                     if (LayerMask.NameToLayer(intObj.firstTrigger) == gameObject.layer)
                     {
                         AimAbility(intObj.insertionPoints[intObj.GetClosestInsertionPoint(transform.position)], intObj, true);
+                        PlayerWorlds.instance.firstTriggerPlayer = this.gameObject;
                         usedAbility = true;
                     }
                 }

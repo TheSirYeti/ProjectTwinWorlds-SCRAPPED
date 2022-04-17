@@ -11,7 +11,8 @@ public abstract class InteractableObject : MonoBehaviour
     public List<Transform> insertionPoints;
     public bool isObjectTriggered;
     public float triggerDistance;
-
+    public GameObject myShader;
+    
     private void Start()
     {
         EventManager.Subscribe("ResetAbility", ResetVariables);
@@ -24,7 +25,14 @@ public abstract class InteractableObject : MonoBehaviour
         if (isObjectTriggered)
         {
             OnObjectDuring();
+            myShader.SetActive(false);
         }
+        else if(isFirstTriggered 
+                && Vector3.Distance(PlayerWorlds.instance.currentPlayer.transform.position, PlayerWorlds.instance.firstTriggerPlayer.transform.position) <= triggerDistance
+                && PlayerWorlds.instance.currentPlayer.transform.position != PlayerWorlds.instance.firstTriggerPlayer.transform.position)
+        {
+            myShader.SetActive(true);
+        } else myShader.SetActive(false);
     }
 
     public abstract void OnObjectStart();
@@ -68,10 +76,21 @@ public abstract class InteractableObject : MonoBehaviour
         return closest;
     }
 
-    public bool CanInteract(Transform myTransform)
+    public bool CanInteract(Transform myTransform, bool isDemon)
     {
-        Debug.Log(Vector3.Distance(transform.position, myTransform.position));
-        if (Vector3.Distance(transform.position, myTransform.position) <= triggerDistance)
+        Transform referencePoint;
+
+        if (isFirstTriggered)
+        {
+            if (!isDemon)
+                referencePoint = PlayerWorlds.instance.demonTotem.transform;
+            else referencePoint = PlayerWorlds.instance.angelTotem.transform;
+        }
+        else return true;
+        
+        Debug.Log(Vector3.Distance(referencePoint.position, myTransform.position));
+        
+        if (Vector3.Distance(referencePoint.position, myTransform.position) <= triggerDistance)
         {
             return true;
         }

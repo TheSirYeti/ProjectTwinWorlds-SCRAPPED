@@ -119,8 +119,6 @@ public class DemonAttacks : PlayerAttacks
             {
                 break;
             }
-            
-            Debug.Log("hmm");
         }
     }
 }

@@ -10,7 +10,7 @@ Material:
   m_Name: Indicator
   m_Shader: {fileID: 4800000, guid: 5797efba5318f854eb29eba8be68d2f0, type: 3}
   m_ShaderKeywords: 
-  m_LightmapFlags: 4
+  m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -27,6 +27,6 @@ Material:
     m_Floats:
     - __dirty: 0
     m_Colors:
-    - _Color1: {r: 0, g: 0, b: 0, a: 0}
-    - _Vector1: {r: 0, g: 2, b: 0, a: 0}
+    - _Color1: {r: 1, g: 0.7325124, b: 0, a: 0}
+    - _Vector1: {r: 0, g: 1.62, b: 0, a: 0}
   m_BuildTextureStacks: []

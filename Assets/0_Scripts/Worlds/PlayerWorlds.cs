@@ -2,18 +2,32 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PlayerWorlds : MonoBehaviour
 {
-    public GameObject angelPlayer, demonPlayer;
+    public GameObject angelPlayer, demonPlayer, currentPlayer, firstTriggerPlayer;
     public GameObject angelTotem, demonTotem;
     public GameObject angelWorld, demonWorld;
     public Cinemachine.CinemachineVirtualCamera vCamera;
     
     public bool isLinked;
-    
+
+    public static PlayerWorlds instance;
+
+    private void Start()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else Destroy(gameObject);
+
+        currentPlayer = demonPlayer;
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Q)) 
@@ -21,19 +35,25 @@ public class PlayerWorlds : MonoBehaviour
             if (angelPlayer.activeSelf)
             {
                 demonPlayer.SetActive(true);
+                demonTotem.SetActive(false);
                 demonWorld.SetActive(true);
                 angelPlayer.SetActive(false);
                 angelWorld.SetActive(false);
+                angelTotem.SetActive(true);
                 vCamera.Follow = demonPlayer.transform;
+                currentPlayer = demonPlayer;
                 EventManager.Trigger("OnPlayerChange", demonPlayer, isLinked);
             }
             else
             {
                 demonWorld.SetActive(false);
                 demonPlayer.SetActive(false);
+                demonTotem.SetActive(true);
                 angelPlayer.SetActive(true);
                 angelWorld.SetActive(true);
+                angelTotem.SetActive(false);
                 vCamera.Follow = angelPlayer.transform;
+                currentPlayer = angelPlayer;
                 EventManager.Trigger("OnPlayerChange", angelPlayer, isLinked);
             }
             SoundManager.instance.PlaySound(SoundID.SWAP);

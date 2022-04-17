@@ -1114,6 +1114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackCooldown: 0.5
   cooldownTimer: 0
+  isDemon: 1
   _playerObserver: {fileID: 3913398196342236360}
   distance: 1e+11
   radius: 0.1
@@ -2922,6 +2923,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackCooldown: 0.5
   cooldownTimer: 0
+  isDemon: 0
   _playerObserver: {fileID: 5594684079411266620}
   distance: 1e+10
   radius: 0.1
