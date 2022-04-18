@@ -8,6 +8,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour, ISubscriber
 {
     public float speed, swingForce;
+    public float rotationValue;
     public Action<float,float> movementDelegate;
     public CinemachineVirtualCamera camera;
     public Observer playerObserver;
@@ -68,7 +69,8 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
             movement.Normalize();
         }
         
-        Matrix4x4 matrix = Matrix4x4.Rotate(Quaternion.Euler(0, 45, 0));
+        Matrix4x4 matrix = Matrix4x4.Rotate(Quaternion.Euler(0, rotationValue, 0));
+        //no hagas preguntas a las cuales no queres saber la respuesta Factos
 
         Vector3 rotatedInput = matrix.MultiplyPoint3x4(movement);
         Vector3 relativeDistance = (transform.position + rotatedInput) - transform.position;
@@ -141,7 +143,7 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
         if(isClimbLeft)
             movement = new Vector3(h, v, 0);
         else
-            movement = new Vector3(0, v, h);
+            movement = new Vector3(0, v,  -1 * h);
 
         rb.velocity = movement * (speed / 2) * Time.deltaTime;
     }
@@ -213,7 +215,7 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
             rb.constraints = RigidbodyConstraints.None;
             rb.constraints = RigidbodyConstraints.FreezeRotation;
             if(currentSwing != null)
-                rb.AddForce(currentSwing.velocity * 3f, ForceMode.Impulse);
+                rb.AddForce(currentSwing.velocity * 1.5f, ForceMode.Impulse);
             currentSwing = null;
             transform.SetParent(myParent);
             movementDelegate = PostSwingMovement;

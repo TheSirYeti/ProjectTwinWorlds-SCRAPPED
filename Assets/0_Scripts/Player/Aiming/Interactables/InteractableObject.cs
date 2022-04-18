@@ -5,6 +5,7 @@ using UnityEngine;
 
 public abstract class InteractableObject : MonoBehaviour
 {
+    public int id;
     public string layerTrigger;
     public string firstTrigger;
     public bool isFirstTriggered;
@@ -54,7 +55,11 @@ public abstract class InteractableObject : MonoBehaviour
 
     public void CancelAbility(object[] parameters)
     {
-        OnObjectEnd();
+        if (isObjectTriggered)
+        {
+            Debug.Log("Cancelo la cosa assasa");
+            InteractableManager.instance.ExecuteEnd(id);
+        }
     }
     
     public int GetClosestInsertionPoint(Vector3 position)

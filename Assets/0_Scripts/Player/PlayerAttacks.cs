@@ -39,13 +39,10 @@ public abstract class PlayerAttacks : MonoBehaviour
         {
             if (!usedAbility)
             {
-                Debug.Log("Tiro");
                 CheckAbility();
             }
             else
             {
-                //ThrowAbility(null);
-                Debug.Log("Saco");
                 EventManager.Trigger("ResetAbility");
                 EventManager.Trigger("OnAbilityCancel");
             }
@@ -88,7 +85,6 @@ public abstract class PlayerAttacks : MonoBehaviour
                 if (LayerMask.NameToLayer(intObj.layerTrigger) == gameObject.layer
                     && intObj.CheckForFirstTrigger())
                 {
-                    Debug.Log("hola?!?!?!?");
                     AimAbility(intObj.insertionPoints[intObj.GetClosestInsertionPoint(transform.position)], intObj, false);
                     usedAbility = true;
                 }

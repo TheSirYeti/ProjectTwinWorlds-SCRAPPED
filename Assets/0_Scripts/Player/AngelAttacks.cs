@@ -89,7 +89,6 @@ public class AngelAttacks : PlayerAttacks
 
     IEnumerator AimArrow(Transform position, float minDistance, InteractableObject intObj, bool isFirst)
     {
-        Debug.Log("hola?");
         float time = 0f;
         float duration = 0.5f;
         
@@ -106,8 +105,7 @@ public class AngelAttacks : PlayerAttacks
         isConnected = true;
         lineRenderer.enabled = true;
         SoundManager.instance.PlaySound(SoundID.ARROW_ROPE);
-        Debug.Log("AIMIE");
-        
+
         if(!isFirst)
             intObj.OnObjectStart();
         else

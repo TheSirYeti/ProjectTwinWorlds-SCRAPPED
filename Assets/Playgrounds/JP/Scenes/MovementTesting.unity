@@ -647,6 +647,10 @@ PrefabInstance:
       propertyPath: swingForce
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 3913398195166920761, guid: 305d90f54d62b64449c4b245eddabd14, type: 3}
+      propertyPath: rotationValue
+      value: 45
+      objectReference: {fileID: 0}
     - target: {fileID: 3913398195166920771, guid: 305d90f54d62b64449c4b245eddabd14, type: 3}
       propertyPath: cam
       value: 
@@ -678,6 +682,10 @@ PrefabInstance:
     - target: {fileID: 4344421866615202899, guid: 305d90f54d62b64449c4b245eddabd14, type: 3}
       propertyPath: m_LocalRotation.z
       value: -0.2347786
+      objectReference: {fileID: 0}
+    - target: {fileID: 5594684078624446217, guid: 305d90f54d62b64449c4b245eddabd14, type: 3}
+      propertyPath: rotationValue
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 5594684078624446219, guid: 305d90f54d62b64449c4b245eddabd14, type: 3}
       propertyPath: cam
@@ -907,6 +915,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1911855976365098517, guid: 33b38590c1155074d89637251a1451f6, type: 3}
+      propertyPath: m_Constraints
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1911855976433831657, guid: 33b38590c1155074d89637251a1451f6, type: 3}
+      propertyPath: m_Constraints
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1911855976669237726, guid: 33b38590c1155074d89637251a1451f6, type: 3}
+      propertyPath: m_Constraints
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 1911855977329897797, guid: 33b38590c1155074d89637251a1451f6, type: 3}
       propertyPath: angelAttack
       value: 
@@ -927,6 +947,14 @@ PrefabInstance:
       propertyPath: movableItems.Array.data[1]
       value: 
       objectReference: {fileID: 1871710722}
+    - target: {fileID: 1911855977864188633, guid: 33b38590c1155074d89637251a1451f6, type: 3}
+      propertyPath: m_Constraints
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1911855978131769028, guid: 33b38590c1155074d89637251a1451f6, type: 3}
+      propertyPath: m_Constraints
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 2885254001783911148, guid: 33b38590c1155074d89637251a1451f6, type: 3}
       propertyPath: m_Name
       value: FullSwing

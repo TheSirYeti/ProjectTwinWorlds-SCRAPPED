@@ -24,21 +24,6 @@ public class SwingPhysics : InteractableObject
     
     public override void OnObjectStart()
     {
-        if (isOnLeft)
-        {
-            foreach (Rigidbody rb in hingePoints)
-            {
-                rb.constraints = RigidbodyConstraints.FreezePositionZ;
-            }
-        }
-        else
-        {
-            foreach (Rigidbody rb in hingePoints)
-            {
-                rb.constraints = RigidbodyConstraints.FreezePositionX;
-            }
-        }
-        
         if (angelAttack.GetComponent<AngelAttacks>().canHang)
         {
             isHanging = true;
