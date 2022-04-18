@@ -41,7 +41,7 @@ public class PaladinRestState : IState
         
         if (currentTime >= timeToRest)
         {
-            _fsm.ChangeState(PaladinState.CHASE);
+            _fsm.ChangeState(FSM_State.PALADIN_CHASE);
         }
     }
 

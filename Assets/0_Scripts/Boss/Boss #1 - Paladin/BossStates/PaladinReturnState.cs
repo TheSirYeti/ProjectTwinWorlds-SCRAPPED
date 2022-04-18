@@ -36,7 +36,7 @@ public class PaladinReturnState : MonoBehaviour, IState
         }
         else
         {
-            fsm.ChangeState(PaladinState.REST);
+            fsm.ChangeState(FSM_State.PALADIN_REST);
         }
     }
     

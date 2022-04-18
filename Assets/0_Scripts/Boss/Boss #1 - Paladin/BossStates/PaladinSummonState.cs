@@ -43,7 +43,7 @@ public class PaladinSummonState : MonoBehaviour, IState
         }
         else
         {
-            fsm.ChangeState(PaladinState.CHASE);
+            fsm.ChangeState(FSM_State.PALADIN_CHASE);
         }
     }
 

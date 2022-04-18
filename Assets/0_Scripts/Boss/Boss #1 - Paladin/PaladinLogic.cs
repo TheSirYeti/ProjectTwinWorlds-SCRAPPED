@@ -90,7 +90,7 @@ public class PaladinLogic : MonoBehaviour
         {
             StartRingPhase(currentPhase);
             maxAttackNumber += 2;
-            fsm.ChangeState(PaladinState.CHASE);
+            fsm.ChangeState(FSM_State.PALADIN_CHASE);
         }
     }
 
@@ -98,14 +98,14 @@ public class PaladinLogic : MonoBehaviour
     {
         fsm = new FiniteStateMachine();
         transform.LookAt(new Vector3(target.transform.position.x, transform.position.y, target.transform.position.z));
-        fsm.AddState(PaladinState.REST, new PaladinRestState(fsm, animator, timeToRest, shieldRings, this));
-        fsm.AddState(PaladinState.CHASE, new PaladinChaseState(target, this, fsm, animator, speed, 30));
-        fsm.AddState(PaladinState.BREACH,
+        fsm.AddState(FSM_State.PALADIN_REST, new PaladinRestState(fsm, animator, timeToRest, shieldRings, this));
+        fsm.AddState(FSM_State.PALADIN_CHASE, new PaladinChaseState(target, this, fsm, animator, speed, 30));
+        fsm.AddState(FSM_State.PALADIN_BREACH,
             new PaladinBreachState(floorAttack, animator, fsm, target, 3.8f, shieldRings, this));
-        fsm.AddState(PaladinState.RETURN, new PaladinReturnState(returnPoint, fsm, this, 0.2f, speed));
-        fsm.AddState(PaladinState.SUMMON, new PaladinSummonState(this, fsm, 7, 0.8f));
-        fsm.AddState(PaladinState.TACKLE, new PaladinTackleState(1f, 4f, fsm, animator, this, shieldSpawnpoints, shieldPrefabOut));
-        fsm.ChangeState(PaladinState.CHASE);
+        fsm.AddState(FSM_State.PALADIN_RETURN, new PaladinReturnState(returnPoint, fsm, this, 0.2f, speed));
+        fsm.AddState(FSM_State.PALADIN_SUMMON, new PaladinSummonState(this, fsm, 7, 0.8f));
+        fsm.AddState(FSM_State.PALADIN_TACKLE, new PaladinTackleState(1f, 4f, fsm, animator, this, shieldSpawnpoints, shieldPrefabOut));
+        fsm.ChangeState(FSM_State.PALADIN_CHASE);
     }
 
     public void SetShieldSpeeds(ShieldObject.SpeedState state)

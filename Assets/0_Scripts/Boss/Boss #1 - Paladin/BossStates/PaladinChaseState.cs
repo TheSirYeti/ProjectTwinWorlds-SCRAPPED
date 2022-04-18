@@ -29,7 +29,7 @@ public class PaladinChaseState : IState
         target = paladin.target;
         if (paladin.attackNumber >= paladin.maxAttackNumber)
         {
-            _fsm.ChangeState(PaladinState.RETURN);
+            _fsm.ChangeState(FSM_State.PALADIN_RETURN);
         }
         
         _animator.SetBool("isWalking", true);
@@ -60,15 +60,15 @@ public class PaladinChaseState : IState
         switch (rand)
         {
             case 1:
-                _fsm.ChangeState(PaladinState.BREACH);
+                _fsm.ChangeState(FSM_State.PALADIN_BREACH);
                 break;
             
             case 2:
-                _fsm.ChangeState(PaladinState.SUMMON);
+                _fsm.ChangeState(FSM_State.PALADIN_SUMMON);
                 break;
             
             case 3:
-                _fsm.ChangeState(PaladinState.TACKLE);
+                _fsm.ChangeState(FSM_State.PALADIN_TACKLE);
                 break;
         }
         

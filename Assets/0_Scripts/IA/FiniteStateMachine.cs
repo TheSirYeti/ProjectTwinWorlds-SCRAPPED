@@ -5,7 +5,7 @@ using UnityEngine;
 public class FiniteStateMachine
 {
     IState _currentState = new NullState();
-    Dictionary<PaladinState, IState> _allStates = new Dictionary<PaladinState, IState>();
+    Dictionary<FSM_State, IState> _allStates = new Dictionary<FSM_State, IState>();
 
 
     public void OnUpdate()
@@ -13,14 +13,14 @@ public class FiniteStateMachine
         _currentState.OnUpdate();
     }
 
-    public void AddState(PaladinState id, IState state)
+    public void AddState(FSM_State id, IState state)
     {
         if (_allStates.ContainsKey(id)) return;
 
         _allStates.Add(id, state);
     }
 
-    public void ChangeState(PaladinState id)
+    public void ChangeState(FSM_State id)
     {
         if (!_allStates.ContainsKey(id)) return;
         _currentState.OnExit();
@@ -29,12 +29,15 @@ public class FiniteStateMachine
     }
 }
 
-public enum PaladinState
+public enum FSM_State
 {
-    REST,
-    CHASE,
-    BREACH,
-    SUMMON,
-    TACKLE,
-    RETURN
+    PALADIN_REST,
+    PALADIN_CHASE,
+    PALADIN_BREACH,
+    PALADIN_SUMMON,
+    PALADIN_TACKLE,
+    PALADIN_RETURN,
+    
+    MAFIA_RELOAD,
+    MAFIA_SHOOT
 }

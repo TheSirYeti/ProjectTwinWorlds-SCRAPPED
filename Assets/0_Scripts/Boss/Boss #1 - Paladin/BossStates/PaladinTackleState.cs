@@ -51,7 +51,7 @@ public class PaladinTackleState : MonoBehaviour, IState
         if (currentTime >= timeToNextState)
         {
             SetUpShields();SoundManager.instance.PlaySound(SoundID.HIT_GROUND);
-            fsm.ChangeState(PaladinState.CHASE);
+            fsm.ChangeState(FSM_State.PALADIN_CHASE);
         }
         else if(isTackling)
         {

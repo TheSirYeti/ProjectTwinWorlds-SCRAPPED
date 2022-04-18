@@ -44,7 +44,7 @@ public class PaladinBreachState : IState
         if (currentTime >= attackTime)
         {
             floorAttack.StopAttack();
-            fsm.ChangeState(PaladinState.CHASE);
+            fsm.ChangeState(FSM_State.PALADIN_CHASE);
         }
 
         if (currentTime >= 1.2f && !flag)
