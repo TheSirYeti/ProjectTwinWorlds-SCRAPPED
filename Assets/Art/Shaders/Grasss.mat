@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Enviroment
+  m_Name: Grasss
   m_Shader: {fileID: 4800000, guid: 092645461c6bcfa42ab4e856825dd5c3, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -19,16 +19,8 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _Concrete_Pavement_Tiled_Maps:
-        m_Texture: {fileID: 2800000, guid: 75bc5f34c1d2f414ea8eb8f812d68869, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Concrete_Pavement_Tiled_Maps1:
-        m_Texture: {fileID: 2800000, guid: e27de0428f8438e4d98bd514bae95c9e, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _Normal:
-        m_Texture: {fileID: 2800000, guid: 6846f1ef02d6af14186630ac31cc2084, type: 3}
+        m_Texture: {fileID: 2800000, guid: 220719cd1a99f3b47ac2db599b7b4a97, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalNone:
@@ -36,7 +28,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TextureofObjects:
-        m_Texture: {fileID: 2800000, guid: 6a6ad41164a834d4991784d0e70dff11, type: 3}
+        m_Texture: {fileID: 2800000, guid: a680f12148204b64aaa93343326b776c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _texcoord:
@@ -46,22 +38,15 @@ Material:
     m_Ints: []
     m_Floats:
     - _ClampMax: 1.71
-    - _ClampMax2: 1.71
     - _ClampMin: -0.96
-    - _ClampMin2: -0.96
-    - _Float0: 1
     - _GradientWhitTexture: 0.219
     - _Metallic: 0
     - _NormalLerp: 1
     - _Origin: 0.31
-    - _Origin2: -3.46
     - _Smoothness: 0
     - _Spread: 2.99
-    - _Spread2: 2.99
     - __dirty: 0
     m_Colors:
     - _BottomColor: {r: 0.6980392, g: 0.9529412, b: 0.7764706, a: 0}
-    - _BottomColor2: {r: 0.6980392, g: 0.9529412, b: 0.7764706, a: 0}
     - _TopColor: {r: 0.8679245, g: 0.6673193, b: 0.6673193, a: 0}
-    - _TopColor2: {r: 0.945098, g: 0.8313726, b: 0.8313726, a: 0}
   m_BuildTextureStacks: []
