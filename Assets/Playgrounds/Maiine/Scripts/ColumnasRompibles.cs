@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ColumnasRompibles : MonoBehaviour
+public class ColumnasRompibles : InteractableObject
 {
     bool isBroken = false;
     bool isFalling = false;
@@ -16,6 +16,22 @@ public class ColumnasRompibles : MonoBehaviour
         isBroken = true;
     }
 
+    public override void OnObjectDuring()
+    {
+        
+    }
+
+    public override void OnObjectEnd()
+    {
+        ResetVariables(null);
+    }
+
+    public override void OnObjectStart()
+    {
+        PentadentBreak();
+        isObjectTriggered = true;
+    }
+
     public void PentadentBreak()
     {
         if (isBroken)
@@ -24,6 +40,8 @@ public class ColumnasRompibles : MonoBehaviour
             //mas sonido y particulas
             //animacion
         }
+        else
+            OnObjectEnd();
     }
 
     public void TurnOffCollider()

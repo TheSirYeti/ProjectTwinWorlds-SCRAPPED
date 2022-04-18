@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class MiniBossController : MonoBehaviour
 {
-    [SerializeField] private GameObject _player;
     [SerializeField] private float _walkSpeed;
     [SerializeField] private float _runningSpeed;
     [SerializeField] private LayerMask layerMaskC;
@@ -15,16 +14,16 @@ public class MiniBossController : MonoBehaviour
 
     delegate void Movement();
     Movement movement;
-    
+
     void Start()
     {
         movement = Following;
-        _player = PlayerWorlds.instance.currentPlayer;
     }
 
     void Update()
     {
         movement();
+        Debug.DrawRay(transform.position + new Vector3(0, 1.5f, 0), transform.forward, Color.red, 3f);
     }
 
     //Cambio de delegate desde animator
@@ -35,9 +34,13 @@ public class MiniBossController : MonoBehaviour
 
     public void StartRunning()
     {
-        SetObjective();
-        transform.LookAt(new Vector3(_goTo.x, transform.position.y, _goTo.z));
         movement = Running;
+    }
+
+    public void SetObjective()
+    {
+        _goTo = PlayerWorlds.instance.currentPlayer.transform.position;
+        transform.LookAt(new Vector3(_goTo.x, transform.position.y, _goTo.z));
     }
 
     public void Stay()
@@ -51,7 +54,7 @@ public class MiniBossController : MonoBehaviour
         transform.LookAt(new Vector3(PlayerWorlds.instance.currentPlayer.transform.position.x, transform.position.y, PlayerWorlds.instance.currentPlayer.transform.position.z));
         transform.position += transform.forward * Time.deltaTime * _walkSpeed;
         timer += Time.deltaTime;
-        if(timer > 2f)
+        if (timer > 2f)
         {
             timer = 0;
             _ani.SetTrigger("StartPreAtack");
@@ -62,20 +65,15 @@ public class MiniBossController : MonoBehaviour
     {
         transform.position += transform.forward * Time.deltaTime * _runningSpeed;
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward, out hit, layerMaskC))
+        if (Physics.Raycast(transform.position + new Vector3(0, 1.5f, 0), transform.forward, out hit, 3f, layerMaskC))
         {
             _ani.SetTrigger("HitWall");
             hit.collider.gameObject.GetComponent<ColumnasRompibles>().InitialBreak();
         }
-        else if (Physics.Raycast(transform.position, transform.forward, out hit, layerMaskW))
+        else if (Physics.Raycast(transform.position + new Vector3(0, 1.5f, 0), transform.forward, out hit, 3f, layerMaskW))
         {
             _ani.SetTrigger("HitWall");
         }
-    }
 
-    //Set nuevo objetivo desde animator
-    void SetObjective()
-    {
-        _goTo = PlayerWorlds.instance.currentPlayer.transform.position;
     }
 }
