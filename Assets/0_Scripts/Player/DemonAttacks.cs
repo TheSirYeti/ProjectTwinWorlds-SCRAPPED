@@ -116,7 +116,8 @@ public class DemonAttacks : PlayerAttacks
                 if (!isFirst)
                 {
                     currentObject = intObj;
-                    intObj.OnObjectStart();
+                    currentObject.OnObjectStart();
+                    Debug.Log(currentObject.isObjectTriggered);
                 }
                 else
                     intObj.isFirstTriggered = true;

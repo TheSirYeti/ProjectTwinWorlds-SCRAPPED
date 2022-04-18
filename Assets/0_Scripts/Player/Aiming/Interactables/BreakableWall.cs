@@ -11,7 +11,7 @@ public class BreakableWall : InteractableObject
 
     public override void OnObjectDuring()
     {
-        //nothing
+        //
     }
 
     public override void OnObjectEnd()

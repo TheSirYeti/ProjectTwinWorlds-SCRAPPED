@@ -67,12 +67,13 @@ public class AngelAttacks : PlayerAttacks
         isConnected = false;
         weapon.gameObject.SetActive(false);
     
+        Debug.Log(currentObject + " " + currentObject.isObjectTriggered);
         if (currentObject != null && currentObject.isObjectTriggered)
         {
             currentObject.OnObjectEnd();
         }
         currentObject = null;
-        
+
         EventManager.Trigger("OnPulleyStop");
         EventManager.Trigger("OnSwingStop");
         
@@ -115,8 +116,8 @@ public class AngelAttacks : PlayerAttacks
 
         if (!isFirst)
         {
-            intObj.OnObjectStart();
             currentObject = intObj;
+            currentObject.OnObjectStart();
         }
         else
             intObj.isFirstTriggered = true;

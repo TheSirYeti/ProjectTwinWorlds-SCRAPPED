@@ -49,6 +49,7 @@ public abstract class InteractableObject : MonoBehaviour
 
     public void ResetVariables(object[] parameters)
     {
+        Debug.Log("HAGO RESET");
         isFirstTriggered = false;
         isObjectTriggered = false;
     }

@@ -176,6 +176,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   angelPlayer: {fileID: 5594684078624446218}
   demonPlayer: {fileID: 3913398195166920752}
+  currentPlayer: {fileID: 0}
+  firstTriggerPlayer: {fileID: 0}
   angelTotem: {fileID: 6395470161261868533}
   demonTotem: {fileID: 7025559550424097906}
   angelWorld: {fileID: 0}
@@ -289,8 +291,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1922627685119114019}
-  m_LocalRotation: {x: -0.10454681, y: 0.8828163, z: -0.2347786, w: -0.39317217}
-  m_LocalPosition: {x: 64.51068, y: 49.67425, z: 58.05893}
+  m_LocalRotation: {x: -0.104546495, y: 0.8828163, z: -0.23477854, w: -0.39317217}
+  m_LocalPosition: {x: 64.5107, y: 49.674232, z: 58.058933}
   m_LocalScale: {x: 1.0000001, y: 1, z: 1.0000001}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -327,7 +329,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7768457, y: 1}
+    m_SensorSize: {x: 1.7771084, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -1040,6 +1042,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1200
   swingForce: 20
+  rotationValue: 0
   camera: {fileID: 2877949674745233506}
   playerObserver: {fileID: 3913398196342236360}
   rb: {fileID: 3913398195166920775}
@@ -1126,6 +1129,7 @@ MonoBehaviour:
   collidableLayer:
     serializedVersion: 2
     m_Bits: 1723904
+  currentObject: {fileID: 0}
   weapon: {fileID: 8876612664915679655}
   flightDuration: 3
 --- !u!1 &3913398195202860324
@@ -2849,6 +2853,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1200
   swingForce: 20
+  rotationValue: 0
   camera: {fileID: 2877949674745233506}
   playerObserver: {fileID: 5594684079411266620}
   rb: {fileID: 5594684078624446214}
@@ -2935,6 +2940,7 @@ MonoBehaviour:
   collidableLayer:
     serializedVersion: 2
     m_Bits: 1723904
+  currentObject: {fileID: 0}
   weapon: {fileID: 922829771347506014}
   arrowEndPoint: {fileID: 0}
   arrowPrefab: {fileID: 1619186496151047395, guid: bcc080946d47d844bba0fccf67e1825e, type: 3}

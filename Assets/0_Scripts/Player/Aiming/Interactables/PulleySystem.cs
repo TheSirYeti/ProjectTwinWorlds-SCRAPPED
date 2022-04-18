@@ -6,15 +6,15 @@ using UnityEngine.EventSystems;
 
 public class PulleySystem : InteractableObject
 {
-    public Transform playerStartPosition, objectStartPosition, demon;
+    public Transform playerStartPosition, objectStartPosition, objectEndPosition, demon;
     public Rigidbody myObject;
-    public bool isObjectReady;
+    public bool isObjectReady, isAngelReady;
 
     public LineRenderer lineRenderer;
 
     public override void OnObjectStart()
     {
-        if (isObjectReady)
+        if (isObjectReady && isAngelReady)
         {
             lineRenderer.enabled = true;
             isObjectTriggered = true;
@@ -57,7 +57,7 @@ public class PulleySystem : InteractableObject
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Movable Object") && isObjectTriggered)
         {
-            myObject.transform.position = playerStartPosition.position;
+            myObject.transform.position = objectEndPosition.position;
             OnObjectEnd();
         }
     }

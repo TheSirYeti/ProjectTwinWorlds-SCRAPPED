@@ -43,9 +43,9 @@ public abstract class PlayerAttacks : MonoBehaviour
             }
             else
             {
-                EventManager.Trigger("ResetAbility");
                 EventManager.Trigger("OnAbilityCancel");
                 ThrowAbility(null);
+                EventManager.Trigger("ResetAbility");
             }
         }
         
