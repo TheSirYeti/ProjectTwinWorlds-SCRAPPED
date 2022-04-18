@@ -36,6 +36,11 @@ public class HangClimb : InteractableObject
         ResetVariables(null);
     }
 
+    public override void OnObjectExecute()
+    {
+        throw new NotImplementedException();
+    }
+
     public int GetNearestPoint(Transform myTransform)
     {
         int currentId = -1;

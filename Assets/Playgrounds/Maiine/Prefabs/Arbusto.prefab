@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6123237683598928981}
   - component: {fileID: 7447989651083917972}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,5 +127,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4.890868, y: 2.1326518, z: 2.7304392}
-  m_Center: {x: -0.026218891, y: -0.041949987, z: 0.06816912}
+  m_Size: {x: 4.890868, y: 3.214457, z: 2.7304392}
+  m_Center: {x: -0.026218878, y: 0.49895263, z: 0.06816909}

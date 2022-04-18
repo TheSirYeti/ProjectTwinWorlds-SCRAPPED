@@ -66,7 +66,12 @@ public class HangItem : InteractableObject
             EventManager.Trigger("ResetAbility");
         }
     }
-    
+
+    public override void OnObjectExecute()
+    {
+        throw new System.NotImplementedException();
+    }
+
     public int FindNearestItem(Transform myTransform)
     {
         float minDistance = Mathf.Infinity;

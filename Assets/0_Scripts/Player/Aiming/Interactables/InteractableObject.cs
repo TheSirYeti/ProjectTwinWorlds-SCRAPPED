@@ -42,6 +42,8 @@ public abstract class InteractableObject : MonoBehaviour
 
     public abstract void OnObjectEnd();
 
+    public abstract void OnObjectExecute();
+
     public bool CheckForFirstTrigger()
     {
         return isFirstTriggered;

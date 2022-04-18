@@ -24,6 +24,11 @@ public class SwingPhysics : InteractableObject
     
     public override void OnObjectStart()
     {
+        foreach (var rb in hingePoints)
+        {
+            rb.velocity = Vector3.zero;
+        }
+        
         if (angelAttack.GetComponent<AngelAttacks>().canHang)
         {
             isHanging = true;
@@ -78,7 +83,17 @@ public class SwingPhysics : InteractableObject
             
         }
         
+        foreach (var rb in hingePoints)
+        {
+            rb.velocity = Vector3.zero;
+        }
+        
         EventManager.Trigger("ResetAbility");
+    }
+    
+    public override void OnObjectExecute()
+    {
+        //
     }
 
     private void LateUpdate()

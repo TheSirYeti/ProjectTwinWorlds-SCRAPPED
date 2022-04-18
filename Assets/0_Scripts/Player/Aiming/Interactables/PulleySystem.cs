@@ -53,9 +53,14 @@ public class PulleySystem : InteractableObject
         EventManager.Trigger("OnPulleyStop");
     }
 
-    private void OnTriggerEnter(Collider other)
+    public override void OnObjectExecute()
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Movable Object") && isObjectTriggered)
+        //
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Movable Object") && isObjectTriggered)
         {
             myObject.transform.position = objectEndPosition.position;
             OnObjectEnd();

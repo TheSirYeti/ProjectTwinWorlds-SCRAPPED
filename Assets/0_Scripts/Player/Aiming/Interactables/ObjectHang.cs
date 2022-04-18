@@ -20,4 +20,9 @@ public class ObjectHang : InteractableObject
     {
         throw new System.NotImplementedException();
     }
+
+    public override void OnObjectExecute()
+    {
+        throw new System.NotImplementedException();
+    }
 }

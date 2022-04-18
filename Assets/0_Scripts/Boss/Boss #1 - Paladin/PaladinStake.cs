@@ -45,6 +45,11 @@ public class PaladinStake : InteractableObject
         //
     }
 
+    public override void OnObjectExecute()
+    {
+        //
+    }
+
     private void SetStake(object[] parameters)
     {
         myCollider.enabled = true;

@@ -160,7 +160,7 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
         else
         {
             movementPlayer = new Vector3(0, 0, v);
-            movementObject = new Vector3(0, v, 0);
+            movementObject = new Vector3(0, v * -1, 0);
         }
         
         rb.velocity = movementPlayer * (speed / 5f) * Time.deltaTime;
@@ -275,7 +275,7 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
     
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Movable Object"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Movable Object") && isDemon)
         {
             jumpSpot = other.gameObject.GetComponent<MovableItem>().jumpSpot;
             canJump = true;
@@ -284,7 +284,7 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Movable Object"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Movable Object") && isDemon)
         {
             jumpSpot = null;
             canJump = false;

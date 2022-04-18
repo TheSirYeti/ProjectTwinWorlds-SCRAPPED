@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BreakableWall : InteractableObject
+internal class BreakableWall : InteractableObject
 {
     public override void OnObjectStart()
     {
@@ -20,5 +20,10 @@ public class BreakableWall : InteractableObject
         ResetVariables(null);
         EventManager.Trigger("ResetAbility");
         gameObject.SetActive(false);
+    }
+
+    public override void OnObjectExecute()
+    {
+        throw new System.NotImplementedException();
     }
 }
