@@ -82,18 +82,13 @@ public class SwingPhysics : InteractableObject
             isAfterHang = true;
             
         }
-        
-        foreach (var rb in hingePoints)
-        {
-            rb.velocity = Vector3.zero;
-        }
-        
+
         EventManager.Trigger("ResetAbility");
     }
     
     public override void OnObjectExecute()
     {
-        //
+        lastPoint.AddForce(lastPoint.transform.right * velocityForce, ForceMode.Acceleration);
     }
 
     private void LateUpdate()

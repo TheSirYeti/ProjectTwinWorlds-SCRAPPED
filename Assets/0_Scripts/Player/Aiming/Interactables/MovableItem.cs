@@ -116,7 +116,7 @@ public class MovableItem : InteractableObject
         {
             Vector3 direction = itemToFollow.position - transform.position;
             
-            rb.AddForce(direction * velocity, ForceMode.Impulse);
+            rb.AddForce(direction * 300f, ForceMode.Impulse);
             OnObjectEnd();
         }
     }

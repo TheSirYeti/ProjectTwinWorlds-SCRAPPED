@@ -32,11 +32,9 @@ public class DemonAttacks : PlayerAttacks
 
     public override void ExecuteAbility()
     {
-        var collidedObject = CheckColliders();
-
-        if (collidedObject != null && collidedObject.CheckForFirstTrigger() && LayerMask.NameToLayer(collidedObject.layerTrigger) == gameObject.layer)
+        if (currentObject != null && currentObject.isObjectTriggered)
         {
-            collidedObject.OnObjectEnd();
+            currentObject.OnObjectExecute();
         }
     }
     

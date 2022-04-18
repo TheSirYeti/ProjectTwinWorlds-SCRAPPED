@@ -55,7 +55,10 @@ public class AngelAttacks : PlayerAttacks
 
     public override void ExecuteAbility()
     {
-        //
+        if (currentObject != null && currentObject.isObjectTriggered)
+        {
+            currentObject.OnObjectExecute();
+        }
     }
 
     public override void ThrowAbility(object[] parameters)
@@ -66,8 +69,7 @@ public class AngelAttacks : PlayerAttacks
         usedAbility = false;
         isConnected = false;
         weapon.gameObject.SetActive(false);
-    
-        Debug.Log(currentObject + " " + currentObject.isObjectTriggered);
+        
         if (currentObject != null && currentObject.isObjectTriggered)
         {
             currentObject.OnObjectEnd();
