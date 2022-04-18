@@ -18,7 +18,7 @@ public abstract class PlayerAttacks : MonoBehaviour
     public LayerMask wallLayer;
     public bool usedAbility;
     public LayerMask collidableLayer;
-    
+    public InteractableObject currentObject;
     
     private void Start()
     {
@@ -45,6 +45,7 @@ public abstract class PlayerAttacks : MonoBehaviour
             {
                 EventManager.Trigger("ResetAbility");
                 EventManager.Trigger("OnAbilityCancel");
+                ThrowAbility(null);
             }
         }
         

@@ -7,7 +7,6 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
-    public List<int> levelIds = new List<int>();
     public int currentId;
     public static LevelManager instance;
 
@@ -27,27 +26,6 @@ public class LevelManager : MonoBehaviour
         {
             ReloadScene();
         }
-
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            currentId = 0;
-            ReloadScene();
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            currentId = 1;
-            ReloadScene();
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            currentId = 2;
-            ReloadScene();
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            currentId = 3;
-            ReloadScene();
-        }
     }
 
     public void ReloadScene()
@@ -57,5 +35,21 @@ public class LevelManager : MonoBehaviour
         SoundManager.instance.StopAllMusic();
         SoundManager.instance.StopAllSounds();
         SceneManager.LoadScene(currentId);
+    }
+
+    public void LoadNextScene(SceneID sceneID)
+    {
+        currentId = (int) sceneID;
+        SceneManager.LoadSceneAsync((int) sceneID);
+    }
+    
+    public enum SceneID
+    {
+        MAIN_MENU,
+        LEVEL_1,
+        LEVEL_2,
+        BOSS,
+        BOSS_2,
+        MINIBOSS1
     }
 }

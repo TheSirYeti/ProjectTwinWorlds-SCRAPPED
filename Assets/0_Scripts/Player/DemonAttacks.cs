@@ -57,6 +57,12 @@ public class DemonAttacks : PlayerAttacks
         weapon.transform.position = transform.position;
         weapon.gameObject.SetActive(false);
         
+        if (currentObject != null && currentObject.isObjectTriggered)
+        {
+            currentObject.OnObjectEnd();
+        }
+        currentObject = null;
+
         EventManager.Trigger("OnPulleyStop");
         EventManager.Trigger("OnSwingStop");
         usedAbility = false;
@@ -108,7 +114,10 @@ public class DemonAttacks : PlayerAttacks
                 SoundManager.instance.PlaySound(SoundID.HIT_PENTADENT);
 
                 if (!isFirst)
+                {
+                    currentObject = intObj;
                     intObj.OnObjectStart();
+                }
                 else
                     intObj.isFirstTriggered = true;
                 

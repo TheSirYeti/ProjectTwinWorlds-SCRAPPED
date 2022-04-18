@@ -66,9 +66,16 @@ public class AngelAttacks : PlayerAttacks
         usedAbility = false;
         isConnected = false;
         weapon.gameObject.SetActive(false);
+    
+        if (currentObject != null && currentObject.isObjectTriggered)
+        {
+            currentObject.OnObjectEnd();
+        }
+        currentObject = null;
+        
         EventManager.Trigger("OnPulleyStop");
         EventManager.Trigger("OnSwingStop");
-        Debug.Log("CHAU");
+        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -106,8 +113,11 @@ public class AngelAttacks : PlayerAttacks
         lineRenderer.enabled = true;
         SoundManager.instance.PlaySound(SoundID.ARROW_ROPE);
 
-        if(!isFirst)
+        if (!isFirst)
+        {
             intObj.OnObjectStart();
+            currentObject = intObj;
+        }
         else
             intObj.isFirstTriggered = true;
         

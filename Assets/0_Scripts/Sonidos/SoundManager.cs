@@ -200,5 +200,6 @@ public enum MusicID
     CHILLING_1,
     CHILLING_2,
     CHINESE,
-    SAD_SONG
+    SAD_SONG,
+    MAIN_MENU
 }
