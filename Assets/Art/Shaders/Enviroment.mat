@@ -28,7 +28,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Normal:
-        m_Texture: {fileID: 2800000, guid: 75bc5f34c1d2f414ea8eb8f812d68869, type: 3}
+        m_Texture: {fileID: 2800000, guid: 8b043339565319d42a2a119cab1023d8, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalNone:
@@ -36,7 +36,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TextureofObjects:
-        m_Texture: {fileID: 2800000, guid: 2b29a1fa0b632624ca50a202c1db67ba, type: 3}
+        m_Texture: {fileID: 2800000, guid: 45600ae93e70bdd4ebe9cff417136b4b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _texcoord:
@@ -50,7 +50,7 @@ Material:
     - _ClampMin: -0.96
     - _ClampMin2: -0.96
     - _Float0: 1
-    - _GradientWhitTexture: 1
+    - _GradientWhitTexture: 0.429
     - _NormalLerp: 1
     - _Origin: -3.46
     - _Origin2: -3.46
