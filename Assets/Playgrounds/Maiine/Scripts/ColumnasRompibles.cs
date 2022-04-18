@@ -26,6 +26,11 @@ public class ColumnasRompibles : InteractableObject
         ResetVariables(null);
     }
 
+    public override void OnObjectExecute()
+    {
+        
+    }
+
     public override void OnObjectStart()
     {
         PentadentBreak();
