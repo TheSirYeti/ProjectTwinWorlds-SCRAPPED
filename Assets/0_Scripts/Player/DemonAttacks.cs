@@ -58,10 +58,10 @@ public class DemonAttacks : PlayerAttacks
         if (currentObject != null && currentObject.isObjectTriggered)
         {
             currentObject.OnObjectEnd();
-            SoundManager.instance.PlaySound(SoundID.PENTADENT_PULL);
         }
         currentObject = null;
 
+        SoundManager.instance.PlaySound(SoundID.PENTADENT_PULL);
         EventManager.Trigger("OnPulleyStop");
         EventManager.Trigger("OnSwingStop");
         usedAbility = false;

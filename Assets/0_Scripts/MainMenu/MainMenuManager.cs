@@ -22,10 +22,14 @@ public class MainMenuManager : MonoBehaviour
     {
         panel.SetActive(false);
     }
-
     
     public void LoadScene(int id)
     {
         LevelManager.instance.LoadNextScene(id);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }

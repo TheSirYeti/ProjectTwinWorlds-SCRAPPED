@@ -74,10 +74,10 @@ public class AngelAttacks : PlayerAttacks
         if (currentObject != null && currentObject.isObjectTriggered)
         {
             currentObject.OnObjectEnd();
-            SoundManager.instance.PlaySound(SoundID.BOW_PULL);
         }
         currentObject = null;
 
+        SoundManager.instance.PlaySound(SoundID.BOW_PULL);
         EventManager.Trigger("OnPulleyStop");
         EventManager.Trigger("OnSwingStop");
         
