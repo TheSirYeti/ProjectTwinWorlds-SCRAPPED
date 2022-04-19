@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8813293306754118514}
   - component: {fileID: 2620059298744097399}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: . (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,13 +56,13 @@ GameObject:
   - component: {fileID: 7495029286247525090}
   - component: {fileID: 1143090674704754519}
   - component: {fileID: 5737636958999070060}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TuberiaGrande_CurvaParteAbajo1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7495029286247525090
 Transform:
   m_ObjectHideFlags: 0
@@ -138,7 +138,7 @@ GameObject:
   m_Component:
   - component: {fileID: 592016672122097213}
   - component: {fileID: 8998784801408717299}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: . (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -183,7 +183,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5333513389956996992}
   - component: {fileID: 7813651252240478555}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: . (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -203,7 +203,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8639527801140274675}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!65 &7813651252240478555
 BoxCollider:
@@ -228,7 +228,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1071001634485866592}
   - component: {fileID: 6820026155098092704}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: . (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -248,7 +248,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8639527801140274675}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &6820026155098092704
 BoxCollider:
@@ -273,7 +273,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1067649782778557701}
   - component: {fileID: 583769559572353042}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: . (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -308,51 +308,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 7.9265366, y: 1, z: 2.5366971}
   m_Center: {x: 3.4632683, y: 0, z: -0.2531829}
---- !u!1 &3951460447868769228
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6657002504259307010}
-  - component: {fileID: 6508362740003555032}
-  m_Layer: 0
-  m_Name: . (8)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6657002504259307010
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3951460447868769228}
-  m_LocalRotation: {x: 0.13401718, y: 0.8616945, z: -0.2967053, w: 0.38921452}
-  m_LocalPosition: {x: 3.351, y: -2.818, z: 2.467}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8639527801140274675}
-  m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 38, y: 131.384, z: 0}
---- !u!65 &6508362740003555032
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3951460447868769228}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.8157158, y: 1, z: 2.565293}
-  m_Center: {x: 4.013857, y: -0.0000030565877, z: -0.47766986}
 --- !u!1 &4198192426355407924
 GameObject:
   m_ObjectHideFlags: 0
@@ -363,7 +318,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2854563617691521724}
   - component: {fileID: 6404269344659429821}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: . (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -408,7 +363,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8749995284559959117}
   - component: {fileID: 6262373419530598919}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: . (14)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -428,7 +383,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8639527801140274675}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!65 &6262373419530598919
 BoxCollider:
@@ -453,7 +408,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7257375746967572470}
   - component: {fileID: 5664639715359295130}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: . (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -473,7 +428,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8639527801140274675}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &5664639715359295130
 BoxCollider:
@@ -497,7 +452,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6700336097669369088}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TuberiaGrande_CurvaSeparada
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -532,7 +487,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7401532045951557498}
   - component: {fileID: 6990886678090699612}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: . (13)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -547,12 +502,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6592805810516541407}
   m_LocalRotation: {x: -0, y: -0.5007771, z: -0, w: 0.8655763}
-  m_LocalPosition: {x: -0.61, y: -0.5100002, z: -0.98}
+  m_LocalPosition: {x: -0.84, y: -0.5100002, z: -0.85}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8639527801140274675}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: -60.103, z: 0}
 --- !u!65 &6990886678090699612
 BoxCollider:
@@ -578,7 +533,7 @@ GameObject:
   - component: {fileID: 8298744276255991970}
   - component: {fileID: 2374422873769859428}
   - component: {fileID: 6741996281597282850}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TuberiaGrande_CurvaParteAbajo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -660,7 +615,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1674186068827500493}
   - component: {fileID: 8277515816242323916}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: . (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -705,7 +660,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1349440519879485881}
   - component: {fileID: 165103227157981415}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: . (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -749,7 +704,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8639527801140274675}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -776,7 +731,6 @@ Transform:
   - {fileID: 592016672122097213}
   - {fileID: 2854563617691521724}
   - {fileID: 8813293306754118514}
-  - {fileID: 6657002504259307010}
   - {fileID: 5333513389956996992}
   - {fileID: 7257375746967572470}
   - {fileID: 1071001634485866592}
@@ -796,7 +750,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3350546236504384139}
   - component: {fileID: 5357465757932080355}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: . (12)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -816,7 +770,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8639527801140274675}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: -58.592, z: 0}
 --- !u!65 &5357465757932080355
 BoxCollider:
@@ -841,7 +795,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6700391570308727641}
   - component: {fileID: 4521913275608394640}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: . (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -886,7 +840,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3268682939496762567}
   - component: {fileID: 6986509464340702654}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: .
   m_TagString: Untagged
   m_Icon: {fileID: 0}
