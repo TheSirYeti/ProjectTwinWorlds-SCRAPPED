@@ -1974,11 +1974,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   _ani: {fileID: 1242312516}
-  xMax: 45
-  xMin: -45
-  yMax: 45
-  yMin: -45
-  _rock: {fileID: 0}
 --- !u!65 &1242312515
 BoxCollider:
   m_ObjectHideFlags: 0
