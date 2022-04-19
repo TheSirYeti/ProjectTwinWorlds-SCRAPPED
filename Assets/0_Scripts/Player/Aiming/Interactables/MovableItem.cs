@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -62,37 +63,6 @@ public class MovableItem : InteractableObject
             }
 
             rb.constraints = RigidbodyConstraints.None;
-            rb.constraints = RigidbodyConstraints.FreezeRotation;
-        }
-
-
-        if (isRestricting)
-        {
-            if (Vector3.Distance(itemToRestrict.position, transform.position) >= minDistance)
-            {
-                Vector3 direction = transform.position - itemToRestrict.position;
-
-                if (direction.magnitude > 1)
-                {
-                    direction.Normalize();
-                }
-                
-                Rigidbody itemBody = itemToRestrict.GetComponent<Rigidbody>();
-                
-                itemBody.constraints = RigidbodyConstraints.FreezePositionX;
-                itemBody.constraints = RigidbodyConstraints.FreezePositionZ;
-                itemBody.transform.position += direction * speed * Time.deltaTime;
-
-            }
-            else
-            {
-                Rigidbody itemBody = itemToRestrict.GetComponent<Rigidbody>();
-                
-                itemBody.constraints = RigidbodyConstraints.None;
-                itemBody.constraints = RigidbodyConstraints.FreezeRotation;
-            }
-
-            rb.constraints = RigidbodyConstraints.FreezePosition;
             rb.constraints = RigidbodyConstraints.FreezeRotation;
         }
     }
@@ -195,6 +165,14 @@ public class MovableItem : InteractableObject
         if (other.gameObject.tag == "BreakableOnFall" && isFalling)
         {
             other.gameObject.SetActive(false);
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("EnemyAttack"))
+        {
+            Destroy(collision.gameObject);
         }
     }
 }

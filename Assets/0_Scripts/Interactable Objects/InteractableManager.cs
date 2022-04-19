@@ -30,7 +30,7 @@ public class InteractableManager : MonoBehaviour
     {
         foreach (InteractableObject intObj in allInteractables)
         {
-            if (objectID == intObj.id)
+            if (intObj.gameObject.activeSelf && objectID == intObj.id)
             {
                 Debug.Log("Lo hago ya ya ya ya ya");
                 intObj.OnObjectEnd();

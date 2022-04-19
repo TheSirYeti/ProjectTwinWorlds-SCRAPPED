@@ -6,48 +6,38 @@ using UnityEngine;
 public class MafiaShootingState : IState
 {
     private FiniteStateMachine fsm;
-    private Transform angel, demon;
-    private GameObject bulletPrefab;
-    
+    private MafiaLogic mafia;
+    private float currentShot;
+
+    public MafiaShootingState(FiniteStateMachine fsm, MafiaLogic mafia)
+    {
+        this.fsm = fsm;
+        this.mafia = mafia;
+    }
+
     public void OnStart()
     {
-        EventManager.Subscribe("OnPlayerChange", ChangePlayers);
-        
-        if (PlayerWorlds.instance.angelPlayer.activeSelf)
-        {
-            angel = PlayerWorlds.instance.angelPlayer.transform;
-            demon = PlayerWorlds.instance.demonTotem.transform;
-        }
-        else
-        {
-            angel = PlayerWorlds.instance.angelTotem.transform;
-            demon = PlayerWorlds.instance.demonPlayer.transform;
-        }
+        mafia.currentShot = 0;
+        mafia.canShoot = true;
+        mafia.StartCoroutine(mafia.ShotCycle());
     }
 
     public void OnUpdate()
     {
-        throw new System.NotImplementedException();
+        mafia.gunPointAngel.LookAt(new Vector3(mafia.angel.position.x, mafia.gunPointAngel.position.y, mafia.angel.position.z));
+        mafia.gunPointDemon.LookAt(new Vector3(mafia.demon.position.x, mafia.gunPointDemon.position.y, mafia.demon.position.z));
+        
+        if (mafia.currentShot > mafia.maxShotCount)
+        {
+            mafia.canShoot = false;
+            mafia.StopCoroutine(mafia.ShotCycle());
+            fsm.ChangeState(FSM_State.MAFIA_RELOAD);
+        }
     }
 
     public void OnExit()
     {
-        throw new System.NotImplementedException();
+        //throw new System.NotImplementedException();
     }
 
-    public void ChangePlayers(object[] parameters)
-    {
-        GameObject player = (GameObject)parameters[0];
-        
-        if (player.layer == LayerMask.NameToLayer("AngelPlayer"))
-        {
-            angel = PlayerWorlds.instance.angelPlayer.transform;
-            demon = PlayerWorlds.instance.demonTotem.transform;
-        }
-        else
-        {
-            angel = PlayerWorlds.instance.angelTotem.transform;
-            demon = PlayerWorlds.instance.demonPlayer.transform;
-        }
-    }
 }

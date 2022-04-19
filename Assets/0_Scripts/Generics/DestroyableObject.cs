@@ -44,4 +44,12 @@ public class DestroyableObject : MonoBehaviour
     {
         objectToMove.transform.position += objectToMove.transform.forward * speed * Time.deltaTime;
     }
+    
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Wall"))
+        {
+            Destroy(gameObject);
+        }
+    }
 }
