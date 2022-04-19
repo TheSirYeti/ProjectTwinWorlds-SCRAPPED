@@ -5,7 +5,8 @@ using UnityEngine;
 public class SinTable : MonoBehaviour
 {
     //Creo la variable LookUpTable donde asigno T1 va a ser int,y T2 va a ser un float
-    /*...*/
+    float t1;
+    float t2;
 
     //Le doy referencia a la variable de LookUpTable
     /*...*/
