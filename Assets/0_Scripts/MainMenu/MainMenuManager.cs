@@ -7,7 +7,7 @@ using UnityEngine;
 public class MainMenuManager : MonoBehaviour
 {
     public GameObject menuReal, menuMeme;
-    
+
     private void Start()
     {
         SoundManager.instance.PlayMusic(MusicID.MAIN_MENU);
@@ -21,5 +21,11 @@ public class MainMenuManager : MonoBehaviour
     public void DisablePanel(GameObject panel)
     {
         panel.SetActive(false);
+    }
+
+    
+    public void LoadScene(int id)
+    {
+        LevelManager.instance.LoadNextScene(id);
     }
 }

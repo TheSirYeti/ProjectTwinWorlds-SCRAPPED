@@ -191,7 +191,9 @@ public enum SoundID
     PLAYER_DAMAGE,
     ARROW_ROPE,
     ROCK_SMASH,
-    HIT_GROUND
+    HIT_GROUND,
+    BOW_PULL,
+    PENTADENT_PULL
 }
 
 public enum MusicID

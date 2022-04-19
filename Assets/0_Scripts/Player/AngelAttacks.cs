@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Mono.CompilerServices.SymbolWriter;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -73,6 +74,7 @@ public class AngelAttacks : PlayerAttacks
         if (currentObject != null && currentObject.isObjectTriggered)
         {
             currentObject.OnObjectEnd();
+            SoundManager.instance.PlaySound(SoundID.BOW_PULL);
         }
         currentObject = null;
 

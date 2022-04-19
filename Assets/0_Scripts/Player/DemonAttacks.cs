@@ -58,6 +58,7 @@ public class DemonAttacks : PlayerAttacks
         if (currentObject != null && currentObject.isObjectTriggered)
         {
             currentObject.OnObjectEnd();
+            SoundManager.instance.PlaySound(SoundID.PENTADENT_PULL);
         }
         currentObject = null;
 

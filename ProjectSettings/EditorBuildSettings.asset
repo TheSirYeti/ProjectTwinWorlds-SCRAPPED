@@ -6,9 +6,21 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 92078226f7008074fb7288622a573bcb
+  - enabled: 1
     path: Assets/Scenes/god.unity
     guid: 4fac8b6c9a6bb2c4a8cbd391f2af978a
   - enabled: 1
     path: Assets/Scenes/Level2.unity
     guid: 6bce9cb8d604c52498521795138cada0
+  - enabled: 1
+    path: Assets/Playgrounds/JP/Scenes/BossTesting.unity
+    guid: 3c0d5d05470a8c546b80f7e7cc83e312
+  - enabled: 1
+    path: Assets/Playgrounds/JP/Scenes/Boss2Testing.unity
+    guid: fbd1533ac3391804d8d615232b220e70
+  - enabled: 1
+    path: Assets/Playgrounds/Maiine/Scenes/Boss.unity
+    guid: 13d2c6ce93fe2e34d84947f9d65f43ae
   m_configObjects: {}
