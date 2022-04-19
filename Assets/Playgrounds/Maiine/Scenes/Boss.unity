@@ -232,13 +232,13 @@ GameObject:
   - component: {fileID: 104464967}
   - component: {fileID: 104464966}
   - component: {fileID: 104464965}
-  m_Layer: 22
+  m_Layer: 10
   m_Name: Columna
   m_TagString: Columna
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!65 &104464965
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -524,13 +524,13 @@ GameObject:
   - component: {fileID: 691990051}
   - component: {fileID: 691990050}
   - component: {fileID: 691990054}
-  m_Layer: 22
+  m_Layer: 10
   m_Name: Columna (4)
   m_TagString: Columna
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!65 &691990050
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -761,13 +761,13 @@ GameObject:
   - component: {fileID: 742683526}
   - component: {fileID: 742683525}
   - component: {fileID: 742683529}
-  m_Layer: 22
+  m_Layer: 10
   m_Name: Columna (3)
   m_TagString: Columna
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!65 &742683525
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -976,13 +976,13 @@ GameObject:
   - component: {fileID: 922807983}
   - component: {fileID: 922807982}
   - component: {fileID: 922807986}
-  m_Layer: 22
+  m_Layer: 10
   m_Name: Columna (5)
   m_TagString: Columna
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!65 &922807982
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1192,7 +1192,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1238697504
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1965,15 +1965,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfb5653f77e03af40b772a7366a29df0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _walkSpeed: 2
+  _walkSpeed: 6
   _runningSpeed: 18
   layerMaskC:
     serializedVersion: 2
-    m_Bits: 4194304
+    m_Bits: 1024
   layerMaskW:
     serializedVersion: 2
     m_Bits: 128
   _ani: {fileID: 1242312516}
+  xMax: 45
+  xMin: -45
+  yMax: 45
+  yMin: -45
+  _rock: {fileID: 0}
 --- !u!65 &1242312515
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2254,13 +2259,13 @@ GameObject:
   - component: {fileID: 1487646872}
   - component: {fileID: 1487646871}
   - component: {fileID: 1487646875}
-  m_Layer: 22
+  m_Layer: 10
   m_Name: Columna (1)
   m_TagString: Columna
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!65 &1487646871
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2372,13 +2377,13 @@ GameObject:
   - component: {fileID: 1760452258}
   - component: {fileID: 1760452257}
   - component: {fileID: 1760452261}
-  m_Layer: 22
+  m_Layer: 10
   m_Name: Columna (2)
   m_TagString: Columna
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!65 &1760452257
 BoxCollider:
   m_ObjectHideFlags: 0

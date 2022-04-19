@@ -6,9 +6,12 @@ public class MiniBossController : MonoBehaviour
 {
     [SerializeField] private float _walkSpeed;
     [SerializeField] private float _runningSpeed;
+
     [SerializeField] private LayerMask layerMaskC;
     [SerializeField] private LayerMask layerMaskW;
+
     [SerializeField] private Animator _ani;
+
     private Vector3 _goTo;
     private float timer;
 
@@ -74,6 +77,5 @@ public class MiniBossController : MonoBehaviour
         {
             _ani.SetTrigger("HitWall");
         }
-
     }
 }
