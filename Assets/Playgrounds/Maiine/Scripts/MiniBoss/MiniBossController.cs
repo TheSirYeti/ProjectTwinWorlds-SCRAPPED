@@ -15,6 +15,10 @@ public class MiniBossController : MonoBehaviour
     private Vector3 _goTo;
     private float timer;
 
+    [SerializeField] private Material baseMat;
+    [SerializeField] private Material dmgMat;
+    [SerializeField] private SkinnedMeshRenderer rend;
+
     delegate void Movement();
     Movement movement;
 
@@ -84,8 +88,17 @@ public class MiniBossController : MonoBehaviour
     public void TakeDamage()
     {
         life--;
+        Debug.Log("dmg");
+        StartCoroutine(ChangeMat());
         if (life <= 0)
             Destroy(gameObject);
+    }
+
+    IEnumerator ChangeMat()
+    {
+        rend.material = dmgMat;
+        yield return new WaitForSeconds(1f);
+        rend.material = baseMat;
     }
 
 }

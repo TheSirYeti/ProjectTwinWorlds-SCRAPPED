@@ -7,8 +7,11 @@ public class ColumnasRompibles : InteractableObject
     bool isBroken = false;
     bool isFalling = false;
 
-    [SerializeField] private BoxCollider _firstCollider;
-    [SerializeField] private BoxCollider _secondCollider;
+    [SerializeField] private Collider _firstCollider;
+    [SerializeField] private Collider _secondCollider;
+
+    [SerializeField] private GameObject firstCollumn;
+    [SerializeField] private GameObject secondCollumn;
 
     public void InitialBreak()
     {
@@ -24,6 +27,7 @@ public class ColumnasRompibles : InteractableObject
     public override void OnObjectEnd()
     {
         ResetVariables(null);
+        EventManager.Trigger("ResetAbility");
     }
 
     public override void OnObjectExecute()
@@ -44,6 +48,10 @@ public class ColumnasRompibles : InteractableObject
             ChangeBool(true);
             //mas sonido y particulas
             //animacion
+            firstCollumn.gameObject.SetActive(false);
+            secondCollumn.gameObject.SetActive(true);
+            TurnOffCollider();
+            TurnOnCollider();
         }
         else
             OnObjectEnd();
@@ -51,12 +59,12 @@ public class ColumnasRompibles : InteractableObject
 
     public void TurnOffCollider()
     {
-        _firstCollider.gameObject.SetActive(false);
+        _firstCollider.enabled = false;
     }
 
     public void TurnOnCollider()
     {
-        _secondCollider.gameObject.SetActive(true);
+        _secondCollider.enabled = true;
     }
 
     public void ChangeBool(bool b)
@@ -68,7 +76,15 @@ public class ColumnasRompibles : InteractableObject
     {
         if(collision.gameObject.tag == "MiniBoss" && isFalling)
         {
+            Debug.Log("ola?");
             collision.gameObject.GetComponent<MiniBossController>().TakeDamage();
+            isFalling = false;
         }
+
+        if(collision.gameObject.GetComponent<PlayerMovement>() != null)
+        {
+            collision.transform.position += new Vector3(2, 0, 0);
+        }
+
     }
 }
