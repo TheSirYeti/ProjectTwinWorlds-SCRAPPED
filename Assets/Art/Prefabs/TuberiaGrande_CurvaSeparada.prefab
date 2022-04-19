@@ -56,6 +56,7 @@ GameObject:
   - component: {fileID: 7495029286247525090}
   - component: {fileID: 1143090674704754519}
   - component: {fileID: 5737636958999070060}
+  - component: {fileID: 1358576976658502513}
   m_Layer: 6
   m_Name: TuberiaGrande_CurvaParteAbajo1
   m_TagString: Untagged
@@ -128,6 +129,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1358576976658502513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1884947198144144159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e3108c3d7aa465468fabca450ae2f25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  angelOffMaterial: {fileID: 2100000, guid: 2324c74cfd8361843b725f9bc8f0c7d2, type: 2}
+  demonOffMaterial: {fileID: 2100000, guid: b17ae4ee37df94a418832a589a2f110a, type: 2}
+  defaultMaterial: {fileID: 0}
+  collider: {fileID: 0}
+  isDemon: 0
+  isWorldActive: 0
 --- !u!1 &2267044593611526065
 GameObject:
   m_ObjectHideFlags: 0
@@ -533,6 +552,7 @@ GameObject:
   - component: {fileID: 8298744276255991970}
   - component: {fileID: 2374422873769859428}
   - component: {fileID: 6741996281597282850}
+  - component: {fileID: 2107769212691197317}
   m_Layer: 6
   m_Name: TuberiaGrande_CurvaParteAbajo
   m_TagString: Untagged
@@ -605,6 +625,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &2107769212691197317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7157494896138260768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e3108c3d7aa465468fabca450ae2f25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  angelOffMaterial: {fileID: 2100000, guid: 2324c74cfd8361843b725f9bc8f0c7d2, type: 2}
+  demonOffMaterial: {fileID: 2100000, guid: b17ae4ee37df94a418832a589a2f110a, type: 2}
+  defaultMaterial: {fileID: 0}
+  collider: {fileID: 0}
+  isDemon: 0
+  isWorldActive: 0
 --- !u!1 &7346198074062713458
 GameObject:
   m_ObjectHideFlags: 0

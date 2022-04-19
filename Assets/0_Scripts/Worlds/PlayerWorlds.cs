@@ -36,9 +36,9 @@ public class PlayerWorlds : MonoBehaviour
             {
                 demonPlayer.SetActive(true);
                 demonTotem.SetActive(false);
-                demonWorld.SetActive(true);
+                //demonWorld.SetActive(true);
                 angelPlayer.SetActive(false);
-                angelWorld.SetActive(false);
+                //angelWorld.SetActive(false);
                 angelTotem.SetActive(true);
                 vCamera.Follow = demonPlayer.transform;
                 currentPlayer = demonPlayer;
@@ -46,11 +46,11 @@ public class PlayerWorlds : MonoBehaviour
             }
             else
             {
-                demonWorld.SetActive(false);
+                //demonWorld.SetActive(false);
                 demonPlayer.SetActive(false);
                 demonTotem.SetActive(true);
                 angelPlayer.SetActive(true);
-                angelWorld.SetActive(true);
+                //angelWorld.SetActive(true);
                 angelTotem.SetActive(false);
                 vCamera.Follow = angelPlayer.transform;
                 currentPlayer = angelPlayer;

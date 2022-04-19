@@ -17,7 +17,7 @@ public class WorldObject : MonoBehaviour
         EventManager.Subscribe("OnPlayerChange", SwapMaterial);
         defaultMaterial = GetComponent<Renderer>().material;
 
-        if (isWorldActive)
+        if (!isWorldActive)
         {
             isWorldActive = false;
             
@@ -27,13 +27,15 @@ public class WorldObject : MonoBehaviour
             } 
             else GetComponent<Renderer>().material = angelOffMaterial;
             
-            collider.enabled = false;
+            if (collider != null) 
+                collider.enabled = false;
         }
         else
         {
             isWorldActive = true;
             GetComponent<Renderer>().material = defaultMaterial;
-            collider.enabled = true;
+            if (collider != null) 
+                collider.enabled = true;
         }
     }
 
@@ -44,17 +46,19 @@ public class WorldObject : MonoBehaviour
         if (isWorldActive)
         {
             if (myPlayer.layer == LayerMask.NameToLayer("DemonPlayer"))
-                GetComponent<Renderer>().material = demonOffMaterial;
-            else GetComponent<Renderer>().material = angelOffMaterial;
+                GetComponent<Renderer>().material = angelOffMaterial;
+            else GetComponent<Renderer>().material = demonOffMaterial;
 
             isWorldActive = false;
-            collider.enabled = false;
+            if (collider != null) 
+                collider.enabled = false;
         }
         else
         {
             isWorldActive = true;
             GetComponent<Renderer>().material = defaultMaterial;
-            collider.enabled = true;
+            if (collider != null) 
+                collider.enabled = true;
         }
     }
 }

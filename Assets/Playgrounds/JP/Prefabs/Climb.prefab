@@ -112,15 +112,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0d4dff2488085647970e792592e95aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
   layerTrigger: AngelPlayer
   firstTrigger: DemonPlayer
   isFirstTriggered: 0
   insertionPoints:
   - {fileID: 2201460192038883092}
   isObjectTriggered: 0
-  startPoint: {fileID: 2201460190936887884}
+  triggerDistance: 0
+  myShader: {fileID: 6344330161450171960, guid: 39b7cf9ce2ee397439bdb87161e0fe97, type: 3}
   heightPoint: {fileID: 2201460190055065275}
   angel: {fileID: 0}
+  walls: {fileID: 0}
+  startPoints: []
   isOnLeft: 1
 --- !u!1 &2201460190936887885
 GameObject:
