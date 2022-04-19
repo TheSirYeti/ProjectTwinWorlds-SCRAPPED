@@ -41,7 +41,7 @@ public class ColumnasRompibles : InteractableObject
     {
         if (isBroken)
         {
-            isFalling = true;
+            ChangeBool(true);
             //mas sonido y particulas
             //animacion
         }
@@ -59,12 +59,16 @@ public class ColumnasRompibles : InteractableObject
         _secondCollider.gameObject.SetActive(true);
     }
 
+    public void ChangeBool(bool b)
+    {
+        isFalling = b;
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.tag == "MiniBoss" && isFalling)
         {
-            //dmg y nockback
+            collision.gameObject.GetComponent<MiniBossController>().TakeDamage();
         }
     }
-
 }

@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 2924323120317521254}
   - component: {fileID: 4792783688880043855}
   - component: {fileID: 3328086365316596644}
-  - component: {fileID: 5423551317940388952}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -28,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 860876597790906890}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.19567, y: 0.19567, z: 0.19567}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5259276419337034366}
@@ -84,20 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &5423551317940388952
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 860876597790906890}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &3778603458017068064
 GameObject:
   m_ObjectHideFlags: 0
@@ -127,7 +112,7 @@ Transform:
   m_GameObject: {fileID: 3778603458017068064}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 30, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5259276419337034366}
@@ -191,7 +176,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3778603458017068064}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -208,10 +193,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 394f63aee81d12347b62630867780499, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToDie: 3
+  timeToDie: 1
   goDown: 1
   goOut: 0
-  speed: 5
+  speed: 30
   objectToMove: {fileID: 1430494384035144959}
 --- !u!1 &6689776275496804469
 GameObject:

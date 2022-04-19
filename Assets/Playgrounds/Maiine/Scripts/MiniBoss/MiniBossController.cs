@@ -18,6 +18,8 @@ public class MiniBossController : MonoBehaviour
     delegate void Movement();
     Movement movement;
 
+    private int life = 3;
+
     void Start()
     {
         movement = Following;
@@ -78,4 +80,12 @@ public class MiniBossController : MonoBehaviour
             _ani.SetTrigger("HitWall");
         }
     }
+
+    public void TakeDamage()
+    {
+        life--;
+        if (life <= 0)
+            Destroy(gameObject);
+    }
+
 }
