@@ -7,8 +7,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour, ISubscriber
 {
-    public float speed, swingForce;
-    public float rotationValue;
+    public float speed, acceleration, maxSpeed, swingForce;
     public Action<float,float> movementDelegate;
     public CinemachineVirtualCamera camera;
     public Observer playerObserver;
@@ -33,23 +32,31 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
         EventManager.Subscribe("OnClimbStop", StopClimb);
         EventManager.Subscribe("OnPulleyStart", StartPulley);
         EventManager.Subscribe("OnPulleyStop", StopPulley);
-        
-        
+
+
+        camera = FindObjectOfType<CinemachineVirtualCamera>();
         movementDelegate = GenerateMovement;
         playerObserver.Subscribe(this);
     }
 
     private void FixedUpdate()
     {
-        float hMov = Input.GetAxis("Horizontal");
-        float vMov = Input.GetAxis("Vertical");
+        float hMov = Input.GetAxisRaw("Horizontal");
+        float vMov = Input.GetAxisRaw("Vertical");
 
         if (new Vector3(hMov, 0, vMov) != Vector3.zero || movementDelegate == SwingMovement)
         {
             movementDelegate(hMov, vMov);
             playerObserver.NotifySubscribers("Walking");
-        } 
-        else playerObserver.NotifySubscribers("Idle");
+        }
+        else
+        {
+            playerObserver.NotifySubscribers("Idle");
+            speed = 0;
+
+            if (movementDelegate == GenerateMovement)
+                rb.velocity = new Vector3(0, rb.velocity.y, 0);
+        }
 
         if (Input.GetKeyDown(KeyCode.Space) && canJump)
         {
@@ -61,27 +68,28 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
 
     public void GenerateMovement(float h, float v)
     {
-        Vector3 camDirection = camera.transform.position - camera.m_LookAt.position;
+        if(speed <= maxSpeed)
+            speed += acceleration * Time.fixedDeltaTime;
+        
         Vector3 movement = new Vector3(h, 0, v);
 
-        if (movement.magnitude >= 1)
-        {
+        if(movement.magnitude >= 1)
             movement.Normalize();
-        }
         
-        Matrix4x4 matrix = Matrix4x4.Rotate(Quaternion.Euler(0, rotationValue, 0));
-        //no hagas preguntas a las cuales no queres saber la respuesta Factos
-
-        Vector3 rotatedInput = matrix.MultiplyPoint3x4(movement);
-        Vector3 relativeDistance = (transform.position + rotatedInput) - transform.position;
-
-        Quaternion rotation = Quaternion.LookRotation(relativeDistance, Vector3.up);
-
-        transform.rotation = rotation;
-
+        float direction = Mathf.Atan2(movement.x, movement.z) * Mathf.Rad2Deg + camera.transform.eulerAngles.y;
+        var rotGoal = Quaternion.Euler(0, direction, 0);
+        Vector3 moveDir = Quaternion.Euler(0, direction, 0) * Vector3.forward;
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotGoal, 0.3f);
+        
+        
         if (canMove)
         {
-            rb.velocity = new Vector3(rotatedInput.x * speed * Time.deltaTime, rb.velocity.y, rotatedInput.z * speed * Time.deltaTime);
+            rb.velocity = new Vector3(moveDir.x * speed * Time.fixedDeltaTime, rb.velocity.y, moveDir.z * speed * Time.fixedDeltaTime);
+
+            /*if (rb.velocity.magnitude >= maxSpeed)
+            {
+                rb.velocity = rb.velocity.normalized * maxSpeed;
+            }*/
         }
     }
     

@@ -641,15 +641,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2877949674745233506, guid: 305d90f54d62b64449c4b245eddabd14, type: 3}
       propertyPath: m_Lens.m_SensorSize.x
-      value: 1.7768457
-      objectReference: {fileID: 0}
-    - target: {fileID: 3913398195166920761, guid: 305d90f54d62b64449c4b245eddabd14, type: 3}
-      propertyPath: swingForce
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 3913398195166920761, guid: 305d90f54d62b64449c4b245eddabd14, type: 3}
-      propertyPath: rotationValue
-      value: 45
+      value: 1.7788461
       objectReference: {fileID: 0}
     - target: {fileID: 3913398195166920771, guid: 305d90f54d62b64449c4b245eddabd14, type: 3}
       propertyPath: cam
@@ -1133,6 +1125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 819b2a531c061f349b73dcd6cf455f1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
   layerTrigger: AngelPlayer
   firstTrigger: DemonPlayer
   isFirstTriggered: 0

@@ -10,7 +10,6 @@ public class PlayerWorlds : MonoBehaviour
 {
     public GameObject angelPlayer, demonPlayer, currentPlayer, firstTriggerPlayer;
     public GameObject angelTotem, demonTotem;
-    public GameObject angelWorld, demonWorld;
     public Cinemachine.CinemachineVirtualCamera vCamera;
     
     public bool isLinked;
@@ -36,9 +35,7 @@ public class PlayerWorlds : MonoBehaviour
             {
                 demonPlayer.SetActive(true);
                 demonTotem.SetActive(false);
-                //demonWorld.SetActive(true);
                 angelPlayer.SetActive(false);
-                //angelWorld.SetActive(false);
                 angelTotem.SetActive(true);
                 vCamera.Follow = demonPlayer.transform;
                 currentPlayer = demonPlayer;
