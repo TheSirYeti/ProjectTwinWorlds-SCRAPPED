@@ -14,14 +14,16 @@ public class PulleySystem : InteractableObject
 
     public override void OnObjectStart()
     {
+        demon = PlayerWorlds.instance.demonPlayer.transform;
+        
         if (isObjectReady && isAngelReady)
         {
             lineRenderer.enabled = true;
             isObjectTriggered = true;
 
             myObject.transform.position = objectStartPosition.position;
-            demon.transform.position = playerStartPosition.position;
-            EventManager.Trigger("OnPulleyStart", myObject);
+            //demon.transform.position = playerStartPosition.position;
+            EventManager.Trigger("OnPulleyStart", myObject, this);
             Debug.Log("Start");
         }
         else

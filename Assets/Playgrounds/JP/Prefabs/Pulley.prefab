@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 1176831780925798889}
   - component: {fileID: 1176831780925798888}
   - component: {fileID: 1176831780925798887}
-  m_Layer: 19
+  m_Layer: 22
   m_Name: Pulley
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -237,7 +237,7 @@ MonoBehaviour:
   insertionPoints:
   - {fileID: 1176831782159091481}
   isObjectTriggered: 0
-  triggerDistance: 25
+  triggerDistance: 45
   myShader: {fileID: 5089329819601700009, guid: 74fe083184ea8414ea6b6d7fd5ef5d1a, type: 3}
   playerStartPosition: {fileID: 1176831780968758113}
   objectStartPosition: {fileID: 1176831781208652036}
@@ -438,7 +438,7 @@ Transform:
   m_GameObject: {fileID: 1176831781545639838}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -7.55, y: 0, z: -0.96}
-  m_LocalScale: {x: 0.10178, y: 4.4641, z: 1.5214}
+  m_LocalScale: {x: 0.89836115, y: 4.4641, z: 1.5214}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1176831780925798892}

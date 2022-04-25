@@ -101,6 +101,7 @@ public class AngelAttacks : PlayerAttacks
 
     IEnumerator AimArrow(Transform position, float minDistance, InteractableObject intObj, bool isFirst)
     {
+        PlayerWorlds.instance.isShooting = true;
         float time = 0f;
         float duration = 0.5f;
         
@@ -126,6 +127,7 @@ public class AngelAttacks : PlayerAttacks
         else
             intObj.isFirstTriggered = true;
         
+        PlayerWorlds.instance.isShooting = false;
         yield return new WaitForSeconds(0.001f);
     }
 }

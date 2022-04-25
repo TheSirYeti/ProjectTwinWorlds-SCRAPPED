@@ -13,8 +13,10 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
     public Observer playerObserver;
     public Rigidbody rb;
     public SwingPhysics currentSwing;
+    public PulleySystem currentPulley;
     public bool canMove;
-
+    private float previousDistance;
+    
     public Transform myParent;
     public bool isDemon;
     public bool isSwingLeft, isClimbLeft, isPulleyLeft;
@@ -45,7 +47,7 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
         float hMov = Input.GetAxisRaw("Horizontal");
         float vMov = Input.GetAxisRaw("Vertical");
 
-        if (new Vector3(hMov, 0, vMov) != Vector3.zero || movementDelegate == SwingMovement)
+        if (new Vector3(hMov, 0, vMov) != Vector3.zero)
         {
             movementDelegate(hMov, vMov);
             playerObserver.NotifySubscribers("Walking");
@@ -57,6 +59,9 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
 
             if (movementDelegate == GenerateMovement)
                 rb.velocity = new Vector3(0, rb.velocity.y, 0);
+            
+            if(movementDelegate == PulleyMovement)
+                pulleyObject.velocity = Vector3.zero;
         }
 
         if (Input.GetKeyDown(KeyCode.Space) && canJump)
@@ -86,17 +91,12 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
         if (canMove)
         {
             rb.velocity = new Vector3(moveDir.x * speed * Time.fixedDeltaTime, rb.velocity.y, moveDir.z * speed * Time.fixedDeltaTime);
-
-            /*if (rb.velocity.magnitude >= maxSpeed)
-            {
-                rb.velocity = rb.velocity.normalized * maxSpeed;
-            }*/
         }
     }
     
     public void PostSwingMovement(float h, float v)
     {
-        Vector3 movement;
+        /*Vector3 movement;
         
         if (isSwingLeft)
         {
@@ -116,7 +116,7 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
         if (canMove)
         {
             rb.velocity = new Vector3(movement.x * speed * Time.deltaTime, rb.velocity.y, movement.z * speed * Time.deltaTime);
-        }
+        }*/
     }
 
     public void NoMovement(float h, float v)
@@ -159,21 +159,36 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
 
     public void PulleyMovement(float h, float v)
     {
-        Vector3 movementPlayer, movementObject;
+        if(speed <= maxSpeed)
+            speed += acceleration * Time.fixedDeltaTime;
+        
+        Vector3 movement = new Vector3(h, 0, v);
 
-        if (isPulleyLeft)
+        if(movement.magnitude >= 1)
+            movement.Normalize();
+        
+        float direction = Mathf.Atan2(movement.x, movement.z) * Mathf.Rad2Deg + camera.transform.eulerAngles.y;
+        var rotGoal = Quaternion.Euler(0, direction, 0);
+        Vector3 moveDir = Quaternion.Euler(0, direction, 0) * Vector3.forward;
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotGoal, 0.3f);
+        
+        if (canMove && movement != Vector3.zero)
         {
-            movementPlayer = new Vector3(v, 0, 0);
-            movementObject = new Vector3(0, v, 0);
-        }
-        else
-        {
-            movementPlayer = new Vector3(0, 0, v);
-            movementObject = new Vector3(0, v * -1, 0);
+            rb.velocity = new Vector3(moveDir.x * (speed / 4f) * Time.fixedDeltaTime, rb.velocity.y, moveDir.z * (speed / 4f) * Time.fixedDeltaTime);
         }
         
-        rb.velocity = movementPlayer * (speed / 5f) * Time.deltaTime;
-        pulleyObject.velocity = movementObject * (speed / 5f) * Time.deltaTime;
+        float currentDistance = Vector3.Distance(transform.position, currentPulley.transform.position);
+        if (previousDistance < currentDistance)
+        {
+            pulleyObject.velocity = new Vector3(0, (speed / 2.5f) * Time.fixedDeltaTime, 0);
+        }
+        else if (previousDistance > currentDistance)
+        {
+                pulleyObject.velocity = new Vector3(0, ((speed / 2.5f) * Time.fixedDeltaTime) * -1, 0);
+        }
+        
+
+        Debug.Log(previousDistance + " | " + currentDistance);
     }
 
     public void OnNotify(string eventID)
@@ -261,9 +276,11 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
         if (isDemon)
         {
             pulleyObject = (Rigidbody) parameters[0];
+            currentPulley = (PulleySystem) parameters[1];
             pulleyObject.useGravity = false;
             pulleyObject.velocity = Vector3.zero;
             movementDelegate = PulleyMovement;
+            StartCoroutine(SavePreviousPosition());
         }
     }
     
@@ -274,6 +291,7 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
             pulleyObject.useGravity = true;
             pulleyObject.velocity = Vector3.zero;
             pulleyObject = null;
+            currentPulley = null;
             movementDelegate = GenerateMovement;
         }
     }
@@ -286,6 +304,15 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
     private void UnrestrictSpeed(object[] parameters)
     {
         canMove = true;
+    }
+
+    IEnumerator SavePreviousPosition()
+    {
+        while (pulleyObject != null && currentPulley != null)
+        {
+            previousDistance = Vector3.Distance(transform.position, currentPulley.transform.position);
+            yield return new WaitForSeconds(0.03f);
+        }
     }
     
     private void OnTriggerEnter(Collider other)

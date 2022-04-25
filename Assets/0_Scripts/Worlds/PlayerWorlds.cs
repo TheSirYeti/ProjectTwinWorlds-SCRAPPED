@@ -10,6 +10,7 @@ public class PlayerWorlds : MonoBehaviour
 {
     public GameObject angelPlayer, demonPlayer, currentPlayer, firstTriggerPlayer;
     public GameObject angelTotem, demonTotem;
+    public bool isShooting;
     public Cinemachine.CinemachineVirtualCamera vCamera;
     
     public bool isLinked;
@@ -29,7 +30,7 @@ public class PlayerWorlds : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q)) 
+        if (Input.GetKeyDown(KeyCode.Q) && !isShooting) 
         {
             if (angelPlayer.activeSelf)
             {

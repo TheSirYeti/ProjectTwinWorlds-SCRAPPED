@@ -100,6 +100,7 @@ public class DemonAttacks : PlayerAttacks
     
     public IEnumerator ThrowPentadent(float duration, float minDistance, Transform currentDestination, InteractableObject intObj, bool isFirst)
     {
+        PlayerWorlds.instance.isShooting = true;
         float time = 0;
         while (time <= duration)
         {
@@ -116,11 +117,12 @@ public class DemonAttacks : PlayerAttacks
                 {
                     currentObject = intObj;
                     currentObject.OnObjectStart();
-                    Debug.Log(currentObject.isObjectTriggered);
+                    Debug.Log("entro aca");//
                 }
                 else
                     intObj.isFirstTriggered = true;
                 
+                Debug.Log("nope");//
                 break;
             }
 
@@ -129,5 +131,7 @@ public class DemonAttacks : PlayerAttacks
                 break;
             }
         }
+        PlayerWorlds.instance.isShooting = false;
+        yield return new WaitForSeconds(0.0001f);
     }
 }

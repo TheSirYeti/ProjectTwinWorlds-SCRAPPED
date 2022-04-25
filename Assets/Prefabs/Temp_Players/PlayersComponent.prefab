@@ -180,6 +180,7 @@ MonoBehaviour:
   firstTriggerPlayer: {fileID: 0}
   angelTotem: {fileID: 6395470161261868533}
   demonTotem: {fileID: 7025559550424097906}
+  isShooting: 0
   vCamera: {fileID: 2877949674745233506}
   isLinked: 0
 --- !u!1 &1912477546769320423
@@ -327,7 +328,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7788461, y: 1}
+    m_SensorSize: {x: 1.7784946, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -1039,7 +1040,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
-  acceleration: 1300
+  acceleration: 1500
   maxSpeed: 1000
   swingForce: 20
   camera: {fileID: 2877949674745233506}
@@ -1127,7 +1128,7 @@ MonoBehaviour:
   usedAbility: 0
   collidableLayer:
     serializedVersion: 2
-    m_Bits: 1723904
+    m_Bits: 5918208
   currentObject: {fileID: 0}
   weapon: {fileID: 8876612664915679655}
   flightDuration: 3
@@ -2851,7 +2852,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
-  acceleration: 1300
+  acceleration: 1500
   maxSpeed: 1000
   swingForce: 20
   camera: {fileID: 2877949674745233506}
@@ -2939,7 +2940,7 @@ MonoBehaviour:
   usedAbility: 0
   collidableLayer:
     serializedVersion: 2
-    m_Bits: 1723904
+    m_Bits: 5918208
   currentObject: {fileID: 0}
   weapon: {fileID: 922829771347506014}
   arrowEndPoint: {fileID: 0}

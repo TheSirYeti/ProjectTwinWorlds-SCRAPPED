@@ -8,7 +8,6 @@ using UnityEngine;
 public class MovableItem : InteractableObject
 {
     public Transform itemToFollow;
-    public Transform itemToRestrict;
     public float minDistance, speed, velocity;
     public Rigidbody rb;
     public bool isRestricting, isFollowing, isSwinging, isFalling;
@@ -21,6 +20,8 @@ public class MovableItem : InteractableObject
 
     public override void OnObjectStart()
     {
+        itemToFollow = PlayerWorlds.instance.demonPlayer.transform;
+        
         EventManager.UnSubscribe("OnPlayerChange", ChangeMovingMode);
         EventManager.Subscribe("OnPlayerChange", ChangeMovingMode);
         EventManager.Subscribe("ResetAbility", OnItemCanceled);
