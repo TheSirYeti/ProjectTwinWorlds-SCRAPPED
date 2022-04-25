@@ -52,7 +52,6 @@ public abstract class InteractableObject : MonoBehaviour
 
     public void ResetVariables(object[] parameters)
     {
-        Debug.Log("HAGO RESET");
         isFirstTriggered = false;
         isObjectTriggered = false;
     }
@@ -61,8 +60,7 @@ public abstract class InteractableObject : MonoBehaviour
     {
         if (isObjectTriggered)
         {
-            Debug.Log("Cancelo la cosa assasa");
-            InteractableManager.instance.ExecuteEnd(id);
+            OnObjectEnd();
         }
     }
     
@@ -96,9 +94,7 @@ public abstract class InteractableObject : MonoBehaviour
             else referencePoint = PlayerWorlds.instance.angelTotem.transform;
         }
         else return true;
-        
-        Debug.Log(Vector3.Distance(referencePoint.position, myTransform.position));
-        
+
         if (Vector3.Distance(referencePoint.position, myTransform.position) <= triggerDistance)
         {
             return true;

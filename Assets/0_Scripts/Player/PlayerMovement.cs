@@ -190,11 +190,11 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
         float currentDistance = Vector3.Distance(transform.position, currentPulley.transform.position);
         if (previousDistance < currentDistance)
         {
-            pulleyObject.velocity = new Vector3(0, (speed / 2.5f) * Time.fixedDeltaTime, 0);
+            pulleyObject.velocity = new Vector3(0, (speed / 4f) * Time.fixedDeltaTime, 0);
         }
         else if (previousDistance > currentDistance)
         {
-                pulleyObject.velocity = new Vector3(0, ((speed / 2.5f) * Time.fixedDeltaTime) * -1, 0);
+                pulleyObject.velocity = new Vector3(0, ((speed / 4f) * Time.fixedDeltaTime) * -1, 0);
         }
         
 

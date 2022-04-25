@@ -16,7 +16,6 @@ internal class BreakableWall : InteractableObject
 
     public override void OnObjectEnd()
     {
-        Debug.Log("Porque?");
         ResetVariables(null);
         EventManager.Trigger("ResetAbility");
         gameObject.SetActive(false);
@@ -24,6 +23,6 @@ internal class BreakableWall : InteractableObject
 
     public override void OnObjectExecute()
     {
-        throw new System.NotImplementedException();
+        OnObjectEnd();
     }
 }

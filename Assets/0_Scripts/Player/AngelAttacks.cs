@@ -71,16 +71,18 @@ public class AngelAttacks : PlayerAttacks
         isConnected = false;
         weapon.gameObject.SetActive(false);
         
-        if (currentObject != null && currentObject.isObjectTriggered)
+        if (currentObject != null)
         {
-            currentObject.OnObjectEnd();
+            Debug.Log("hago sonido de tirar bien angel");
+            SoundManager.instance.PlaySound(SoundID.BOW_PULL);
+            
+            if(currentObject.isObjectTriggered)
+                currentObject.OnObjectEnd();
         }
         currentObject = null;
-
-        SoundManager.instance.PlaySound(SoundID.BOW_PULL);
+        
         EventManager.Trigger("OnPulleyStop");
         EventManager.Trigger("OnSwingStop");
-        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -107,7 +109,7 @@ public class AngelAttacks : PlayerAttacks
         
         while(Vector3.Distance(weapon.transform.position, position.position) >= minDistance)
         {
-            yield return new WaitForSeconds(0.001f);
+            yield return new WaitForSeconds(0.0001f);
             time += Time.deltaTime;
             weapon.transform.position = Vector3.Lerp(transform.position, position.position, time / duration);
         }

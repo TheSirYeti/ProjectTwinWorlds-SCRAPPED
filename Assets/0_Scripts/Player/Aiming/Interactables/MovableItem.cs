@@ -48,7 +48,7 @@ public class MovableItem : InteractableObject
 
     public override void OnObjectDuring()
     {
-        if (isFollowing)
+        /*if (isFollowing)
         {
             if (Vector3.Distance(itemToFollow.position, transform.position) >= minDistance)
             {
@@ -60,6 +60,28 @@ public class MovableItem : InteractableObject
                 }
 
                 rb.MovePosition(transform.position += direction * speed * Time.deltaTime);
+            }
+
+            rb.constraints = RigidbodyConstraints.None;
+            rb.constraints = RigidbodyConstraints.FreezeRotation;
+        }*/
+    }
+
+    private void FixedUpdate()
+    {
+        if (isFollowing)
+        {
+            if (Vector3.Distance(itemToFollow.position, transform.position) >= minDistance)
+            {
+                Vector3 direction = itemToFollow.position - transform.position;
+
+                if (direction.magnitude > 1)
+                {
+                    direction.Normalize();
+                }
+                
+                rb.MovePosition(transform.position += direction * speed * Time.fixedDeltaTime);
+                //rb.AddForce(direction * speed, ForceMode.Impulse);
             }
 
             rb.constraints = RigidbodyConstraints.None;

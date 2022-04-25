@@ -55,13 +55,15 @@ public class DemonAttacks : PlayerAttacks
         weapon.transform.position = transform.position;
         weapon.gameObject.SetActive(false);
         
-        if (currentObject != null && currentObject.isObjectTriggered)
+        if (currentObject != null)
         {
-            currentObject.OnObjectEnd();
+            Debug.Log("hago sonido de tirar bien demonio");
+            SoundManager.instance.PlaySound(SoundID.PENTADENT_PULL);
+            if(currentObject.isObjectTriggered)
+                currentObject.OnObjectEnd();
         }
         currentObject = null;
-
-        SoundManager.instance.PlaySound(SoundID.PENTADENT_PULL);
+        
         EventManager.Trigger("OnPulleyStop");
         EventManager.Trigger("OnSwingStop");
         usedAbility = false;
