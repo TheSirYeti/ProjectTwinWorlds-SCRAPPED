@@ -56,12 +56,8 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
         {
             playerObserver.NotifySubscribers("Idle");
             speed = 0;
-
-            if (movementDelegate == GenerateMovement)
-                rb.velocity = new Vector3(0, rb.velocity.y, 0);
             
-            if(movementDelegate == PulleyMovement)
-                pulleyObject.velocity = Vector3.zero;
+            CheckIdleStatus();
         }
 
         if (Input.GetKeyDown(KeyCode.Space) && canJump)
@@ -72,6 +68,20 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
         }
     }
 
+    void CheckIdleStatus()
+    {
+        if (movementDelegate == GenerateMovement)
+            rb.velocity = new Vector3(0, rb.velocity.y, 0);
+            
+        else if (movementDelegate == PulleyMovement)
+            pulleyObject.velocity = Vector3.zero;
+        
+        else if (movementDelegate != PostSwingMovement)
+        {
+            rb.velocity = Vector3.zero;
+        }
+    }
+    
     public void GenerateMovement(float h, float v)
     {
         if(speed <= maxSpeed)
@@ -96,7 +106,7 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
     
     public void PostSwingMovement(float h, float v)
     {
-        /*Vector3 movement;
+        Vector3 movement;
         
         if (isSwingLeft)
         {
@@ -116,7 +126,7 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
         if (canMove)
         {
             rb.velocity = new Vector3(movement.x * speed * Time.deltaTime, rb.velocity.y, movement.z * speed * Time.deltaTime);
-        }*/
+        }
     }
 
     public void NoMovement(float h, float v)
@@ -154,7 +164,7 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
         else
             movement = new Vector3(0, v,  -1 * h);
 
-        rb.velocity = movement * (speed / 2) * Time.deltaTime;
+        rb.velocity = movement * (maxSpeed / 4) * Time.deltaTime;
     }
 
     public void PulleyMovement(float h, float v)

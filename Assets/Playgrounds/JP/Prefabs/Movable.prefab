@@ -208,7 +208,7 @@ GameObject:
   - component: {fileID: 8673747564451966611}
   - component: {fileID: 8673747564451966610}
   - component: {fileID: 8673747564451966613}
-  m_Layer: 22
+  m_Layer: 9
   m_Name: Movable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -321,7 +321,6 @@ MonoBehaviour:
   triggerDistance: 14
   myShader: {fileID: 3456833918845659822}
   itemToFollow: {fileID: 0}
-  itemToRestrict: {fileID: 0}
   minDistance: 6
   speed: 35
   velocity: 1200
