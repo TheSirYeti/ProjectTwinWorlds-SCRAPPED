@@ -143,7 +143,10 @@ public class MovableItem : InteractableObject
 
         if (mySwing != null)
         {
-            rb.AddForce(mySwing.transform.right * 450f, ForceMode.Impulse);
+            if(mySwing.GetClosestPoint(transform) == mySwing.leftPoint)
+                rb.AddForce(mySwing.transform.right * 450f, ForceMode.Impulse);
+            else
+                rb.AddForce(mySwing.transform.right * -450f, ForceMode.Impulse);
             mySwing.isHanging = false;
             mySwing.ResetStats();
             mySwing.currentItem = null;
