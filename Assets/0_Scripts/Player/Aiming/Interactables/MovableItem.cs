@@ -24,7 +24,6 @@ public class MovableItem : InteractableObject
         EventManager.UnSubscribe("OnPlayerChange", ChangeMovingMode);
         EventManager.Subscribe("OnPlayerChange", ChangeMovingMode);
         EventManager.Subscribe("ResetAbility", OnItemCanceled);
-        
 
         CutSwingTies(null);
         if (mySwing != null)
@@ -87,7 +86,6 @@ public class MovableItem : InteractableObject
             Vector3 direction = itemToFollow.position - transform.position;
             
             rb.AddForce(direction * 300f, ForceMode.Impulse);
-            OnObjectEnd();
         }
     }
 
@@ -144,7 +142,7 @@ public class MovableItem : InteractableObject
 
         if (mySwing != null)
         {
-            rb.AddForce(mySwing.lastPoint.velocity * 50f, ForceMode.Impulse);
+            rb.AddForce(mySwing.transform.right * 450f, ForceMode.Impulse);
             mySwing.isHanging = false;
             mySwing.ResetStats();
             mySwing.currentItem = null;

@@ -7,15 +7,16 @@ using UnityEngine;
 
 public class SwingPhysics : InteractableObject
 {
-    public Rigidbody lastPoint;
     public Transform holdPoint;
 
     public float minDistance, velocityForce;
+    public Animator animator;
+    
     
     public List<MovableItem> movableItems;
-    public List<Rigidbody> hingePoints;
-    
-    public Transform angelAttack, demonAttack;
+
+    public Transform leftPoint, rightPoint;
+    public Transform angelAttack;
     public MovableItem currentItem;
     
     public bool isOnLeft;
@@ -24,11 +25,17 @@ public class SwingPhysics : InteractableObject
     
     public override void OnObjectStart()
     {
-        foreach (var rb in hingePoints)
-        {
-            rb.velocity = Vector3.zero;
-        }
+        angelAttack = PlayerWorlds.instance.angelPlayer.transform;
         
+        if (GetClosestPoint(angelAttack) == leftPoint)
+        {
+            animator.SetBool("swingLeft", true);
+        }
+        else
+        {
+            animator.SetBool("swingRight", true);
+        }
+
         if (angelAttack.GetComponent<AngelAttacks>().canHang)
         {
             isHanging = true;
@@ -42,11 +49,10 @@ public class SwingPhysics : InteractableObject
         else
         {
             Debug.Log("Me cuelgo yo");
-            EventManager.Trigger("OnSwingStart", lastPoint, holdPoint, isOnLeft);
+            EventManager.Trigger("OnSwingStart",this, holdPoint, isOnLeft);
         }
         
         isObjectTriggered = true;
-        lastPoint.AddForce(lastPoint.transform.right * velocityForce, ForceMode.Acceleration);
     }
 
     public override void OnObjectDuring()
@@ -82,13 +88,14 @@ public class SwingPhysics : InteractableObject
             isAfterHang = true;
             
         }
-
+        animator.SetBool("swingLeft", false);
+        animator.SetBool("swingRight", false);
         EventManager.Trigger("ResetAbility");
     }
     
     public override void OnObjectExecute()
     {
-        lastPoint.AddForce(lastPoint.transform.right * velocityForce, ForceMode.Acceleration);
+        
     }
 
     private void LateUpdate()
@@ -147,6 +154,18 @@ public class SwingPhysics : InteractableObject
         currentItem.transform.position = holdPoint.position;
         currentItem.transform.SetParent(holdPoint);
         yield return new WaitForSeconds(0.001f);
+    }
+
+    public Transform GetClosestPoint(Transform reference)
+    {
+        float leftDistance = Vector3.Distance(reference.position, leftPoint.position);
+        float rightDistance = Vector3.Distance(reference.position, rightPoint.position);
+
+        if (leftDistance <= rightDistance)
+        {
+            return leftPoint;
+        }
+        return rightPoint;
     }
 
     public void ResetStats()

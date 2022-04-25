@@ -11,7 +11,8 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
     public Action<float,float> movementDelegate;
     public CinemachineVirtualCamera camera;
     public Observer playerObserver;
-    public Rigidbody rb, currentSwing;
+    public Rigidbody rb;
+    public SwingPhysics currentSwing;
     public bool canMove;
 
     public Transform myParent;
@@ -125,6 +126,7 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
 
     public void SwingMovement(float h, float v)
     {
+        /*
         if (currentSwing != null)
         {
             Vector3 movement;
@@ -137,9 +139,8 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
             {
                 movement = new Vector3(0, 0, h * -1);
             }
-            
-            currentSwing.AddForce(movement * swingForce, ForceMode.Acceleration);
         }
+        */
         
         transform.position = transform.parent.position;
     }
@@ -206,7 +207,7 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
         {
             rb.constraints = RigidbodyConstraints.FreezeAll;
             rb.useGravity = false;
-            currentSwing = (Rigidbody) parameters[0];
+            currentSwing = (SwingPhysics) parameters[0];
             Transform newPos = (Transform) parameters[1];
             isSwingLeft = (bool) parameters[2];
             transform.position = newPos.position;
@@ -222,8 +223,14 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
             rb.useGravity = true;
             rb.constraints = RigidbodyConstraints.None;
             rb.constraints = RigidbodyConstraints.FreezeRotation;
-            if(currentSwing != null)
-                rb.AddForce(currentSwing.velocity * 1.5f, ForceMode.Impulse);
+
+            if (currentSwing != null)
+            {
+                if(currentSwing.GetClosestPoint(transform) == currentSwing.leftPoint)
+                    rb.AddForce(currentSwing.transform.right * 15f, ForceMode.Impulse);
+                else rb.AddForce(currentSwing.transform.right * -15f, ForceMode.Impulse);
+            }
+            
             currentSwing = null;
             transform.SetParent(myParent);
             movementDelegate = PostSwingMovement;
