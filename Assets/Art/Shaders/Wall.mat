@@ -28,7 +28,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TextureofObjects:
-        m_Texture: {fileID: 2800000, guid: 978a4081479090943892d9b26eaa44fb, type: 3}
+        m_Texture: {fileID: 2800000, guid: 15d24582501d92545ad2fcfa5138d2be, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _texcoord:
@@ -39,7 +39,7 @@ Material:
     m_Floats:
     - _ClampMax: 1.71
     - _ClampMin: -0.96
-    - _GradientWhitTexture: 0.038
+    - _GradientWhitTexture: 0.148
     - _Metallic: 0
     - _NormalLerp: 1
     - _Origin: -3.46
