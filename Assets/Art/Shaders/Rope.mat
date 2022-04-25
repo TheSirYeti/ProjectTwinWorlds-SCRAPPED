@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Grass
-  m_Shader: {fileID: 4800000, guid: ebb58cd424871264396099102dbc4d97, type: 3}
+  m_Name: Rope
+  m_Shader: {fileID: 4800000, guid: e44bf95d1b4f592478078c1658039b43, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -19,8 +19,8 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _GrassTexture1:
-        m_Texture: {fileID: 2800000, guid: 7d65efa25b05d594499ba8ecce0b9994, type: 3}
+    - _TextureSample0:
+        m_Texture: {fileID: 2800000, guid: e0da9f2586b9bef4aa22bb069a75a814, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _texcoord:
@@ -29,13 +29,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Mascara1: 0.5
-    - _Radius1: 3.5
-    - _Seepdgras1: 1
-    - _SubstracPJ1: 15
-    - _SubstractRadius1: 1
     - __dirty: 0
     m_Colors:
-    - _MyPos1: {r: 0, g: 0, b: 0, a: 0}
-    - _Vectoraltura1: {r: 1, g: 0, b: 1, a: 0}
+    - _Color: {r: 1, g: 0.07075471, b: 0.07075471, a: 0}
+    - _Vector: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
