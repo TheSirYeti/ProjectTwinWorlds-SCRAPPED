@@ -15,7 +15,9 @@ public class MafiaLogic : MonoBehaviour
     public int currentShot, maxShotCount;
     public bool canShoot;
     public GameObject reloadSign;
-
+    public Transform spawnPoint;
+    
+    
     public List<GameObject> wallWaves;
     public List<int> shotAmount;
 
@@ -86,6 +88,10 @@ public class MafiaLogic : MonoBehaviour
             wallWaves[hp - 1].SetActive(true);
             wallWaves[hp].SetActive(false);
 
+
+            PlayerWorlds.instance.angelPlayer.transform.position = spawnPoint.position;
+            PlayerWorlds.instance.demonPlayer.transform.position = spawnPoint.position;
+            
             maxShotCount = shotAmount[hp];
         }
     }

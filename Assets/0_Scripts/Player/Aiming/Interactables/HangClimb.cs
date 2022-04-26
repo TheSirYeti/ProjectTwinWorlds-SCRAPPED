@@ -14,6 +14,7 @@ public class HangClimb : InteractableObject
     
     public override void OnObjectStart()
     {
+        angel = PlayerWorlds.instance.angelPlayer.transform;
         angel.position = startPoints[GetNearestPoint(angel)].position;
         walls.SetActive(true);
         EventManager.Trigger("OnClimbStart", isOnLeft);
