@@ -69,7 +69,7 @@ public class MovableItem : InteractableObject
 
     private void FixedUpdate()
     {
-        if (isFollowing)
+        if (isFollowing && isObjectTriggered)
         {
             if (Vector3.Distance(itemToFollow.position, transform.position) >= minDistance)
             {

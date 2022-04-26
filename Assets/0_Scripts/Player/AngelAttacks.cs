@@ -93,12 +93,17 @@ public class AngelAttacks : PlayerAttacks
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Movable Object"))
         {
-            canHang = false;
+            canHang = true;
         }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        canHang = false;
     }
 
     IEnumerator AimArrow(Transform position, float minDistance, InteractableObject intObj, bool isFirst)
