@@ -69,6 +69,7 @@ public class AngelAttacks : PlayerAttacks
         isSwinging = false;
         usedAbility = false;
         isConnected = false;
+        weapon.transform.parent = null;
         weapon.gameObject.SetActive(false);
         
         if (currentObject != null)
@@ -134,6 +135,7 @@ public class AngelAttacks : PlayerAttacks
         else
             intObj.isFirstTriggered = true;
         
+        weapon.transform.SetParent(position);
         PlayerWorlds.instance.isShooting = false;
         yield return new WaitForSeconds(0.001f);
     }
