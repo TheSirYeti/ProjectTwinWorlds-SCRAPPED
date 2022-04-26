@@ -17,16 +17,20 @@ public class UIController : MonoBehaviour
     [SerializeField] private GameObject _demonPlayer;
     [SerializeField] private GameObject _angelPlayer;
 
-    [SerializeField] private Image _demon, _angel, _link;
-
     private bool _isDemond = true;
     private int _uiDemondLife = 3;
     private int _uiAngelLife = 3;
     private Color c;
 
+    public RectTransform rtDemon;
+    public RectTransform rtAngel;
+    Vector2 pos;
+
     private void Start()
     {
         c.a = 1;
+
+        //mCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
 
         EventManager.Subscribe("OnPlayerHPUpdated", TakeUIDMG);
         EventManager.Subscribe("OnPlayerChange", ChangeUI);
@@ -36,11 +40,11 @@ public class UIController : MonoBehaviour
     {
         if (_isDemond)
         {
-            _demonUI.transform.position = _demonPlayer.transform.position;
+            rtDemon.position = RectTransformUtility.WorldToScreenPoint(Camera.main, _demonPlayer.transform.position); ;
         }
         else
         {
-            _angelUI.transform.position = _angelPlayer.transform.position;
+            rtAngel.position = RectTransformUtility.WorldToScreenPoint(Camera.main, _angelPlayer.transform.position);
         }
     }
 
@@ -70,27 +74,6 @@ public class UIController : MonoBehaviour
         {
             _uiAngelLife--;
             _angelHearths[_uiAngelLife].gameObject.SetActive(false);
-        }
-        Debug.Log("Entro UI9");
-    }
-
-    void FadeOut()
-    {
-        if (UIOn)
-        {
-            foreach (var item in UI)
-            {
-                if (item.color.a <= 1)
-                    item.color += c * Time.deltaTime;
-            }
-        }
-        else
-        {
-            foreach (var item in UI)
-            {
-                if (item.color.a >= 0)
-                    item.color -= c * Time.deltaTime;
-            }
         }
     }
 }
