@@ -36,7 +36,7 @@ public class UIController : MonoBehaviour
         EventManager.Subscribe("OnPlayerChange", ChangeUI);
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (_isDemond)
         {
