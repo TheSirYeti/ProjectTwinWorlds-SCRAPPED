@@ -52,6 +52,7 @@ public class ColumnasRompibles : InteractableObject
             secondCollumn.gameObject.SetActive(true);
             TurnOffCollider();
             TurnOnCollider();
+            StartCoroutine(WaitRespawn());
         }
         else
             OnObjectEnd();
@@ -86,5 +87,16 @@ public class ColumnasRompibles : InteractableObject
             collision.transform.position += new Vector3(2, 0, 0);
         }
 
+    }
+
+    IEnumerator WaitRespawn()
+    {
+        yield return new WaitForSeconds(3f);
+        _firstCollider.enabled = true;
+        _secondCollider.enabled = false;
+        firstCollumn.gameObject.SetActive(true);
+        secondCollumn.gameObject.SetActive(false);
+        ChangeBool(false);
+        isBroken = false;
     }
 }
