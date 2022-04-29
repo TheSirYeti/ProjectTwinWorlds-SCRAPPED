@@ -7,6 +7,10 @@ internal class BreakableWall : InteractableObject
     public LineRenderer lineRenderer;
     public override void OnObjectStart()
     {
+        EventManager.Subscribe("ResetAbility", ResetVariables);
+        EventManager.Subscribe("ResetObject", ResetVariables);
+        EventManager.Subscribe("OnAbilityCancel", CancelAbility);
+        
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.enabled = true;
         isObjectTriggered = true;

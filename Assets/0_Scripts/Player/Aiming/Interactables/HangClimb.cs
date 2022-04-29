@@ -32,9 +32,10 @@ public class HangClimb : InteractableObject
     public override void OnObjectEnd()
     {
         walls.SetActive(false);
+        ResetVariables(null);
+        Debug.Log("Loop check 3 - Hang");
         EventManager.Trigger("OnClimbStop");
         EventManager.Trigger("ResetAbility");
-        ResetVariables(null);
     }
 
     public override void OnObjectExecute()

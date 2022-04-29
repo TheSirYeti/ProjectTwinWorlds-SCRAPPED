@@ -74,7 +74,7 @@ public class AngelAttacks : PlayerAttacks
         
         if (currentObject != null)
         {
-            Debug.Log("hago sonido de tirar bien angel");
+            Debug.Log("Loop check 1 - angel");
             SoundManager.instance.PlaySound(SoundID.BOW_PULL);
             
             if(currentObject.isObjectTriggered)
@@ -82,6 +82,7 @@ public class AngelAttacks : PlayerAttacks
         }
         currentObject = null;
         
+        Debug.Log("Loop check 2 - angel");
         EventManager.Trigger("OnPulleyStop");
         EventManager.Trigger("OnSwingStop");
     }
