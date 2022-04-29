@@ -27,7 +27,7 @@ public class LevelManager : MonoBehaviour
             ReloadScene();
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.M))
         {
             LoadNextScene(0);
         }
@@ -45,6 +45,7 @@ public class LevelManager : MonoBehaviour
     public void LoadNextScene(int sceneID)
     {
         currentId = sceneID;
+        EventManager.ResetEventDictionary();
         SoundManager.instance.StopAllMusic();
         SoundManager.instance.StopAllSounds();
         SceneManager.LoadSceneAsync(sceneID);

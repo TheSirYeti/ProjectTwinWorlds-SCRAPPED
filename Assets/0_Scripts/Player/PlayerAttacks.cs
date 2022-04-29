@@ -35,7 +35,7 @@ public abstract class PlayerAttacks : MonoBehaviour
             //attackDelegate();
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse1))
+        if (Input.GetKeyDown(KeyCode.Mouse1) && !PlayerWorlds.instance.isShooting)
         {
             if (!usedAbility)
             {
