@@ -86,7 +86,6 @@ public class MovableItem : InteractableObject
                 if (!IsInSight(itemToFollow))
                 {
                     StartCoroutine(CheckIfCorrectsPath());
-                    Debug.Log("!!!!!");
                 }
             }
 

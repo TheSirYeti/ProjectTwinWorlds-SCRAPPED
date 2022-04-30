@@ -10,7 +10,7 @@ public class HardCode : MonoBehaviour
     
     void Update()
     {
-        if (tp.gameObject.activeSelf)
+        if (tp != null && tp.gameObject.activeSelf)
         {
             transform.position = tp.position;
 

@@ -15,6 +15,7 @@ public class PaladinLogic : MonoBehaviour
     public List<Transform> shieldSpawnpoints;
     public Transform target;
     public Transform returnPoint;
+    public List<GameObject> stakes;
     public float speed;
 
     public int attackNumber;
@@ -29,6 +30,7 @@ public class PaladinLogic : MonoBehaviour
         SoundManager.instance.PlayMusic(MusicID.BOSS);
         EventManager.Subscribe("OnBossDamaged", SetPhaseState);
         EventManager.Subscribe("OnPlayerChange", ChangeTarget);
+        EventManager.Subscribe("OnBossResting", OnRestStart);
         currentPhase = 1;
         StartRingPhase(currentPhase);
         SetFSM();
@@ -120,5 +122,13 @@ public class PaladinLogic : MonoBehaviour
         Debug.Log("Change paladin");
         GameObject newTarget = (GameObject)parameters[0];
         target = newTarget.transform;
+    }
+    
+    public void OnRestStart(object[] parameters)
+    {
+        foreach (GameObject stake in stakes)
+        {
+            stake.SetActive(true);
+        }
     }
 }

@@ -70,7 +70,7 @@ public class LevelManager : MonoBehaviour
     {
         SceneManager.LoadScene(loadingScene);
         yield return new WaitForSeconds(0.5f);
-        SceneManager.LoadScene(currentId);
+        SceneManager.LoadSceneAsync(currentId);
         yield return new WaitForSeconds(0.0001f);
     }
     

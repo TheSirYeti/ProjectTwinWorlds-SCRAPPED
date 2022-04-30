@@ -26,7 +26,9 @@ public class PaladinChaseState : IState
     {
         EventManager.UnSubscribe("OnPlayerChange", ChangeTarget);
         EventManager.Subscribe("OnPlayerChange", ChangeTarget);
+        
         target = paladin.target;
+        
         if (paladin.attackNumber >= paladin.maxAttackNumber)
         {
             _fsm.ChangeState(FSM_State.PALADIN_RETURN);
@@ -69,6 +71,9 @@ public class PaladinChaseState : IState
             
             case 3:
                 _fsm.ChangeState(FSM_State.PALADIN_TACKLE);
+                break;
+            default:
+                _fsm.ChangeState(FSM_State.PALADIN_CHASE);
                 break;
         }
         

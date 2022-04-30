@@ -10,6 +10,7 @@ public class PaladinStake : InteractableObject
     public GameObject stake;
     public Collider myCollider;
     public int stakeId;
+    public LineRenderer lineRenderer;
 
     private void Awake()
     {
@@ -21,6 +22,7 @@ public class PaladinStake : InteractableObject
 
     public override void OnObjectStart()
     {
+        lineRenderer.enabled = true;
         EventManager.UnSubscribe("OnBossDamagableTriggered", MoveStake);
         EventManager.UnSubscribe("OnBossDamaged", StopStake);
         EventManager.UnSubscribe("OnBossRestingOver", ResetStake);
@@ -30,24 +32,30 @@ public class PaladinStake : InteractableObject
         EventManager.Subscribe("OnBossRestingOver", ResetStake);
         EventManager.Subscribe("OnBossResting", SetStake);
 
-        object[] ids = new object[1];
-        ids[0] = stakeId;
-        MoveStake(ids);
+        isObjectTriggered = true;
     }
 
     public override void OnObjectDuring()
     {
-        //throw new NotImplementedException();
+        lineRenderer.SetPosition(0, transform.position);
+        lineRenderer.SetPosition(1, PlayerWorlds.instance.demonPlayer.transform.position);
+        if (!gameObject.activeSelf)
+        {
+            OnObjectEnd();
+        }
     }
 
     public override void OnObjectEnd()
     {
-        //
+        lineRenderer.enabled = false;
+        ResetVariables(null);
     }
 
     public override void OnObjectExecute()
     {
-        //
+        object[] ids = new object[1];
+        ids[0] = stakeId;
+        MoveStake(ids);
     }
 
     private void SetStake(object[] parameters)
@@ -60,10 +68,13 @@ public class PaladinStake : InteractableObject
     {
         if((int)parameters[0] == stakeId)
             animator.SetTrigger("doDrop");
+        
+        OnObjectEnd();
     }
 
     private void ResetStake(object[] parameters)
     {
+        EventManager.Trigger("ResetAbility");
         animator.Play("Estaca_Idle");
         myCollider.enabled = false;
         stake.SetActive(false);
