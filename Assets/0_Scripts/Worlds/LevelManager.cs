@@ -34,7 +34,7 @@ public class LevelManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.M))
         {
-            LoadNextScene(loadingScene);
+            LoadNextScene(0);
         }
     }
 

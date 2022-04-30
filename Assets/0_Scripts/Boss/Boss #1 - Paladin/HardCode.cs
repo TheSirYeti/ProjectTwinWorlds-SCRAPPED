@@ -15,11 +15,14 @@ public class HardCode : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = tp.position;
-
-        if (!tp.gameObject.activeSelf)
+        if (tp.gameObject.activeSelf)
         {
-            gameObject.SetActive(false);
+            transform.position = tp.position;
+
+            if (!tp.gameObject.activeSelf)
+            {
+                gameObject.SetActive(false);
+            }
         }
     }
 }
