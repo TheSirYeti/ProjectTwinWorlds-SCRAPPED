@@ -31,7 +31,8 @@ public abstract class InteractableObject : MonoBehaviour
         else 
         if(isFirstTriggered 
                 && Vector3.Distance(PlayerWorlds.instance.currentPlayer.transform.position, PlayerWorlds.instance.firstTriggerPlayer.transform.position) <= triggerDistance
-                && PlayerWorlds.instance.currentPlayer != PlayerWorlds.instance.firstTriggerPlayer)
+                && PlayerWorlds.instance.currentPlayer != PlayerWorlds.instance.firstTriggerPlayer
+                && IsInSight(PlayerWorlds.instance.currentPlayer.transform))
         {
             myShader.SetActive(true);
         } else myShader.SetActive(false);

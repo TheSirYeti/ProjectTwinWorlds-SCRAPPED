@@ -6,13 +6,8 @@ public class HardCode : MonoBehaviour
 {
 
     public Transform tp;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
+    
     void Update()
     {
         if (tp.gameObject.activeSelf)

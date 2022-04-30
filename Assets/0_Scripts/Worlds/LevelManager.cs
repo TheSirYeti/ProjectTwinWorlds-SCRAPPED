@@ -41,8 +41,6 @@ public class LevelManager : MonoBehaviour
     public void ReloadScene()
     {
         Time.timeScale = 1f;
-        
-        //Destroy(PlayerWorlds.instance);
 
         EventManager.ResetEventDictionary();
         SoundManager.instance.StopAllMusic();

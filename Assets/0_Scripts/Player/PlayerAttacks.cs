@@ -11,9 +11,8 @@ public abstract class PlayerAttacks : MonoBehaviour
     public bool isDemon;
 
     public Observer _playerObserver;
-    public Action attackDelegate;
 
-    public float distance, radius;
+    public float radius;
     public Camera cam;
     public LayerMask wallLayer;
     public bool usedAbility;
@@ -22,7 +21,6 @@ public abstract class PlayerAttacks : MonoBehaviour
     
     private void Start()
     {
-        attackDelegate = GenerateBasicAttack;
         EventManager.Subscribe("ResetAbility", ThrowAbility);
     }
 
