@@ -82,6 +82,12 @@ public class MovableItem : InteractableObject
                 
                 rb.MovePosition(transform.position += direction * speed * Time.fixedDeltaTime);
                 //rb.AddForce(direction * speed, ForceMode.Impulse);
+
+                if (!IsInSight(itemToFollow))
+                {
+                    StartCoroutine(CheckIfCorrectsPath());
+                    Debug.Log("!!!!!");
+                }
             }
 
             rb.constraints = RigidbodyConstraints.None;
@@ -93,8 +99,6 @@ public class MovableItem : InteractableObject
     {
         isFollowing = false;
         isRestricting = false;
-
-        Debug.Log("Termine cubo");
 
         ResetVariables(null);
         EventManager.Trigger("OnMovableUnrestrict");
@@ -183,6 +187,8 @@ public class MovableItem : InteractableObject
     {
         lineRenderer.enabled = false;
     }
+    
+    
 
     private void OnTriggerEnter(Collider other)
     {
@@ -197,6 +203,15 @@ public class MovableItem : InteractableObject
         if (collision.gameObject.layer == LayerMask.NameToLayer("EnemyAttack"))
         {
             Destroy(collision.gameObject);
+        }
+    }
+
+    IEnumerator CheckIfCorrectsPath()
+    {
+        yield return new WaitForSeconds(1f);
+        if (!IsInSight(itemToFollow))
+        {
+            OnObjectEnd();
         }
     }
 }
