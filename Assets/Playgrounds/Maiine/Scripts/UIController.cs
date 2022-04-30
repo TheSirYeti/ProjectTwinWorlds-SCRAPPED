@@ -32,6 +32,7 @@ public class UIController : MonoBehaviour
 
         //mCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
 
+
         EventManager.Subscribe("OnPlayerHPUpdated", TakeUIDMG);
         EventManager.Subscribe("OnPlayerChange", ChangeUI);
     }

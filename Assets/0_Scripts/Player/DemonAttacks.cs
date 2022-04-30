@@ -57,14 +57,12 @@ public class DemonAttacks : PlayerAttacks
         
         if (currentObject != null)
         {
-            Debug.Log("Loop check 1 - demon");
             SoundManager.instance.PlaySound(SoundID.PENTADENT_PULL);
             if(currentObject.isObjectTriggered)
                 currentObject.OnObjectEnd();
         }
         currentObject = null;
         
-        Debug.Log("Loop check 2 - demon");
         EventManager.Trigger("OnPulleyStop");
         EventManager.Trigger("OnSwingStop");
         usedAbility = false;

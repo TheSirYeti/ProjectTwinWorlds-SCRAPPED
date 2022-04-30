@@ -17,7 +17,7 @@ public class PlayerWorlds : MonoBehaviour
 
     public static PlayerWorlds instance;
 
-    private void Start()
+    private void Awake()
     {
         if (instance == null)
         {

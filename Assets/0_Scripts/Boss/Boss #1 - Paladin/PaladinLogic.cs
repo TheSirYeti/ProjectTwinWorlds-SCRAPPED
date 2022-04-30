@@ -41,7 +41,6 @@ public class PaladinLogic : MonoBehaviour
 
     public void StartRingPhase(int phaseID)
     {
-        Debug.Log(currentPhase);
         switch (phaseID)
         {
             case 1:
