@@ -16,11 +16,12 @@ public class WorldObject : MonoBehaviour
     {
         EventManager.Subscribe("OnPlayerChange", SwapMaterial);
         defaultMaterial = GetComponent<Renderer>().material;
+        collider = GetComponent<Collider>();
 
         if (!isWorldActive)
         {
             isWorldActive = false;
-            
+             
             if (isDemon)
             {
                 GetComponent<Renderer>().material = demonOffMaterial;
