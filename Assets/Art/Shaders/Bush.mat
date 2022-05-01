@@ -33,9 +33,11 @@ Material:
     - _Cutoff: 0
     - _Float0: -1.06
     - _Float1: 0.82
+    - _Float2: 5.33
     - _Noise: -0.52
     - _Size: 1.75
-    - __dirty: 1
+    - _Smoothness: 0.245
+    - __dirty: 0
     m_Colors:
     - _Color0: {r: 0.001696114, g: 0.009433985, b: 0.00093449844, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
