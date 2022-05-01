@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: AngelItemShader
+  m_Name: ItemShader
   m_Shader: {fileID: 4800000, guid: 286f34db89728604fa7f8314965a0c47, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 0
@@ -30,6 +30,6 @@ Material:
     - _VoronoiScale: 1
     - __dirty: 0
     m_Colors:
-    - _MainColor: {r: 1, g: 0, b: 0, a: 0}
+    - _MainColor: {r: 1, g: 1, b: 1, a: 0}
     - _PannerSpeed: {r: 0, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []

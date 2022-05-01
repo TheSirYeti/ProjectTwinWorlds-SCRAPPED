@@ -8,6 +8,8 @@ public class LevelLoadLogic : MonoBehaviour
 {
     public int levelID;
     bool angel = false, demon = false;
+    public bool needsBothPlayers;
+    public GameObject oneReady;
 
     public void LoadLevel()
     {
@@ -15,21 +17,41 @@ public class LevelLoadLogic : MonoBehaviour
         LevelManager.instance.LoadNextScene(levelID);
     }
 
+    private void Update()
+    {
+        if (needsBothPlayers)
+        {
+            if (demon || angel)
+            {
+                oneReady.SetActive(true);
+            } else oneReady.SetActive(false);
+        }
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("AngelPlayer"))
         {
             angel = true;
-            Debug.Log("ANGEL = " + true);
+            
+            if (!needsBothPlayers)
+            {
+                Destroy(PlayerWorlds.instance);
+                Debug.Log(levelID);
+                LevelManager.instance.LoadNextScene(levelID);
+            }
         }
         
         else if (other.gameObject.layer == LayerMask.NameToLayer("DemonPlayer"))
         {
             demon = true;
-            Debug.Log("DEMON = " + true);
+            
+            if (!needsBothPlayers)
+            {
+                Destroy(PlayerWorlds.instance);
+                Debug.Log(levelID);
+                LevelManager.instance.LoadNextScene(levelID);
+            }
         }
-
-        Debug.Log("ANGEL = " + true + ", DEMON =" + true);
         
         if(demon && angel)
         {

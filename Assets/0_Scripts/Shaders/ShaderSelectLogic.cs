@@ -6,35 +6,37 @@ using UnityEngine;
 
 public class ShaderSelectLogic : MonoBehaviour
 {
-    public bool amDemon;
     public bool isActive;
 
-    public Material demonMat, angelMat, clearMat;
-    public Renderer myRenderer;
+    public Material activeMat, clearMat, originalMat;
 
     public int matPositionID;
     private void Start()
     {
-        myRenderer = GetComponent<Renderer>();
         EventManager.Subscribe("OnPlayerChange", SwapMaterial);
+        originalMat = GetComponent<Renderer>().materials[0];
+
+        if (isActive)
+        {
+            GetComponent<Renderer>().materials = new Material[] {originalMat, activeMat};
+        }
+        else
+        {
+            GetComponent<Renderer>().materials = new Material[] {originalMat, clearMat};
+        }
     }
 
     void SwapMaterial(object[] parameters)
     {
-        if (isActive)
+        if (!isActive)
         {
-            if (amDemon)
-            {
-                myRenderer.materials[matPositionID] = demonMat;
-            }
-            else
-            {
-                myRenderer.materials[matPositionID] = angelMat;
-            }
+            GetComponent<Renderer>().materials = new Material[] {originalMat, activeMat};
         }
         else
         {
-            myRenderer.materials[matPositionID] = clearMat;
+            GetComponent<Renderer>().materials = new Material[] {originalMat, clearMat};
         }
+
+        isActive = !isActive;
     }
 }
