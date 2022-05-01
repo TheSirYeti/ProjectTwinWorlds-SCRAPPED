@@ -321,8 +321,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1922627685119114019}
-  m_LocalRotation: {x: -0.10453467, y: 0.8828182, z: -0.23477867, w: -0.393171}
-  m_LocalPosition: {x: 64.51119, y: 49.673386, z: 58.059105}
+  m_LocalRotation: {x: -0.10453467, y: 0.8828185, z: -0.23477858, w: -0.39317048}
+  m_LocalPosition: {x: 64.51113, y: 49.673363, z: 58.05921}
   m_LocalScale: {x: 1.0000001, y: 1, z: 1.0000001}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -359,7 +359,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.777972, y: 1}
+    m_SensorSize: {x: 1.7764084, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -4733,7 +4733,7 @@ GameObject:
   - component: {fileID: 4544258444044643439}
   - component: {fileID: 4242990910250254714}
   - component: {fileID: 6694818604206222555}
-  m_Layer: 12
+  m_Layer: 13
   m_Name: floorTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4885,7 +4885,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2474367849125198922}
-  m_Layer: 12
+  m_Layer: 13
   m_Name: EmptyReference
   m_TagString: Untagged
   m_Icon: {fileID: 0}

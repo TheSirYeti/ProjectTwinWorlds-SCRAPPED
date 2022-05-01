@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class LevelLoadLogic : MonoBehaviour
 {
     public int levelID;
-    public bool angel = false, demon = false;
+    bool angel = false, demon = false;
 
     public void LoadLevel()
     {
@@ -20,12 +20,17 @@ public class LevelLoadLogic : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("AngelPlayer"))
         {
             angel = true;
+            Debug.Log("ANGEL = " + true);
         }
-        if (other.gameObject.layer == LayerMask.NameToLayer("DemonPlayer"))
+        
+        else if (other.gameObject.layer == LayerMask.NameToLayer("DemonPlayer"))
         {
             demon = true;
+            Debug.Log("DEMON = " + true);
         }
 
+        Debug.Log("ANGEL = " + true + ", DEMON =" + true);
+        
         if(demon && angel)
         {
             Destroy(PlayerWorlds.instance);
