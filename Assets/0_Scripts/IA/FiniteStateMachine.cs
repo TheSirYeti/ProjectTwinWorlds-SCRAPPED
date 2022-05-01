@@ -37,6 +37,7 @@ public enum FSM_State
     PALADIN_SUMMON,
     PALADIN_TACKLE,
     PALADIN_RETURN,
+    PALADIN_DEATH,
     
     MAFIA_RELOAD,
     MAFIA_SHOOT

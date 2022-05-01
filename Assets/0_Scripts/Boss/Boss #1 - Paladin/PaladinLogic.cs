@@ -85,7 +85,8 @@ public class PaladinLogic : MonoBehaviour
         
         if (currentPhase > 3)
         {
-            Destroy(gameObject);
+            fsm.ChangeState(FSM_State.PALADIN_DEATH);
+            animator.Play("Paladin_Death");
         }
         else
         {
@@ -106,6 +107,7 @@ public class PaladinLogic : MonoBehaviour
         fsm.AddState(FSM_State.PALADIN_RETURN, new PaladinReturnState(returnPoint, fsm, this, 0.2f, speed));
         fsm.AddState(FSM_State.PALADIN_SUMMON, new PaladinSummonState(this, fsm, 7, 0.8f));
         fsm.AddState(FSM_State.PALADIN_TACKLE, new PaladinTackleState(1f, 4f, fsm, animator, this, shieldSpawnpoints, shieldPrefabOut));
+        fsm.AddState(FSM_State.PALADIN_DEATH, new NullState());
         fsm.ChangeState(FSM_State.PALADIN_CHASE);
     }
 
