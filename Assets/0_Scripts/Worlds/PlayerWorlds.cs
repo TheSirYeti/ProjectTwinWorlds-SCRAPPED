@@ -19,11 +19,11 @@ public class PlayerWorlds : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else Destroy(gameObject);
+        /*if (instance == null)
+        {*/
+        instance = this;
+        /*}
+        else Destroy(gameObject);*/
 
         currentPlayer = demonPlayer;
     }
