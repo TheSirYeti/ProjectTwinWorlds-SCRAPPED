@@ -7,6 +7,4 @@ public class PentadentCollision : MonoBehaviour
 {
     public float duration, minDistance;
     public Transform currentDestination;
-
-
 }

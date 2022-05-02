@@ -35,20 +35,20 @@ public class LevelLoadLogic : MonoBehaviour
             
             if (!needsBothPlayers)
             {
-                Destroy(PlayerWorlds.instance);
-                Debug.Log(levelID);
+                Destroy(PlayerWorlds.instance.angelPlayer);
+                Destroy(PlayerWorlds.instance.demonPlayer);
                 LevelManager.instance.LoadNextScene(levelID);
             }
         }
         
-        else if (other.gameObject.layer == LayerMask.NameToLayer("DemonPlayer"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("DemonPlayer"))
         {
             demon = true;
             
             if (!needsBothPlayers)
             {
-                Destroy(PlayerWorlds.instance);
-                Debug.Log(levelID);
+                Destroy(PlayerWorlds.instance.angelPlayer);
+                Destroy(PlayerWorlds.instance.demonPlayer);
                 LevelManager.instance.LoadNextScene(levelID);
             }
         }
@@ -56,7 +56,6 @@ public class LevelLoadLogic : MonoBehaviour
         if(demon && angel)
         {
             Destroy(PlayerWorlds.instance);
-            Debug.Log(levelID);
             LevelManager.instance.LoadNextScene(levelID);
         }
     }

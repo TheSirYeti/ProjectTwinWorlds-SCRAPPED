@@ -51,10 +51,7 @@ public class LevelManager : MonoBehaviour
     public void LoadNextScene(int sceneID)
     {
         currentId = sceneID;
-        Debug.Log("MY ID: " + currentId);
-        
-        
-        
+
         EventManager.ResetEventDictionary();
         SoundManager.instance.StopAllMusic();
         SoundManager.instance.StopAllSounds();
@@ -69,18 +66,14 @@ public class LevelManager : MonoBehaviour
     IEnumerator LoadSceneBuffer()
     {
         SceneManager.LoadScene(loadingScene);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.3f);
+        
+        if(PlayerWorlds.instance != null)
+            Destroy(PlayerWorlds.instance);
+        
+        yield return new WaitForSeconds(0.6f);
+        
         SceneManager.LoadSceneAsync(currentId);
         yield return new WaitForSeconds(0.0001f);
-    }
-    
-    public enum SceneID
-    {
-        MAIN_MENU,
-        LEVEL_1,
-        LEVEL_2,
-        BOSS,
-        BOSS_2,
-        MINIBOSS1
     }
 }

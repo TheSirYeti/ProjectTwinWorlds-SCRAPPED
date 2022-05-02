@@ -331,7 +331,7 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
     
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Movable Object"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Movable Object") && isDemon)
         {
             jumpSpot = other.gameObject.GetComponent<MovableItem>().jumpSpot;
             canJump = true;
@@ -340,7 +340,7 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Movable Object"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Movable Object") && isDemon)
         {
             jumpSpot = null;
             canJump = false;
