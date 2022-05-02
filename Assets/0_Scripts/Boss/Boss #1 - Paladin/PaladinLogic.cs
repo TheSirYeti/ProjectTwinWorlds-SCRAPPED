@@ -87,6 +87,7 @@ public class PaladinLogic : MonoBehaviour
         {
             fsm.ChangeState(FSM_State.PALADIN_DEATH);
             animator.Play("Paladin_Death");
+            GetComponent<Collider>().enabled = false;
         }
         else
         {
@@ -132,5 +133,10 @@ public class PaladinLogic : MonoBehaviour
         {
             stake.SetActive(true);
         }
+    }
+
+    public void OnPaladinDeath()
+    {
+        LevelManager.instance.LoadNextScene(0);
     }
 }
