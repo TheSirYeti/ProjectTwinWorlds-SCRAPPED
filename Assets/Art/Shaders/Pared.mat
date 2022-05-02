@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Pared
-  m_Shader: {fileID: 4800000, guid: bbd79f9c0fe435f4f8f6f31f6b2133a8, type: 3}
+  m_Shader: {fileID: 4800000, guid: 092645461c6bcfa42ab4e856825dd5c3, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -19,12 +19,24 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _Normal:
+        m_Texture: {fileID: 2800000, guid: 2463a7b4a3db68740ab4e9918ca5aecb, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Normal1:
         m_Texture: {fileID: 2800000, guid: 387d5251a74e1a84bb37158af24c326f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _NormalNone:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _NormalNone1:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureofObjects:
+        m_Texture: {fileID: 2800000, guid: b0399ff521a719744bbfedaa95180469, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _texcoord:
@@ -33,17 +45,27 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _ClampMax: 1.71
     - _ClampMax1: 0
+    - _ClampMin: -0.96
     - _ClampMin1: 0
+    - _GradientWhitTexture: 0.14
     - _GradientWhitTexture1: 0
+    - _Metallic: 0
     - _Metallic1: 0
+    - _NormalLerp: 1
     - _NormalLerp1: 1
+    - _Origin: 0.31
     - _Origin1: 0
+    - _Smoothness: 0
     - _Smoothness1: 0
+    - _Spread: 2.99
     - _Spread1: 0
     - __dirty: 0
     m_Colors:
+    - _BottomColor: {r: 0.5186454, g: 0.990566, b: 0.66385174, a: 0}
     - _BottomColor1: {r: 0.6980392, g: 0.9529412, b: 0.7764706, a: 0}
     - _Color0: {r: 0.7830189, g: 0.7830189, b: 0.7830189, a: 0}
+    - _TopColor: {r: 0.8679245, g: 0.6673193, b: 0.6673193, a: 0}
     - _TopColor1: {r: 0.945098, g: 0.8313726, b: 0.8313726, a: 0}
   m_BuildTextureStacks: []

@@ -4728,6 +4728,7 @@ MonoBehaviour:
   stake: {fileID: 1847374391}
   myCollider: {fileID: 0}
   stakeId: 1
+  lineRenderer: {fileID: 0}
 --- !u!65 &601665635
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7020,7 +7021,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-2966
+  m_Name: pb_Mesh-33550
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -7872,7 +7873,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-2894
+  m_Name: pb_Mesh-33478
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -9739,6 +9740,7 @@ MonoBehaviour:
   stake: {fileID: 1452382016}
   myCollider: {fileID: 0}
   stakeId: 0
+  lineRenderer: {fileID: 0}
 --- !u!1 &1324996751
 GameObject:
   m_ObjectHideFlags: 0
@@ -13091,7 +13093,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-2942
+  m_Name: pb_Mesh-33526
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -13279,6 +13281,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentId: 0
+  loadingScene: 0
 --- !u!4 &1915930159
 Transform:
   m_ObjectHideFlags: 0
@@ -18320,6 +18323,63 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ad0a72c6a827884e932483928259441, type: 3}
+--- !u!1001 &7011386221266847972
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7011386221936355840, guid: bd4d29d39c8b7854ca22062ab561f4e0, type: 3}
+      propertyPath: m_RootOrder
+      value: 46
+      objectReference: {fileID: 0}
+    - target: {fileID: 7011386221936355840, guid: bd4d29d39c8b7854ca22062ab561f4e0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 17.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7011386221936355840, guid: bd4d29d39c8b7854ca22062ab561f4e0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.81
+      objectReference: {fileID: 0}
+    - target: {fileID: 7011386221936355840, guid: bd4d29d39c8b7854ca22062ab561f4e0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7011386221936355840, guid: bd4d29d39c8b7854ca22062ab561f4e0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7011386221936355840, guid: bd4d29d39c8b7854ca22062ab561f4e0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7011386221936355840, guid: bd4d29d39c8b7854ca22062ab561f4e0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7011386221936355840, guid: bd4d29d39c8b7854ca22062ab561f4e0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7011386221936355840, guid: bd4d29d39c8b7854ca22062ab561f4e0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7011386221936355840, guid: bd4d29d39c8b7854ca22062ab561f4e0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7011386221936355840, guid: bd4d29d39c8b7854ca22062ab561f4e0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7011386221936355844, guid: bd4d29d39c8b7854ca22062ab561f4e0, type: 3}
+      propertyPath: m_Name
+      value: Rejilla
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bd4d29d39c8b7854ca22062ab561f4e0, type: 3}
 --- !u!1 &7044274720247900018
 GameObject:
   m_ObjectHideFlags: 0
@@ -18924,6 +18984,7 @@ MonoBehaviour:
   - {fileID: 1446786951}
   target: {fileID: 292067271}
   returnPoint: {fileID: 1070823055}
+  stakes: []
   speed: 3.5
   attackNumber: 0
   maxAttackNumber: 3
