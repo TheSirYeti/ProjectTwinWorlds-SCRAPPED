@@ -26,6 +26,7 @@ public class SwingPhysics : InteractableObject
     public override void OnObjectStart()
     {
         angelAttack = PlayerWorlds.instance.angelPlayer.transform;
+        Debug.Log(angelAttack);
         
         if (GetClosestPoint(angelAttack) == leftPoint)
         {
