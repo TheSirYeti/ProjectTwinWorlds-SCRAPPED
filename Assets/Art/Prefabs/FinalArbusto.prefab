@@ -507,7 +507,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5360852109838521614}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: FinalArbusto
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -798,7 +798,7 @@ GameObject:
   m_Component:
   - component: {fileID: 621473153952430132}
   - component: {fileID: 9149878437757453066}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -831,5 +831,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.9762554, y: 2.7329311, z: 9.27311}
-  m_Center: {x: 0.027148247, y: -0.101685524, z: -0.059065342}
+  m_Size: {x: 2.9762554, y: 4.1580014, z: 9.27311}
+  m_Center: {x: 0.027148247, y: 0.6108496, z: -0.059065342}
