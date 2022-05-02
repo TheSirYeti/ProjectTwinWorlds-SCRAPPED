@@ -110,7 +110,7 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
     
     public void PostSwingMovement(float h, float v)
     {
-        Vector3 movement;
+        /*Vector3 movement;
         
         if (isSwingLeft)
         {
@@ -129,8 +129,8 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
 
         if (canMove)
         {
-            rb.velocity = new Vector3(movement.x * speed * Time.deltaTime, rb.velocity.y, movement.z * speed * Time.deltaTime);
-        }
+            rb.velocity = new Vector3(movement.x * maxSpeed * Time.deltaTime, rb.velocity.y, movement.z * speed * Time.deltaTime);
+        }*/
     }
 
     public void NoMovement(float h, float v)
