@@ -240,7 +240,7 @@ MonoBehaviour:
   - {fileID: 1176831782159091481}
   isObjectTriggered: 0
   triggerDistance: 45
-  myShader: {fileID: 5089329819601700009, guid: 74fe083184ea8414ea6b6d7fd5ef5d1a, type: 3}
+  myShader: {fileID: 1492393383510326766}
   playerStartPosition: {fileID: 1176831780968758113}
   objectStartPosition: {fileID: 1176831781208652036}
   objectEndPosition: {fileID: 3866858936092446720}
@@ -269,7 +269,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 64bae09f2225c3443bf763b2a8ff5d7e, type: 2}
+  - {fileID: 2100000, guid: 7a5303bab731e054c892c49068af44f5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1068,6 +1068,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 74fe083184ea8414ea6b6d7fd5ef5d1a, type: 3}
+--- !u!1 &1492393383510326766 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5089329819601700009, guid: 74fe083184ea8414ea6b6d7fd5ef5d1a, type: 3}
+  m_PrefabInstance: {fileID: 5915167368516942151}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2305239706095773524 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5614649724257295891, guid: 74fe083184ea8414ea6b6d7fd5ef5d1a, type: 3}
