@@ -15,6 +15,7 @@ public class LevelLoadLogic : MonoBehaviour
     {
         Debug.Log(levelID);
         LevelManager.instance.LoadNextScene(levelID);
+        Destroy(gameObject);
     }
 
     private void Update()
@@ -25,11 +26,19 @@ public class LevelLoadLogic : MonoBehaviour
             {
                 oneReady.SetActive(true);
             } else oneReady.SetActive(false);
+            
+            if(demon && angel)
+            {
+                Destroy(PlayerWorlds.instance);
+                LevelManager.instance.LoadNextScene(levelID);
+                Debug.Log("CARGARON AMBOS!");
+                Destroy(gameObject);
+            }
         }
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("AngelPlayer"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("AngelOnlyTrigger"))
         {
             angel = true;
             
@@ -38,10 +47,12 @@ public class LevelLoadLogic : MonoBehaviour
                 Destroy(PlayerWorlds.instance.angelPlayer);
                 Destroy(PlayerWorlds.instance.demonPlayer);
                 LevelManager.instance.LoadNextScene(levelID);
+                Debug.Log("CARGO ANGEL!");
+                Destroy(gameObject);
             }
         }
         
-        if (other.gameObject.layer == LayerMask.NameToLayer("DemonPlayer"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("DemonOnlyTrigger"))
         {
             demon = true;
             
@@ -50,24 +61,20 @@ public class LevelLoadLogic : MonoBehaviour
                 Destroy(PlayerWorlds.instance.angelPlayer);
                 Destroy(PlayerWorlds.instance.demonPlayer);
                 LevelManager.instance.LoadNextScene(levelID);
+                Debug.Log("CARGO DEMONIO!");
+                Destroy(gameObject);
             }
-        }
-        
-        if(demon && angel)
-        {
-            Destroy(PlayerWorlds.instance);
-            LevelManager.instance.LoadNextScene(levelID);
         }
     }
 
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("AngelPlayer"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("AngelOnlyTrigger"))
         {
             angel = false;
         }
-        if (other.gameObject.layer == LayerMask.NameToLayer("DemonPlayer"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("DemonOnlyTrigger"))
         {
             demon = false;
         }

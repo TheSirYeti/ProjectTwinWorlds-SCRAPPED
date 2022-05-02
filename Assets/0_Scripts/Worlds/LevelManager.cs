@@ -71,7 +71,7 @@ public class LevelManager : MonoBehaviour
         if(PlayerWorlds.instance != null)
             Destroy(PlayerWorlds.instance);
         
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.2f);
         
         SceneManager.LoadSceneAsync(currentId);
         yield return new WaitForSeconds(0.0001f);

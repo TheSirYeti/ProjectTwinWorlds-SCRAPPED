@@ -43,23 +43,26 @@ public class WorldObject : MonoBehaviour
     public void SwapMaterial(object[] parameters)
     {
         GameObject myPlayer = (GameObject) parameters[0];
-        
-        if (isWorldActive)
-        {
-            if (myPlayer.layer == LayerMask.NameToLayer("DemonPlayer"))
-                GetComponent<Renderer>().material = angelOffMaterial;
-            else GetComponent<Renderer>().material = demonOffMaterial;
 
-            isWorldActive = false;
-            if (collider != null) 
-                collider.enabled = false;
-        }
-        else
+        if (GetComponent<Renderer>() != null)
         {
-            isWorldActive = true;
-            GetComponent<Renderer>().material = defaultMaterial;
-            if (collider != null) 
-                collider.enabled = true;
+            if (isWorldActive)
+            {
+                if (myPlayer.layer == LayerMask.NameToLayer("DemonPlayer"))
+                    GetComponent<Renderer>().material = angelOffMaterial;
+                else GetComponent<Renderer>().material = demonOffMaterial;
+
+                isWorldActive = false;
+                if (collider != null) 
+                    collider.enabled = false;
+            }
+            else
+            {
+                isWorldActive = true;
+                GetComponent<Renderer>().material = defaultMaterial;
+                if (collider != null) 
+                    collider.enabled = true;
+            }
         }
     }
 }
