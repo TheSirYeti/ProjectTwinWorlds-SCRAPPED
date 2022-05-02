@@ -6740,8 +6740,8 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.1
-  far clip plane: 10000
+  near clip plane: -157
+  far clip plane: 20000
   field of view: 40
   orthographic: 1
   orthographic size: 23
@@ -25319,11 +25319,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2877949674745233506, guid: 305d90f54d62b64449c4b245eddabd14, type: 3}
       propertyPath: m_Lens.FarClipPlane
-      value: 10000
+      value: 20000
+      objectReference: {fileID: 0}
+    - target: {fileID: 2877949674745233506, guid: 305d90f54d62b64449c4b245eddabd14, type: 3}
+      propertyPath: m_Lens.NearClipPlane
+      value: -157
       objectReference: {fileID: 0}
     - target: {fileID: 2877949674745233506, guid: 305d90f54d62b64449c4b245eddabd14, type: 3}
       propertyPath: m_Lens.m_SensorSize.x
-      value: 1.7763864
+      value: 1.777027
       objectReference: {fileID: 0}
     - target: {fileID: 3023022473246426586, guid: 305d90f54d62b64449c4b245eddabd14, type: 3}
       propertyPath: m_CameraDistance
