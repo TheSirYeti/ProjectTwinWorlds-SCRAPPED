@@ -18,6 +18,10 @@ public class LoreController : MonoBehaviour
                 index++;
                 loreText[index].gameObject.SetActive(true);
             }
+            else
+            {
+                LevelManager.instance.LoadNextScene(1);
+            }
         }
 
         if (Input.GetMouseButtonDown(1))
@@ -29,9 +33,13 @@ public class LoreController : MonoBehaviour
                 index--;
                 loreText[index].gameObject.SetActive(true);
             }
+            else
+            {
+                LevelManager.instance.LoadNextScene(0);
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.Escape))
-            SceneManager.LoadScene(0);
+            LevelManager.instance.LoadNextScene(0);
     }
 }
