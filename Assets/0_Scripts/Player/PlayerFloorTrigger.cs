@@ -16,7 +16,7 @@ public class PlayerFloorTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Floor"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Floor") || other.gameObject.layer == LayerMask.NameToLayer("Breakable Object"))
         {
             if (angelMovement.movementDelegate == angelMovement.PostSwingMovement)
             {
@@ -27,7 +27,7 @@ public class PlayerFloorTrigger : MonoBehaviour
     
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Floor"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Floor")  || other.gameObject.layer == LayerMask.NameToLayer("Breakable Object"))
         {
             if (angelMovement.movementDelegate == angelMovement.PostSwingMovement)
             {
