@@ -1270,6 +1270,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayersComponent
       objectReference: {fileID: 0}
+    - target: {fileID: 2151935201898410561, guid: 305d90f54d62b64449c4b245eddabd14, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2877949674745233506, guid: 305d90f54d62b64449c4b245eddabd14, type: 3}
       propertyPath: m_Lens.m_SensorSize.x
       value: 1.7788697
@@ -1318,6 +1322,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0.23477861
       objectReference: {fileID: 0}
+    - target: {fileID: 5277408589903883722, guid: 305d90f54d62b64449c4b245eddabd14, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5594684078624446211, guid: 305d90f54d62b64449c4b245eddabd14, type: 3}
       propertyPath: m_LocalPosition.x
       value: 64.2
@@ -1334,6 +1342,14 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 646714987}
+    - target: {fileID: 6624529944411106533, guid: 305d90f54d62b64449c4b245eddabd14, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6624529944411106533, guid: 305d90f54d62b64449c4b245eddabd14, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -96
+      objectReference: {fileID: 0}
     - target: {fileID: 8578850126856742211, guid: 305d90f54d62b64449c4b245eddabd14, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.2954369
