@@ -16,9 +16,10 @@ public class PaladinTackleState : MonoBehaviour, IState
     private PaladinLogic paladin;
     private List<Transform> spawnPoints;
     private GameObject shieldPrefab;
+    private Collider collider;
     private Vector3 target;
     
-    public PaladinTackleState(float timeToCharge, float timeToNextState, FiniteStateMachine fsm, Animator animator, PaladinLogic paladin, List<Transform> spawnPoints, GameObject shieldPrefab)
+    public PaladinTackleState(float timeToCharge, float timeToNextState, FiniteStateMachine fsm, Animator animator, PaladinLogic paladin, List<Transform> spawnPoints, GameObject shieldPrefab, Collider collider)
     {
         this.timeToCharge = timeToCharge;
         this.timeToNextState = timeToNextState;
@@ -27,6 +28,7 @@ public class PaladinTackleState : MonoBehaviour, IState
         this.paladin = paladin;
         this.spawnPoints = spawnPoints;
         this.shieldPrefab = shieldPrefab;
+        this.collider = collider;
     }
 
     public void OnStart()
