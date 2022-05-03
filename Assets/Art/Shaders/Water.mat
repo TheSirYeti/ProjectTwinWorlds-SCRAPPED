@@ -25,11 +25,18 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _Divide: 7.74
     - _Divide1: 7.74
+    - _Power: 0.81
     - _Power1: 0.81
+    - _ScaleVoronoi: 6.62
     - _ScaleVoronoi1: 6.62
+    - _TimeVoronoi: 1.79
     - _TimeVoronoi1: 1.79
+    - _Vectormulty: 0.13
     - _Vectormulty1: 0.13
     - __dirty: 0
-    m_Colors: []
+    m_Colors:
+    - _FirstColor: {r: 0, g: 0.3510606, b: 1, a: 0}
+    - _SecondColor: {r: 0, g: 0.8862748, b: 1, a: 0}
   m_BuildTextureStacks: []
