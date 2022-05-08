@@ -101,7 +101,7 @@ public class MovableItem : InteractableObject
 
         ResetVariables(null);
         EventManager.Trigger("OnMovableUnrestrict");
-        EventManager.Trigger("ResetAbility");
+        EventManager.Trigger("ResetAbility", PlayerWorlds.instance.demonPlayer);
         lineRenderer.enabled = false;
     }
 
@@ -179,12 +179,13 @@ public class MovableItem : InteractableObject
             transform.SetParent(null); 
         }
 
-        OnItemCanceled(null);
+        lineRenderer.enabled = false;
     }
 
     public void OnItemCanceled(object[] parameters)
     {
-        lineRenderer.enabled = false;
+        if(parameters[0] != null && parameters[0] as GameObject == PlayerWorlds.instance.demonPlayer)
+            lineRenderer.enabled = false;
     }
     
     

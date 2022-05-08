@@ -27,7 +27,7 @@ public class ColumnasRompibles : InteractableObject
     public override void OnObjectEnd()
     {
         ResetVariables(null);
-        EventManager.Trigger("ResetAbility");
+        //EventManager.Trigger("ResetAbility"); deshabilitado porque nose quien interactua
     }
 
     public override void OnObjectExecute()

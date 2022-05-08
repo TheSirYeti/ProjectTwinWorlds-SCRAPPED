@@ -63,7 +63,7 @@ public class HangItem : InteractableObject
         else
         {
             ResetVariables(null);
-            EventManager.Trigger("ResetAbility");
+            EventManager.Trigger("ResetAbility", PlayerWorlds.instance.demonPlayer);
         }
     }
 

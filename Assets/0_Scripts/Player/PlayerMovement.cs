@@ -68,7 +68,7 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
             transform.position = jumpSpot.position;
             jumpSpot = null;
             canJump = false;
-            EventManager.Trigger("ResetAbility");
+            EventManager.Trigger("ResetAbility", gameObject);
         }
     }
 

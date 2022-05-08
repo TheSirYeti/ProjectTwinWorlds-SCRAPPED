@@ -21,7 +21,7 @@ public abstract class PlayerAttacks : MonoBehaviour
     
     private void Start()
     {
-        EventManager.Subscribe("ResetAbility", ThrowAbility);
+        EventManager.Subscribe("ResetAbility", ResetAbility);
     }
 
     private void Update()
@@ -41,9 +41,8 @@ public abstract class PlayerAttacks : MonoBehaviour
             }
             else
             {
-                EventManager.Trigger("OnAbilityCancel");
-                ThrowAbility(null);
-                EventManager.Trigger("ResetAbility");
+                EventManager.Trigger("OnAbilityCancel", gameObject);
+                EventManager.Trigger("ResetAbility", gameObject);
             }
         }
         
@@ -81,13 +80,12 @@ public abstract class PlayerAttacks : MonoBehaviour
 
             if (intObj.IsInSight(transform) && intObj.CanInteract(transform, isDemon))
             {
-                if (LayerMask.NameToLayer(intObj.layerTrigger) == gameObject.layer
-                    && intObj.CheckForFirstTrigger())
+                if (LayerMask.NameToLayer(intObj.layerTrigger) == gameObject.layer)
                 {
                     AimAbility(intObj.insertionPoints[intObj.GetClosestInsertionPoint(transform.position)], intObj, false);
                     usedAbility = true;
                 }
-                else
+                /*else
                 {
                     if (LayerMask.NameToLayer(intObj.firstTrigger) == gameObject.layer)
                     {
@@ -95,14 +93,14 @@ public abstract class PlayerAttacks : MonoBehaviour
                         PlayerWorlds.instance.firstTriggerPlayer = this.gameObject;
                         usedAbility = true;
                     }
-                }
+                }*/
             }
             
         }
         else usedAbility = false;
     }
     
-    public abstract void ThrowAbility(object[] parameters);
+    public abstract void ResetAbility(object[] parameters);
     
     public abstract void AimAbility(Transform destination, InteractableObject intObj, bool isFirst);
 

@@ -25,8 +25,8 @@ internal class BreakableWall : InteractableObject
     public override void OnObjectEnd()
     {
         lineRenderer.enabled = false;
-        ResetVariables(null);
-        EventManager.Trigger("ResetAbility");
+        //ResetVariables(null);
+        //EventManager.Trigger("ResetAbility", PlayerWorlds.instance.demonPlayer);
         gameObject.SetActive(false);
     }
 

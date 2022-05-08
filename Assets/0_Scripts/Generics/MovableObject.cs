@@ -40,6 +40,9 @@ public class MovableObject : MonoBehaviour
     
     public void DisableFollow(object[] parameters)
     {
-        isActive = false;
+        GameObject player = parameters[0] as GameObject;
+        
+        if(player == PlayerWorlds.instance.demonPlayer)
+            isActive = false;
     }
 }

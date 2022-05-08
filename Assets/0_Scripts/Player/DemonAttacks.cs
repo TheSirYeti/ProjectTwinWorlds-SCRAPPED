@@ -49,23 +49,30 @@ public class DemonAttacks : PlayerAttacks
         else return null;
     }
 
-    public override void ThrowAbility(object[] parameters)
+    public override void ResetAbility(object[] parameters)
     {
-        weapon.transform.SetParent(null);
-        weapon.transform.position = transform.position;
-        weapon.gameObject.SetActive(false);
-        
-        if (currentObject != null)
+        GameObject player = parameters[0] as GameObject;
+
+        if (player != null && player == gameObject)
         {
-            SoundManager.instance.PlaySound(SoundID.PENTADENT_PULL);
-            if(currentObject.isObjectTriggered)
-                currentObject.OnObjectEnd();
-        }
-        currentObject = null;
+            weapon.transform.SetParent(null);
+            weapon.transform.position = transform.position;
+            weapon.gameObject.SetActive(false);
         
-        EventManager.Trigger("OnPulleyStop");
-        EventManager.Trigger("OnSwingStop");
-        usedAbility = false;
+            if (currentObject != null)
+            {
+                Debug.Log("Loop check 1 - demon");
+                SoundManager.instance.PlaySound(SoundID.PENTADENT_PULL);
+                if(currentObject.isObjectTriggered)
+                    currentObject.OnObjectEnd();
+            }
+            currentObject = null;
+        
+            Debug.Log("Loop check 2 - demon");
+            EventManager.Trigger("OnPulleyStop");
+            EventManager.Trigger("OnSwingStop");
+            usedAbility = false;
+        }
     }
 
     public void AimPentadente()
@@ -94,7 +101,7 @@ public class DemonAttacks : PlayerAttacks
             }
             else
             {
-                EventManager.Trigger("ResetAbility");
+                EventManager.Trigger("ResetAbility", gameObject);
             }
         }
     }

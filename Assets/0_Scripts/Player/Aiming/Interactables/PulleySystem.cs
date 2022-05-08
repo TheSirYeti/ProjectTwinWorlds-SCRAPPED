@@ -51,7 +51,7 @@ public class PulleySystem : InteractableObject
     {
         lineRenderer.enabled = false;
         ResetVariables(null);
-        EventManager.Trigger("ResetAbility");
+        EventManager.Trigger("ResetAbility", PlayerWorlds.instance.demonPlayer);
         EventManager.Trigger("OnPulleyStop");
     }
 

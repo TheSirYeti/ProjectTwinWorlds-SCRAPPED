@@ -62,29 +62,35 @@ public class AngelAttacks : PlayerAttacks
         }
     }
 
-    public override void ThrowAbility(object[] parameters)
+    public override void ResetAbility(object[] parameters)
     {
-        ropeCollision.transform.position = transform.position;
-        lineRenderer.enabled = false;
-        isSwinging = false;
-        usedAbility = false;
-        isConnected = false;
-        weapon.transform.parent = null;
-        weapon.gameObject.SetActive(false);
-        
-        if (currentObject != null)
+        GameObject player = parameters[0] as GameObject;
+
+        if (player != null && player == gameObject)
         {
-            Debug.Log("Loop check 1 - angel");
-            SoundManager.instance.PlaySound(SoundID.BOW_PULL);
-            
-            if(currentObject.isObjectTriggered)
-                currentObject.OnObjectEnd();
-        }
-        currentObject = null;
+            ropeCollision.transform.position = transform.position;
+            lineRenderer.enabled = false;
+            isSwinging = false;
+            usedAbility = false;
+            isConnected = false;
+            weapon.transform.parent = null;
+            weapon.gameObject.SetActive(false);
         
-        Debug.Log("Loop check 2 - angel");
-        EventManager.Trigger("OnPulleyStop");
-        EventManager.Trigger("OnSwingStop");
+            if (currentObject != null)
+            {
+                Debug.Log("Loop check 1 - angel");
+                SoundManager.instance.PlaySound(SoundID.BOW_PULL);
+            
+                if(currentObject.isObjectTriggered)
+                    currentObject.OnObjectEnd();
+            }
+            currentObject = null;
+        
+            Debug.Log("Loop check 2 - angel");
+            
+            EventManager.Trigger("OnPulleyStop");
+            EventManager.Trigger("OnSwingStop");
+        }
     }
 
     private void OnTriggerEnter(Collider other)

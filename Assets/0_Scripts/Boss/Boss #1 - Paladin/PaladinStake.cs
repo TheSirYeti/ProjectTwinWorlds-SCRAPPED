@@ -74,7 +74,8 @@ public class PaladinStake : InteractableObject
 
     private void ResetStake(object[] parameters)
     {
-        EventManager.Trigger("ResetAbility");
+        EventManager.Trigger("ResetAbility", PlayerWorlds.instance.angelPlayer);
+        EventManager.Trigger("ResetAbility", PlayerWorlds.instance.demonPlayer);
         animator.Play("Estaca_Idle");
         myCollider.enabled = false;
         stake.SetActive(false);
@@ -90,7 +91,8 @@ public class PaladinStake : InteractableObject
         if (collision.gameObject.layer == (int)LayerStruct.LayerID.BOSS)
         {
             EventManager.Trigger("OnBossDamaged");
-            EventManager.Trigger("ResetAbility");
+            EventManager.Trigger("ResetAbility", PlayerWorlds.instance.angelPlayer);
+            EventManager.Trigger("ResetAbility", PlayerWorlds.instance.demonPlayer);
             ResetStake(null);
             ResetVariables(null);
         }

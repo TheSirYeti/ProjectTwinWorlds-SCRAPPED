@@ -53,13 +53,19 @@ public abstract class InteractableObject : MonoBehaviour
 
     public void ResetVariables(object[] parameters)
     {
-        isFirstTriggered = false;
-        isObjectTriggered = false;
+        Debug.Log(parameters[0] as GameObject);
+        GameObject player = parameters[0] as GameObject;
+        if (player.layer == LayerMask.NameToLayer(layerTrigger))
+        {
+            isFirstTriggered = false;
+            isObjectTriggered = false;
+        }
     }
 
     public void CancelAbility(object[] parameters)
     {
-        if (isObjectTriggered)
+        GameObject player = parameters[0] as GameObject;
+        if (isObjectTriggered && player.layer == LayerMask.NameToLayer(layerTrigger))
         {
             OnObjectEnd();
         }

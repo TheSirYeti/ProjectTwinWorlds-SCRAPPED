@@ -91,7 +91,7 @@ public class SwingPhysics : InteractableObject
         }
         animator.SetBool("swingLeft", false);
         animator.SetBool("swingRight", false);
-        EventManager.Trigger("ResetAbility");
+        EventManager.Trigger("ResetAbility", PlayerWorlds.instance.demonPlayer);
     }
     
     public override void OnObjectExecute()
