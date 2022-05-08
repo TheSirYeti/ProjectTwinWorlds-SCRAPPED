@@ -16,7 +16,7 @@ public class PulleySystem : InteractableObject
     {
         demon = PlayerWorlds.instance.demonPlayer.transform;
         
-        if (isObjectReady && isAngelReady)
+        if (isObjectReady)
         {
             lineRenderer.enabled = true;
             isObjectTriggered = true;
@@ -50,8 +50,8 @@ public class PulleySystem : InteractableObject
     public override void OnObjectEnd()
     {
         lineRenderer.enabled = false;
-        ResetVariables(null);
-        EventManager.Trigger("ResetAbility", PlayerWorlds.instance.demonPlayer);
+        //ResetVariables(null);
+        //EventManager.Trigger("ResetAbility", PlayerWorlds.instance.demonPlayer);
         EventManager.Trigger("OnPulleyStop");
     }
 

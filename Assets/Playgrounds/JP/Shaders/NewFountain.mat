@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: NewFountain
+  m_Shader: {fileID: 4800000, guid: 67112dc26b0304a40ab5edffa62d5fa5, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _Amplitude: 0.33
+    - _EdgeLength: 2
+    - _Float10: 0.047
+    - _Float3: 0
+    - _Float5: 0.004
+    - _Float6: 0.059
+    - _Offset: 0
+    - _Opacity: 0.12
+    - _RingWidth: 0.31415185
+    - _Smoothness: -0.84
+    - _VoronoiAngle: 1.68
+    - _VoronoiScale: 11.08
+    - __dirty: 0
+    m_Colors:
+    - _Color0: {r: 0.1947671, g: 0.14351194, b: 0.7075472, a: 0}
+    - _Color1: {r: 0.5424528, g: 0.82337475, b: 1, a: 0}
+    - _Vector0: {r: 0.5, g: 0.5, b: 0, a: 0}
+    - _Vector1: {r: 0.5, g: 0.5, b: 0, a: 0}
+  m_BuildTextureStacks: []

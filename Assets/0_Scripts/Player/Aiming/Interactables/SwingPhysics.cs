@@ -74,24 +74,24 @@ public class SwingPhysics : InteractableObject
             if (currentItem != null && !currentItem.isObjectTriggered)
             {
                 currentItem.CutSwingTies(null);
-                ResetVariables(null);
+                //ResetVariables(null);
             }
             else
             {
-                ResetVariables(null);
+                //ResetVariables(null);
                 EventManager.Trigger("OnSwingStop");
                 isObjectTriggered = false;
             }
         }
         else
         {
-            ResetVariables(null);
+            //ResetVariables(null);
             isAfterHang = true;
             
         }
         animator.SetBool("swingLeft", false);
         animator.SetBool("swingRight", false);
-        EventManager.Trigger("ResetAbility", PlayerWorlds.instance.demonPlayer);
+        //EventManager.Trigger("ResetAbility", PlayerWorlds.instance.demonPlayer);
     }
     
     public override void OnObjectExecute()
@@ -171,7 +171,7 @@ public class SwingPhysics : InteractableObject
 
     public void ResetStats()
     {
-        ResetVariables(null);
+        //ResetVariables(null);
         isHanging = false;
         isAfterHang = false;
     }

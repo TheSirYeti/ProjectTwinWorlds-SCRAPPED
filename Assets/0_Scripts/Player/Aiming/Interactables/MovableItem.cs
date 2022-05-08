@@ -99,9 +99,9 @@ public class MovableItem : InteractableObject
         isFollowing = false;
         isRestricting = false;
 
-        ResetVariables(null);
+        //ResetVariables(null);
         EventManager.Trigger("OnMovableUnrestrict");
-        EventManager.Trigger("ResetAbility", PlayerWorlds.instance.demonPlayer);
+        //EventManager.Trigger("ResetAbility", PlayerWorlds.instance.demonPlayer);
         lineRenderer.enabled = false;
     }
 

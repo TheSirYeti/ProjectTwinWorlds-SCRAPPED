@@ -200,9 +200,6 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
         {
                 pulleyObject.velocity = new Vector3(0, ((speed / 4f) * Time.fixedDeltaTime) * -1, 0);
         }
-        
-
-        Debug.Log(previousDistance + " | " + currentDistance);
     }
 
     public void OnNotify(string eventID)
