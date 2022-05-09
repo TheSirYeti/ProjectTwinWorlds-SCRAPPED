@@ -195,7 +195,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7333661644236307294}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.14, y: 1.444, z: -4.94}
+  m_LocalPosition: {x: 0, y: 1.444, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -297,7 +297,7 @@ MonoBehaviour:
   isObjectTriggered: 0
   triggerDistance: 9
   myShader: {fileID: 8246450955266567177}
-  lineRenderer: {fileID: 0}
+  lineRenderer: {fileID: 210715266125448497}
 --- !u!120 &210715266125448497
 LineRenderer:
   m_ObjectHideFlags: 0

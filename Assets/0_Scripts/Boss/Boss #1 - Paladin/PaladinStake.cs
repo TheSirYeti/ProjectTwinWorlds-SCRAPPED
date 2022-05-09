@@ -47,15 +47,16 @@ public class PaladinStake : InteractableObject
 
     public override void OnObjectEnd()
     {
+        object[] ids = new object[1];
+        ids[0] = stakeId;
+        MoveStake(ids);
         lineRenderer.enabled = false;
-        ResetVariables(null);
+        //ResetVariables(null);
     }
 
     public override void OnObjectExecute()
     {
-        object[] ids = new object[1];
-        ids[0] = stakeId;
-        MoveStake(ids);
+        OnObjectEnd();
     }
 
     private void SetStake(object[] parameters)
