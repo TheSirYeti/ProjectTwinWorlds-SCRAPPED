@@ -5,13 +5,33 @@ using UnityEngine;
 public class TriggerTutorial : MonoBehaviour
 {
     public TutorialController controller;
-
+    public int id;
+    public bool isForDemon, isForAngel;
+    
     private void OnTriggerEnter(Collider other)
     {
-        if(other.GetComponent<PlayerMovement>() != null)
+        if(other.GetComponent<DemonAttacks>())
         {
-            controller.NextTutorial();
-            gameObject.SetActive(false);
+            if (isForDemon)
+            {
+                controller.SetTutorial(id);
+            }
+            else
+            {
+                controller.DisableTutorial();
+            }
+        }
+        
+        else if(other.GetComponent<AngelAttacks>())
+        {
+            if (isForAngel)
+            {
+                controller.SetTutorial(id);
+            }
+            else
+            {
+                controller.DisableTutorial();
+            }
         }
     }
 }

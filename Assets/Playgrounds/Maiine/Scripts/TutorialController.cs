@@ -13,4 +13,21 @@ public class TutorialController : MonoBehaviour
         index++;
         tutorialsInScene[index].SetActive(true);
     }
+
+    public void SetTutorial(int id)
+    {
+        foreach (var tutorial in tutorialsInScene)
+        {
+            tutorial.SetActive(false);
+        }
+        tutorialsInScene[id].SetActive(true);
+    }
+
+    public void DisableTutorial()
+    {
+        foreach (var tutorial in tutorialsInScene)
+        {
+            tutorial.SetActive(false);
+        }
+    }
 }
