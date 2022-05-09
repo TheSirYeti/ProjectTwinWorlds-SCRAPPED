@@ -5,20 +5,26 @@ using UnityEngine;
 
 public class PillarFall : MonoBehaviour
 {
-    
-
-    public GameObject obj1, obj2;
+    public List<GameObject> objList;
 
     public GameObject preObj, afterObj;
-
+    private bool flag;
 
     // Update is called once per frame
     void Update()
     {
-        if (!obj1.activeSelf && !obj2.activeSelf)
+        flag = true;
+        foreach (GameObject gameObject in objList)
+        {
+            if (gameObject.activeSelf)
+                flag = false;
+        }
+
+        if (flag)
         {
             preObj.SetActive(false);
             afterObj.SetActive(true);
+            Destroy(gameObject);
         }
     }
 }
