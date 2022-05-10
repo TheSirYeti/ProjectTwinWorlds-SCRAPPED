@@ -20844,11 +20844,11 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1123641207}
         m_TargetAssemblyTypeName: MainMenuManager, Assembly-CSharp
-        m_MethodName: EnablePanel
-        m_Mode: 2
+        m_MethodName: QuitGame
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 370911604}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

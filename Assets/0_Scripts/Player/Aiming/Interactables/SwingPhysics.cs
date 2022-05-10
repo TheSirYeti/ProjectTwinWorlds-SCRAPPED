@@ -39,8 +39,12 @@ public class SwingPhysics : InteractableObject
 
         if (angelAttack.GetComponent<AngelAttacks>().canHang)
         {
+            isAfterHang = false;
             isHanging = true;
             currentItem = movableItems[FindNearestItem(angelAttack)];
+            currentItem.GetComponent<MovableItem>().OnObjectEnd();
+            currentItem.GetComponent<MovableItem>().isObjectTriggered = false;
+            currentItem.GetComponent<MovableItem>().isFollowing = false;
             currentItem.rb.useGravity = false;
             currentItem.mySwing = this;
             currentItem.lineRenderer.enabled = true;
@@ -73,18 +77,21 @@ public class SwingPhysics : InteractableObject
         {
             if (currentItem != null && !currentItem.isObjectTriggered)
             {
+                Debug.Log("!isHanging, currentItem != null && !currentItem.isObjectTriggered");
                 currentItem.CutSwingTies(null);
                 //ResetVariables(null);
             }
             else
             {
+                Debug.Log("!isHanging, currentItem == null || currentItem.isObjectTriggered");
                 //ResetVariables(null);
-                EventManager.Trigger("OnSwingStop");
+                EventManager.Trigger("OnSwingStop", PlayerWorlds.instance.angelPlayer);
                 isObjectTriggered = false;
             }
         }
         else
         {
+            Debug.Log("isHanging");
             //ResetVariables(null);
             isAfterHang = true;
             
@@ -101,7 +108,7 @@ public class SwingPhysics : InteractableObject
 
     private void LateUpdate()
     {
-        if (isHanging && !isFirstTriggered && isAfterHang)
+        if (isHanging && isAfterHang)
         {
             if (currentItem != null)
             {

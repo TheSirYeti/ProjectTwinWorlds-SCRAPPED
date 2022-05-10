@@ -7,6 +7,8 @@ public class DemonAttacks : PlayerAttacks
 {
     public PentadentCollision weapon;
     public float flightDuration;
+    
+    
     public override void GenerateBasicAttack()
     {
         cooldownTimer = attackCooldown;
@@ -69,8 +71,8 @@ public class DemonAttacks : PlayerAttacks
             currentObject = null;
         
             Debug.Log("Loop check 2 - demon");
-            EventManager.Trigger("OnPulleyStop");
-            EventManager.Trigger("OnSwingStop");
+            EventManager.Trigger("OnPulleyStop", PlayerWorlds.instance.demonPlayer);
+            EventManager.Trigger("OnSwingStop", PlayerWorlds.instance.demonPlayer);
             usedAbility = false;
         }
     }

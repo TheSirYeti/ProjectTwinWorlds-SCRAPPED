@@ -67,6 +67,7 @@ public class PaladinTackleState : MonoBehaviour, IState
     public void OnExit()
     {
         paladin.attackNumber++;
+        paladin.StopStompVFX();
         paladin.SetShieldSpeeds(ShieldObject.SpeedState.NORMAL);
     }
 

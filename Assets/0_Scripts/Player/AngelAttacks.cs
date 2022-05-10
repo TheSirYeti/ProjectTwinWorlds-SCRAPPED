@@ -88,8 +88,8 @@ public class AngelAttacks : PlayerAttacks
         
             Debug.Log("Loop check 2 - angel");
             
-            EventManager.Trigger("OnPulleyStop");
-            EventManager.Trigger("OnSwingStop");
+            EventManager.Trigger("OnPulleyStop", PlayerWorlds.instance.angelPlayer);
+            EventManager.Trigger("OnSwingStop", PlayerWorlds.instance.angelPlayer);
         }
     }
 

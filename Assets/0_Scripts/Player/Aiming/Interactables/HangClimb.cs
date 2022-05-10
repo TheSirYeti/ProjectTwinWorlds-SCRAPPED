@@ -34,7 +34,7 @@ public class HangClimb : InteractableObject
         walls.SetActive(false);
         //ResetVariables(null);
         Debug.Log("Loop check 3 - Hang");
-        EventManager.Trigger("OnClimbStop");
+        EventManager.Trigger("OnClimbStop", PlayerWorlds.instance.angelPlayer);
         //EventManager.Trigger("ResetAbility", PlayerWorlds.instance.angelPlayer);
     }
 

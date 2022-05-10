@@ -7,6 +7,8 @@ using Random = System.Random;
 
 public class PaladinLogic : MonoBehaviour
 {
+    //Hay que rehacer / reorganizar todo este codigo porque es un asco.
+    
     public FiniteStateMachine fsm;
     public Animator animator;
     public List<ShieldObject> shieldRings;
@@ -18,6 +20,8 @@ public class PaladinLogic : MonoBehaviour
     public List<GameObject> stakes;
     public float speed;
 
+    public GameObject stompParticles;
+    
     public int attackNumber;
     public int maxAttackNumber;
 
@@ -138,5 +142,15 @@ public class PaladinLogic : MonoBehaviour
     public void OnPaladinDeath()
     {
         LevelManager.instance.LoadNextScene(0);
+    }
+
+    public void PlayStompVFX()
+    {
+        stompParticles.SetActive(true);
+    }
+
+    public void StopStompVFX()
+    {
+        stompParticles.SetActive(false);
     }
 }

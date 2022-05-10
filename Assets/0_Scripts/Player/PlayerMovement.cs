@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Net.Sockets;
 using Cinemachine;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour, ISubscriber
@@ -244,7 +245,8 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
     
     void StopSwing(object[] parameters)
     {
-        if (!isDemon)
+        GameObject player = parameters[0] as GameObject;
+        if (!isDemon && player.GetComponent<PlayerMovement>() == this)
         {
             rb.useGravity = true;
             rb.constraints = RigidbodyConstraints.None;
@@ -265,6 +267,7 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
 
     void StartClimb(object[] parameters)
     {
+        GameObject player = parameters[0] as GameObject;
         if (!isDemon)
         {
             rb.useGravity = false;
@@ -275,7 +278,8 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
     
     void StopClimb(object[] parameters)
     {
-        if (!isDemon)
+        GameObject player = parameters[0] as GameObject;
+        if (!isDemon && player.GetComponent<PlayerMovement>() == this)
         {
             rb.useGravity = true;
             movementDelegate = GenerateMovement;
@@ -286,10 +290,14 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
     {
         if (isDemon)
         {
+            Debug.Log("HOLA??!?!?!?!?");
             pulleyObject = (Rigidbody) parameters[0];
             currentPulley = (PulleySystem) parameters[1];
             pulleyObject.useGravity = false;
             pulleyObject.velocity = Vector3.zero;
+            pulleyObject.constraints = RigidbodyConstraints.FreezePositionX;
+            pulleyObject.constraints = RigidbodyConstraints.FreezePositionZ;
+            pulleyObject.constraints = RigidbodyConstraints.FreezeRotation;
             movementDelegate = PulleyMovement;
             StartCoroutine(SavePreviousPosition());
         }
@@ -301,6 +309,8 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
         {
             pulleyObject.useGravity = true;
             pulleyObject.velocity = Vector3.zero;
+            pulleyObject.constraints = RigidbodyConstraints.None;
+            pulleyObject.constraints = RigidbodyConstraints.FreezeRotation;
             pulleyObject = null;
             currentPulley = null;
             movementDelegate = GenerateMovement;
