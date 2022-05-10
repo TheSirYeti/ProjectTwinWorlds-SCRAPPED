@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Water
-  m_Shader: {fileID: 4800000, guid: 04dc1bced0285384f850d50e2f26f2fb, type: 3}
+  m_Name: Shrubb
+  m_Shader: {fileID: 4800000, guid: ebb58cd424871264396099102dbc4d97, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -19,24 +19,23 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _GrassTexture1:
+        m_Texture: {fileID: 2800000, guid: e0170089326bee64cb163c01ec1d43a5, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _texcoord:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Divide: 7.74
-    - _Divide1: 7.74
-    - _Power: 0.81
-    - _Power1: 0.81
-    - _ScaleVoronoi: 6.62
-    - _ScaleVoronoi1: 6.62
-    - _TimeVoronoi: 1.79
-    - _TimeVoronoi1: 1.79
-    - _Vectormulty: 0.13
-    - _Vectormulty1: 0.13
-    - __dirty: 1
+    - _Mascara1: 0.5
+    - _Radius1: 3.5
+    - _Seepdgras1: 1
+    - _SubstracPJ1: 15
+    - _SubstractRadius1: 1
+    - __dirty: 0
     m_Colors:
-    - _FirstColor: {r: 0, g: 0.3510606, b: 1, a: 0}
-    - _SecondColor: {r: 0, g: 0.8862748, b: 1, a: 0}
+    - _MyPos1: {r: 0, g: 0, b: 0, a: 0}
+    - _Vectoraltura1: {r: 1, g: 0, b: 1, a: 0}
   m_BuildTextureStacks: []

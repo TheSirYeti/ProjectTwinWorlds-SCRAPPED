@@ -37,7 +37,7 @@ public class PaladinStake : InteractableObject
 
     public override void OnObjectDuring()
     {
-        lineRenderer.SetPosition(0, transform.position);
+        lineRenderer.SetPosition(0, myCollider.transform.position);
         lineRenderer.SetPosition(1, PlayerWorlds.instance.demonPlayer.transform.position);
         if (!gameObject.activeSelf)
         {
@@ -70,7 +70,7 @@ public class PaladinStake : InteractableObject
         if((int)parameters[0] == stakeId)
             animator.SetTrigger("doDrop");
         
-        OnObjectEnd();
+        //OnObjectEnd();
     }
 
     private void ResetStake(object[] parameters)
