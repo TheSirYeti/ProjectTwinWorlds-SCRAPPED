@@ -193,7 +193,8 @@ public enum SoundID
     ROCK_SMASH,
     HIT_GROUND,
     BOW_PULL,
-    PENTADENT_PULL
+    PENTADENT_PULL,
+    WOOD_BREAK
 }
 
 public enum MusicID

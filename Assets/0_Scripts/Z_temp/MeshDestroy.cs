@@ -14,6 +14,15 @@ public class MeshDestroy : MonoBehaviour
     public float ExplodeForce = 0;
     public float lifetime = 3;
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            DestroyMesh();
+        }
+    }
+
+
     public void DestroyMesh()
     {
         var originalMesh = GetComponent<MeshFilter>().mesh;

@@ -27,6 +27,7 @@ internal class BreakableWall : InteractableObject
     public override void OnObjectEnd()
     {
         lineRenderer.enabled = false;
+        SoundManager.instance.PlaySound(SoundID.WOOD_BREAK);
         StartCoroutine(BreakSubObjects());
         Destroy(gameObject);
     }
