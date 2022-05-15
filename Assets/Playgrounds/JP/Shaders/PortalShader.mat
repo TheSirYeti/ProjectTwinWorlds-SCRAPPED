@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: PortalShader
+  m_Shader: {fileID: 4800000, guid: 47d754473a35c68469ad64d770034306, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 0
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _Fire1:
+        m_Texture: {fileID: 2800000, guid: 00ae145fe0d40a244a759bd505b67971, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _PortalTexture:
+        m_Texture: {fileID: 2800000, guid: db3db23d2436fda43b1138a55cd04670, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _EdgeLength: 15
+    - _Intensity: 0.1
+    - _PortalAmplifiaction: 16.83
+    - _TimeValue: 1.2
+    - __dirty: 0
+    m_Colors:
+    - _BorderColor: {r: 0.42311323, g: 0.18316127, b: 0.7924528, a: 0}
+    - _MainColor: {r: 0.45326027, g: 0.14609292, b: 0.6320754, a: 0}
+    - _ReColor: {r: 0.22959787, g: 0.17768781, b: 0.31132078, a: 0}
+    - _SecondaryColor: {r: 0.20251437, g: 0.14417942, b: 0.2264151, a: 0}
+  m_BuildTextureStacks: []

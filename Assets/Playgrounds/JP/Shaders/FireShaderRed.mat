@@ -43,8 +43,9 @@ Material:
     - _OpacityFloat: 0.1
     - _Tesselation: 5
     - _UVIntensity: 3
-    - __dirty: 0
+    - __dirty: 1
     m_Colors:
+    - _ColorAlbedo: {r: 0, g: 0, b: 0, a: 0}
     - _MainColor: {r: 1, g: 0, b: 0, a: 0}
     - _PannerSpeed: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []

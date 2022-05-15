@@ -20,7 +20,6 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/0_Scripts/Player/Aiming/Interactables/MovableItem.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Playgrounds/Maiine/Scripts/LoreController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/0_Scripts/Worlds/PlayerWorlds.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/0_Scripts/Layers/LayerReference.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/0_Scripts/Player/PlayerFloorTrigger.cs" root0="FORCE_HIGHLIGHTING" />
@@ -194,6 +193,7 @@
       <workItem from="1651960949150" duration="7529000" />
       <workItem from="1652034392570" duration="10272000" />
       <workItem from="1652104939011" duration="15213000" />
+      <workItem from="1652642684646" duration="2903000" />
     </task>
     <servers />
   </component>
@@ -205,6 +205,25 @@
   <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/0_Scripts/Z_temp/MeshDestroy.cs</url>
+          <line>87</line>
+          <properties documentPath="D:\Users\jprsh\Documents\GitHub\ProjectTwinWorlds\Assets\0_Scripts\Z_temp\MeshDestroy.cs" initialLine="94" containingFunctionPresentation="method 'GenerateMesh'">
+            <startOffsets>
+              <option value="3113" />
+            </startOffsets>
+            <endOffsets>
+              <option value="3122" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

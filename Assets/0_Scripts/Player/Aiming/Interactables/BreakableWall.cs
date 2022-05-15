@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 internal class BreakableWall : InteractableObject
 {
     public LineRenderer lineRenderer;
+    public List<MeshDestroy> destroyableMeshes;
     public override void OnObjectStart()
     {
         EventManager.Subscribe("ResetAbility", ResetVariables);
@@ -25,13 +27,23 @@ internal class BreakableWall : InteractableObject
     public override void OnObjectEnd()
     {
         lineRenderer.enabled = false;
-        //ResetVariables(null);
-        //EventManager.Trigger("ResetAbility", PlayerWorlds.instance.demonPlayer);
-        gameObject.SetActive(false);
+        StartCoroutine(BreakSubObjects());
+        Destroy(gameObject);
     }
 
     public override void OnObjectExecute()
     {
         OnObjectEnd();
+    }
+
+    public IEnumerator BreakSubObjects()
+    {
+        foreach (MeshDestroy mesh in destroyableMeshes)
+        {
+            mesh.DestroyMesh();
+        }
+
+        yield return new WaitForSeconds(4f);
+        Destroy(gameObject);
     }
 }
