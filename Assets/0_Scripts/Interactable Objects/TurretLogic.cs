@@ -21,6 +21,7 @@ public class TurretLogic : MonoBehaviour
         {
             var bulletInstance = Instantiate(bulletPrefab);
             bulletInstance.transform.position = transform.position;
+            bulletInstance.transform.Rotate(new Vector3(0, -90f, 0));
             yield return new WaitForSeconds(totalDelay);
         }
     }
