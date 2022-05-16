@@ -41,6 +41,7 @@ public class DrawBridgeLever : MonoBehaviour
     {
         Debug.Log(Vector3.Distance(transform.position, PlayerWorlds.instance.demonPlayer.transform.position));
         Debug.Log(Vector3.Distance(transform.position, PlayerWorlds.instance.angelPlayer.transform.position));
+        
         if (PlayerWorlds.instance.demonPlayer.activeSelf)
         {
             if (Vector3.Distance(transform.position, PlayerWorlds.instance.demonPlayer.transform.position) <=

@@ -5,6 +5,8 @@ Shader "CrystalShader"
 	Properties
 	{
 		_EdgeLength ( "Edge length", Range( 2, 50 ) ) = 15
+		_MainColor("MainColor", Color) = (0,0.8430972,1,0)
+		_SecondaryColor("SecondaryColor", Color) = (0,0.08823536,0.4245283,0)
 		[HideInInspector] _texcoord( "", 2D ) = "white" {}
 		[HideInInspector] __dirty( "", Int ) = 1
 	}
@@ -26,6 +28,8 @@ Shader "CrystalShader"
 			float3 worldNormal;
 		};
 
+		uniform float4 _MainColor;
+		uniform float4 _SecondaryColor;
 		uniform float _EdgeLength;
 
 
@@ -74,7 +78,6 @@ Shader "CrystalShader"
 
 		void surf( Input i , inout SurfaceOutputStandard o )
 		{
-			float4 color9 = IsGammaSpace() ? float4(0,0.8430972,1,0) : float4(0,0.6794699,1,0);
 			float time2 = _Time.y;
 			float2 center45_g1 = float2( 0.5,0.5 );
 			float2 delta6_g1 = ( i.uv_texcoord - center45_g1 );
@@ -89,14 +92,13 @@ Shader "CrystalShader"
 			float2 uv2 = 0;
 			float voroi2 = voronoi2( coords2, time2, id2, uv2, 0 );
 			float Voronoi17 = voroi2;
-			float4 color14 = IsGammaSpace() ? float4(0,0.08823536,0.4245283,0) : float4(0,0.008293056,0.1507122,0);
-			o.Albedo = ( ( color9 * Voronoi17 ) + ( color14 * ( 1.0 - Voronoi17 ) ) ).rgb;
+			o.Albedo = ( ( _MainColor * Voronoi17 ) + ( _SecondaryColor * ( 1.0 - Voronoi17 ) ) ).rgb;
 			float3 ase_worldPos = i.worldPos;
 			float3 ase_worldViewDir = normalize( UnityWorldSpaceViewDir( ase_worldPos ) );
 			float3 ase_worldNormal = i.worldNormal;
 			float fresnelNdotV1 = dot( ase_worldNormal, ase_worldViewDir );
 			float fresnelNode1 = ( 0.0 + 8.3 * pow( 1.0 - fresnelNdotV1, 7.28 ) );
-			o.Emission = ( color9 * fresnelNode1 ).rgb;
+			o.Emission = ( _MainColor * fresnelNode1 ).rgb;
 			o.Alpha = 1;
 		}
 
@@ -181,7 +183,7 @@ Shader "CrystalShader"
 }
 /*ASEBEGIN
 Version=18900
-857;73;668;610;698.2466;44.28949;3.623648;False;False
+715;73;810;610;640.1427;900.2087;1.655925;False;False
 Node;AmplifyShaderEditor.TextureCoordinatesNode;3;-1808.307,-663.1232;Inherit;False;0;-1;2;3;2;SAMPLER2D;;False;0;FLOAT2;1,1;False;1;FLOAT2;0,0;False;5;FLOAT2;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.Vector2Node;5;-1822.396,-357.5135;Inherit;False;Constant;_TwirlCenter;TwirlCenter;0;0;Create;True;0;0;0;False;0;False;0.5,0.5;0,0;0;3;FLOAT2;0;FLOAT;1;FLOAT;2
 Node;AmplifyShaderEditor.RangedFloatNode;7;-1601.284,-292.2281;Inherit;False;Constant;_TwirlStrength;TwirlStrength;0;0;Create;True;0;0;0;False;0;False;6.77;0;0;0;0;1;FLOAT;0
@@ -193,8 +195,8 @@ Node;AmplifyShaderEditor.VoronoiNode;2;-884.6167,-325.3594;Inherit;True;0;0;1;0;
 Node;AmplifyShaderEditor.RegisterLocalVarNode;17;-706.6602,-332.0546;Inherit;False;Voronoi;-1;True;1;0;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.GetLocalVarNode;18;-185.8874,-279.1645;Inherit;False;17;Voronoi;1;0;OBJECT;;False;1;FLOAT;0
 Node;AmplifyShaderEditor.OneMinusNode;13;106.1521,-152.0982;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.ColorNode;14;284.4568,-316.9807;Inherit;False;Constant;_SecondaryColor;SecondaryColor;0;0;Create;True;0;0;0;False;0;False;0,0.08823536,0.4245283,0;0,0,0,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.ColorNode;9;130.3792,-501.9373;Inherit;False;Constant;_MainColor;MainColor;0;0;Create;True;0;0;0;False;0;False;0,0.8430972,1,0;0,0,0,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.ColorNode;14;284.4568,-316.9807;Inherit;False;Property;_SecondaryColor;SecondaryColor;6;0;Create;True;0;0;0;False;0;False;0,0.08823536,0.4245283,0;0.4235294,0.01172026,0,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.ColorNode;9;130.3792,-501.9373;Inherit;False;Property;_MainColor;MainColor;5;0;Create;True;0;0;0;False;0;False;0,0.8430972,1,0;1,0,0.00931406,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.FresnelNode;1;6.925572,124.2025;Inherit;False;Standard;WorldNormal;ViewDir;False;False;5;0;FLOAT3;0,0,1;False;4;FLOAT3;0,0,0;False;1;FLOAT;0;False;2;FLOAT;8.3;False;3;FLOAT;7.28;False;1;FLOAT;0
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;15;560.7521,-183.7029;Inherit;False;2;2;0;COLOR;0,0,0,0;False;1;FLOAT;0;False;1;COLOR;0
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;11;485.8712,-420.4448;Inherit;False;2;2;0;COLOR;0,0,0,0;False;1;FLOAT;0;False;1;COLOR;0
@@ -221,4 +223,4 @@ WireConnection;16;1;15;0
 WireConnection;0;0;16;0
 WireConnection;0;2;10;0
 ASEEND*/
-//CHKSM=02A1E84DFAFFD3DA81A55C4C5A3011BA4AE9D38A
+//CHKSM=F76ECDAC18B7D5AA0715A00BCAF2D395CBAAFDE5
