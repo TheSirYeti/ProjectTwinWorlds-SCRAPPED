@@ -2,17 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IWeaponInteractable : MonoBehaviour
+public interface IWeaponInteractable
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public void DoWeaponAction(Player actualPlayer);
+    public void DoConnectAction();
 }

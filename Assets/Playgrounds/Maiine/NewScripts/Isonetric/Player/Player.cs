@@ -6,7 +6,11 @@ public class Player : MonoBehaviour
 {
     public float speed;
     public bool isActive;
+    public bool isDemon;
     public int actualRoom;
+
+    public Projectile pentadent;
+    public Projectile arrow;
 
     public GameObject realCharacter;
     public GameObject totemCharacter;
@@ -16,6 +20,7 @@ public class Player : MonoBehaviour
 
     IPlayerInteractable _playerInteractable = null;
 
+    ShootingController myShootingController;
     MovementController myMovementController;
     ButtonsController myButtonController;
     public CameraController cameraController;
@@ -26,8 +31,13 @@ public class Player : MonoBehaviour
         myCollider = GetComponent<CapsuleCollider>();
         myRigidbody = GetComponent<Rigidbody>();
 
+        if (isDemon)
+            myShootingController = new ShootingController(pentadent, this);
+        else
+            myShootingController = new ShootingController(arrow, this);
+
         myMovementController = new MovementController(transform, speed);
-        myButtonController = new ButtonsController(this, myMovementController, cameraController);
+        myButtonController = new ButtonsController(this, myMovementController, cameraController, myShootingController);
 
         EventManager.Subscribe("ChangePlayer", ChangeCharacter);
 
@@ -52,7 +62,7 @@ public class Player : MonoBehaviour
     {
         if (_playerInteractable == null) return;
 
-        _playerInteractable.DoAction();
+        _playerInteractable.DoPlayerAction(this);
     }
 
     #region Player Change

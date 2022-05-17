@@ -10,12 +10,16 @@ public class ButtonsController
     Player _player;
     MovementController _movementContoller;
     CameraController _cameraController;
-    
-    public ButtonsController(Player player, MovementController movementController, CameraController cameraController)
+    ShootingController _shootingController;
+
+    bool isAiming = false;
+
+    public ButtonsController(Player player, MovementController movementController, CameraController cameraController, ShootingController shootingController)
     {
         _player = player;
         _movementContoller = movementController;
         _cameraController = cameraController;
+        _shootingController = shootingController;
         actualButtons = delegate { };
     }
 
@@ -34,9 +38,10 @@ public class ButtonsController
     public void OnUpdate()
     {
         Axies();
-        MouseButtons();
+        AimButton();
         InteractableButton();
         ChangePlayerButton();
+        ShootButton();
     }
 
     void Axies()
@@ -49,12 +54,24 @@ public class ButtonsController
         _movementContoller.SetDir(myMovement);
     }
 
-    void MouseButtons()
+    void AimButton()
     {
         if (Input.GetMouseButtonDown(1))
+        {
             _cameraController.ChangeAimState(true);
+            isAiming = true;
+        }
         else if (Input.GetMouseButtonUp(1))
+        {
             _cameraController.ChangeAimState(false);
+            isAiming = false;
+        }
+    }
+
+    void ShootButton()
+    {
+        if (Input.GetMouseButtonDown(0) && isAiming)
+            _shootingController.Shoot();
     }
 
     void InteractableButton()

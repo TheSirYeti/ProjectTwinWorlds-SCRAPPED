@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IPlayerInteractable
 {
-    public void DoAction();
+    public void DoPlayerAction(Player actualPlayer);
 }
