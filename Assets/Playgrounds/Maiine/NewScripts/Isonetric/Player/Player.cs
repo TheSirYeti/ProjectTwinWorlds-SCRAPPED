@@ -25,16 +25,18 @@ public class Player : MonoBehaviour
     ButtonsController myButtonController;
     public CameraController cameraController;
 
-
     private void Start()
     {
         myCollider = GetComponent<CapsuleCollider>();
         myRigidbody = GetComponent<Rigidbody>();
 
+        Projectile actualPentadent = Instantiate(pentadent, new Vector3(0, -50, 0), Quaternion.Euler(Vector3.zero));
+        Projectile actualArrow = Instantiate(arrow, new Vector3(0, -50, 0), Quaternion.Euler(Vector3.zero));
+
         if (isDemon)
-            myShootingController = new ShootingController(pentadent, this);
+            myShootingController = new ShootingController(actualPentadent, this);
         else
-            myShootingController = new ShootingController(arrow, this);
+            myShootingController = new ShootingController(actualArrow, this);;
 
         myMovementController = new MovementController(transform, speed);
         myButtonController = new ButtonsController(this, myMovementController, cameraController, myShootingController);

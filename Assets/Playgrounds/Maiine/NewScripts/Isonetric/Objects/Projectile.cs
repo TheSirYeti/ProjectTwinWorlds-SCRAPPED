@@ -9,14 +9,17 @@ public class Projectile : MonoBehaviour
 
     public float speed;
 
+    public ShootingController myShootingController;
+
     void Update()
     {
         actualMovement();
     }
 
-    public void StartShoot(Transform actualObjective)
+    public void StartShoot(Vector3 actualObjective)
     {
-        transform.LookAt(actualObjective);
+        transform.forward = (actualObjective - transform.position);
+        Debug.Log(actualObjective);
         actualMovement = MoveForward;
     }
 
@@ -28,5 +31,11 @@ public class Projectile : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         actualMovement = delegate { };
+
+        IWeaponInteractable actualIWeapon = other.gameObject.GetComponent<IWeaponInteractable>();
+        if(actualIWeapon != null)
+        {
+            myShootingController.SetConnectObject();
+        }
     }
 }

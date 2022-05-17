@@ -112,9 +112,6 @@ public class CameraController : MonoBehaviour
             distanceX = Mathf.Abs(distanceX);
             distanceZ = Mathf.Abs(distanceZ);
 
-            Debug.Log(distanceX + " X");
-            Debug.Log(distanceZ + " Z");
-
             if (distanceX > maxDistX)
             {
                 if (midCamera.x > actualTransform.position.x)
