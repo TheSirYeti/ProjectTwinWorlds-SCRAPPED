@@ -15,6 +15,7 @@ public class CameraController : MonoBehaviour
 
     public float speed;
     public float rotationAngle;
+    public float rotationAngleY;
     public float cameraDist;
     public float maxDistX;
     public float maxDistZ;
@@ -33,7 +34,7 @@ public class CameraController : MonoBehaviour
         transform.parent = null;
         GameObject myMain = Camera.main.gameObject;
         myMain.transform.parent = transform;
-        transform.rotation = Quaternion.Euler(new Vector3(rotationAngle, 0, 0));
+        transform.rotation = Quaternion.Euler(new Vector3(rotationAngle, rotationAngleY, 0));
         myMain.transform.localPosition = new Vector3(0, 0, cameraDist * -1);
 
         actualTransform = demonTransform;

@@ -20,6 +20,8 @@ public class Player : MonoBehaviour
 
     IPlayerInteractable _playerInteractable = null;
 
+    public LayerMask usableItems;
+
     ShootingController myShootingController;
     MovementController myMovementController;
     ButtonsController myButtonController;
@@ -30,13 +32,18 @@ public class Player : MonoBehaviour
         myCollider = GetComponent<CapsuleCollider>();
         myRigidbody = GetComponent<Rigidbody>();
 
-        Projectile actualPentadent = Instantiate(pentadent, new Vector3(0, -50, 0), Quaternion.Euler(Vector3.zero));
-        Projectile actualArrow = Instantiate(arrow, new Vector3(0, -50, 0), Quaternion.Euler(Vector3.zero));
-
         if (isDemon)
-            myShootingController = new ShootingController(actualPentadent, this);
+        {
+            Projectile actualPentadent = Instantiate(pentadent, new Vector3(0, -50, 0), Quaternion.Euler(Vector3.zero));
+            actualPentadent.SetPlayer(this);
+            myShootingController = new ShootingController(actualPentadent, this, usableItems, isDemon);
+        }
         else
-            myShootingController = new ShootingController(actualArrow, this);;
+        {
+            Projectile actualArrow = Instantiate(arrow, new Vector3(0, -50, 0), Quaternion.Euler(Vector3.zero));
+            actualArrow.SetPlayer(this);
+            myShootingController = new ShootingController(actualArrow, this, usableItems, isDemon);
+        }
 
         myMovementController = new MovementController(transform, speed);
         myButtonController = new ButtonsController(this, myMovementController, cameraController, myShootingController);
@@ -64,7 +71,7 @@ public class Player : MonoBehaviour
     {
         if (_playerInteractable == null) return;
 
-        _playerInteractable.DoPlayerAction(this);
+        _playerInteractable.DoPlayerAction(this, isDemon);
     }
 
     #region Player Change

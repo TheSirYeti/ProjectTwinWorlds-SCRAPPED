@@ -14,15 +14,21 @@ public class MovableBox : MonoBehaviour, IPlayerInteractable, IWeaponInteractabl
     public float maxDist;
     public float minDist;
 
+    public float maxConnectDistance;
+
     Player followPlayer;
+
+    public LineRenderer lineRenderer;
 
     void Update()
     {
         actualMovement();
     }
 
-    public void DoPlayerAction(Player actualPlayer)
+    public void DoPlayerAction(Player actualPlayer, bool isDemon)
     {
+        if (!isDemon) return;
+
         if (!isOnPlayer)
         {
             transform.parent = actualPlayer.gameObject.transform;
@@ -35,30 +41,37 @@ public class MovableBox : MonoBehaviour, IPlayerInteractable, IWeaponInteractabl
         }
     }
 
-    public void DoWeaponAction(Player actualPlayer)
+    public void DoWeaponAction(Player actualPlayer, bool isDemon)
     {
+        if (!isDemon || Vector3.Distance(actualPlayer.transform.position, transform.position) > maxConnectDistance) return;
+
         if (!isOnWeapon)
         {
             actualMovement = FollowPlayer;
             isOnWeapon = true;
             followPlayer = actualPlayer;
+            lineRenderer.enabled = true;
         }
         else
         {
             actualMovement = delegate { };
             isOnWeapon = false;
+            lineRenderer.enabled = false;
         }
     }
 
     public void DoConnectAction()
     {
-        throw new System.NotImplementedException();
+
     }
 
     void FollowPlayer()
     {
         if (Vector3.Distance(followPlayer.transform.position, transform.position) > maxDist)
             transform.position += (followPlayer.transform.position - transform.position) * speed * Time.deltaTime;
+
+        lineRenderer.SetPosition(0, transform.position);
+        lineRenderer.SetPosition(1, followPlayer.transform.position);
     }
 
 }

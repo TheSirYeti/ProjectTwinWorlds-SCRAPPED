@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface IWeaponInteractable
 {
-    public void DoWeaponAction(Player actualPlayer);
+    public void DoWeaponAction(Player actualPlayer, bool isDemon);
     public void DoConnectAction();
 }

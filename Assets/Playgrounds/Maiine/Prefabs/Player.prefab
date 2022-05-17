@@ -401,7 +401,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 122
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &3429679636728677465
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -422,6 +422,9 @@ MonoBehaviour:
   arrow: {fileID: 954616508336456892, guid: aae2e40c3b19a7240aa2dc86f7dc41e7, type: 3}
   realCharacter: {fileID: 3429679636222854671}
   totemCharacter: {fileID: 3429679636222178303}
+  usableItems:
+    serializedVersion: 2
+    m_Bits: 0
   cameraController: {fileID: 3429679635900416899}
 --- !u!1 &3429679636995119840
 GameObject:
@@ -571,7 +574,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 122
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &3429679637138673644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -592,4 +595,7 @@ MonoBehaviour:
   arrow: {fileID: 954616508336456892, guid: aae2e40c3b19a7240aa2dc86f7dc41e7, type: 3}
   realCharacter: {fileID: 3429679636995119840}
   totemCharacter: {fileID: 3429679635717490346}
+  usableItems:
+    serializedVersion: 2
+    m_Bits: 0
   cameraController: {fileID: 3429679635900416899}

@@ -8,7 +8,7 @@ public class LeverController : MonoBehaviour, IPlayerInteractable
     public bool isTrigger = false;
     public float seeTime;
 
-    public void DoPlayerAction(Player actualPlayer)
+    public void DoPlayerAction(Player actualPlayer, bool isDemon)
     {
         if (!isTrigger)
         {
