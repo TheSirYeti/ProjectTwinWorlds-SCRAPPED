@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class TotemPillar : MonoBehaviour
 {
-    private bool isActive = false;
+    public CheckExitStatus exitStatus;
+    public bool isActive = false;
     public List<GameObject> objectsToChangeMat;
     public List<Material> materials;
     
@@ -19,5 +20,7 @@ public class TotemPillar : MonoBehaviour
         {
             objectsToChangeMat[i].GetComponent<Renderer>().material = materials[i];
         }
+        
+        exitStatus.CheckStatus();
     }
 }

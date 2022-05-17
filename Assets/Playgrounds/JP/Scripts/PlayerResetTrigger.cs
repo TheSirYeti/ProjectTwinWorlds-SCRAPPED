@@ -15,7 +15,7 @@ public class PlayerResetTrigger : MonoBehaviour
         
         if (other.gameObject.layer == LayerMask.NameToLayer("DemonPlayer") && forDemon)
         {
-            EventManager.Trigger("ResetAbility", PlayerWorlds.instance.angelPlayer);
+            EventManager.Trigger("ResetAbility", PlayerWorlds.instance.demonPlayer);
         }
     }
 }

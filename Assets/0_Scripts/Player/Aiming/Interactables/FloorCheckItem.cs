@@ -15,11 +15,16 @@ public class FloorCheckItem : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Floor"))
         {
-            myItem.isFalling = true;
+            myItem.isFalling = false;
         }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        myItem.isFalling = true;
     }
 }

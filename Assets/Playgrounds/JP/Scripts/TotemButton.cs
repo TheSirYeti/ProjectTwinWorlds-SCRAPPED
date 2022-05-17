@@ -6,22 +6,31 @@ using UnityEngine;
 
 public class TotemButton : MonoBehaviour
 {
+    public KeyCode cheatKey;
     public TotemPillar pillar;
     public float minDistance;
-
+    private bool isTriggered = false;
+    
+    public List<GameObject> objectsToChangeMat;
+    public List<Material> materials;
+    
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F) && IsInDistance())
+        if ((Input.GetKeyDown(KeyCode.F) && IsInDistance() && !isTriggered) || Input.GetKeyDown(cheatKey))
         {
+            for (int i = 0; i < objectsToChangeMat.Count; i++)
+            {
+                objectsToChangeMat[i].GetComponent<Renderer>().material = materials[i];
+            }
+            
+            isTriggered = true;
             pillar.EnableTotem();
+            SoundManager.instance.PlaySound(SoundID.SUCCESS);
         }
     }
 
     bool IsInDistance()
     {
-        Debug.Log(Vector3.Distance(transform.position, PlayerWorlds.instance.demonPlayer.transform.position));
-        Debug.Log(Vector3.Distance(transform.position, PlayerWorlds.instance.angelPlayer.transform.position));
-        
         if (PlayerWorlds.instance.demonPlayer.activeSelf)
         {
             if (Vector3.Distance(transform.position, PlayerWorlds.instance.demonPlayer.transform.position) <=

@@ -195,6 +195,9 @@ public class MovableItem : InteractableObject
     {
         if (other.gameObject.tag == "BreakableOnFall" && isFalling)
         {
+            if(other.GetComponent<BreakableOnFall>() != null)
+                other.GetComponent<BreakableOnFall>().DestroyObjects();
+            
             other.gameObject.SetActive(false);
         }
     }

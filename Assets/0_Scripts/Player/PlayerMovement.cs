@@ -167,7 +167,7 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
         if(isClimbLeft)
             movement = new Vector3(h, v, 0);
         else
-            movement = new Vector3(0, v,  -1 * h);
+            movement = new Vector3(0, v,  h);
 
         rb.velocity = movement * (maxSpeed / 4) * Time.deltaTime;
     }
@@ -345,14 +345,14 @@ public class PlayerMovement : MonoBehaviour, ISubscriber
         }
     }
 
-    /*private void OnTriggerStay(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Movable Object") && isDemon)
         {
             jumpSpot = other.gameObject.GetComponent<MovableItem>().jumpSpot;
             canJump = true;
         }
-    }*/
+    }
 
     private void OnTriggerExit(Collider other)
     {
