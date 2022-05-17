@@ -27,8 +27,11 @@ Material:
     m_Floats:
     - _Cutoff: 0.5
     - _Opacity: 0.4
+    - _ScaleNoise: 1
     - _ScaleNoise1: 1
+    - _TextureMultiply: 0.48
     - _TextureMultiply1: 0.48
+    - _TimeScale: 0.05
     - _TimeScale1: 0.05
     - _TransAmbient: 0.2
     - _TransDirect: 1
@@ -36,9 +39,11 @@ Material:
     - _TransScattering: 2
     - _TransShadow: 0.9
     - _Translucency: 1
-    - __dirty: 0
+    - __dirty: 1
     m_Colors:
     - _DimensionColor: {r: 0.40236738, g: 0.58323306, b: 0.6226415, a: 0}
+    - _PannerSpeed: {r: 3, g: 8, b: 0, a: 0}
     - _PannerSpeed1: {r: 3, g: 8, b: 0, a: 0}
+    - _Tiling: {r: 0.75, g: 0.75, b: 0, a: 0}
     - _Tiling1: {r: 0.75, g: 0.75, b: 0, a: 0}
   m_BuildTextureStacks: []
