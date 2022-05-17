@@ -50,9 +50,15 @@ public class MovableBox : MonoBehaviour, IPlayerInteractable, IWeaponInteractabl
         }
     }
 
+    public void DoConnectAction()
+    {
+        throw new System.NotImplementedException();
+    }
+
     void FollowPlayer()
     {
         if (Vector3.Distance(followPlayer.transform.position, transform.position) > maxDist)
             transform.position += (followPlayer.transform.position - transform.position) * speed * Time.deltaTime;
     }
+
 }

@@ -12,7 +12,7 @@ public class ShootingController : MonoBehaviour
     public ShootingController(Projectile myBullet, Player myPlayer)
     {
         _myPlayer = myPlayer;
-        _actualBullet = Instantiate(myBullet, new Vector3(0, -50, 0), Quaternion.identity);
+        //_actualBullet = Instantiate(myBullet, new Vector3(0, -50, 0), Quaternion.identity);
     }
 
     public void Shoot()
