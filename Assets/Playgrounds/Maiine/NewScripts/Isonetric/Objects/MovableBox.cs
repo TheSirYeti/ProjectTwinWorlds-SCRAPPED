@@ -20,6 +20,8 @@ public class MovableBox : MonoBehaviour, IPlayerInteractable, IWeaponInteractabl
 
     public LineRenderer lineRenderer;
 
+    public GameObject goTo;
+
     void Update()
     {
         actualMovement();
@@ -67,8 +69,16 @@ public class MovableBox : MonoBehaviour, IPlayerInteractable, IWeaponInteractabl
 
     void FollowPlayer()
     {
-        if (Vector3.Distance(followPlayer.transform.position, transform.position) > maxDist)
-            transform.position += (followPlayer.transform.position - transform.position) * speed * Time.deltaTime;
+        Debug.Log("toy aca0");
+        Vector3 maxPosition = (followPlayer.transform.position - transform.position);
+        maxPosition.Normalize();
+
+        Vector3 goToPoint = maxPosition * maxDist;
+        goToPoint = transform.position + goToPoint;
+
+        goTo.transform.position = goToPoint;
+
+        transform.position += (goToPoint - transform.position) * speed * Time.deltaTime;
 
         lineRenderer.SetPosition(0, transform.position);
         lineRenderer.SetPosition(1, followPlayer.transform.position);
