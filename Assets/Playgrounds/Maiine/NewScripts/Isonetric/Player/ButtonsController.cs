@@ -14,8 +14,8 @@ public class ButtonsController
 
     bool isAiming = false;
 
-    private Vector3 horizontal;
-    private Vector3 vertical;
+    private Vector3 _horizontal;
+    private Vector3 _vertical;
 
     LayerMask collisionLayers;
 
@@ -51,12 +51,11 @@ public class ButtonsController
 
     void Axies()
     {
-        horizontal = _cameraController.transform.right * Input.GetAxis("Horizontal");
-        vertical = _cameraController.transform.forward * Input.GetAxis("Vertical");
+        _horizontal = _cameraController.transform.right * Input.GetAxis("Horizontal");
+        _vertical = _cameraController.transform.forward * Input.GetAxis("Vertical");
 
-        Raycast(vertical, horizontal);
-        Vector3 myMovement = _cameraController.transform.right * Input.GetAxis("Horizontal") + _cameraController.transform.forward * Input.GetAxis("Vertical");
-
+        Raycast(_vertical, _horizontal);
+        Vector3 myMovement = _horizontal + _vertical;
 
         if (myMovement.magnitude > 1)
             myMovement.Normalize();
@@ -64,16 +63,16 @@ public class ButtonsController
         _movementContoller.SetDir(myMovement);
     }
 
-    void Raycast(Vector3 z, Vector3 x)
+    void Raycast(Vector3 vertical, Vector3 horizontal)
     {
-        if (Physics.Raycast(_player.transform.position, z, 0.5f, collisionLayers))
+        if (Physics.Raycast(_player.transform.position, vertical, 0.5f, collisionLayers))
         {
-            horizontal = Vector3.zero;
+            _horizontal = Vector3.zero;
         }
 
-        if(Physics.Raycast(_player.transform.position, x, 0.5f, collisionLayers))
+        if(Physics.Raycast(_player.transform.position, horizontal, 0.5f, collisionLayers))
         {
-
+            _vertical = Vector3.zero;
         }
     }
 

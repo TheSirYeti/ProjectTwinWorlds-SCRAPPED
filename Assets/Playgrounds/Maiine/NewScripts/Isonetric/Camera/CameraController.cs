@@ -43,7 +43,7 @@ public class CameraController : MonoBehaviour
         myMain.transform.parent = rotationAxiesX;
         transform.rotation = Quaternion.Euler(new Vector3(rotationAngleY, 0, 0));
         rotationAxiesX.localRotation = Quaternion.Euler(new Vector3(rotationAngle, 0, 0));
-        myMain.transform.localPosition = new Vector3(0, 0, cameraDist * -1);
+        Camera.main.orthographicSize = cameraDist;
 
         actualTransform = demonTransform;
         actualMovement = FollowPlayer;

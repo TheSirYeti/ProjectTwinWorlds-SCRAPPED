@@ -26,27 +26,6 @@ public class MovementController
 
     void InputMovement()
     {
-        if (Physics.Raycast(_playerTransform.position, _playerTransform.forward, 0.5f, collisionLayers) && _dir.z > 0)
-        {
-            _dir.z = 0;
-        }
-
-        if (Physics.Raycast(_playerTransform.position, _playerTransform.forward * -1, 0.5f, collisionLayers) && _dir.z < 0)
-        {
-            _dir.z = 0;
-        }
-
-        if (Physics.Raycast(_playerTransform.position, _playerTransform.right, 0.5f, collisionLayers) && _dir.x > 0)
-        {
-            _dir.x = 0;
-        }
-
-        if (Physics.Raycast(_playerTransform.position, _playerTransform.right * -1, 0.5f, collisionLayers) && _dir.x < 0)
-        {
-            _dir.x = 0;
-        }
-
-
         _playerTransform.position += _dir * _speed * Time.deltaTime;
     }
 
