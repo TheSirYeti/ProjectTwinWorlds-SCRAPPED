@@ -47,8 +47,8 @@ public class Player : MonoBehaviour
             myShootingController = new ShootingController(actualArrow, this, usableItems, isDemon);
         }
 
-        myMovementController = new MovementController(transform, myRigidbody, collisionMask, speed);
-        myButtonController = new ButtonsController(this, myMovementController, cameraController, myShootingController);
+        myMovementController = new MovementController(transform, myRigidbody, speed);
+        myButtonController = new ButtonsController(this, myMovementController, cameraController, myShootingController, collisionMask);
 
         EventManager.Subscribe("ChangePlayer", ChangeCharacter);
 

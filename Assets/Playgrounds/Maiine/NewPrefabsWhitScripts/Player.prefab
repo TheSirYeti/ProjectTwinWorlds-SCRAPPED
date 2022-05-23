@@ -159,8 +159,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3ec725a89d996a4598804a946fa186a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  demonTransform: {fileID: 3429679637138673645}
-  angelTransform: {fileID: 3429679636728677446}
+  demon: {fileID: 3429679637138673644}
+  angel: {fileID: 3429679636728677465}
   actualTransform: {fileID: 0}
   rotationAxiesX: {fileID: 5375289990919181069}
   speed: 2
@@ -171,7 +171,6 @@ MonoBehaviour:
   maxDistX: 20
   maxDistZ: 10
   rotateToPoint: 0
-  blackScreen: {fileID: 0}
 --- !u!1 &3429679636222178303
 GameObject:
   m_ObjectHideFlags: 0

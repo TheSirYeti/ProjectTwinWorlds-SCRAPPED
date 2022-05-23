@@ -11,16 +11,13 @@ public class MovementController
     Rigidbody _playerRigidbody;
     float _speed;
 
-    LayerMask collisionLayers;
-
     Vector3 _dir;
 
-    public MovementController(Transform playerTransform, Rigidbody playerRigidbody, LayerMask collisionMask,float speed)
+    public MovementController(Transform playerTransform, Rigidbody playerRigidbody, float speed)
     {
         _playerTransform = playerTransform;
         _playerRigidbody = playerRigidbody;
         _speed = speed;
-        collisionLayers = collisionMask;
         actualMovement = delegate { };
     }
 

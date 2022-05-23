@@ -11,12 +11,14 @@ public class MovableBox : MonoBehaviour, IPlayerInteractable, IWeaponInteractabl
     bool isOnWeapon = false;
 
     public float speed;
-    public float maxDist;
-    public float minDist;
+    public float maxForce;
+    public float minDistance;
+    public float aceleration;
+
+    private float _actualForce;
+    public bool isFollow;
 
     public float maxConnectDistance;
-
-    public float distBetweenPoints;
 
     Player followPlayer;
 
@@ -56,10 +58,10 @@ public class MovableBox : MonoBehaviour, IPlayerInteractable, IWeaponInteractabl
 
         if (!isOnWeapon)
         {
-            //actualMovement = FollowPlayer;
+            actualMovement = ConnectingMovement;
             isOnWeapon = true;
             followPlayer = actualPlayer;
-            actualRope = Instantiate(ropePrefab, transform);
+            //actualRope = Instantiate(ropePrefab, transform);
             //actualRope.OnStart(transform, actualPlayer.transform);
         }
         else
@@ -67,8 +69,8 @@ public class MovableBox : MonoBehaviour, IPlayerInteractable, IWeaponInteractabl
             actualMovement = delegate { };
             isOnWeapon = false;
 
-            if (actualRope != null)
-                Destroy(actualRope.gameObject);
+            /*if (actualRope != null)
+                Destroy(actualRope.gameObject);*/
         }
     }
 
@@ -77,21 +79,37 @@ public class MovableBox : MonoBehaviour, IPlayerInteractable, IWeaponInteractabl
 
     }
 
-    //void FollowPlayer()
-    //{
-    //    Debug.Log("toy aca0");
-    //    Vector3 maxPosition = (followPlayer.transform.position - transform.position);
-    //    maxPosition.Normalize();
+    void ConnectingMovement()
+    {
+        if (Vector3.Distance(transform.position, followPlayer.transform.position) > minDistance && !isFollow)
+        {
+            isFollow = true;
+            actualMovement += FollowPlayer;
+        }
+    }
 
-    //    Vector3 goToPoint = maxPosition * maxDist;
-    //    goToPoint = transform.position + goToPoint;
+    void FollowPlayer()
+    {
+        transform.position += (followPlayer.transform.position - transform.position) * _actualForce * Time.deltaTime;
 
-    //    goTo.transform.position = goToPoint;
+        if (_actualForce < maxForce)
+            _actualForce += aceleration * Time.deltaTime;
 
-    //    transform.position += (goToPoint - transform.position) * speed * Time.deltaTime;
+        if (Vector3.Distance(transform.position, followPlayer.transform.position) < minDistance)
+        {
+            actualMovement -= FollowPlayer;
+            isFollow = false;
+            actualMovement += Force;
+        }
+    }
 
-    //    lineRenderer.SetPosition(0, transform.position);
-    //    lineRenderer.SetPosition(1, followPlayer.transform.position);
-    //}
+    void Force()
+    {
+        transform.position += (followPlayer.transform.position - transform.position) * _actualForce * Time.deltaTime;
+        _actualForce -= aceleration * Time.deltaTime;
+
+        if (_actualForce <= 0)
+            actualMovement -= Force;
+    }
 
 }

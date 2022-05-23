@@ -19,24 +19,23 @@ public class ButtonsController
 
     LayerMask collisionLayers;
 
-    public ButtonsController(Player player, MovementController movementController, CameraController cameraController, ShootingController shootingController)
+    public ButtonsController(Player player, MovementController movementController, CameraController cameraController, ShootingController shootingController, LayerMask maskCollision)
     {
         _player = player;
         _movementContoller = movementController;
         _cameraController = cameraController;
         _shootingController = shootingController;
+        collisionLayers = maskCollision;
         actualButtons = delegate { };
     }
 
     public void ButtonsOn()
     {
-        Debug.Log("active");
         actualButtons = OnUpdate;
     }
 
     public void ButtonsOff()
     {
-        Debug.Log("off");
         actualButtons = delegate { };
     }
 
@@ -54,7 +53,7 @@ public class ButtonsController
         _horizontal = _cameraController.transform.right * Input.GetAxis("Horizontal");
         _vertical = _cameraController.transform.forward * Input.GetAxis("Vertical");
 
-        Raycast(_vertical, _horizontal);
+        RayCastCheck();
         Vector3 myMovement = _horizontal + _vertical;
 
         if (myMovement.magnitude > 1)
@@ -63,14 +62,14 @@ public class ButtonsController
         _movementContoller.SetDir(myMovement);
     }
 
-    void Raycast(Vector3 vertical, Vector3 horizontal)
+    void RayCastCheck()
     {
-        if (Physics.Raycast(_player.transform.position, vertical, 0.5f, collisionLayers))
+        if (Physics.Raycast(_player.transform.position, _horizontal, 0.5f, collisionLayers))
         {
             _horizontal = Vector3.zero;
         }
 
-        if(Physics.Raycast(_player.transform.position, horizontal, 0.5f, collisionLayers))
+        if(Physics.Raycast(_player.transform.position, _vertical, 0.5f, collisionLayers))
         {
             _vertical = Vector3.zero;
         }

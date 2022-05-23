@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public Transform demonTransform;
-    public Transform angelTransform;
+    public Player demon;
+    public Player angel;
     public Transform actualTransform;
 
     public Transform rotationAxiesX;
@@ -27,11 +27,8 @@ public class CameraController : MonoBehaviour
 
     public float rotateToPoint;
 
-    public GameObject blackScreen;
-
     delegate void CameraDelegate();
     CameraDelegate actualMovement;
-    CameraDelegate fadeDelegate;
 
     void Start()
     {
@@ -45,7 +42,8 @@ public class CameraController : MonoBehaviour
         rotationAxiesX.localRotation = Quaternion.Euler(new Vector3(rotationAngle, 0, 0));
         Camera.main.orthographicSize = cameraDist;
 
-        actualTransform = demonTransform;
+        actualTransform = demon.transform;
+        myMain.transform.LookAt(actualTransform);
         actualMovement = FollowPlayer;
     }
 
@@ -70,12 +68,12 @@ public class CameraController : MonoBehaviour
         if (seeDemon)
         {
             seeDemon = !seeDemon;
-            actualTransform = angelTransform;
+            actualTransform = angel.transform;
         }
         else
         {
             seeDemon = !seeDemon;
-            actualTransform = demonTransform;
+            actualTransform = demon.transform;
         }
     }
 
@@ -101,7 +99,26 @@ public class CameraController : MonoBehaviour
     {
         rotateRight = _rotateRight;
         rotateToPoint = _pointToRotate;
+        ChangeControllers(false);
         actualMovement += RotateCamera;
+    }
+
+    public void ChangeControllers(bool isActivate)
+    {
+        if (isActivate)
+        {
+            if (seeDemon)
+                demon.SetOnDelegates();
+            else
+                angel.SetOnDelegates();
+        }
+        else
+        {
+            if (seeDemon)
+                demon.SetOffDelegates();
+            else
+                angel.SetOffDelegates();
+        }
     }
 
     #endregion
@@ -175,6 +192,7 @@ public class CameraController : MonoBehaviour
             if (actualRotate.y >= rotateToPoint)
             {
                 actualMovement -= RotateCamera;
+                ChangeControllers(true);
             }
         }
         else
@@ -186,6 +204,7 @@ public class CameraController : MonoBehaviour
             if (actualRotate.y <= rotateToPoint)
             {
                 actualMovement -= RotateCamera;
+                ChangeControllers(true);
             }
         }
     }
