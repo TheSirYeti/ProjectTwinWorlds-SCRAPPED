@@ -3,12 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LaserReceptor : MonoBehaviour
+public class LaserReceptor : MonoBehaviour, IDoorTriggerable
 {
     [SerializeField] private bool isRecieving;
 
     [SerializeField] private List<Renderer> itemsToChange;
     [SerializeField] private List<Material> goodMaterials, badMaterials;
+    [SerializeField] private CheckExitStatus exitStatus;
 
     public void SetRecieverStatus(bool value)
     {
@@ -25,6 +26,7 @@ public class LaserReceptor : MonoBehaviour
             {
                 SetObjectMaterials(badMaterials);
             }
+            exitStatus.CheckStatus();
         }
     }
 
@@ -34,5 +36,11 @@ public class LaserReceptor : MonoBehaviour
         {
             itemsToChange[i].material = materials[i];
         }
+    }
+
+
+    public bool IsTriggerableActive()
+    {
+        return isRecieving;
     }
 }

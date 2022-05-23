@@ -9,10 +9,8 @@ public class LaserLogic : MonoBehaviour
 {
     [Header("Starting Point")] [SerializeField]
     private bool isOrigin;
-
     private bool isBeingLasered = false;
-    
-    
+
     [Header("Line Renderer")]
     [SerializeField] private LineRenderer lineRenderer;
     
@@ -22,8 +20,17 @@ public class LaserLogic : MonoBehaviour
     [SerializeField] private float maxDistance;
     [SerializeField] private float detectionRadius;
 
+    [Header("VFX Properties")] 
+    [SerializeField] private List<ParticleSystem> allParticles;
+
     private LaserLogic currentLaser;
     private LaserReceptor currentReceptor;
+
+    private void Start()
+    {
+        if(isOrigin)
+            SetVFX(true);
+    }
 
     private void Update()
     {
@@ -49,6 +56,7 @@ public class LaserLogic : MonoBehaviour
     {
         isBeingLasered = value;
         lineRenderer.enabled = value;
+        SetVFX(value);
     }
 
     public void CheckForLaserHit(Vector3 hitPos)
@@ -75,6 +83,9 @@ public class LaserLogic : MonoBehaviour
         {
             if (collider.GetComponent<LaserLogic>() != null)
             {
+                if(currentLaser != null)
+                    SoundManager.instance.PlaySound(SoundID.POWER_ON);
+                
                 currentLaser = collider.GetComponent<LaserLogic>();
                 currentLaser.SetLaserStatus(true);
             }
@@ -103,4 +114,21 @@ public class LaserLogic : MonoBehaviour
         }
     }
 
+    public void SetVFX(bool status)
+    {
+        if (status)
+        {
+            foreach (var particle in allParticles)
+            {
+                particle.Play();
+            }
+        }
+        else
+        {
+            foreach (var particle in allParticles)
+            {
+                particle.Stop();
+            }
+        }
+    }
 }

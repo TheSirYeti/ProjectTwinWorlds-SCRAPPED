@@ -196,7 +196,8 @@ public enum SoundID
     PENTADENT_PULL,
     WOOD_BREAK,
     SUCCESS,
-    CRASH
+    CRASH,
+    POWER_ON
 }
 
 public enum MusicID
