@@ -14,6 +14,11 @@ public class ButtonsController
 
     bool isAiming = false;
 
+    private Vector3 horizontal;
+    private Vector3 vertical;
+
+    LayerMask collisionLayers;
+
     public ButtonsController(Player player, MovementController movementController, CameraController cameraController, ShootingController shootingController)
     {
         _player = player;
@@ -46,12 +51,30 @@ public class ButtonsController
 
     void Axies()
     {
-        Vector3 myMovement = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        horizontal = _cameraController.transform.right * Input.GetAxis("Horizontal");
+        vertical = _cameraController.transform.forward * Input.GetAxis("Vertical");
+
+        Raycast(vertical, horizontal);
+        Vector3 myMovement = _cameraController.transform.right * Input.GetAxis("Horizontal") + _cameraController.transform.forward * Input.GetAxis("Vertical");
+
 
         if (myMovement.magnitude > 1)
             myMovement.Normalize();
 
         _movementContoller.SetDir(myMovement);
+    }
+
+    void Raycast(Vector3 z, Vector3 x)
+    {
+        if (Physics.Raycast(_player.transform.position, z, 0.5f, collisionLayers))
+        {
+            horizontal = Vector3.zero;
+        }
+
+        if(Physics.Raycast(_player.transform.position, x, 0.5f, collisionLayers))
+        {
+
+        }
     }
 
     void AimButton()

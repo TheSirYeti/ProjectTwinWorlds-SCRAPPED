@@ -39,12 +39,12 @@ public class Projectile : MonoBehaviour
     {
         actualMovement = delegate { };
 
-        IWeaponInteractable actualIWeapon = other.gameObject.GetComponent<IWeaponInteractable>();
-        if(actualIWeapon != null)
+        IWeaponInteractable actualObject = other.gameObject.GetComponent<IWeaponInteractable>();
+        if(actualObject != null)
         {
             transform.parent = other.transform;
             myShootingController.SetConnectObject();
-            actualIWeapon.DoWeaponAction(_myPlayer, isPentadent);
+            actualObject.DoWeaponAction(_myPlayer, isPentadent);
         }
     }
 }

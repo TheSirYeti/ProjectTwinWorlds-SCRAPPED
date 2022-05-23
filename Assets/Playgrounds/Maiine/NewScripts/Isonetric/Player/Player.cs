@@ -27,6 +27,8 @@ public class Player : MonoBehaviour
     ButtonsController myButtonController;
     public CameraController cameraController;
 
+    public LayerMask collisionMask;
+
     private void Start()
     {
         myCollider = GetComponent<CapsuleCollider>();
@@ -45,7 +47,7 @@ public class Player : MonoBehaviour
             myShootingController = new ShootingController(actualArrow, this, usableItems, isDemon);
         }
 
-        myMovementController = new MovementController(transform, speed);
+        myMovementController = new MovementController(transform, myRigidbody, collisionMask, speed);
         myButtonController = new ButtonsController(this, myMovementController, cameraController, myShootingController);
 
         EventManager.Subscribe("ChangePlayer", ChangeCharacter);

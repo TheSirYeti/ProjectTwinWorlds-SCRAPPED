@@ -8,17 +8,24 @@ public class CameraController : MonoBehaviour
     public Transform angelTransform;
     public Transform actualTransform;
 
+    public Transform rotationAxiesX;
+
     Vector3 midCamera;
     Vector3 pointToView;
 
     bool seeDemon = true;
 
+    bool rotateRight = true;
+
     public float speed;
+    public float rotationSpeed;
     public float rotationAngle;
     public float rotationAngleY;
     public float cameraDist;
     public float maxDistX;
     public float maxDistZ;
+
+    public float rotateToPoint;
 
     public GameObject blackScreen;
 
@@ -33,8 +40,9 @@ public class CameraController : MonoBehaviour
 
         transform.parent = null;
         GameObject myMain = Camera.main.gameObject;
-        myMain.transform.parent = transform;
-        transform.rotation = Quaternion.Euler(new Vector3(rotationAngle, rotationAngleY, 0));
+        myMain.transform.parent = rotationAxiesX;
+        transform.rotation = Quaternion.Euler(new Vector3(rotationAngleY, 0, 0));
+        rotationAxiesX.localRotation = Quaternion.Euler(new Vector3(rotationAngle, 0, 0));
         myMain.transform.localPosition = new Vector3(0, 0, cameraDist * -1);
 
         actualTransform = demonTransform;
@@ -86,6 +94,14 @@ public class CameraController : MonoBehaviour
         pointToView = (Vector3)parameter[0];
         actualMovement = SeePoint;
         StartCoroutine(SeeObjectoCorroutine((float)parameter[1]));
+    }
+
+
+    public void SetRotate(bool _rotateRight, float _pointToRotate)
+    {
+        rotateRight = _rotateRight;
+        rotateToPoint = _pointToRotate;
+        actualMovement += RotateCamera;
     }
 
     #endregion
@@ -145,6 +161,33 @@ public class CameraController : MonoBehaviour
     void SeePoint()
     {
         transform.position += (pointToView - transform.position) * speed * Time.deltaTime;
+    }
+
+    //rota al rededor del eje Y
+    void RotateCamera()
+    {
+        if (rotateRight)
+        {
+            transform.Rotate(new Vector3(0, rotationSpeed, 0));
+
+            Vector3 actualRotate = transform.rotation.eulerAngles;
+
+            if (actualRotate.y >= rotateToPoint)
+            {
+                actualMovement -= RotateCamera;
+            }
+        }
+        else
+        {
+            transform.Rotate(new Vector3(0, -rotationSpeed, 0));
+
+            Vector3 actualRotate = transform.rotation.eulerAngles;
+
+            if (actualRotate.y <= rotateToPoint)
+            {
+                actualMovement -= RotateCamera;
+            }
+        }
     }
     #endregion
 

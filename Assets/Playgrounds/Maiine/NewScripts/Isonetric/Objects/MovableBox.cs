@@ -16,11 +16,14 @@ public class MovableBox : MonoBehaviour, IPlayerInteractable, IWeaponInteractabl
 
     public float maxConnectDistance;
 
+    public float distBetweenPoints;
+
     Player followPlayer;
 
-    public LineRenderer lineRenderer;
-
     public GameObject goTo;
+
+    public Rope ropePrefab;
+    public Rope actualRope;
 
     void Update()
     {
@@ -45,20 +48,27 @@ public class MovableBox : MonoBehaviour, IPlayerInteractable, IWeaponInteractabl
 
     public void DoWeaponAction(Player actualPlayer, bool isDemon)
     {
-        if (!isDemon || Vector3.Distance(actualPlayer.transform.position, transform.position) > maxConnectDistance) return;
+        if (!isDemon || Vector3.Distance(actualPlayer.transform.position, transform.position) > maxConnectDistance)
+        {
+            isOnWeapon = !isOnWeapon;
+            return;
+        }
 
         if (!isOnWeapon)
         {
-            actualMovement = FollowPlayer;
+            //actualMovement = FollowPlayer;
             isOnWeapon = true;
             followPlayer = actualPlayer;
-            lineRenderer.enabled = true;
+            actualRope = Instantiate(ropePrefab, transform);
+            //actualRope.OnStart(transform, actualPlayer.transform);
         }
         else
         {
             actualMovement = delegate { };
             isOnWeapon = false;
-            lineRenderer.enabled = false;
+
+            if (actualRope != null)
+                Destroy(actualRope.gameObject);
         }
     }
 
@@ -67,21 +77,21 @@ public class MovableBox : MonoBehaviour, IPlayerInteractable, IWeaponInteractabl
 
     }
 
-    void FollowPlayer()
-    {
-        Debug.Log("toy aca0");
-        Vector3 maxPosition = (followPlayer.transform.position - transform.position);
-        maxPosition.Normalize();
+    //void FollowPlayer()
+    //{
+    //    Debug.Log("toy aca0");
+    //    Vector3 maxPosition = (followPlayer.transform.position - transform.position);
+    //    maxPosition.Normalize();
 
-        Vector3 goToPoint = maxPosition * maxDist;
-        goToPoint = transform.position + goToPoint;
+    //    Vector3 goToPoint = maxPosition * maxDist;
+    //    goToPoint = transform.position + goToPoint;
 
-        goTo.transform.position = goToPoint;
+    //    goTo.transform.position = goToPoint;
 
-        transform.position += (goToPoint - transform.position) * speed * Time.deltaTime;
+    //    transform.position += (goToPoint - transform.position) * speed * Time.deltaTime;
 
-        lineRenderer.SetPosition(0, transform.position);
-        lineRenderer.SetPosition(1, followPlayer.transform.position);
-    }
+    //    lineRenderer.SetPosition(0, transform.position);
+    //    lineRenderer.SetPosition(1, followPlayer.transform.position);
+    //}
 
 }

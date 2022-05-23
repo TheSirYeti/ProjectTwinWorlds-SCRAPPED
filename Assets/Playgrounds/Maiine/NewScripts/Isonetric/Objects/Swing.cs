@@ -10,13 +10,14 @@ public class Swing : MonoBehaviour, IWeaponInteractable
     public LineRenderer lineRenderer;
 
     bool _isActive;
+    bool isOnWeapon;
 
     delegate void SwingDelegate();
     SwingDelegate actualDelegate = delegate { };
 
     void Start()
     {
-        
+
     }
 
     void Update()
@@ -26,14 +27,19 @@ public class Swing : MonoBehaviour, IWeaponInteractable
 
     public void DoWeaponAction(Player actualPlayer, bool isDemon)
     {
-        if (isDemon) return;
+        if (isDemon)
+        {
+            isOnWeapon = !isOnWeapon;
+            return;
+        }
 
         _player = actualPlayer;
+        
     }
 
     public void DoConnectAction()
     {
-        
+
     }
 
 }

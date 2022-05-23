@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &450575294424846861
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5375289990919181069}
+  m_Layer: 0
+  m_Name: RotationX
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5375289990919181069
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 450575294424846861}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3429679635900416896}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3429679635717490346
 GameObject:
   m_ObjectHideFlags: 0
@@ -111,7 +142,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 5375289990919181069}
   m_Father: {fileID: 3429679636712689717}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -130,11 +162,15 @@ MonoBehaviour:
   demonTransform: {fileID: 3429679637138673645}
   angelTransform: {fileID: 3429679636728677446}
   actualTransform: {fileID: 0}
+  rotationAxiesX: {fileID: 5375289990919181069}
   speed: 2
+  rotationSpeed: 0.2
   rotationAngle: 60
+  rotationAngleY: 0
   cameraDist: 30
   maxDistX: 20
   maxDistZ: 10
+  rotateToPoint: 0
   blackScreen: {fileID: 0}
 --- !u!1 &3429679636222178303
 GameObject:
@@ -400,7 +436,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 122
+  m_Constraints: 126
   m_CollisionDetection: 1
 --- !u!114 &3429679636728677465
 MonoBehaviour:
@@ -424,8 +460,11 @@ MonoBehaviour:
   totemCharacter: {fileID: 3429679636222178303}
   usableItems:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 134217728
   cameraController: {fileID: 3429679635900416899}
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1 &3429679636995119840
 GameObject:
   m_ObjectHideFlags: 0
@@ -573,7 +612,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 122
+  m_Constraints: 126
   m_CollisionDetection: 1
 --- !u!114 &3429679637138673644
 MonoBehaviour:
@@ -597,5 +636,8 @@ MonoBehaviour:
   totemCharacter: {fileID: 3429679635717490346}
   usableItems:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 134217728
   cameraController: {fileID: 3429679635900416899}
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 128

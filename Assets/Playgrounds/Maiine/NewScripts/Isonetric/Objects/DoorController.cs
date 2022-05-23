@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class DoorController : MonoBehaviour
 {
+    [Header("PONER LAS MARCAS QUE NECESITA LA PUERTA, NO LAS PALANCAS")]
     public List<MarksController> marksToOpen;
 
+    [HideInInspector]
     public List<bool> leverIsOn;
         
     void Start()
