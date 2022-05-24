@@ -4,18 +4,16 @@ using UnityEngine;
 
 public class ShootingController
 {
-    bool isShooting = false;
-    bool isConnect = false;
-    bool isActive = false;
+    bool isOnPlayer = false;
+    bool isOnItem = false;
+    bool isConnected = false;
 
     bool _isDemon;
 
     Projectile _actualBullet = null;
     Player _myPlayer = null;
     IWeaponInteractable _actualInteractable = null;
-    IWeaponInteractable _connectInteractable = null;
     GameObject _actualObject = null;
-    GameObject _connectObject = null;
 
     LayerMask _usableItems;
 
@@ -28,69 +26,43 @@ public class ShootingController
         _isDemon = isDemon;
     }
 
-    public void SetConnectObject()
-    {
-        isConnect = true;
-    }
-
     public void Shoot()
     {
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, Mathf.Infinity))
         {
-            if (!isShooting)
-            {
-                _actualBullet.transform.position = _myPlayer.transform.position;
+            IWeaponInteractable actualInteractable = hit.collider.gameObject.GetComponent<IWeaponInteractable>();
 
-                _actualBullet.StartShoot(hit.point, hit.collider.gameObject);
-                _actualInteractable = hit.collider.gameObject.GetComponent<IWeaponInteractable>();
+            if (isOnPlayer)
+            {
+                _actualInteractable = actualInteractable;
                 _actualObject = hit.collider.gameObject;
-
-                isShooting = true;
+                _actualBullet.transform.position = _myPlayer.transform.position;
+                _actualBullet.StartShoot(hit.point, hit.collider.gameObject);
+                isOnPlayer = false;
             }
-            else if (isConnect && !isActive)
+            else if (_actualObject == hit.collider.gameObject && actualInteractable != null)
             {
-                _connectInteractable = hit.collider.gameObject.GetComponent<IWeaponInteractable>();
-                if (hit.collider.gameObject == _actualObject)
-                {
-                    _actualInteractable.StartAction(_myPlayer, _isDemon, _actualBullet);
-                    isActive = true;
-                }
-                else if (_connectInteractable != null)
-                {
-                    _connectObject = hit.collider.gameObject;
-                    _connectInteractable.ConnectAction();
-                    isActive = true;
-                }
+                actualInteractable.Interact(_myPlayer, _isDemon, _actualBullet, this);
             }
-            else if (isConnect && isActive)
+            else
             {
-                if (hit.collider.gameObject == _actualObject || hit.collider.gameObject == _connectObject)
-                {
-                    if(_actualInteractable != null)
-                    {
-                        _actualInteractable.ResetAction();
-                    }
-
-                    if(_connectInteractable != null)
-                    {
-                        _connectInteractable.ResetAction();
-                    }
-
-                    _actualBullet.transform.parent = null;
-                    _actualBullet.transform.position = new Vector3(0, -50, 0);
-                    isActive = false;
-                    isConnect = false;
-                    isShooting = false;
-                }
-            }
-            else if (isShooting && !isConnect && !isActive)
-            {
-                _actualBullet.transform.parent = null;
-                _actualBullet.transform.position = new Vector3(0, -50, 0);
-                _actualBullet.StopShoot();
-                isShooting = false;
+                ResetShoot();
             }
         }
+    }
+
+    public void SetConnectObject()
+    {
+        isOnItem = true;
+    }
+
+    public void ResetShoot()
+    {
+        isOnPlayer = true;
+        isOnItem = false;
+        _actualBullet.transform.parent = null;
+        _actualBullet.transform.position = new Vector3(0, -50, 0);
+        _actualBullet.StopShoot();
     }
 }

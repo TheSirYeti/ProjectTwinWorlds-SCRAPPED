@@ -135,7 +135,7 @@ public class ButtonsController
 
     void InteractableButton()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.F))
             _player.CheckInteractable();
     }
 

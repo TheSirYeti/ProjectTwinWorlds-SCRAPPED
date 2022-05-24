@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface IWeaponInteractable
 {
-    public void StartAction(Player actualPlayer, bool isDemon, Projectile weapon);
-    public void ConnectAction();
-    public void ResetAction();
+    public void Interact(Player actualPlayer, bool isDemon, Projectile weapon, ShootingController shootingController);
+    public bool WeaponIsHere();
+    public void SetWeaponState(bool state);
 }

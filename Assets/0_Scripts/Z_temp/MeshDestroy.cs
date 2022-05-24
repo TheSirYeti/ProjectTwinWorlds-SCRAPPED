@@ -16,12 +16,11 @@ public class MeshDestroy : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKeyDown(KeyCode.P))
         {
             DestroyMesh();
         }
     }
-
 
     public void DestroyMesh()
     {

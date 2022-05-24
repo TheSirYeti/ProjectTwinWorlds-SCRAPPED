@@ -45,10 +45,27 @@ public class Projectile : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         IWeaponInteractable actualObject = other.gameObject.GetComponent<IWeaponInteractable>();
-        if (actualObject != null && other.gameObject == goingTo)
+        if (other.gameObject == goingTo)
         {
             actualMovement = delegate { };
             myShootingController.SetConnectObject();
+
+            if (actualObject != null)
+            {
+                actualObject.SetWeaponState(true);
+                actualObject.Interact(_myPlayer, isPentadent, this, myShootingController);
+            }
         }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        IWeaponInteractable actualObject = other.gameObject.GetComponent<IWeaponInteractable>();
+
+        if (actualObject != null)
+        {
+            actualObject.SetWeaponState(false);
+        }
+
     }
 }

@@ -25,25 +25,18 @@ public class Swing : MonoBehaviour, IWeaponInteractable
         actualDelegate();
     }
 
-    public void StartAction(Player actualPlayer, bool isDemon, Projectile weapon)
+    public void Interact(Player actualPlayer, bool isDemon, Projectile weapon, ShootingController shootingController)
     {
-        if (isDemon)
-        {
-            isOnWeapon = !isOnWeapon;
-            return;
-        }
-
-        _player = actualPlayer;
-        
+        throw new System.NotImplementedException();
     }
 
-    public void ConnectAction()
+    public bool WeaponIsHere()
     {
-
+        throw new System.NotImplementedException();
     }
 
-    public void ResetAction()
+    public void SetWeaponState(bool state)
     {
-        
+        throw new System.NotImplementedException();
     }
 }

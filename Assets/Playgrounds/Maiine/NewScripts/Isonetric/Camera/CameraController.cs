@@ -100,7 +100,7 @@ public class CameraController : MonoBehaviour
         rotateRight = _rotateRight;
         rotateToPoint = _pointToRotate;
         ChangeControllers(false);
-        actualMovement += RotateCamera;
+        actualMovement = RotateCamera;
     }
 
     public void ChangeControllers(bool isActivate)
@@ -191,7 +191,7 @@ public class CameraController : MonoBehaviour
 
             if (actualRotate.y >= rotateToPoint)
             {
-                actualMovement -= RotateCamera;
+                actualMovement = FollowPlayer;
                 ChangeControllers(true);
             }
         }
@@ -203,7 +203,7 @@ public class CameraController : MonoBehaviour
 
             if (actualRotate.y <= rotateToPoint)
             {
-                actualMovement -= RotateCamera;
+                actualMovement = FollowPlayer;
                 ChangeControllers(true);
             }
         }
