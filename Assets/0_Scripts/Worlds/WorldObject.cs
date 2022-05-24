@@ -6,12 +6,13 @@ using UnityEngine;
 
 public class WorldObject : MonoBehaviour
 {
-    public Material angelOffMaterial, demonOffMaterial;
+    public Material angelOffMaterial, demonOffMaterial, clearMaterial;
     public Material defaultMaterial;
     public Collider collider;
 
     public bool isDemon;
     public bool isWorldActive;
+    public bool invisible;
     private void Start()
     {
         EventManager.Subscribe("OnPlayerChange", SwapMaterial);
@@ -21,13 +22,20 @@ public class WorldObject : MonoBehaviour
         if (!isWorldActive)
         {
             isWorldActive = false;
-             
-            if (isDemon)
-            {
-                GetComponent<Renderer>().material = demonOffMaterial;
-            } 
-            else GetComponent<Renderer>().material = angelOffMaterial;
             
+            if (!invisible)
+            {
+                if (isDemon)
+                {
+                    GetComponent<Renderer>().material = demonOffMaterial;
+                } 
+                else GetComponent<Renderer>().material = angelOffMaterial;
+            }
+            else
+            {
+                GetComponent<Renderer>().material = clearMaterial;
+            }
+
             if (collider != null) 
                 collider.enabled = false;
         }
@@ -48,9 +56,16 @@ public class WorldObject : MonoBehaviour
         {
             if (isWorldActive)
             {
-                if (myPlayer.layer == LayerMask.NameToLayer("DemonPlayer"))
-                    GetComponent<Renderer>().material = angelOffMaterial;
-                else GetComponent<Renderer>().material = demonOffMaterial;
+                if (!invisible)
+                {
+                    if (myPlayer.layer == LayerMask.NameToLayer("DemonPlayer"))
+                        GetComponent<Renderer>().material = angelOffMaterial;
+                    else GetComponent<Renderer>().material = demonOffMaterial;
+                }
+                else
+                {
+                    GetComponent<Renderer>().material = clearMaterial;
+                }
 
                 isWorldActive = false;
                 if (collider != null) 
