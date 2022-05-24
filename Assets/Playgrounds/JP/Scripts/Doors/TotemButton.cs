@@ -12,6 +12,7 @@ public class TotemButton : MonoBehaviour
     private bool isTriggered = false;
     
     public List<GameObject> objectsToChangeMat;
+    public GameObject portal;
     public List<Material> materials;
     
     private void Update()
@@ -25,6 +26,7 @@ public class TotemButton : MonoBehaviour
             
             isTriggered = true;
             pillar.EnableTotem();
+            portal.SetActive(false);
             SoundManager.instance.PlaySound(SoundID.SUCCESS);
         }
     }

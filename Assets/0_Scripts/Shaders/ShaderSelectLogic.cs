@@ -26,15 +26,21 @@ public class ShaderSelectLogic : MonoBehaviour
         }
     }
 
-    void SwapMaterial(object[] parameters)
+    public void SwapMaterial(object[] parameters)
     {
-        if (!isActive)
+        if (gameObject.activeSelf)
         {
-            GetComponent<Renderer>().materials = new Material[] {originalMat, activeMat};
-        }
-        else
-        {
-            GetComponent<Renderer>().materials = new Material[] {originalMat, clearMat};
+            if (GetComponent<Renderer>() != null)
+            {
+                if (!isActive)
+                {
+                    GetComponent<Renderer>().materials = new Material[] {originalMat, activeMat};
+                }
+                else
+                {
+                    GetComponent<Renderer>().materials = new Material[] {originalMat, clearMat};
+                }
+            }
         }
 
         isActive = !isActive;

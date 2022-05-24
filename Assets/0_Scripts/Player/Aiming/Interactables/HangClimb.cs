@@ -16,7 +16,8 @@ public class HangClimb : InteractableObject
     {
         angel = PlayerWorlds.instance.angelPlayer.transform;
         angel.position = startPoints[GetNearestPoint(angel)].position;
-        walls.SetActive(true);
+        if(walls != null)
+            walls.SetActive(true);
         EventManager.Trigger("OnClimbStart", isOnLeft);
         isObjectTriggered = true;
     }
@@ -31,7 +32,8 @@ public class HangClimb : InteractableObject
 
     public override void OnObjectEnd()
     {
-        walls.SetActive(false);
+        if(walls != null)
+            walls.SetActive(false);
         //ResetVariables(null);
         Debug.Log("Loop check 3 - Hang");
         EventManager.Trigger("OnClimbStop", PlayerWorlds.instance.angelPlayer);

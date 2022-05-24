@@ -25,7 +25,7 @@ public class FallingPieces : MonoBehaviour
             platform.position += (Vector3.down * 2);
         }
 
-        StartCoroutine(StartPlatformMovement());
+        StartCoroutine(SmallBuffer());
     }
 
     private IEnumerator StartPlatformMovement()
@@ -45,6 +45,18 @@ public class FallingPieces : MonoBehaviour
         myPlatforms[index].position = topPositions[index];
         yield return new WaitForSeconds(3f);
         myPlatforms[index].position = bottomPositions[index];
+    }
+
+    IEnumerator SmallBuffer()
+    {
+        StartCoroutine(StartPlatformMovement());
+        yield return new WaitForSeconds(6f);
+        StartCoroutine(StartPlatformMovement());
+        yield return new WaitForSeconds(6f);
+        StartCoroutine(StartPlatformMovement());
+        yield return new WaitForSeconds(6f);
+        StartCoroutine(StartPlatformMovement());
+        
     }
 
     void StopMovement(object[] parameters)

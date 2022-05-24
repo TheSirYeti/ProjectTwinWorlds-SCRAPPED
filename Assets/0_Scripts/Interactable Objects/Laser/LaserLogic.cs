@@ -25,6 +25,7 @@ public class LaserLogic : MonoBehaviour
 
     private LaserLogic currentLaser;
     private LaserReceptor currentReceptor;
+    private LaserToggler currentToggler;
 
     private void Start()
     {
@@ -57,6 +58,9 @@ public class LaserLogic : MonoBehaviour
         isBeingLasered = value;
         lineRenderer.enabled = value;
         SetVFX(value);
+        
+        if(!value)
+            DisableCurrentRelations();
     }
 
     public void CheckForLaserHit(Vector3 hitPos)
@@ -67,7 +71,7 @@ public class LaserLogic : MonoBehaviour
 
         foreach (var collider in itemsCollided)
         {
-            if (collider.GetComponent<LaserLogic>() != null || collider.GetComponent<LaserReceptor>() != null)
+            if (collider.GetComponent<LaserLogic>() != null || collider.GetComponent<LaserReceptor>() != null || collider.GetComponent<LaserToggler>() != null)
             {
                 specialInteractionCounter++;
             }
@@ -95,6 +99,12 @@ public class LaserLogic : MonoBehaviour
                 currentReceptor = collider.GetComponent<LaserReceptor>();
                 currentReceptor.SetRecieverStatus(true);
             }
+
+            if (collider.GetComponent<LaserToggler>() != null)
+            {
+                currentToggler = collider.GetComponent<LaserToggler>();
+                currentToggler.SetToggleStatus(true);
+            }
         }
     }
 
@@ -111,6 +121,12 @@ public class LaserLogic : MonoBehaviour
         {
             currentReceptor.SetRecieverStatus(false);
             currentReceptor = null;
+        }
+
+        if (currentToggler != null)
+        {
+            currentToggler.SetToggleStatus(false);
+            currentToggler = null;
         }
     }
 

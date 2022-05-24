@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Transactions;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 public class SwingPhysics : InteractableObject
@@ -181,5 +182,10 @@ public class SwingPhysics : InteractableObject
         //ResetVariables(null);
         isHanging = false;
         isAfterHang = false;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(transform.position, triggerDistance);
     }
 }

@@ -29,7 +29,8 @@ internal class BreakableWall : InteractableObject
         lineRenderer.enabled = false;
         SoundManager.instance.PlaySound(SoundID.WOOD_BREAK);
         StartCoroutine(BreakSubObjects());
-        Destroy(gameObject);
+        gameObject.SetActive(false);
+        //Destroy(gameObject);
     }
 
     public override void OnObjectExecute()
@@ -41,6 +42,8 @@ internal class BreakableWall : InteractableObject
     {
         foreach (MeshDestroy mesh in destroyableMeshes)
         {
+            if(mesh.GetComponent<ShaderSelectLogic>() != null)
+                EventManager.UnSubscribe("OnPlayerChange", mesh.GetComponent<ShaderSelectLogic>().SwapMaterial);
             mesh.DestroyMesh();
         }
 
