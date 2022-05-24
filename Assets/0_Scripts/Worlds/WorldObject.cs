@@ -25,6 +25,7 @@ public class WorldObject : MonoBehaviour
             
             if (!invisible)
             {
+                GetComponent<Renderer>().enabled = true;
                 if (isDemon)
                 {
                     GetComponent<Renderer>().material = demonOffMaterial;
@@ -33,7 +34,7 @@ public class WorldObject : MonoBehaviour
             }
             else
             {
-                GetComponent<Renderer>().material = clearMaterial;
+                GetComponent<Renderer>().enabled = false;
             }
 
             if (collider != null) 
@@ -42,6 +43,7 @@ public class WorldObject : MonoBehaviour
         else
         {
             isWorldActive = true;
+            GetComponent<Renderer>().enabled = true;
             GetComponent<Renderer>().material = defaultMaterial;
             if (collider != null) 
                 collider.enabled = true;
@@ -58,13 +60,14 @@ public class WorldObject : MonoBehaviour
             {
                 if (!invisible)
                 {
+                    GetComponent<Renderer>().enabled = true;
                     if (myPlayer.layer == LayerMask.NameToLayer("DemonPlayer"))
                         GetComponent<Renderer>().material = angelOffMaterial;
                     else GetComponent<Renderer>().material = demonOffMaterial;
                 }
                 else
                 {
-                    GetComponent<Renderer>().material = clearMaterial;
+                    GetComponent<Renderer>().enabled = false;
                 }
 
                 isWorldActive = false;
@@ -74,6 +77,7 @@ public class WorldObject : MonoBehaviour
             else
             {
                 isWorldActive = true;
+                GetComponent<Renderer>().enabled = true;
                 GetComponent<Renderer>().material = defaultMaterial;
                 if (collider != null) 
                     collider.enabled = true;
