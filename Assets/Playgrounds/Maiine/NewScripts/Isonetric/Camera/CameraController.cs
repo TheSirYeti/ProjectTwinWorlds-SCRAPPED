@@ -10,7 +10,7 @@ public class CameraController : MonoBehaviour
 
     public Transform rotationAxiesX;
 
-    Vector3 midCamera;
+    public Vector3 midCamera;
     Vector3 pointToView;
 
     bool seeDemon = true;
@@ -38,7 +38,7 @@ public class CameraController : MonoBehaviour
         transform.parent = null;
         GameObject myMain = Camera.main.gameObject;
         myMain.transform.parent = rotationAxiesX;
-        transform.rotation = Quaternion.Euler(new Vector3(rotationAngleY, 0, 0));
+        transform.rotation = Quaternion.Euler(new Vector3(0, rotationAngleY, 0));
         rotationAxiesX.localRotation = Quaternion.Euler(new Vector3(rotationAngle, 0, 0));
         Camera.main.orthographicSize = cameraDist;
 

@@ -25,7 +25,7 @@ public class Swing : MonoBehaviour, IWeaponInteractable
         actualDelegate();
     }
 
-    public void DoWeaponAction(Player actualPlayer, bool isDemon)
+    public void StartAction(Player actualPlayer, bool isDemon, Projectile weapon)
     {
         if (isDemon)
         {
@@ -37,9 +37,13 @@ public class Swing : MonoBehaviour, IWeaponInteractable
         
     }
 
-    public void DoConnectAction()
+    public void ConnectAction()
     {
 
     }
 
+    public void ResetAction()
+    {
+        
+    }
 }

@@ -5,28 +5,37 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public float speed;
+    public float climbSpeed;
     public bool isActive;
     public bool isDemon;
+
+    [HideInInspector]
     public int actualRoom;
 
-    public Projectile pentadent;
-    public Projectile arrow;
+    public Projectile pentadentPrefab;
+    public Projectile arrowPrefab;
 
     public GameObject realCharacter;
     public GameObject totemCharacter;
 
     CapsuleCollider myCollider;
     Rigidbody myRigidbody;
+    public Animator myAnimator;
+    public Transform lookAtPoint;
 
     IPlayerInteractable _playerInteractable = null;
 
-    public LayerMask usableItems;
-
-    ShootingController myShootingController;
-    MovementController myMovementController;
-    ButtonsController myButtonController;
+    [HideInInspector]
+    public ShootingController myShootingController;
+    [HideInInspector]
+    public MovementController myMovementController;
+    [HideInInspector]
+    public ButtonsController myButtonController;
+    [HideInInspector]
+    public AnimatorController myAnimatorController;
     public CameraController cameraController;
 
+    public LayerMask usableItems;
     public LayerMask collisionMask;
 
     private void Start()
@@ -34,32 +43,27 @@ public class Player : MonoBehaviour
         myCollider = GetComponent<CapsuleCollider>();
         myRigidbody = GetComponent<Rigidbody>();
 
-        if (isDemon)
-        {
-            Projectile actualPentadent = Instantiate(pentadent, new Vector3(0, -50, 0), Quaternion.Euler(Vector3.zero));
-            actualPentadent.SetPlayer(this);
-            myShootingController = new ShootingController(actualPentadent, this, usableItems, isDemon);
-        }
-        else
-        {
-            Projectile actualArrow = Instantiate(arrow, new Vector3(0, -50, 0), Quaternion.Euler(Vector3.zero));
-            actualArrow.SetPlayer(this);
-            myShootingController = new ShootingController(actualArrow, this, usableItems, isDemon);
-        }
 
-        myMovementController = new MovementController(transform, myRigidbody, speed);
-        myButtonController = new ButtonsController(this, myMovementController, cameraController, myShootingController, collisionMask);
+        Projectile actualProjectil;
+
+        if (isDemon)
+            actualProjectil = Instantiate(pentadentPrefab, new Vector3(0, -50, 0), Quaternion.Euler(Vector3.zero));
+        else
+            actualProjectil = Instantiate(arrowPrefab, new Vector3(0, -50, 0), Quaternion.Euler(Vector3.zero));
+
+        actualProjectil.SetPlayer(this);
+        myShootingController = new ShootingController(actualProjectil, this, usableItems, isDemon);
+
+        myMovementController = new MovementController(transform, myRigidbody, speed, collisionMask, climbSpeed, lookAtPoint, cameraController);
+        myAnimatorController = new AnimatorController(myAnimator);
+        myButtonController = new ButtonsController(this);
 
         EventManager.Subscribe("ChangePlayer", ChangeCharacter);
 
         if (isActive)
-        {
             StartCoroutine(CorrutinaTurnOn());
-        }
         else
-        {
             TurnOff();
-        }
     }
 
     void Update()

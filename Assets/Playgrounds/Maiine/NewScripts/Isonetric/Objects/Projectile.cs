@@ -13,6 +13,7 @@ public class Projectile : MonoBehaviour
     public ShootingController myShootingController;
 
     Player _myPlayer;
+    GameObject goingTo;
 
     void Update()
     {
@@ -24,10 +25,16 @@ public class Projectile : MonoBehaviour
         _myPlayer = myPlayer;
     }
 
-    public void StartShoot(Vector3 actualObjective)
+    public void StartShoot(Vector3 actualObjective, GameObject objectGoTo)
     {
         transform.forward = (actualObjective - transform.position);
+        goingTo = objectGoTo;
         actualMovement = MoveForward;
+    }
+
+    public void StopShoot()
+    {
+        actualMovement = delegate { };
     }
 
     void MoveForward()
@@ -37,14 +44,11 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        actualMovement = delegate { };
-
         IWeaponInteractable actualObject = other.gameObject.GetComponent<IWeaponInteractable>();
-        if(actualObject != null)
+        if (actualObject != null && other.gameObject == goingTo)
         {
-            transform.parent = other.transform;
+            actualMovement = delegate { };
             myShootingController.SetConnectObject();
-            actualObject.DoWeaponAction(_myPlayer, isPentadent);
         }
     }
 }

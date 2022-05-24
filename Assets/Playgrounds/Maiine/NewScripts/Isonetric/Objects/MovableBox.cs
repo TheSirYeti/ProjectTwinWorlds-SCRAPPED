@@ -12,8 +12,10 @@ public class MovableBox : MonoBehaviour, IPlayerInteractable, IWeaponInteractabl
 
     public float speed;
     public float maxForce;
+    public float maxDistance;
     public float minDistance;
     public float aceleration;
+    public float deaceleration;
 
     private float _actualForce;
     public bool isFollow;
@@ -48,7 +50,7 @@ public class MovableBox : MonoBehaviour, IPlayerInteractable, IWeaponInteractabl
         }
     }
 
-    public void DoWeaponAction(Player actualPlayer, bool isDemon)
+    public void StartAction(Player actualPlayer, bool isDemon, Projectile weapon)
     {
         if (!isDemon || Vector3.Distance(actualPlayer.transform.position, transform.position) > maxConnectDistance)
         {
@@ -61,6 +63,7 @@ public class MovableBox : MonoBehaviour, IPlayerInteractable, IWeaponInteractabl
             actualMovement = ConnectingMovement;
             isOnWeapon = true;
             followPlayer = actualPlayer;
+            weapon.transform.parent = transform;
             //actualRope = Instantiate(ropePrefab, transform);
             //actualRope.OnStart(transform, actualPlayer.transform);
         }
@@ -74,14 +77,14 @@ public class MovableBox : MonoBehaviour, IPlayerInteractable, IWeaponInteractabl
         }
     }
 
-    public void DoConnectAction()
+    public void ConnectAction()
     {
 
     }
 
     void ConnectingMovement()
     {
-        if (Vector3.Distance(transform.position, followPlayer.transform.position) > minDistance && !isFollow)
+        if (Vector3.Distance(transform.position, followPlayer.transform.position) > maxDistance && !isFollow)
         {
             isFollow = true;
             actualMovement += FollowPlayer;
@@ -106,10 +109,14 @@ public class MovableBox : MonoBehaviour, IPlayerInteractable, IWeaponInteractabl
     void Force()
     {
         transform.position += (followPlayer.transform.position - transform.position) * _actualForce * Time.deltaTime;
-        _actualForce -= aceleration * Time.deltaTime;
+        _actualForce -= deaceleration * Time.deltaTime;
 
         if (_actualForce <= 0)
             actualMovement -= Force;
     }
 
+    public void ResetAction()
+    {
+        
+    }
 }
