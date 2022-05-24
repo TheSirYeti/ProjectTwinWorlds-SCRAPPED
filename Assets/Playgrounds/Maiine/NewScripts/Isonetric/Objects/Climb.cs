@@ -22,7 +22,7 @@ public class Climb : MonoBehaviour, IWeaponInteractable
 
     public LayerMask layerMaks;
     public LineRenderer lineRenderer;
-    public GameObject myWall;
+    public GameObject myWall = null;
     public Transform grapPoint;
 
     void Start()
@@ -106,5 +106,18 @@ public class Climb : MonoBehaviour, IWeaponInteractable
         _actualPlayer.myMovementController.ChangeToMove();
         _actualPlayer.transform.parent = null;
         actualClimb = delegate { };
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("triggerEnter");
+        Debug.Log(other.gameObject.layer);
+
+        if(other.gameObject.layer == 7 && myWall == null)
+        {
+            Debug.Log("if");
+            Debug.Log(other.gameObject.name);
+            myWall = other.gameObject;
+        }
     }
 }
