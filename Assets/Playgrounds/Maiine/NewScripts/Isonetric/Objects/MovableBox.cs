@@ -109,6 +109,8 @@ public class MovableBox : MonoBehaviour, IPlayerInteractable, IWeaponInteractabl
 
         _lineRenderer.SetPosition(0, transform.position);
         _lineRenderer.SetPosition(1, _followPlayer.transform.position);
+
+        transform.Rotate(transform.right);
     }
 
 

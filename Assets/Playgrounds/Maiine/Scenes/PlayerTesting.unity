@@ -3326,7 +3326,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3429679635900416899, guid: 6fbf2c11d71f67f4ab60752fca6fe143, type: 3}
       propertyPath: rotationAngleY
-      value: 0
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 3429679636222178289, guid: 6fbf2c11d71f67f4ab60752fca6fe143, type: 3}
       propertyPath: m_Materials.Array.data[0]
