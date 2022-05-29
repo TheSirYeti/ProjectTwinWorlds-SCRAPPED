@@ -6,10 +6,9 @@ public class Climb : MonoBehaviour, IWeaponInteractable
 {
     delegate void ClimbDelegate();
     ClimbDelegate actualMove = delegate { };
-    ClimbDelegate actualActivation = delegate { };
 
-    bool _isDemon;
-    bool _isWeaponHere = false;
+    public bool _usableByDemon;
+    bool _isConnect = false;
 
     bool canRight;
     bool canLeft;
@@ -26,30 +25,25 @@ public class Climb : MonoBehaviour, IWeaponInteractable
     public GameObject myWall = null;
     public Transform grapPoint;
 
-    private void Start()
-    {
-        actualActivation = StartAction;
-    }
-
     void Update()
     {
         actualMove();
     }
 
     #region Interiores del delegate
-    void LineRendererWork()
+    void Delegate_LineRendererWork()
     {
         lineRenderer.SetPosition(0, grapPoint.position);
         lineRenderer.SetPosition(1, _actualPlayer.transform.position);
     }
 
-    void GoToPlayer()
+    void Delegate_GoToPlayer()
     {
         grapPoint.position += (_pointToGo - grapPoint.position) * initialSpeed * Time.deltaTime;
 
         if (Vector3.Distance(grapPoint.position, _pointToGo) < minDist)
         {
-            actualMove -= GoToPlayer;
+            actualMove -= Delegate_GoToPlayer;
             _actualPlayer.myMovementController.ChangeToClimb(this, grapPoint);
             _actualPlayer.transform.parent = grapPoint;
             _actualPlayer.myButtonController.ChangeAxies();
@@ -57,7 +51,7 @@ public class Climb : MonoBehaviour, IWeaponInteractable
     }
     #endregion
 
-    #region Publicas llamadas de afuera
+    #region Publicas llamadas desde el Player
     public void MoveGrapPoint(Vector3 dir)
     {
         if (!canRight && dir.x > 0)
@@ -79,61 +73,23 @@ public class Climb : MonoBehaviour, IWeaponInteractable
     }
     #endregion
 
-
-    public void Interact(Player actualPlayer, bool isDemon, Projectile weapon, ShootingController shootingController)
+    public void Inter_DoWeaponAction()
     {
-        if (isDemon)
-        {
-            if (WeaponIsHere())
-                shootingController.ResetShoot();
-            return;
-        }
-
-        _actualPlayer = actualPlayer;
-        _isDemon = isDemon;
-
-        if (WeaponIsHere())
-            actualActivation();
-        else
-            shootingController.ResetShoot();
+        lineRenderer.enabled = true;
+        _pointToGo = new Vector3(_actualPlayer.transform.position.x, grapPoint.position.y, _actualPlayer.transform.position.z);
+        actualMove += Delegate_LineRendererWork;
+        actualMove += Delegate_GoToPlayer;
+        _actualPlayer.myMovementController.ChangeToStay();
     }
 
-    public bool WeaponIsHere()
+    public void Inter_DoConnectAction(IWeaponInteractable otherObject)
     {
-        return _isWeaponHere;
+
     }
 
-    public void SetWeaponState(bool state)
+    public void Inter_ResetObject()
     {
-        _isWeaponHere = state;
-    }
-
-    public void StartAction()
-    {
-        Vector3 dir = new Vector3(transform.position.x, _actualPlayer.transform.position.y, transform.position.z).normalized;
-        RaycastHit hit;
-        if (Physics.Raycast(_actualPlayer.transform.position, dir, out hit, 1, layerMaks))
-        {
-            if (myWall == hit.collider.gameObject)
-            {
-                lineRenderer.enabled = true;
-                _pointToGo = new Vector3(_actualPlayer.transform.position.x, grapPoint.position.y, _actualPlayer.transform.position.z);
-                actualMove += LineRendererWork;
-                actualMove += GoToPlayer;
-                _actualPlayer.myMovementController.ChangeToStay();
-                actualActivation = StopAction;
-            }
-            else
-            {
-                StopAction();
-                _actualPlayer.myShootingController.ResetShoot();
-            }
-        }
-    }
-
-    public void StopAction()
-    {
-        actualActivation = StartAction;
+        _isConnect = false;
         lineRenderer.enabled = false;
         _actualPlayer.myMovementController.ChangeToMove();
         _actualPlayer.myButtonController.ChangeAxies();
@@ -141,11 +97,34 @@ public class Climb : MonoBehaviour, IWeaponInteractable
         actualMove = delegate { };
     }
 
+    public bool Inter_CheckCanUse(Player actualPlayer, bool isDemon)
+    {
+        _actualPlayer = actualPlayer;
+        Vector3 dir = new Vector3(transform.position.x, _actualPlayer.transform.position.y, transform.position.z).normalized;
+        RaycastHit hit;
+
+        if (Physics.Raycast(_actualPlayer.transform.position, dir, out hit, 1, layerMaks)
+            && myWall == hit.collider.gameObject && _usableByDemon == isDemon)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public bool Inter_OnUse()
+    {
+        return _isConnect;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.layer == 7 && myWall == null)
+        if (other.gameObject.layer == 7 && myWall == null)
         {
             myWall = other.gameObject;
         }
     }
+
 }

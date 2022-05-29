@@ -12,11 +12,13 @@ public class Player : MonoBehaviour
     [HideInInspector]
     public int actualRoom;
 
-    public Projectile pentadentPrefab;
-    public Projectile arrowPrefab;
+    public BulletSystem pentadentPrefab;
+    public BulletSystem arrowPrefab;
 
     public GameObject realCharacter;
     public GameObject totemCharacter;
+
+    public Transform handPoint;
 
     CapsuleCollider myCollider;
     Rigidbody myRigidbody;
@@ -37,6 +39,7 @@ public class Player : MonoBehaviour
 
     public LayerMask usableItems;
     public LayerMask collisionMask;
+    public LayerMask posibleCollisions;
 
     private void Start()
     {
@@ -44,15 +47,15 @@ public class Player : MonoBehaviour
         myRigidbody = GetComponent<Rigidbody>();
 
 
-        Projectile actualProjectil;
+        BulletSystem actualProjectil;
 
         if (isDemon)
             actualProjectil = Instantiate(pentadentPrefab, new Vector3(0, -50, 0), Quaternion.Euler(Vector3.zero));
         else
             actualProjectil = Instantiate(arrowPrefab, new Vector3(0, -50, 0), Quaternion.Euler(Vector3.zero));
 
-        actualProjectil.SetPlayer(this);
-        myShootingController = new ShootingController(actualProjectil, this, usableItems, isDemon);
+        actualProjectil.InitialSetUps(this, isDemon);
+        myShootingController = new ShootingController(actualProjectil, posibleCollisions);
 
         myMovementController = new MovementController(transform, myRigidbody, speed, collisionMask, climbSpeed, lookAtPoint, cameraController);
         myAnimatorController = new AnimatorController(myAnimator);
@@ -77,7 +80,7 @@ public class Player : MonoBehaviour
     {
         if (_playerInteractable == null) return;
 
-        _playerInteractable.DoPlayerAction(this, isDemon);
+        _playerInteractable.Inter_DoPlayerAction(this, isDemon);
     }
 
     #region Player Change

@@ -48,12 +48,12 @@ public class Projectile : MonoBehaviour
         if (other.gameObject == goingTo)
         {
             actualMovement = delegate { };
-            myShootingController.SetConnectObject();
+            //myShootingController.SetConnectObject();
 
             if (actualObject != null)
             {
-                actualObject.SetWeaponState(true);
-                actualObject.Interact(_myPlayer, isPentadent, this, myShootingController);
+              //  actualObject.SetWeaponState(true);
+                //actualObject.Interact(_myPlayer, isPentadent, this, myShootingController);
             }
         }
     }
@@ -64,7 +64,7 @@ public class Projectile : MonoBehaviour
 
         if (actualObject != null)
         {
-            actualObject.SetWeaponState(false);
+            //actualObject.SetWeaponState(false);
         }
 
     }

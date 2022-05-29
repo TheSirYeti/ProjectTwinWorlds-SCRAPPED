@@ -8,37 +8,28 @@ public class Breakable : MonoBehaviour, IWeaponInteractable
 
     public List<MeshDestroy> myMesh;
 
-
-    public void Interact(Player actualPlayer, bool isDemon, Projectile weapon, ShootingController shootingController)
+    public void Inter_DoWeaponAction()
     {
-        if (!isDemon)
-        {
-            Restart();
-            return;
-        }
-
-        if (WeaponIsHere())
-            Break();
+        throw new System.NotImplementedException();
     }
 
-    public void SetWeaponState(bool state)
+    public void Inter_DoConnectAction(IWeaponInteractable otherObject)
     {
-        _weaponHere = state;
+        throw new System.NotImplementedException();
     }
 
-    public bool WeaponIsHere()
+    public void Inter_ResetObject()
     {
-        return _weaponHere;
+        throw new System.NotImplementedException();
     }
 
-    void Break()
+    public bool Inter_CheckCanUse(Player actualPlayer, bool isDemon)
     {
-        Destroy(gameObject);
-        Restart();
+        throw new System.NotImplementedException();
     }
 
-    void Restart()
+    public bool Inter_OnUse()
     {
-        
+        throw new System.NotImplementedException();
     }
 }

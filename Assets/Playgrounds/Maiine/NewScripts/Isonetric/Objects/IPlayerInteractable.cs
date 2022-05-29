@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IPlayerInteractable
 {
-    public void DoPlayerAction(Player actualPlayer, bool isDemon);
+    public void Inter_DoPlayerAction(Player actualPlayer, bool isDemon);
 }

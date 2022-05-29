@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 471547343625340559}
   - component: {fileID: 7051578520825950074}
   - component: {fileID: 5104436075876841504}
-  - component: {fileID: 713145520676427115}
+  - component: {fileID: 7216524934294389161}
   m_Layer: 26
   m_Name: Pentadent
   m_TagString: Untagged
@@ -64,7 +64,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!114 &713145520676427115
+--- !u!114 &7216524934294389161
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -73,11 +73,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 471547343625340558}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd8698fde25a3b849ae01e6e2a805aa6, type: 3}
+  m_Script: {fileID: 11500000, guid: c33c6116ad787bd4da4aeca2f99a5eec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 30
-  isPentadent: 1
+  _speed: 20
+  _distanceToInteract: 0.2
+  _radius: 1
+  _interactableItems:
+    serializedVersion: 2
+    m_Bits: 4194304
 --- !u!1 &7781179786134039150
 GameObject:
   m_ObjectHideFlags: 0

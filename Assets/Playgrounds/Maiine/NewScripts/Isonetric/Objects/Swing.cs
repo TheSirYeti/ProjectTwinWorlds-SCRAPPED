@@ -25,17 +25,27 @@ public class Swing : MonoBehaviour, IWeaponInteractable
         actualDelegate();
     }
 
-    public void Interact(Player actualPlayer, bool isDemon, Projectile weapon, ShootingController shootingController)
+    public void Inter_DoWeaponAction()
     {
         throw new System.NotImplementedException();
     }
 
-    public bool WeaponIsHere()
+    public void Inter_DoConnectAction(IWeaponInteractable otherObject)
     {
         throw new System.NotImplementedException();
     }
 
-    public void SetWeaponState(bool state)
+    public void Inter_ResetObject()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public bool Inter_CheckCanUse(Player actualPlayer, bool isDemon)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public bool Inter_OnUse()
     {
         throw new System.NotImplementedException();
     }

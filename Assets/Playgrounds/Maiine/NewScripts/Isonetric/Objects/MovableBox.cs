@@ -6,43 +6,36 @@ public class MovableBox : MonoBehaviour, IPlayerInteractable, IWeaponInteractabl
 {
     public delegate void MovableBoxDelegate();
     MovableBoxDelegate actualMovement = delegate { };
-    MovableBoxDelegate actualInteract = delegate { };
 
     bool isOnPlayer = false;
-    bool _weaponIsHere = false;
 
     public float speed;
-    public float maxForce;
-    public float maxDistance;
-    public float minDistance;
+    public float maxSpeed;
+    public float minDistaceToFollow;
     public float aceleration;
     public float deaceleration;
 
-    private float _actualForce;
-    public bool isFollow;
+    [SerializeField]
+    bool _isConnect;
+
+    [SerializeField]
+    bool _usableByDemon;
 
     public float maxConnectDistance;
 
     Player _followPlayer;
     Projectile _actualWeapon;
 
-    public GameObject goTo;
-
-    public Rope ropePrefab;
-    public Rope actualRope;
-
-    private void Start()
-    {
-        actualInteract = StartAction;
-    }
+    //public Rope ropePrefab;
+    //public Rope actualRope;
 
     void Update()
     {
         actualMovement();
     }
 
-    #region Interaccion Por Cercania
-    public void DoPlayerAction(Player actualPlayer, bool isDemon)
+    #region Interfaces Con Personaje
+    public void Inter_DoPlayerAction(Player actualPlayer, bool isDemon)
     {
         if (!isDemon) return;
 
@@ -59,81 +52,64 @@ public class MovableBox : MonoBehaviour, IPlayerInteractable, IWeaponInteractabl
     }
     #endregion
 
-    public void Interact(Player actualPlayer, bool isDemon, Projectile weapon, ShootingController shootingController)
+
+    #region Interfaces Con Arma
+    public void Inter_DoWeaponAction()
     {
-        if (!isDemon || Vector3.Distance(actualPlayer.transform.position, transform.position) > maxConnectDistance)
-        {
-            if (WeaponIsHere())
-                shootingController.ResetShoot();
-            return;
-        }
-
-        _followPlayer = actualPlayer;
-        _actualWeapon = weapon;
-
-        if (WeaponIsHere())
-            actualInteract();
-        else
-            shootingController.ResetShoot();
+        _isConnect = true;
+        actualMovement = Delegate_FollowPlayer;
     }
 
-    public bool WeaponIsHere()
+    public void Inter_DoConnectAction(IWeaponInteractable otherObject)
     {
-        return _weaponIsHere;
+
+        _isConnect = true;
     }
 
-    public void SetWeaponState(bool state)
-    {
-        _weaponIsHere = state;
-    }
-
-
-    void StartAction()
-    {
-        actualMovement = ConnectingMovement;
-        _actualWeapon.transform.parent = transform;
-        actualInteract = StopAction;
-    }
-
-    void StopAction()
+    public void Inter_ResetObject()
     {
         actualMovement = delegate { };
-        _actualWeapon.transform.parent = null;
-        actualInteract = StartAction;
+        _isConnect = false;
     }
 
-    #region Void de movimiento para Delegate
-    void ConnectingMovement()
+    public bool Inter_CheckCanUse(Player actualPlayer, bool isDemon)
     {
-        if (Vector3.Distance(transform.position, _followPlayer.transform.position) > maxDistance && !isFollow)
+        if (_usableByDemon == isDemon)
         {
-            isFollow = true;
-            actualMovement = FollowPlayer;
+            _followPlayer = actualPlayer;
+            return true;
         }
+        else
+            return false;
     }
 
-    void FollowPlayer()
+    public bool Inter_OnUse()
     {
-        transform.position += (_followPlayer.transform.position - transform.position) * _actualForce * Time.deltaTime;
-
-        if (_actualForce < maxForce)
-            _actualForce += aceleration * Time.deltaTime;
-
-        if (Vector3.Distance(transform.position, _followPlayer.transform.position) < minDistance)
-        {
-            isFollow = false;
-            actualMovement = Force;
-        }
-    }
-
-    void Force()
-    {
-        transform.position += (_followPlayer.transform.position - transform.position) * _actualForce * Time.deltaTime;
-        _actualForce -= deaceleration * Time.deltaTime;
-
-        if (_actualForce <= 0)
-            actualMovement = ConnectingMovement;
+        return _isConnect;
     }
     #endregion
 
+    void Delegate_FollowPlayer()
+    {
+        if (Vector3.Distance(transform.position, _followPlayer.transform.position) > minDistaceToFollow)
+        {
+            speed += aceleration * Time.deltaTime;
+        }
+        else
+        {
+            speed += deaceleration * Time.deltaTime;
+        }
+
+        speed = Mathf.Clamp(speed, 0, maxSpeed);
+
+        Vector3 dir = (_followPlayer.transform.position - transform.position).normalized;
+
+        transform.position += dir * speed * Time.deltaTime;
+    }
+
+
+    void Delegate_Swing()
+    {
+
+    }
 }
