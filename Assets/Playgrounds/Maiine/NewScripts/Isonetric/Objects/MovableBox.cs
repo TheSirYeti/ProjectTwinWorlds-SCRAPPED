@@ -24,10 +24,9 @@ public class MovableBox : MonoBehaviour, IPlayerInteractable, IWeaponInteractabl
     public float maxConnectDistance;
 
     Player _followPlayer;
-    Projectile _actualWeapon;
 
-    //public Rope ropePrefab;
-    //public Rope actualRope;
+    [SerializeField]
+    LineRenderer _lineRenderer;
 
     void Update()
     {
@@ -56,6 +55,7 @@ public class MovableBox : MonoBehaviour, IPlayerInteractable, IWeaponInteractabl
     #region Interfaces Con Arma
     public void Inter_DoWeaponAction()
     {
+        _lineRenderer.enabled = true;
         _isConnect = true;
         actualMovement = Delegate_FollowPlayer;
     }
@@ -68,6 +68,7 @@ public class MovableBox : MonoBehaviour, IPlayerInteractable, IWeaponInteractabl
 
     public void Inter_ResetObject()
     {
+        _lineRenderer.enabled = false;
         actualMovement = delegate { };
         _isConnect = false;
     }
@@ -105,6 +106,9 @@ public class MovableBox : MonoBehaviour, IPlayerInteractable, IWeaponInteractabl
         Vector3 dir = (_followPlayer.transform.position - transform.position).normalized;
 
         transform.position += dir * speed * Time.deltaTime;
+
+        _lineRenderer.SetPosition(0, transform.position);
+        _lineRenderer.SetPosition(1, _followPlayer.transform.position);
     }
 
 
