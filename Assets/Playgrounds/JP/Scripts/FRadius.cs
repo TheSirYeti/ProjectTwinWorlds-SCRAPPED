@@ -6,12 +6,15 @@ using UnityEngine;
 
 public class FRadius : MonoBehaviour
 {
+    [SerializeField] private float waitTime = 5f;
+    private bool isStillInTrigger;
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("DemonOnlyTrigger") ||
             other.gameObject.layer == LayerMask.NameToLayer("AngelOnlyTrigger"))
         {
-            EventManager.Trigger("OnShowF");
+            isStillInTrigger = true;
+            StartCoroutine(FRadiusBuffer());
         }
     }
 
@@ -20,7 +23,15 @@ public class FRadius : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("DemonOnlyTrigger") ||
             other.gameObject.layer == LayerMask.NameToLayer("AngelOnlyTrigger"))
         {
+            isStillInTrigger = false;
             EventManager.Trigger("OnHideF");
         }
+    }
+
+    IEnumerator FRadiusBuffer()
+    {
+        yield return new WaitForSeconds(waitTime);
+        if(isStillInTrigger)
+            EventManager.Trigger("OnShowF");
     }
 }

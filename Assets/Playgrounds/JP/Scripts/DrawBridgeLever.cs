@@ -1,64 +1,25 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class DrawBridgeLever : MonoBehaviour
+public class DrawBridgeLever : GenericLever
 {
     public Animator myBridge;
-    public bool canInteract;
-    public float minDistance;
-    public GameObject flickOn, flickOff;
-    
+    public ParticleSystem sparks;
+    public int emitAmount;
 
-    private void Update()
+    public override void OnLeverFlicked()
     {
-        if (Input.GetKeyDown(KeyCode.F) && canInteract && !flickOff.activeSelf && HasNearbyPlayer())
-        {
-            myBridge.Play("BridgeFall");
-            flickOff.SetActive(true);
-            flickOn.SetActive(false);
-        }
-    }
+        myBridge.Play("BridgeFall");
+        SoundManager.instance.PlaySound(SoundID.SPARK);
+        sparks.Emit(emitAmount);
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.layer == LayerMask.NameToLayer("DemonPlayer") || other.gameObject.layer == LayerMask.NameToLayer("AngelPlayer"))
+        if (gameObject.GetComponent<FRadius>() != null)
         {
-            canInteract = true;
+            EventManager.Trigger("OnHideF");
+            Destroy(gameObject.GetComponent<FRadius>());
         }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.layer == LayerMask.NameToLayer("DemonPlayer") || other.gameObject.layer == LayerMask.NameToLayer("AngelPlayer"))
-        {
-            canInteract = false;
-        }
-    }
-
-    bool HasNearbyPlayer()
-    {
-        Debug.Log(Vector3.Distance(transform.position, PlayerWorlds.instance.demonPlayer.transform.position));
-        Debug.Log(Vector3.Distance(transform.position, PlayerWorlds.instance.angelPlayer.transform.position));
-        
-        if (PlayerWorlds.instance.demonPlayer.activeSelf)
-        {
-            if (Vector3.Distance(transform.position, PlayerWorlds.instance.demonPlayer.transform.position) <=
-                minDistance)
-            {
-                return true;
-            }
-        }
-        else
-        {
-            if (Vector3.Distance(transform.position, PlayerWorlds.instance.angelPlayer.transform.position) <=
-                minDistance)
-            {
-                return true;
-            }
-        }
-
-        return false;
     }
 }

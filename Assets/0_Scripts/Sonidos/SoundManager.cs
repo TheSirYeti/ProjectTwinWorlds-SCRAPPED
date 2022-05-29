@@ -197,7 +197,8 @@ public enum SoundID
     WOOD_BREAK,
     SUCCESS,
     CRASH,
-    POWER_ON
+    POWER_ON,
+    SPARK
 }
 
 public enum MusicID
