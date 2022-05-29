@@ -83,6 +83,9 @@ public class ButtonsController
         float horizontalAxie = Input.GetAxis("Horizontal");
         float verticalAxie = Input.GetAxis("Vertical");
 
+        Debug.Log("oa?");
+        Debug.Log(_cameraController.transform.right);
+
         _horizontal = _cameraController.transform.right * horizontalAxie;
         _vertical = _cameraController.transform.forward * verticalAxie;
 

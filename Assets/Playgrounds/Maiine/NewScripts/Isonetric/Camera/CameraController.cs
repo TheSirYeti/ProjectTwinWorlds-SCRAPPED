@@ -38,9 +38,17 @@ public class CameraController : MonoBehaviour
         transform.parent = null;
         GameObject myMain = Camera.main.gameObject;
         myMain.transform.parent = rotationAxiesX;
+        myMain.transform.rotation = Quaternion.Euler(Vector3.zero);
+        myMain.transform.localPosition = Vector3.zero;
+
         transform.rotation = Quaternion.Euler(new Vector3(0, rotationAngleY, 0));
+
+
+        rotationAxiesX.rotation = Quaternion.Euler(Vector3.zero);
         rotationAxiesX.localRotation = Quaternion.Euler(new Vector3(rotationAngle, 0, 0));
+
         Camera.main.orthographicSize = cameraDist;
+        Camera.main.nearClipPlane = -30;
 
         actualTransform = demon.transform;
         myMain.transform.LookAt(actualTransform);
