@@ -2796,20 +2796,8 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1347446136}
     - target: {fileID: 1817344445665305757, guid: e5e432d5412b6504490fdc266faef218, type: 3}
-      propertyPath: speed
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1817344445665305757, guid: e5e432d5412b6504490fdc266faef218, type: 3}
       propertyPath: maxForce
       value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1817344445665305757, guid: e5e432d5412b6504490fdc266faef218, type: 3}
-      propertyPath: maxSpeed
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 1817344445665305757, guid: e5e432d5412b6504490fdc266faef218, type: 3}
-      propertyPath: aceleration
-      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1817344445665305757, guid: e5e432d5412b6504490fdc266faef218, type: 3}
       propertyPath: maxDistance
@@ -2818,18 +2806,6 @@ PrefabInstance:
     - target: {fileID: 1817344445665305757, guid: e5e432d5412b6504490fdc266faef218, type: 3}
       propertyPath: minDistance
       value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 1817344445665305757, guid: e5e432d5412b6504490fdc266faef218, type: 3}
-      propertyPath: deaceleration
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1817344445665305757, guid: e5e432d5412b6504490fdc266faef218, type: 3}
-      propertyPath: _usableByDemon
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1817344445665305757, guid: e5e432d5412b6504490fdc266faef218, type: 3}
-      propertyPath: minDistaceToFollow
-      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1817344445665305761, guid: e5e432d5412b6504490fdc266faef218, type: 3}
       propertyPath: m_RootOrder

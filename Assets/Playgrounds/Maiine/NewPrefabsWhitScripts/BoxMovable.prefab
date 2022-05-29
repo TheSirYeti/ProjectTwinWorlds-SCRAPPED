@@ -125,15 +125,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d1eb686b56577e4dab86402a400876a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
-  maxForce: 1
-  minDistance: 8
-  aceleration: 0.1
-  isFollow: 0
+  speed: 0
+  maxSpeed: 7
+  minDistaceToFollow: 5
+  aceleration: 2
+  deaceleration: 3
+  _isConnect: 0
+  _usableByDemon: 1
   maxConnectDistance: 25
-  goTo: {fileID: 0}
-  ropePrefab: {fileID: 274757076160616682, guid: 5285def5522f9fb4b96bc8d452be7b16, type: 3}
-  actualRope: {fileID: 0}
 --- !u!120 &1817344445665305766
 LineRenderer:
   m_ObjectHideFlags: 0
