@@ -426,6 +426,7 @@ MonoBehaviour:
   climbSpeed: 3
   isActive: 0
   isDemon: 0
+  isOnAir: 1
   actualRoom: 0
   pentadentPrefab: {fileID: 7216524934294389161, guid: a77e1559560199b42a7b7ef951dcfa69, type: 3}
   arrowPrefab: {fileID: 3981380502043142495, guid: aae2e40c3b19a7240aa2dc86f7dc41e7, type: 3}
@@ -441,7 +442,7 @@ MonoBehaviour:
     m_Bits: 134217728
   movementCollision:
     serializedVersion: 2
-    m_Bits: 268435648
+    m_Bits: 272629952
   mouseCollisions:
     serializedVersion: 2
     m_Bits: 201326591
@@ -528,6 +529,7 @@ MonoBehaviour:
   climbSpeed: 3
   isActive: 1
   isDemon: 1
+  isOnAir: 1
   actualRoom: 0
   pentadentPrefab: {fileID: 7216524934294389161, guid: a77e1559560199b42a7b7ef951dcfa69, type: 3}
   arrowPrefab: {fileID: 3981380502043142495, guid: aae2e40c3b19a7240aa2dc86f7dc41e7, type: 3}
@@ -543,7 +545,7 @@ MonoBehaviour:
     m_Bits: 134217728
   movementCollision:
     serializedVersion: 2
-    m_Bits: 268435648
+    m_Bits: 272629952
   mouseCollisions:
     serializedVersion: 2
     m_Bits: 201326591

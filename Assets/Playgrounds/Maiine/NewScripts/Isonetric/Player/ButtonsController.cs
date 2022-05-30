@@ -136,7 +136,9 @@ public class ButtonsController
     void InteractableButton()
     {
         if (Input.GetKeyDown(KeyCode.F))
-            _player.CheckInteractable();
+            _player.CheckInteractable(KeyCode.F);
+        else if (Input.GetKeyDown(KeyCode.Space))
+            _player.CheckInteractable(KeyCode.Space);
     }
 
     void ChangePlayerButton()

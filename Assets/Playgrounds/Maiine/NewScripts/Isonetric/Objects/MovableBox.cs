@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovableBox : MonoBehaviour, IPlayerInteractable, IWeaponInteractable
+public class MovableBox : MonoBehaviour, IWeaponInteractable
 {
     public delegate void MovableBoxDelegate();
     MovableBoxDelegate actualMovement = delegate { };
@@ -34,28 +34,10 @@ public class MovableBox : MonoBehaviour, IPlayerInteractable, IWeaponInteractabl
         actualMovement();
     }
 
-    #region Interfaces Con Personaje
-    public void Inter_DoPlayerAction(Player actualPlayer, bool isDemon)
-    {
-        if (!isDemon) return;
-
-        if (!isOnPlayer)
-        {
-            transform.parent = actualPlayer.gameObject.transform;
-            isOnPlayer = true;
-        }
-        else
-        {
-            transform.parent = null;
-            isOnPlayer = false;
-        }
-    }
-    #endregion
-
-
     #region Interfaces Con Arma
     public void Inter_DoWeaponAction(BulletSystem bullet)
     {
+        Debug.Log("A");
         _bullet = bullet;
         _lineRenderer.enabled = true;
         _isConnect = true;

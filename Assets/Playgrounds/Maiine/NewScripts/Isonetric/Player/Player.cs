@@ -80,11 +80,14 @@ public class Player : MonoBehaviour
     }
 
 
-    public void CheckInteractable()
+    public void CheckInteractable(KeyCode keyDown)
     {
         if (_playerInteractable == null) return;
 
-        _playerInteractable.Inter_DoPlayerAction(this, isDemon);
+        if (keyDown == KeyCode.F)
+            _playerInteractable.Inter_DoPlayerAction(this, isDemon);
+        else if(keyDown == KeyCode.Space)
+            _playerInteractable.Inter_DoJumpAction(this, isDemon);
     }
 
     #region Player Change
