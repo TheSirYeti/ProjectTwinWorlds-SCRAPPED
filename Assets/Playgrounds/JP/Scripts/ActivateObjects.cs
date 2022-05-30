@@ -20,6 +20,7 @@ public class ActivateObjects : MonoBehaviour
 
     bool HasNearbyPlayer()
     {
+        /*
         if (PlayerWorlds.instance.demonPlayer.activeSelf)
         {
             if (Vector3.Distance(transform.position, PlayerWorlds.instance.demonPlayer.transform.position) <=
@@ -36,6 +37,7 @@ public class ActivateObjects : MonoBehaviour
                 return true;
             }
         }
+        */
 
         return false;
     }

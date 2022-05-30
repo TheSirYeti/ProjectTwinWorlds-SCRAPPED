@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8519126623244394583}
   - component: {fileID: 8519126623244394582}
   - component: {fileID: 2884263497046265359}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: Climb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -113,6 +113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a42eb75dfd543d4448661b01d7a7efea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _usableByDemon: 0
   _speed: 3
   initialSpeed: 10
   minDist: 0.2
@@ -252,7 +253,7 @@ GameObject:
   - component: {fileID: 8519126623881192743}
   - component: {fileID: 8519126623881192742}
   - component: {fileID: 8519126623881192737}
-  m_Layer: 0
+  m_Layer: 26
   m_Name: ColliderDer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -396,7 +397,7 @@ GameObject:
   - component: {fileID: 8519126624128509543}
   - component: {fileID: 8519126624128509542}
   - component: {fileID: 8519126624128509537}
-  m_Layer: 0
+  m_Layer: 26
   m_Name: ColliderIzq
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -537,7 +538,7 @@ GameObject:
   - component: {fileID: 8519126624363984011}
   - component: {fileID: 8519126624363984010}
   - component: {fileID: 8519126624363984021}
-  m_Layer: 0
+  m_Layer: 26
   m_Name: Grab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -640,7 +641,7 @@ GameObject:
   - component: {fileID: 8519126624430226680}
   - component: {fileID: 8519126624430226683}
   - component: {fileID: 8519126624430226682}
-  m_Layer: 0
+  m_Layer: 26
   m_Name: CollideerDown
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -33,7 +33,7 @@ public class TotemButton : MonoBehaviour
 
     bool IsInDistance()
     {
-        if (PlayerWorlds.instance.demonPlayer.activeSelf)
+        /*if (PlayerWorlds.instance.demonPlayer.activeSelf)
         {
             if (Vector3.Distance(transform.position, PlayerWorlds.instance.demonPlayer.transform.position) <=
                 minDistance)
@@ -48,7 +48,7 @@ public class TotemButton : MonoBehaviour
             {
                 return true;
             }
-        }
+        }*/
 
         return false;
     }
