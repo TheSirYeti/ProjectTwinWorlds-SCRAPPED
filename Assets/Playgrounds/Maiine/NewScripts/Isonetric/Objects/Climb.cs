@@ -75,7 +75,6 @@ public class Climb : MonoBehaviour, IWeaponInteractable
 
     public void Inter_DoWeaponAction()
     {
-        Debug.Log("a?");
         _isConnect = true;
         lineRenderer.enabled = true;
         _pointToGo = new Vector3(_actualPlayer.transform.position.x, grapPoint.position.y, _actualPlayer.transform.position.z);
