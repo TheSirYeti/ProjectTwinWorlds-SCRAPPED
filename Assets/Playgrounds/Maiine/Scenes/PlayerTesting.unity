@@ -2786,22 +2786,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 569024806059152568, guid: 82c66c7ba87adc4438c6440503cb394d, type: 3}
-      propertyPath: mouseCollisions.m_Bits
-      value: 201326591
-      objectReference: {fileID: 0}
-    - target: {fileID: 569024806059152568, guid: 82c66c7ba87adc4438c6440503cb394d, type: 3}
-      propertyPath: movementCollision.m_Bits
-      value: 268435648
-      objectReference: {fileID: 0}
-    - target: {fileID: 569024806437691149, guid: 82c66c7ba87adc4438c6440503cb394d, type: 3}
-      propertyPath: mouseCollisions.m_Bits
-      value: 201326591
-      objectReference: {fileID: 0}
-    - target: {fileID: 569024806437691149, guid: 82c66c7ba87adc4438c6440503cb394d, type: 3}
-      propertyPath: movementCollision.m_Bits
-      value: 268435648
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 82c66c7ba87adc4438c6440503cb394d, type: 3}
 --- !u!1001 &882546566599617959
@@ -3097,28 +3081,12 @@ PrefabInstance:
       value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 1817344445665305757, guid: e5e432d5412b6504490fdc266faef218, type: 3}
-      propertyPath: maxSpeed
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1817344445665305757, guid: e5e432d5412b6504490fdc266faef218, type: 3}
-      propertyPath: aceleration
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 1817344445665305757, guid: e5e432d5412b6504490fdc266faef218, type: 3}
       propertyPath: maxDistance
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1817344445665305757, guid: e5e432d5412b6504490fdc266faef218, type: 3}
       propertyPath: minDistance
       value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 1817344445665305757, guid: e5e432d5412b6504490fdc266faef218, type: 3}
-      propertyPath: deaceleration
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 1817344445665305757, guid: e5e432d5412b6504490fdc266faef218, type: 3}
-      propertyPath: minDistaceToFollow
-      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1817344445665305761, guid: e5e432d5412b6504490fdc266faef218, type: 3}
       propertyPath: m_RootOrder

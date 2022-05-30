@@ -102,22 +102,23 @@ public class Climb : MonoBehaviour, IWeaponInteractable
     public bool Inter_CheckCanUse(Player actualPlayer, bool isDemon)
     {
         _actualPlayer = actualPlayer;
-        Vector3 dir = new Vector3(transform.position.x, _actualPlayer.transform.position.y, transform.position.z).normalized;
-        RaycastHit hit;
 
-        if (Physics.Raycast(_actualPlayer.transform.position, dir, out hit, 1, layerMaks)
-            && myWall == hit.collider.gameObject && _usableByDemon == isDemon)
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, 1, layerMaks);
+
+        foreach (Collider collider in hitColliders)
         {
-            return true;
+            if (collider.gameObject.layer == LayerMask.NameToLayer("Wall") && myWall == collider.gameObject && _usableByDemon == isDemon)
+            {
+                return true;
+            }
         }
-        else
-        {
-            return false;
-        }
+
+        return false;
     }
 
     public bool Inter_OnUse()
     {
+        Debug.Log(_isConnect);
         return _isConnect;
     }
 
