@@ -437,10 +437,10 @@ MonoBehaviour:
   usableItems:
     serializedVersion: 2
     m_Bits: 134217728
-  collisionMask:
+  movementCollision:
     serializedVersion: 2
-    m_Bits: 192
-  posibleCollisions:
+    m_Bits: 268435648
+  mouseCollisions:
     serializedVersion: 2
     m_Bits: 201326591
 --- !u!1 &569024806437691147
@@ -539,10 +539,10 @@ MonoBehaviour:
   usableItems:
     serializedVersion: 2
     m_Bits: 134217728
-  collisionMask:
+  movementCollision:
     serializedVersion: 2
-    m_Bits: 192
-  posibleCollisions:
+    m_Bits: 268435648
+  mouseCollisions:
     serializedVersion: 2
     m_Bits: 201326591
 --- !u!1 &3332098202988085996
