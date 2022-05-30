@@ -126,10 +126,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
-  maxSpeed: 7
-  minDistaceToFollow: 5
-  aceleration: 2
-  deaceleration: 3
+  maxSpeed: 10
+  minDistaceToFollow: 10
+  aceleration: 6
+  deaceleration: 7
   _isConnect: 0
   _usableByDemon: 1
   maxConnectDistance: 25

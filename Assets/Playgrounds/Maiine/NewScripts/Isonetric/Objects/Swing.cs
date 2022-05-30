@@ -49,4 +49,11 @@ public class Swing : MonoBehaviour, IWeaponInteractable
     {
         throw new System.NotImplementedException();
     }
+
+    public void Inter_SetParent(Transform weapon)
+    {
+        weapon.parent = transform;
+        weapon.localScale = new Vector3(1, 1, 1);
+        weapon.localPosition = Vector3.zero;
+    }
 }

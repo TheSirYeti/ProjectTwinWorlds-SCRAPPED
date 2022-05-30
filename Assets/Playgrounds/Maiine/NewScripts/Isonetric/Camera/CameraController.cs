@@ -13,6 +13,8 @@ public class CameraController : MonoBehaviour
     public Vector3 midCamera;
     Vector3 pointToView;
 
+    LayerMask collisionRaycast;
+
     bool seeDemon = true;
 
     bool rotateRight = true;
@@ -53,6 +55,8 @@ public class CameraController : MonoBehaviour
         actualTransform = demon.transform;
         myMain.transform.LookAt(actualTransform);
         actualMovement = FollowPlayer;
+
+        collisionRaycast = demon.mouseCollisions;
     }
 
     private void Update()
@@ -142,7 +146,7 @@ public class CameraController : MonoBehaviour
     void Aim()
     {
         RaycastHit hit;
-        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, Mathf.Infinity))
+        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, Mathf.Infinity, collisionRaycast))
         {
             Vector3 rayPoint = new Vector3(hit.point.x, transform.position.y, hit.point.z);
             Vector3 dist = (rayPoint - actualTransform.position) * 0.5f;

@@ -88,6 +88,13 @@ public class MovableBox : MonoBehaviour, IPlayerInteractable, IWeaponInteractabl
     {
         return _isConnect;
     }
+
+    public void Inter_SetParent(Transform weapon)
+    {
+        weapon.parent = transform;
+        weapon.localScale = new Vector3(1,1,1);
+        weapon.localPosition = Vector3.zero;
+    }
     #endregion
 
     void Delegate_FollowPlayer()
@@ -95,10 +102,12 @@ public class MovableBox : MonoBehaviour, IPlayerInteractable, IWeaponInteractabl
         if (Vector3.Distance(transform.position, _followPlayer.transform.position) > minDistaceToFollow)
         {
             speed += aceleration * Time.deltaTime;
+            Debug.Log("if");
         }
         else
         {
-            speed += deaceleration * Time.deltaTime;
+            Debug.Log("else");
+            speed -= deaceleration * Time.deltaTime;
         }
 
         speed = Mathf.Clamp(speed, 0, maxSpeed);
@@ -109,8 +118,6 @@ public class MovableBox : MonoBehaviour, IPlayerInteractable, IWeaponInteractabl
 
         _lineRenderer.SetPosition(0, transform.position);
         _lineRenderer.SetPosition(1, _followPlayer.transform.position);
-
-        transform.Rotate(transform.right);
     }
 
 

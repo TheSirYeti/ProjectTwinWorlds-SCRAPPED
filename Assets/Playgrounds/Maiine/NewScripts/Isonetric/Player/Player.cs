@@ -38,8 +38,8 @@ public class Player : MonoBehaviour
     public CameraController cameraController;
 
     public LayerMask usableItems;
-    public LayerMask collisionMask;
-    public LayerMask posibleCollisions;
+    public LayerMask movementCollision;
+    public LayerMask mouseCollisions;
 
     private void Start()
     {
@@ -55,9 +55,9 @@ public class Player : MonoBehaviour
             actualProjectil = Instantiate(arrowPrefab, new Vector3(0, -50, 0), Quaternion.Euler(Vector3.zero));
 
         actualProjectil.InitialSetUps(this, isDemon);
-        myShootingController = new ShootingController(actualProjectil, posibleCollisions);
+        myShootingController = new ShootingController(actualProjectil, mouseCollisions);
 
-        myMovementController = new MovementController(transform, myRigidbody, speed, collisionMask, climbSpeed, lookAtPoint, cameraController);
+        myMovementController = new MovementController(transform, myRigidbody, speed, movementCollision, climbSpeed, lookAtPoint, cameraController);
         myAnimatorController = new AnimatorController(myAnimator);
         myButtonController = new ButtonsController(this);
 

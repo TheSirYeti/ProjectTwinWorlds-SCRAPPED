@@ -77,6 +77,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 20
+  _backSpeed: 40
   _distanceToInteract: 0.2
   _radius: 1
   _interactableItems:

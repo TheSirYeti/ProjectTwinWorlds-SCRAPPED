@@ -17,6 +17,9 @@ public class BulletSystem : MonoBehaviour
 
     [SerializeField]
     float _speed;
+    
+    [SerializeField]
+    float _backSpeed;
 
     [SerializeField]
     float _distanceToInteract;
@@ -48,12 +51,12 @@ public class BulletSystem : MonoBehaviour
 
         transform.forward = dir;
 
-        transform.position += transform.forward * _speed * Time.deltaTime;
+        transform.position += transform.forward * _backSpeed * Time.deltaTime;
 
         if (Vector3.Distance(_myPlayer.transform.position, transform.position) < _distanceToInteract)
         {
             _isOnPlayer = true;
-            transform.parent = _myPlayer.transform;
+            transform.parent = _myPlayer.handPoint;
             transform.localPosition = Vector3.zero;
             transform.localRotation = Quaternion.Euler(Vector3.zero);
             actualMovement = delegate { };
@@ -72,7 +75,7 @@ public class BulletSystem : MonoBehaviour
             if (hitColliders.Length > 0)
             {
                 _actualCollider = hitColliders[0].GetComponent<IWeaponInteractable>();
-                transform.parent = hitColliders[0].transform;
+                _actualCollider.Inter_SetParent(transform);
             }
 
             actualMovement = delegate { };

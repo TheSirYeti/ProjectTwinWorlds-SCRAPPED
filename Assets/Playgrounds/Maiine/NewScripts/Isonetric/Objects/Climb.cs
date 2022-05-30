@@ -75,6 +75,8 @@ public class Climb : MonoBehaviour, IWeaponInteractable
 
     public void Inter_DoWeaponAction()
     {
+        Debug.Log("a?");
+        _isConnect = true;
         lineRenderer.enabled = true;
         _pointToGo = new Vector3(_actualPlayer.transform.position.x, grapPoint.position.y, _actualPlayer.transform.position.z);
         actualMove += Delegate_LineRendererWork;
@@ -117,6 +119,13 @@ public class Climb : MonoBehaviour, IWeaponInteractable
     public bool Inter_OnUse()
     {
         return _isConnect;
+    }
+
+    public void Inter_SetParent(Transform weapon)
+    {
+        weapon.parent = grapPoint;
+        weapon.localScale = new Vector3(1, 1, 1);
+        weapon.localPosition = Vector3.zero;
     }
 
     private void OnTriggerEnter(Collider other)
