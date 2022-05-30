@@ -19,6 +19,7 @@ public class Climb : MonoBehaviour, IWeaponInteractable
     public float minDist;
 
     Player _actualPlayer;
+    BulletSystem _actualBullet;
 
     public LayerMask layerMaks;
     public LineRenderer lineRenderer;
@@ -39,6 +40,14 @@ public class Climb : MonoBehaviour, IWeaponInteractable
 
     void Delegate_GoToPlayer()
     {
+        if (!canLeft || !canRight)
+        {
+            if(Vector3.Distance(grapPoint.position, _pointToGo) > minDist)
+            {
+                _actualBullet.Bullet_Reset();
+            }
+        }
+
         grapPoint.position += (_pointToGo - grapPoint.position) * initialSpeed * Time.deltaTime;
 
         if (Vector3.Distance(grapPoint.position, _pointToGo) < minDist)
@@ -73,8 +82,11 @@ public class Climb : MonoBehaviour, IWeaponInteractable
     }
     #endregion
 
-    public void Inter_DoWeaponAction()
+    #region Interfaces
+    public void Inter_DoWeaponAction(BulletSystem bullet)
     {
+        _actualBullet = bullet;
+        
         _isConnect = true;
         lineRenderer.enabled = true;
         _pointToGo = new Vector3(_actualPlayer.transform.position.x, grapPoint.position.y, _actualPlayer.transform.position.z);
@@ -127,6 +139,7 @@ public class Climb : MonoBehaviour, IWeaponInteractable
         weapon.localScale = new Vector3(1, 1, 1);
         weapon.localPosition = Vector3.zero;
     }
+    #endregion
 
     private void OnTriggerEnter(Collider other)
     {

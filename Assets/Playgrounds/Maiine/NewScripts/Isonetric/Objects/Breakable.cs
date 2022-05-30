@@ -8,7 +8,7 @@ public class Breakable : MonoBehaviour, IWeaponInteractable
 
     public List<MeshDestroy> myMesh;
 
-    public void Inter_DoWeaponAction()
+    public void Inter_DoWeaponAction(BulletSystem bullet)
     {
         throw new System.NotImplementedException();
     }

@@ -184,6 +184,8 @@ public class CameraController : MonoBehaviour
                 }
             }
 
+            midCamera.y = actualTransform.position.y;
+
             transform.position += (midCamera - transform.position) * speed * Time.deltaTime;
         }
     }

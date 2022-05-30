@@ -9,6 +9,8 @@ public class MovementController
 
     Climb _actualClimb;
     Transform _grabPoint;
+
+    Player _player;
     CameraController _cameraController;
     Transform _playerTransform;
     Rigidbody _playerRigidbody;
@@ -21,16 +23,17 @@ public class MovementController
 
     Vector3 _dir;
 
-    public MovementController(Transform playerTransform, Rigidbody playerRigidbody, float speed, LayerMask layerMask,float climbSpeed, Transform lookAtPoint, CameraController cameraController)
+    public MovementController(Player player)
     {
-        _playerTransform = playerTransform;
-        _playerRigidbody = playerRigidbody;
-        _cameraController = cameraController;
-        _speed = speed;
-        _climbSpeed = climbSpeed;
+        _player = player;
+        _playerTransform = _player.transform;
+        _playerRigidbody = _player.GetComponent<Rigidbody>();
+        _cameraController = _player.cameraController;
+        _speed = _player.speed;
+        _climbSpeed = _player.climbSpeed;
         actualMovement = delegate { };
-        lookAtItem = lookAtPoint;
-        _layerMask = layerMask;
+        lookAtItem = _player.lookAtPoint;
+        _layerMask = _player.movementCollision;
     }
 
     void InputMovement()
@@ -56,16 +59,7 @@ public class MovementController
             _dir.z = 0;
         }
 
-        if (_playerTransform.localPosition.x >= _grabPoint.transform.position.x + 2 || 
-            _playerTransform.localPosition.x <= _grabPoint.transform.position.x - 2)
-        {
-            _actualClimb.MoveGrapPoint(new Vector3(_dir.x, 0, 0));
-        }
-        else
-        {
-            Vector3 newDir = (_grabPoint.right * _dir.x * _speed);
-            _playerTransform.localPosition += newDir * Time.deltaTime;
-        }
+        _actualClimb.MoveGrapPoint(new Vector3(_dir.x, 0, 0));
 
         Vector3 verticalDir = (_grabPoint.up * _dir.z * _climbSpeed);
         _playerTransform.localPosition += verticalDir * Time.deltaTime;
@@ -81,6 +75,7 @@ public class MovementController
         if (!isAim)
         {
             lookAtItem.position = _playerTransform.position + _dir;
+            Debug.Log("this?");
         }
         else
         {

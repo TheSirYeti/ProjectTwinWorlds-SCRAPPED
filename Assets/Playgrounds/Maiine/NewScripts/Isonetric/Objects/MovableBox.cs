@@ -24,6 +24,7 @@ public class MovableBox : MonoBehaviour, IPlayerInteractable, IWeaponInteractabl
     public float maxConnectDistance;
 
     Player _followPlayer;
+    BulletSystem _bullet;
 
     [SerializeField]
     LineRenderer _lineRenderer;
@@ -53,8 +54,9 @@ public class MovableBox : MonoBehaviour, IPlayerInteractable, IWeaponInteractabl
 
 
     #region Interfaces Con Arma
-    public void Inter_DoWeaponAction()
+    public void Inter_DoWeaponAction(BulletSystem bullet)
     {
+        _bullet = bullet;
         _lineRenderer.enabled = true;
         _isConnect = true;
         actualMovement = Delegate_FollowPlayer;

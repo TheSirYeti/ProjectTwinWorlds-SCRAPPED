@@ -31,6 +31,7 @@ public class ButtonsController
         _collisionLayers = player.movementCollision;
         _animatoContoller = player.myAnimatorController;
         actualAxies = delegate { };
+        actualButtons = delegate { };
     }
 
     public void ButtonsOn()

@@ -25,7 +25,7 @@ public class Swing : MonoBehaviour, IWeaponInteractable
         actualDelegate();
     }
 
-    public void Inter_DoWeaponAction()
+    public void Inter_DoWeaponAction(BulletSystem bullet)
     {
         throw new System.NotImplementedException();
     }

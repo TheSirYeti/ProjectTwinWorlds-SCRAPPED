@@ -9,6 +9,8 @@ public class Player : MonoBehaviour
     public bool isActive;
     public bool isDemon;
 
+    public bool isOnAir = true;
+
     [HideInInspector]
     public int actualRoom;
 
@@ -57,11 +59,12 @@ public class Player : MonoBehaviour
         actualProjectil.InitialSetUps(this, isDemon);
         myShootingController = new ShootingController(actualProjectil, mouseCollisions);
 
-        myMovementController = new MovementController(transform, myRigidbody, speed, movementCollision, climbSpeed, lookAtPoint, cameraController);
+        myMovementController = new MovementController(this);
         myAnimatorController = new AnimatorController(myAnimator);
         myButtonController = new ButtonsController(this);
 
         EventManager.Subscribe("ChangePlayer", ChangeCharacter);
+        EventManager.Subscribe("TPPlayers", GoToTransform);
 
         if (isActive)
             StartCoroutine(CorrutinaTurnOn());
@@ -143,9 +146,9 @@ public class Player : MonoBehaviour
         return actualRoom;
     }
 
-    public void GoToTransform(Vector3 actualTransform)
+    public void GoToTransform(params object[] parameter)
     {
-        transform.position = actualTransform;
+        transform.position = (Vector3)parameter[0];
     }
 
     private void OnTriggerEnter(Collider other)

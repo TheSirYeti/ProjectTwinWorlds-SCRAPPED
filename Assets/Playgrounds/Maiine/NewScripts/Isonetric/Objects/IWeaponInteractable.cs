@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface IWeaponInteractable
 {
-    public void Inter_DoWeaponAction();
+    public void Inter_DoWeaponAction(BulletSystem bullet);
     public void Inter_DoConnectAction(IWeaponInteractable otherObject);
     public void Inter_ResetObject();
     public void Inter_SetParent(Transform weapon);

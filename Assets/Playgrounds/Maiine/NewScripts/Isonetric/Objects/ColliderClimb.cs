@@ -25,7 +25,6 @@ public class ColliderClimb : MonoBehaviour
         }
         else if(down && _actualPlayer != null)
         {
-            Debug.Log("aca?");
             _actualPlayer.myMovementController.SetUp(false);
         }
     }

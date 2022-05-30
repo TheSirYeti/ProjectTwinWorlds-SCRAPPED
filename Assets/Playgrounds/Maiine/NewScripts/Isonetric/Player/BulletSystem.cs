@@ -123,7 +123,7 @@ public class BulletSystem : MonoBehaviour
         {
             if (_actualCollider == objectAimed)
             {
-                objectAimed.Inter_DoWeaponAction();
+                objectAimed.Inter_DoWeaponAction(this);
             }
             else
             {
