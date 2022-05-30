@@ -71,6 +71,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        myButtonController.actualAxies();
         myButtonController.actualButtons();
         myMovementController.actualMovement();
     }

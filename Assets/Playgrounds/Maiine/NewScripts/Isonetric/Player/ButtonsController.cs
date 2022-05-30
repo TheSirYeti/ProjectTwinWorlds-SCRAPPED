@@ -5,6 +5,7 @@ using UnityEngine;
 public class ButtonsController
 {
     public delegate void Buttons();
+    public Buttons actualAxies;
     public Buttons actualButtons;
 
     Player _player;
@@ -29,17 +30,18 @@ public class ButtonsController
         _shootingController = player.myShootingController;
         _collisionLayers = player.movementCollision;
         _animatoContoller = player.myAnimatorController;
-        actualButtons = delegate { };
+        actualAxies = delegate { };
     }
 
     public void ButtonsOn()
     {
-        actualButtons += OnUpdate;
-        actualButtons += Axies;
+        actualButtons = OnUpdate;
+        actualAxies = Axies;
     }
 
     public void ButtonsOff()
     {
+        actualAxies = delegate { };
         actualButtons = delegate { };
     }
 
@@ -47,14 +49,12 @@ public class ButtonsController
     {
         if (axiesRaw)
         {
-            actualButtons -= RawAxies;
-            actualButtons += Axies;
+            actualAxies = Axies;
             axiesRaw = false;
         }
         else
         {
-            actualButtons += RawAxies;
-            actualButtons -= Axies;
+            actualAxies = RawAxies;
             axiesRaw = true;
         }
     }

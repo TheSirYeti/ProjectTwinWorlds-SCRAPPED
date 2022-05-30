@@ -27,6 +27,9 @@ public class CameraController : MonoBehaviour
     public float maxDistX;
     public float maxDistZ;
 
+    public float nearClip;
+    public float farClip;
+
     public float rotateToPoint;
 
     delegate void CameraDelegate();
@@ -45,12 +48,12 @@ public class CameraController : MonoBehaviour
 
         transform.rotation = Quaternion.Euler(new Vector3(0, rotationAngleY, 0));
 
-
         rotationAxiesX.rotation = Quaternion.Euler(Vector3.zero);
         rotationAxiesX.localRotation = Quaternion.Euler(new Vector3(rotationAngle, 0, 0));
 
         Camera.main.orthographicSize = cameraDist;
-        Camera.main.nearClipPlane = -30;
+        Camera.main.nearClipPlane = nearClip;
+        Camera.main.farClipPlane = farClip;
 
         actualTransform = demon.transform;
         myMain.transform.LookAt(actualTransform);
@@ -142,7 +145,6 @@ public class CameraController : MonoBehaviour
         transform.position += (actualTransform.position - transform.position) * speed * Time.deltaTime;
     }
 
-    //Sigue al punto de aim con limites
     void Aim()
     {
         RaycastHit hit;
