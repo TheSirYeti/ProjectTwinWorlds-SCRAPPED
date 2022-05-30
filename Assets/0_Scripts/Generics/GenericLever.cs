@@ -5,9 +5,9 @@ using UnityEngine;
 public class GenericLever : MonoBehaviour
 {
     public Animator myLever;
-    public bool canInteract;
-    public float minDistance;
-    public GameObject currentHolder;
+    private bool canInteract;
+    [SerializeField] float minDistance;
+    private GameObject currentHolder;
     
     private bool hasInteracted = false;
 
@@ -16,7 +16,9 @@ public class GenericLever : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F) && canInteract && !hasInteracted && HasNearbyPlayer())
         {
             hasInteracted = true;
-            myLever.Play("SwitchActivate");
+            
+            if(myLever != null)
+                myLever.Play("SwitchActivate");
         }
     }
 

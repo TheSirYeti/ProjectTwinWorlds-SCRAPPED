@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class DoorController : MonoBehaviour
@@ -26,7 +27,7 @@ public class DoorController : MonoBehaviour
             {
                 leverIsOn[i] = true;
 
-                marksToOpen[i].ActiveMarks();
+                //marksToOpen[i].ActiveMarks();
 
                 if (CheckBools())
                     OpenDoor();
@@ -48,6 +49,7 @@ public class DoorController : MonoBehaviour
 
     void OpenDoor()
     {
-        Destroy(gameObject);
+        //Destroy(gameObject);
+        EventManager.Trigger("OnOpenDoor");
     }
 }

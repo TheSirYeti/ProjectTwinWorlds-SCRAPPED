@@ -104,8 +104,10 @@ public class CameraController : MonoBehaviour
     //Mira a un objeto especifico, x un tiempo especifico
     public void SeeObject(params object[] parameter)
     {
-        pointToView = (Vector3)parameter[0];
-        actualMovement = SeePoint;
+        /*pointToView = (Vector3)parameter[0];
+        actualMovement = SeePoint;*/
+        actualMovement = delegate {  };
+        transform.position = (Vector3)parameter[0];
         StartCoroutine(SeeObjectoCorroutine((float)parameter[1]));
     }
 
@@ -230,6 +232,7 @@ public class CameraController : MonoBehaviour
     IEnumerator SeeObjectoCorroutine(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
+        transform.position = actualTransform.position;
         actualMovement = FollowPlayer;
     }
 }
