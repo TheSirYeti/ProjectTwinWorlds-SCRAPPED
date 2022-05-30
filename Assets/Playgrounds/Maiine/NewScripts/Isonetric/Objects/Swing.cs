@@ -6,14 +6,23 @@ public class Swing : MonoBehaviour, IWeaponInteractable
 {
     Player _player;
     GameObject _hangItem;
+    BulletSystem _bullet;
 
+    public Vector3 backRigth;
+    public Vector3 backLeft;
+    Vector3 dir;
+
+    bool isBackRigth = false;
+    bool isBackLeft = false;
+
+    public Transform rotationPoint;
     public LineRenderer lineRenderer;
 
-    bool _isActive;
-    bool isOnWeapon;
+    public bool _usableByDemon;
+    bool _isConnect = false;
 
     delegate void SwingDelegate();
-    SwingDelegate actualDelegate = delegate { };
+    SwingDelegate actualMove = delegate { };
 
     void Start()
     {
@@ -22,12 +31,65 @@ public class Swing : MonoBehaviour, IWeaponInteractable
 
     void Update()
     {
-        actualDelegate();
+        actualMove();
+    }
+
+    void MoveSwing()
+    {
+        if (rotationPoint.localRotation.eulerAngles.x > 5 && rotationPoint.localRotation.eulerAngles.x < 90)
+        {
+            Debug.Log("rigth");
+            isBackRigth = true;
+        }
+        else if (rotationPoint.localRotation.eulerAngles.x < 270 && rotationPoint.localRotation.eulerAngles.x > 180)
+        {
+            Debug.Log("left");
+            isBackLeft = true;
+        }
+
+        if (isBackRigth)
+        {
+            Debug.Log("is going rigth");
+            rotationPoint.Rotate(backRigth);
+        }
+        else if (isBackLeft)
+        {
+            Debug.Log("is going left");
+            rotationPoint.Rotate(backLeft);
+        }
+        else
+        {
+            Debug.Log("is going fine");
+            rotationPoint.Rotate(dir);
+        }
+
+        if (rotationPoint.localRotation.eulerAngles.x > 0 && rotationPoint.localRotation.eulerAngles.x < 90 && isBackLeft)
+        {
+            Debug.Log("cancel left");
+            isBackLeft = false;
+        }
+        else if (rotationPoint.localRotation.eulerAngles.x > 270 && isBackRigth)
+        {
+            Debug.Log("cancel rigth");
+            isBackRigth = false;
+        }
+
+        Debug.Log(rotationPoint.localRotation.eulerAngles);
+    }
+
+    public void SetDir(float horizontal)
+    {
+        dir = transform.forward * horizontal * -1;
     }
 
     public void Inter_DoWeaponAction(BulletSystem bullet)
     {
-        throw new System.NotImplementedException();
+        _isConnect = true;
+        _bullet = bullet;
+        _player.transform.parent = rotationPoint;
+        _player.myMovementController.ChangeToSwing(this);
+        _player.myButtonController.ChangeAxies(true);
+        actualMove = MoveSwing;
     }
 
     public void Inter_DoConnectAction(IWeaponInteractable otherObject)
@@ -37,22 +99,33 @@ public class Swing : MonoBehaviour, IWeaponInteractable
 
     public void Inter_ResetObject()
     {
-        throw new System.NotImplementedException();
+        _isConnect = false;
+        lineRenderer.enabled = false;
+        _player.myMovementController.ChangeToMove();
+        _player.myButtonController.ChangeAxies(false);
+        _player.transform.parent = null;
+        actualMove = delegate { };
     }
 
     public bool Inter_CheckCanUse(Player actualPlayer, bool isDemon)
     {
-        throw new System.NotImplementedException();
+        if (_usableByDemon == isDemon)
+        {
+            _player = actualPlayer;
+            return true;
+        }
+        else
+            return false;
     }
 
     public bool Inter_OnUse()
     {
-        throw new System.NotImplementedException();
+        return _isConnect;
     }
 
     public void Inter_SetParent(Transform weapon)
     {
-        weapon.parent = transform;
+        weapon.parent = rotationPoint;
         weapon.localScale = new Vector3(1, 1, 1);
         weapon.localPosition = Vector3.zero;
     }

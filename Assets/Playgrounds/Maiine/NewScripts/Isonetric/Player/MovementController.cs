@@ -7,6 +7,7 @@ public class MovementController
     public delegate void Movement();
     public Movement actualMovement;
 
+    Swing _actualSwing;
     Climb _actualClimb;
     Transform _grabPoint;
 
@@ -44,8 +45,24 @@ public class MovementController
 
     void Swing()
     {
+        Collider[] hitColliders = Physics.OverlapSphere(_playerTransform.position, 1, _layerMask);
+
+        if (hitColliders.Length > 0 && _dir.z < 0)
+        {
+            _dir.z = 0;
+        }
+
+        _playerTransform.up = _actualSwing.transform.position - _player.transform.position;
+        _player.transform.position += (_actualSwing.transform.position - _player.transform.position) * _dir.z * Time.deltaTime;
+
+        _actualSwing.SetDir(_dir.x);
+    }
+
+    void Force()
+    {
 
     }
+
 
     void Climb()
     {
@@ -63,11 +80,6 @@ public class MovementController
 
         Vector3 verticalDir = (_grabPoint.up * _dir.z * _climbSpeed);
         _playerTransform.localPosition += verticalDir * Time.deltaTime;
-    }
-
-    void Force()
-    {
-
     }
 
     void LookAt()
@@ -98,6 +110,11 @@ public class MovementController
         _dir = movementVector;
     }
 
+    public void SetForce(Vector3 dir, float force)
+    {
+
+    }
+
     public void ChangeToMove()
     {
         _playerRigidbody.useGravity = true;
@@ -109,6 +126,13 @@ public class MovementController
         _grabPoint = grabPoint;
         _actualClimb = actualClimb;
         actualMovement = Climb;
+        _playerRigidbody.useGravity = false;
+    }
+
+    public void ChangeToSwing(Swing actualSwing)
+    {
+        _actualSwing = actualSwing;
+        actualMovement = Swing;
         _playerRigidbody.useGravity = false;
     }
 

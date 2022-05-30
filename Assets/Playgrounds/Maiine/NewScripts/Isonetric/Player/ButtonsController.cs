@@ -145,6 +145,7 @@ public class ButtonsController
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
+            EventManager.Trigger("OnPlayerChange");
             EventManager.Trigger("ChangePlayer");
         }
     }
