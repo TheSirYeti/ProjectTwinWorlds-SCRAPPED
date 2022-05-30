@@ -59,7 +59,7 @@ public class MovementController
             _dir.z = 0;
         }
 
-        _actualClimb.MoveGrapPoint(new Vector3(_dir.x, 0, 0));
+        _actualClimb.MoveGrapPoint(_dir.x);
 
         Vector3 verticalDir = (_grabPoint.up * _dir.z * _climbSpeed);
         _playerTransform.localPosition += verticalDir * Time.deltaTime;
@@ -75,7 +75,6 @@ public class MovementController
         if (!isAim)
         {
             lookAtItem.position = _playerTransform.position + _dir;
-            Debug.Log("this?");
         }
         else
         {

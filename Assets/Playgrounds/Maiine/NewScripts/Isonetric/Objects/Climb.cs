@@ -12,6 +12,7 @@ public class Climb : MonoBehaviour, IWeaponInteractable
 
     bool canRight;
     bool canLeft;
+
     Vector3 _pointToGo;
     public float _speed;
 
@@ -21,7 +22,8 @@ public class Climb : MonoBehaviour, IWeaponInteractable
     Player _actualPlayer;
     BulletSystem _actualBullet;
 
-    public LayerMask layerMaks;
+    public LayerMask wallMaks;
+    public LayerMask blockMask;
     public LineRenderer lineRenderer;
     public GameObject myWall = null;
     public Transform grapPoint;
@@ -45,6 +47,7 @@ public class Climb : MonoBehaviour, IWeaponInteractable
             if(Vector3.Distance(grapPoint.position, _pointToGo) > minDist)
             {
                 _actualBullet.Bullet_Reset();
+                grapPoint.localPosition = Vector3.zero;
             }
         }
 
@@ -55,22 +58,37 @@ public class Climb : MonoBehaviour, IWeaponInteractable
             actualMove -= Delegate_GoToPlayer;
             _actualPlayer.myMovementController.ChangeToClimb(this, grapPoint);
             _actualPlayer.transform.parent = grapPoint;
-            _actualPlayer.myButtonController.ChangeAxies();
+            _actualPlayer.myButtonController.ChangeAxies(true);
         }
     }
     #endregion
 
     #region Publicas llamadas desde el Player
-    public void MoveGrapPoint(Vector3 dir)
+    public void MoveGrapPoint(float rightMovement)
     {
-        if (!canRight && dir.x > 0)
-            dir.x = 0;
+        rightMovement = RayCastGrapCheck(rightMovement);
+        
+        if (!canRight && rightMovement > 0)
+            rightMovement = 0;
 
-        if (!canLeft && dir.x < 0)
-            dir.x = 0;
+        if (!canLeft && rightMovement < 0)
+            rightMovement = 0;
 
+        Vector3 grapMovement = transform.right * rightMovement; 
 
-        grapPoint.position += dir * _speed * Time.deltaTime;
+        grapPoint.position += grapMovement * _speed * Time.deltaTime;
+    }
+
+    float RayCastGrapCheck(float movementX)
+    {
+        if (Physics.Raycast(_actualPlayer.transform.position, transform.right * movementX, 0.5f, blockMask))
+        {
+            return 0f;
+        }
+        else
+        {
+            return movementX;
+        }
     }
 
     public void SetMovement(bool side, bool state)
@@ -105,7 +123,7 @@ public class Climb : MonoBehaviour, IWeaponInteractable
         _isConnect = false;
         lineRenderer.enabled = false;
         _actualPlayer.myMovementController.ChangeToMove();
-        _actualPlayer.myButtonController.ChangeAxies();
+        _actualPlayer.myButtonController.ChangeAxies(false);
         _actualPlayer.transform.parent = null;
         actualMove = delegate { };
     }
@@ -114,7 +132,7 @@ public class Climb : MonoBehaviour, IWeaponInteractable
     {
         _actualPlayer = actualPlayer;
 
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, 1, layerMaks);
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, 1, wallMaks);
 
         foreach (Collider collider in hitColliders)
         {
@@ -129,7 +147,6 @@ public class Climb : MonoBehaviour, IWeaponInteractable
 
     public bool Inter_OnUse()
     {
-        Debug.Log(_isConnect);
         return _isConnect;
     }
 

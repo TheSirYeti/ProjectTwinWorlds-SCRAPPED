@@ -46,17 +46,15 @@ public class ButtonsController
         actualButtons = delegate { };
     }
 
-    public void ChangeAxies()
+    public void ChangeAxies(bool isRaw)
     {
-        if (axiesRaw)
+        if (!isRaw)
         {
             actualAxies = Axies;
-            axiesRaw = false;
         }
         else
         {
             actualAxies = RawAxies;
-            axiesRaw = true;
         }
     }
 
@@ -78,6 +76,7 @@ public class ButtonsController
         _movementContoller.SetDir(myMovement);
         _animatoContoller.SetFloat("MovementMagnitud", myMovement.magnitude);
     }
+
 
     void Axies()
     {

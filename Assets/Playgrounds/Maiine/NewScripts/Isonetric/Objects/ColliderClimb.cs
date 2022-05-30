@@ -14,8 +14,6 @@ public class ColliderClimb : MonoBehaviour
     {
         _actualPlayer = other.GetComponent<Player>();
 
-        Debug.Log("collisiones?");
-
         if (!down)
         {
             if (other.gameObject == myGide)
