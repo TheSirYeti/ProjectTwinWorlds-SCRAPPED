@@ -7,7 +7,8 @@ public class GenericLever : MonoBehaviour
     public Animator myLever;
     public bool canInteract;
     public float minDistance;
-
+    public GameObject currentHolder;
+    
     private bool hasInteracted = false;
 
     private void Update()
@@ -21,33 +22,27 @@ public class GenericLever : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("DemonPlayer") || other.gameObject.layer == LayerMask.NameToLayer("AngelPlayer"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             canInteract = true;
+            currentHolder = other.gameObject;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("DemonPlayer") || other.gameObject.layer == LayerMask.NameToLayer("AngelPlayer"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             canInteract = false;
+            currentHolder = null;
         }
     }
 
     bool HasNearbyPlayer()
     {
-        if (PlayerWorlds.instance.demonPlayer.activeSelf)
+        if (currentHolder != null)
         {
-            if (Vector3.Distance(transform.position, PlayerWorlds.instance.demonPlayer.transform.position) <=
-                minDistance)
-            {
-                return true;
-            }
-        }
-        else
-        {
-            if (Vector3.Distance(transform.position, PlayerWorlds.instance.angelPlayer.transform.position) <=
+            if (Vector3.Distance(transform.position, currentHolder.transform.position) <=
                 minDistance)
             {
                 return true;
