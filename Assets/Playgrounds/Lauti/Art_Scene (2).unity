@@ -71032,6 +71032,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Darck Volume (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7632087821603811637, guid: 2a3631f5fc6d2a64b86f6183a564cfab, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7632087821603811639, guid: 2a3631f5fc6d2a64b86f6183a564cfab, type: 3}
       propertyPath: m_RootOrder
       value: 128
