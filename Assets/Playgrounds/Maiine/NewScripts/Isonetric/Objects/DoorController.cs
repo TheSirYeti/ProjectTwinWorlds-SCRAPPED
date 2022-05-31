@@ -27,7 +27,7 @@ public class DoorController : MonoBehaviour
             {
                 leverIsOn[i] = true;
 
-                //marksToOpen[i].ActiveMarks();
+                marksToOpen[i].ActiveMarks();
 
                 if (CheckBools())
                     OpenDoor();
