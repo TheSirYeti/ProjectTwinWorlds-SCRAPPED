@@ -10,8 +10,7 @@ public class FRadius : MonoBehaviour
     private bool isStillInTrigger;
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("DemonOnlyTrigger") ||
-            other.gameObject.layer == LayerMask.NameToLayer("AngelOnlyTrigger"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             isStillInTrigger = true;
             StartCoroutine(FRadiusBuffer());
@@ -20,8 +19,7 @@ public class FRadius : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("DemonOnlyTrigger") ||
-            other.gameObject.layer == LayerMask.NameToLayer("AngelOnlyTrigger"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             isStillInTrigger = false;
             EventManager.Trigger("OnHideF");

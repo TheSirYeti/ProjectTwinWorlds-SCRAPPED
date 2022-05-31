@@ -52,8 +52,6 @@ public class WorldObject : MonoBehaviour
 
     public void SwapMaterial(object[] parameters)
     {
-        GameObject myPlayer = (GameObject) parameters[0];
-
         if (GetComponent<Renderer>() != null)
         {
             if (isWorldActive)
@@ -61,7 +59,7 @@ public class WorldObject : MonoBehaviour
                 if (!invisible)
                 {
                     GetComponent<Renderer>().enabled = true;
-                    if (myPlayer.layer == LayerMask.NameToLayer("DemonPlayer"))
+                    if (isDemon)
                         GetComponent<Renderer>().material = angelOffMaterial;
                     else GetComponent<Renderer>().material = demonOffMaterial;
                 }

@@ -8,10 +8,9 @@ public class PlayerTempPortal : MonoBehaviour
     public Transform tpPoint;
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("DemonOnlyTrigger") || other.gameObject.layer == LayerMask.NameToLayer("AngelOnlyTrigger"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            PlayerWorlds.instance.angelPlayer.transform.position = tpPoint.position;
-            PlayerWorlds.instance.demonPlayer.transform.position = tpPoint.position;
+            EventManager.Trigger("TPPlayers", tpPoint.position);
         }
     }
 }
