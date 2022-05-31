@@ -124,6 +124,7 @@ public class Climb : MonoBehaviour, IWeaponInteractable
         lineRenderer.enabled = false;
         _actualPlayer.myMovementController.ChangeToMove();
         _actualPlayer.myButtonController.ChangeAxies(false);
+        _actualPlayer.myMovementController.SetUp(true);
         _actualPlayer.transform.parent = null;
         actualMove = delegate { };
     }
