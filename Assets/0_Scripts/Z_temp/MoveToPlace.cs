@@ -13,7 +13,7 @@ public class MoveToPlace : MonoBehaviour
     {
         if (!objectsEnabled)
         {
-            if(other.gameObject.layer == LayerMask.NameToLayer("AngelPlayer") || other.gameObject.layer == LayerMask.NameToLayer("DemonPlayer"))
+            if(other.gameObject.layer == LayerMask.NameToLayer("Player"))
                 other.transform.position = tpPoint.position;
         }
         else other.transform.position = tpPoint.position;
@@ -23,7 +23,7 @@ public class MoveToPlace : MonoBehaviour
     {
         if (!objectsEnabled)
         {
-            if(collision.gameObject.layer == LayerMask.NameToLayer("AngelPlayer") || collision.gameObject.layer == LayerMask.NameToLayer("DemonPlayer"))
+            if(collision.gameObject.layer == LayerMask.NameToLayer("Player"))
                 collision.transform.position = tpPoint.position;
         }
         else collision.transform.position = tpPoint.position;

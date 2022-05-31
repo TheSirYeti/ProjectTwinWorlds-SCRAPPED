@@ -32,7 +32,7 @@ public class SUPERTEMPSCRIPTJSADJASDJ : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("DemonOnlyTrigger") || other.gameObject.layer == LayerMask.NameToLayer("AngelOnlyTrigger"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             canPress = true;
         }
@@ -40,7 +40,7 @@ public class SUPERTEMPSCRIPTJSADJASDJ : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("DemonOnlyTrigger") || other.gameObject.layer == LayerMask.NameToLayer("AngelOnlyTrigger"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             canPress = false;
         }

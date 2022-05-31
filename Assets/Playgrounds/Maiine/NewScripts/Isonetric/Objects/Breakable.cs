@@ -12,7 +12,12 @@ public class Breakable : MonoBehaviour, IWeaponInteractable
     {
         bullet.Bullet_Reset();
         bullet.transform.parent = null;
-        Destroy(gameObject);
+        //Destroy(gameObject);
+        foreach (var mesh in myMesh)
+        {
+            mesh.DestroyMesh();
+        }
+        gameObject.SetActive(false);
     }
 
     public void Inter_DoConnectAction(IWeaponInteractable otherObject)
