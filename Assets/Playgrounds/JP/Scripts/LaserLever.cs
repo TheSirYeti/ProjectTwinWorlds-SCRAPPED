@@ -49,7 +49,7 @@ public class LaserLever : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("DemonPlayer") || other.gameObject.layer == LayerMask.NameToLayer("AngelPlayer"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             canInteract = true;
             currentPlayer = other.gameObject;
@@ -58,8 +58,7 @@ public class LaserLever : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if ((other.gameObject.layer == LayerMask.NameToLayer("DemonPlayer") ||
-             other.gameObject.layer == LayerMask.NameToLayer("AngelPlayer")) && currentPlayer == other.gameObject)
+        if (other.gameObject.layer == LayerMask.NameToLayer("Player") && currentPlayer == other.gameObject)
         {
             canInteract = false;
             currentPlayer = null;
@@ -68,8 +67,7 @@ public class LaserLever : MonoBehaviour
 
     private void OnCollisionExit(Collision other)
     {
-        if ((other.gameObject.layer == LayerMask.NameToLayer("DemonPlayer") ||
-            other.gameObject.layer == LayerMask.NameToLayer("AngelPlayer")) && currentPlayer == other.gameObject)
+        if (other.gameObject.layer == LayerMask.NameToLayer("Player") && currentPlayer == other.gameObject)
         {
             canInteract = false;
             currentPlayer = null;

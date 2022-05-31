@@ -7,9 +7,6 @@ using UnityEngine.SceneManagement;
 public class LevelLoadLogic : MonoBehaviour
 {
     public int levelID;
-    bool angel = false, demon = false;
-    public bool needsBothPlayers;
-    public GameObject oneReady;
 
     public void LoadLevel()
     {
@@ -20,7 +17,7 @@ public class LevelLoadLogic : MonoBehaviour
 
     private void Update()
     {
-        if (needsBothPlayers)
+        /*if (needsBothPlayers)
         {
             if (demon || angel)
             {
@@ -34,50 +31,16 @@ public class LevelLoadLogic : MonoBehaviour
                 Debug.Log("CARGARON AMBOS!");
                 Destroy(gameObject);
             }
-        }
+        }*/
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("AngelOnlyTrigger"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            angel = true;
-            
-            if (!needsBothPlayers)
-            {
-                Destroy(PlayerWorlds.instance.angelPlayer);
-                Destroy(PlayerWorlds.instance.demonPlayer);
-                LevelManager.instance.LoadNextScene(levelID);
-                Debug.Log("CARGO ANGEL!");
-                Destroy(gameObject);
-            }
+            LevelManager.instance.LoadNextScene(levelID);
+            Destroy(gameObject);
         }
-        
-        if (other.gameObject.layer == LayerMask.NameToLayer("DemonOnlyTrigger"))
-        {
-            demon = true;
-            
-            if (!needsBothPlayers)
-            {
-                Destroy(PlayerWorlds.instance.angelPlayer);
-                Destroy(PlayerWorlds.instance.demonPlayer);
-                LevelManager.instance.LoadNextScene(levelID);
-                Debug.Log("CARGO DEMONIO!");
-                Destroy(gameObject);
-            }
-        }
-    }
 
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.layer == LayerMask.NameToLayer("AngelOnlyTrigger"))
-        {
-            angel = false;
-        }
-        if (other.gameObject.layer == LayerMask.NameToLayer("DemonOnlyTrigger"))
-        {
-            demon = false;
-        }
     }
 
 }

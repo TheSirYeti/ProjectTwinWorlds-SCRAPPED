@@ -8,6 +8,8 @@ public class ActivateObjects : MonoBehaviour
     public KeyCode keyToPress;
     public List<GameObject> objectsToEnable;
     public float minDistance;
+    private GameObject myPlayer;
+    
     public bool shouldEnable;
     
     private void Update()
@@ -20,24 +22,11 @@ public class ActivateObjects : MonoBehaviour
 
     bool HasNearbyPlayer()
     {
-        /*
-        if (PlayerWorlds.instance.demonPlayer.activeSelf)
+        if (Vector3.Distance(transform.position, myPlayer.transform.position) <=
+            minDistance)
         {
-            if (Vector3.Distance(transform.position, PlayerWorlds.instance.demonPlayer.transform.position) <=
-                minDistance)
-            {
-                return true;
-            }
+            return true;
         }
-        else
-        {
-            if (Vector3.Distance(transform.position, PlayerWorlds.instance.angelPlayer.transform.position) <=
-                minDistance)
-            {
-                return true;
-            }
-        }
-        */
 
         return false;
     }
@@ -47,6 +36,14 @@ public class ActivateObjects : MonoBehaviour
         foreach (var obj in objectsToEnable)
         {
             obj.SetActive(shouldEnable);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            myPlayer = other.gameObject;
         }
     }
 }
