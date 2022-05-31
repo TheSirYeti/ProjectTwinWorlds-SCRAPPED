@@ -32,7 +32,7 @@ public class LevelManager : MonoBehaviour
             ReloadScene();
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.M))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             LoadNextScene(0);
         }

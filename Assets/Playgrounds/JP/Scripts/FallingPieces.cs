@@ -12,6 +12,7 @@ public class FallingPieces : MonoBehaviour
     
     List<Vector3> topPositions, bottomPositions;
     bool isMoving = true;
+    public bool needsBuffer;
 
     private void Start()
     {
@@ -25,7 +26,12 @@ public class FallingPieces : MonoBehaviour
             platform.position += (Vector3.down * 2);
         }
 
-        StartCoroutine(SmallBuffer());
+        if(needsBuffer)
+            StartCoroutine(SmallBuffer());
+        else
+        {
+            StartCoroutine(StartPlatformMovement());
+        }
     }
 
     private IEnumerator StartPlatformMovement()
