@@ -15,12 +15,16 @@ public class Swing : MonoBehaviour, IWeaponInteractable
     bool isBackRigth = false;
     bool isBackLeft = false;
 
+    public float timerFalling;
+
     public Transform midCollider;
     public Transform rotationPoint;
     public LineRenderer lineRenderer;
 
     public bool _usableByDemon;
     bool _isConnect = false;
+
+    public LayerMask wallMaks;
 
     delegate void SwingDelegate();
     SwingDelegate actualMove = delegate { };
@@ -36,15 +40,13 @@ public class Swing : MonoBehaviour, IWeaponInteractable
     }
 
     void MoveSwing()
-    {   
+    {
         if (isBackRigth)
         {
-            Debug.Log("is going rigth");
             rotationPoint.Rotate(backRigth);
         }
         else if (isBackLeft)
         {
-            Debug.Log("is going left");
             rotationPoint.Rotate(backLeft);
         }
         else
@@ -118,5 +120,10 @@ public class Swing : MonoBehaviour, IWeaponInteractable
         weapon.parent = rotationPoint;
         weapon.localScale = new Vector3(1, 1, 1);
         weapon.localPosition = Vector3.zero;
+    }
+
+    public GameObject Inter_GetGameObject()
+    {
+        return this.gameObject;
     }
 }

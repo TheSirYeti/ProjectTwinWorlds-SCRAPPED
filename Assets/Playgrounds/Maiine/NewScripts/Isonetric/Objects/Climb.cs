@@ -157,6 +157,11 @@ public class Climb : MonoBehaviour, IWeaponInteractable
         weapon.localScale = new Vector3(1, 1, 1);
         weapon.localPosition = Vector3.zero;
     }
+
+    public GameObject Inter_GetGameObject()
+    {
+        return this.gameObject;
+    }
     #endregion
 
     private void OnTriggerEnter(Collider other)

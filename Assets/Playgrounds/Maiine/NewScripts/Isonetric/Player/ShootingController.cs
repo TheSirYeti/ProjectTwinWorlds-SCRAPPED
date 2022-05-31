@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ShootingController
 {
-    BulletSystem _actualBullet = null;
+    public BulletSystem _actualBullet = null;
     LayerMask _posibleCollisions;
 
     public ShootingController(BulletSystem myBullet, LayerMask posibleCollisions)

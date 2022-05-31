@@ -29,15 +29,22 @@ public class MovableBox : MonoBehaviour, IWeaponInteractable
     [SerializeField]
     LineRenderer _lineRenderer;
 
+    public LayerMask breakableLayer;
+
     void Update()
     {
         actualMovement();
+
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, 1f, breakableLayer))
+        {
+            Destroy(hit.collider.gameObject);
+        }
     }
 
     #region Interfaces Con Arma
     public void Inter_DoWeaponAction(BulletSystem bullet)
     {
-        Debug.Log("A");
         _bullet = bullet;
         _lineRenderer.enabled = true;
         _isConnect = true;
@@ -76,8 +83,13 @@ public class MovableBox : MonoBehaviour, IWeaponInteractable
     public void Inter_SetParent(Transform weapon)
     {
         weapon.parent = transform;
-        weapon.localScale = new Vector3(1,1,1);
+        weapon.localScale = new Vector3(1, 1, 1);
         weapon.localPosition = Vector3.zero;
+    }
+
+    public GameObject Inter_GetGameObject()
+    {
+        return this.gameObject;
     }
     #endregion
 
@@ -107,4 +119,5 @@ public class MovableBox : MonoBehaviour, IWeaponInteractable
     {
 
     }
+
 }

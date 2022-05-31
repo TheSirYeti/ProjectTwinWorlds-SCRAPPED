@@ -10,4 +10,5 @@ public interface IWeaponInteractable
     public void Inter_SetParent(Transform weapon);
     public bool Inter_CheckCanUse(Player actualPlayer, bool isDemon);
     public bool Inter_OnUse();
+    public GameObject Inter_GetGameObject();
 }

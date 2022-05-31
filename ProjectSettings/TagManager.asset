@@ -14,6 +14,8 @@ TagManager:
   - Food3
   - LedgePoint
   - LaserPoint
+  - LeftCollider
+  - RigthCollider
   layers:
   - Default
   - TransparentFX
@@ -44,7 +46,7 @@ TagManager:
   - Weapons
   - UsablesItems
   - InvisibleWalls
-  - 
+  - BreakableBox
   - 
   - 
   m_SortingLayers:
