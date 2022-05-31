@@ -15,6 +15,7 @@ public class Swing : MonoBehaviour, IWeaponInteractable
     bool isBackRigth = false;
     bool isBackLeft = false;
 
+    public Transform midCollider;
     public Transform rotationPoint;
     public LineRenderer lineRenderer;
 
@@ -35,18 +36,7 @@ public class Swing : MonoBehaviour, IWeaponInteractable
     }
 
     void MoveSwing()
-    {
-        //if (rotationPoint.localRotation.eulerAngles.x > 5 && rotationPoint.localRotation.eulerAngles.x < 90)
-        //{
-        //    Debug.Log("rigth");
-        //    isBackRigth = true;
-        //}
-        //else if (rotationPoint.localRotation.eulerAngles.x > 340 && rotationPoint.localRotation.eulerAngles.z < 100)
-        //{
-        //    Debug.Log("left");
-        //    isBackLeft = true;
-        //}
-
+    {   
         if (isBackRigth)
         {
             Debug.Log("is going rigth");
@@ -61,19 +51,6 @@ public class Swing : MonoBehaviour, IWeaponInteractable
         {
             rotationPoint.Rotate(dir);
         }
-
-        //Debug.Log(rotationPoint.localRotation.eulerAngles.x + " X");
-        //Debug.Log(rotationPoint.localRotation.eulerAngles.z + " Z");
-        //if (rotationPoint.localRotation.eulerAngles.x < 280 && rotationPoint.localRotation.eulerAngles.x > 200 && rotationPoint.localRotation.eulerAngles.z > 260 && isBackRigth)
-        //{
-        //    Debug.Log("cancel rigth");
-        //    isBackRigth = false;
-        //}
-        //else if (rotationPoint.localRotation.eulerAngles.x > 280 && rotationPoint.localRotation.eulerAngles.z > 260 && isBackLeft)
-        //{
-        //    Debug.Log("cancel left");
-        //    isBackLeft = false;
-        //}
     }
 
     public void SetBackState(bool isRigth, bool state)
