@@ -32,7 +32,8 @@ public class FiniteStateMachine
 public enum FSM_State
 {
     PALADIN_REST,
-    PALADIN_CHASE,
+    PALADIN_NEXTMOVE,
+    PALADIN_CAST,
     PALADIN_BREACH,
     PALADIN_SUMMON,
     PALADIN_TACKLE,
