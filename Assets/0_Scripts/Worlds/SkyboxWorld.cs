@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class SkyboxWorld : MonoBehaviour
 {
+    private bool startDemon;
     public Material skyboxMatDemon, skyboxMatAngel;
 
     private void Start()
@@ -16,9 +17,8 @@ public class SkyboxWorld : MonoBehaviour
 
     public void ChangeSkyboxMaterial(object[] parameters)
     {
-        GameObject player = parameters[0] as GameObject;
-
-        if (player.layer == LayerMask.NameToLayer("DemonPlayer"))
+        startDemon = !startDemon;
+        if (startDemon)
         {
             RenderSettings.skybox = skyboxMatDemon;
         }
