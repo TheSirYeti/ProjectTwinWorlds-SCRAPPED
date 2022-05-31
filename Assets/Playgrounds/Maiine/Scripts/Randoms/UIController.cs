@@ -30,10 +30,8 @@ public class UIController : MonoBehaviour
     {
         c.a = 1;
 
-        //mCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-
-
-        EventManager.Subscribe("OnPlayerHPUpdated", TakeUIDMG);
+        EventManager.Subscribe("UITakeDamage", TakeUIDMG);
+        EventManager.Subscribe("UITakeHealth", HealthUI);
         EventManager.Subscribe("OnPlayerChange", ChangeUI);
     }
 
@@ -41,11 +39,11 @@ public class UIController : MonoBehaviour
     {
         if (_isDemond)
         {
-            rtDemon.position = RectTransformUtility.WorldToScreenPoint(Camera.main, _demonPlayer.transform.position); ;
+            rtDemon.position = RectTransformUtility.WorldToScreenPoint(Camera.main, _demonPlayer.transform.position) + new Vector2(0, 25);
         }
         else
         {
-            rtAngel.position = RectTransformUtility.WorldToScreenPoint(Camera.main, _angelPlayer.transform.position);
+            rtAngel.position = RectTransformUtility.WorldToScreenPoint(Camera.main, _angelPlayer.transform.position) + new Vector2(0, 25);
         }
     }
 
@@ -75,6 +73,20 @@ public class UIController : MonoBehaviour
         {
             _uiAngelLife--;
             _angelHearths[_uiAngelLife].gameObject.SetActive(false);
+        }
+    }
+
+    public void HealthUI(object[] parameters)
+    {
+        if ((bool)parameters[0])
+        {
+            _demonHearths[_uiDemondLife].gameObject.SetActive(true);
+            _uiDemondLife++;
+        }
+        else
+        {
+            _angelHearths[_uiAngelLife].gameObject.SetActive(true);
+            _uiAngelLife++;
         }
     }
 }

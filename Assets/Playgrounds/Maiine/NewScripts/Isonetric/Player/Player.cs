@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, ITakeDamage
 {
     public float speed;
     public float climbSpeed;
@@ -39,6 +39,8 @@ public class Player : MonoBehaviour
     public AnimatorController myAnimatorController;
     public CameraController cameraController;
 
+    LifeController _lifeController;
+
     public LayerMask usableItems;
     public LayerMask movementCollision;
     public LayerMask mouseCollisions;
@@ -62,6 +64,7 @@ public class Player : MonoBehaviour
         myMovementController = new MovementController(this);
         myAnimatorController = new AnimatorController(myAnimator);
         myButtonController = new ButtonsController(this);
+        _lifeController = new LifeController(isDemon);
 
         EventManager.Subscribe("ChangePlayer", ChangeCharacter);
         EventManager.Subscribe("TPPlayers", GoToTransform);
@@ -77,6 +80,9 @@ public class Player : MonoBehaviour
         myButtonController.actualAxies();
         myButtonController.actualButtons();
         myMovementController.actualMovement();
+
+        if (Input.GetKeyDown(KeyCode.T))
+            TakeDmg();
     }
 
 
@@ -86,7 +92,7 @@ public class Player : MonoBehaviour
 
         if (keyDown == KeyCode.F)
             _playerInteractable.Inter_DoPlayerAction(this, isDemon);
-        else if(keyDown == KeyCode.Space)
+        else if (keyDown == KeyCode.Space)
             _playerInteractable.Inter_DoJumpAction(this, isDemon);
     }
 
@@ -170,4 +176,19 @@ public class Player : MonoBehaviour
             _playerInteractable = null;
     }
 
+    public void TakeDmg()
+    {
+        StopAllCoroutines();
+        _lifeController.TakeDamage();
+        StartCoroutine(HealthTimer());
+    }
+
+    IEnumerator HealthTimer()
+    {
+        yield return new WaitForSeconds(5f);
+        bool canHealth = _lifeController.Health();
+
+        if (canHealth)
+            StartCoroutine(HealthTimer());
+    }
 }
