@@ -36,16 +36,16 @@ public class Swing : MonoBehaviour, IWeaponInteractable
 
     void MoveSwing()
     {
-        if (rotationPoint.localRotation.eulerAngles.x > 5 && rotationPoint.localRotation.eulerAngles.x < 90)
-        {
-            Debug.Log("rigth");
-            isBackRigth = true;
-        }
-        else if (rotationPoint.localRotation.eulerAngles.x < 270 && rotationPoint.localRotation.eulerAngles.x > 180)
-        {
-            Debug.Log("left");
-            isBackLeft = true;
-        }
+        //if (rotationPoint.localRotation.eulerAngles.x > 5 && rotationPoint.localRotation.eulerAngles.x < 90)
+        //{
+        //    Debug.Log("rigth");
+        //    isBackRigth = true;
+        //}
+        //else if (rotationPoint.localRotation.eulerAngles.x > 340 && rotationPoint.localRotation.eulerAngles.z < 100)
+        //{
+        //    Debug.Log("left");
+        //    isBackLeft = true;
+        //}
 
         if (isBackRigth)
         {
@@ -59,22 +59,35 @@ public class Swing : MonoBehaviour, IWeaponInteractable
         }
         else
         {
-            Debug.Log("is going fine");
             rotationPoint.Rotate(dir);
         }
 
-        if (rotationPoint.localRotation.eulerAngles.x > 0 && rotationPoint.localRotation.eulerAngles.x < 90 && isBackLeft)
-        {
-            Debug.Log("cancel left");
-            isBackLeft = false;
-        }
-        else if (rotationPoint.localRotation.eulerAngles.x > 270 && isBackRigth)
-        {
-            Debug.Log("cancel rigth");
-            isBackRigth = false;
-        }
+        //Debug.Log(rotationPoint.localRotation.eulerAngles.x + " X");
+        //Debug.Log(rotationPoint.localRotation.eulerAngles.z + " Z");
+        //if (rotationPoint.localRotation.eulerAngles.x < 280 && rotationPoint.localRotation.eulerAngles.x > 200 && rotationPoint.localRotation.eulerAngles.z > 260 && isBackRigth)
+        //{
+        //    Debug.Log("cancel rigth");
+        //    isBackRigth = false;
+        //}
+        //else if (rotationPoint.localRotation.eulerAngles.x > 280 && rotationPoint.localRotation.eulerAngles.z > 260 && isBackLeft)
+        //{
+        //    Debug.Log("cancel left");
+        //    isBackLeft = false;
+        //}
+    }
 
-        Debug.Log(rotationPoint.localRotation.eulerAngles);
+    public void SetBackState(bool isRigth, bool state)
+    {
+        if (isRigth)
+            isBackRigth = state;
+        else
+            isBackLeft = state;
+    }
+
+    public void CancelMovement()
+    {
+        isBackRigth = false;
+        isBackLeft = false;
     }
 
     public void SetDir(float horizontal)

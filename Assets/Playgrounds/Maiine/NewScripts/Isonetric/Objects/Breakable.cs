@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Breakable : MonoBehaviour, IWeaponInteractable
 {
-    bool _weaponHere;
-
     public List<MeshDestroy> myMesh;
 
     public void Inter_DoWeaponAction(BulletSystem bullet)
@@ -15,7 +13,6 @@ public class Breakable : MonoBehaviour, IWeaponInteractable
 
     public void Inter_DoConnectAction(IWeaponInteractable otherObject)
     {
-        throw new System.NotImplementedException();
     }
 
     public void Inter_ResetObject()
