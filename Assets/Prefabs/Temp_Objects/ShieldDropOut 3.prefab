@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5848446060066136041}
   - component: {fileID: 5848446060066136040}
+  - component: {fileID: 1195095790147574813}
   m_Layer: 0
   m_Name: ShieldDropOut 3
   m_TagString: Untagged
@@ -46,11 +47,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 394f63aee81d12347b62630867780499, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToDie: 2.5
+  timeToDie: 1
   goDown: 0
   goOut: 1
   speed: 16
   objectToMove: {fileID: 5427185693160665968}
+--- !u!114 &1195095790147574813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5848446060066136043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e77391b4e089dd642a410ec208210cc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7631960515320806946
 GameObject:
   m_ObjectHideFlags: 0
@@ -256,6 +269,18 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 1.03
   m_Center: {x: 0.00000011920929, y: -0.000000029802322, z: 0}
+--- !u!114 &1693997660345181417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4619263915654392266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e77391b4e089dd642a410ec208210cc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &5427185693160665968 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c7acc7d520587164a903dd22fb5fee5c, type: 3}
