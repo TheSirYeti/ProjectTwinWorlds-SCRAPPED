@@ -86,11 +86,9 @@ public class MovableBox : MonoBehaviour, IWeaponInteractable
         if (Vector3.Distance(transform.position, _followPlayer.transform.position) > minDistaceToFollow)
         {
             speed += aceleration * Time.deltaTime;
-            Debug.Log("if");
         }
         else
         {
-            Debug.Log("else");
             speed -= deaceleration * Time.deltaTime;
         }
 

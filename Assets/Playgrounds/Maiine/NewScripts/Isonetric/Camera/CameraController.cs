@@ -106,7 +106,7 @@ public class CameraController : MonoBehaviour
     {
         /*pointToView = (Vector3)parameter[0];
         actualMovement = SeePoint;*/
-        actualMovement = delegate {  };
+        actualMovement = delegate { };
         transform.position = (Vector3)parameter[0];
         StartCoroutine(SeeObjectoCorroutine((float)parameter[1]));
     }
@@ -201,29 +201,16 @@ public class CameraController : MonoBehaviour
     //rota al rededor del eje Y
     void RotateCamera()
     {
-        if (rotateRight)
+        transform.Rotate(new Vector3(0, rotationSpeed, 0));
+
+        Vector3 actualRotate = transform.rotation.eulerAngles;
+        Debug.Log(transform.rotation.eulerAngles);
+        Debug.Log(rotateToPoint);
+
+        if (actualRotate.y >= rotateToPoint)
         {
-            transform.Rotate(new Vector3(0, rotationSpeed, 0));
-
-            Vector3 actualRotate = transform.rotation.eulerAngles;
-
-            if (actualRotate.y >= rotateToPoint)
-            {
-                actualMovement = FollowPlayer;
-                ChangeControllers(true);
-            }
-        }
-        else
-        {
-            transform.Rotate(new Vector3(0, -rotationSpeed, 0));
-
-            Vector3 actualRotate = transform.rotation.eulerAngles;
-
-            if (actualRotate.y <= rotateToPoint)
-            {
-                actualMovement = FollowPlayer;
-                ChangeControllers(true);
-            }
+            actualMovement = FollowPlayer;
+            ChangeControllers(true);
         }
     }
     #endregion
