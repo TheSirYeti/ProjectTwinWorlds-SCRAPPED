@@ -627,6 +627,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 86819987683662337, guid: 9937bf2cb09b4ef48b19ac8e174ff58b, type: 3}
+      propertyPath: movementCollision.m_Bits
+      value: 809500864
+      objectReference: {fileID: 0}
+    - target: {fileID: 86819988078973364, guid: 9937bf2cb09b4ef48b19ac8e174ff58b, type: 3}
+      propertyPath: movementCollision.m_Bits
+      value: 809500864
+      objectReference: {fileID: 0}
     - target: {fileID: 86819988197197272, guid: 9937bf2cb09b4ef48b19ac8e174ff58b, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -3811,8 +3819,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelID: 0
-  needsBothPlayers: 0
-  oneReady: {fileID: 0}
 --- !u!1001 &3090649693587140389
 PrefabInstance:
   m_ObjectHideFlags: 0
