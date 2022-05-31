@@ -5,10 +5,14 @@ using UnityEngine;
 public class Breakable : MonoBehaviour, IWeaponInteractable
 {
     public List<MeshDestroy> myMesh;
+    public bool _usableByDemon;
+    public bool _isConnect;
 
     public void Inter_DoWeaponAction(BulletSystem bullet)
     {
-        throw new System.NotImplementedException();
+        bullet.Bullet_Reset();
+        bullet.transform.parent = null;
+        Destroy(gameObject);
     }
 
     public void Inter_DoConnectAction(IWeaponInteractable otherObject)
@@ -17,17 +21,21 @@ public class Breakable : MonoBehaviour, IWeaponInteractable
 
     public void Inter_ResetObject()
     {
-        throw new System.NotImplementedException();
     }
 
     public bool Inter_CheckCanUse(Player actualPlayer, bool isDemon)
     {
-        throw new System.NotImplementedException();
+        if (_usableByDemon == isDemon)
+        {
+            return true;
+        }
+        else
+            return false;
     }
 
     public bool Inter_OnUse()
     {
-        throw new System.NotImplementedException();
+        return _isConnect;
     }
 
     public void Inter_SetParent(Transform weapon)

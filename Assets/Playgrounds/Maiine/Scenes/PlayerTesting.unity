@@ -2802,7 +2802,7 @@ GameObject:
   - component: {fileID: 1923478736}
   - component: {fileID: 1923478735}
   - component: {fileID: 1923478739}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: BreakableObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2880,7 +2880,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1923478734}
   m_LocalRotation: {x: -0, y: -0.0000003129243, z: -0, w: 1}
-  m_LocalPosition: {x: 38.980003, y: 1.71, z: 17.380003}
+  m_LocalPosition: {x: 5.79, y: 1.71, z: 3.67}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2912,6 +2912,8 @@ MonoBehaviour:
   - {fileID: 659441281}
   - {fileID: 563996462}
   - {fileID: 1034309896}
+  _usableByDemon: 1
+  _isConnect: 0
 --- !u!1 &1983869042
 GameObject:
   m_ObjectHideFlags: 0
@@ -3775,6 +3777,14 @@ PrefabInstance:
     - target: {fileID: 1817344445665305767, guid: e5e432d5412b6504490fdc266faef218, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4558368375273607281, guid: e5e432d5412b6504490fdc266faef218, type: 3}
+      propertyPath: m_Layer
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 6380599161004464209, guid: e5e432d5412b6504490fdc266faef218, type: 3}
+      propertyPath: m_Layer
+      value: 28
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e5e432d5412b6504490fdc266faef218, type: 3}
