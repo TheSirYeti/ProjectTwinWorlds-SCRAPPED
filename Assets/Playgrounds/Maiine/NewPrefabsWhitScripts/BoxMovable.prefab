@@ -113,13 +113,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d1eb686b56577e4dab86402a400876a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _ignoreInteractableMask:
+    serializedVersion: 2
+    m_Bits: 573014271
+  _distanceToInteract: 20
+  _isUsableByDemon: 1
   speed: 0
   maxSpeed: 10
   minDistaceToFollow: 10
   aceleration: 6
   deaceleration: 7
-  _isConnect: 0
-  _usableByDemon: 1
   maxConnectDistance: 25
   _lineRenderer: {fileID: 1817344445665305766}
   breakableLayer:

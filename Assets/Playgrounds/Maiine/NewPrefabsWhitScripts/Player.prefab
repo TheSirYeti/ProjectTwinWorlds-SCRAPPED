@@ -290,6 +290,9 @@ MonoBehaviour:
   actualTransform: {fileID: 0}
   rotationAxiesX: {fileID: 7220401464935450336}
   midCamera: {x: 0, y: 0, z: 0}
+  collisionRaycast:
+    serializedVersion: 2
+    m_Bits: 192
   speed: 2
   rotationSpeed: 0.2
   rotationAngle: 60
@@ -297,6 +300,7 @@ MonoBehaviour:
   cameraDist: 15
   maxDistX: 20
   maxDistZ: 10
+  distanceToAim: 10
   nearClip: -30
   farClip: 1000
   rotateToPoint: 0

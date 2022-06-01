@@ -128,7 +128,6 @@ public class Climb : BaseInteractable, IWeaponInteractable
     public bool Inter_CheckCanUse(Player actualPlayer, bool isDemon)
     {
         //Checkeo distancia
-        Debug.Log(Vector3.Distance(actualPlayer.transform.position, transform.position));
         if (Vector3.Distance(actualPlayer.transform.position, transform.position) > _distanceToInteract) return false;
 
         //Checkeo si no hay nada en medio

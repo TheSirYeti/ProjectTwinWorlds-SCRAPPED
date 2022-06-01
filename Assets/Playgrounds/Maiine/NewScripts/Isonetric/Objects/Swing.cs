@@ -2,11 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Swing : MonoBehaviour, IWeaponInteractable
+public class Swing : BaseInteractable, IWeaponInteractable
 {
-    Player _player;
     GameObject _hangItem;
-    BulletSystem _bullet;
 
     public Vector3 backRigth;
     public Vector3 backLeft;
@@ -20,9 +18,6 @@ public class Swing : MonoBehaviour, IWeaponInteractable
     public Transform midCollider;
     public Transform rotationPoint;
     public LineRenderer lineRenderer;
-
-    public bool _usableByDemon;
-    bool _isConnect = false;
 
     public LayerMask wallMaks;
 
@@ -76,11 +71,11 @@ public class Swing : MonoBehaviour, IWeaponInteractable
 
     public void Inter_DoWeaponAction(BulletSystem bullet)
     {
-        _isConnect = true;
-        _bullet = bullet;
-        _player.transform.parent = rotationPoint;
-        _player.myMovementController.ChangeToSwing(this);
-        _player.myButtonController.ChangeAxies(true);
+        _isOnUse = true;
+        _actualBullet = bullet;
+        _actualPlayer.transform.parent = rotationPoint;
+        _actualPlayer.myMovementController.ChangeToSwing(this);
+        _actualPlayer.myButtonController.ChangeAxies(true);
         actualMove = MoveSwing;
     }
 
@@ -91,28 +86,40 @@ public class Swing : MonoBehaviour, IWeaponInteractable
 
     public void Inter_ResetObject()
     {
-        _isConnect = false;
+        _isOnUse = false;
         lineRenderer.enabled = false;
-        _player.myMovementController.ChangeToMove();
-        _player.myButtonController.ChangeAxies(false);
-        _player.transform.parent = null;
+        _actualPlayer.myMovementController.ChangeToMove();
+        _actualPlayer.myButtonController.ChangeAxies(false);
+        _actualPlayer.transform.parent = null;
         actualMove = delegate { };
     }
 
     public bool Inter_CheckCanUse(Player actualPlayer, bool isDemon)
     {
-        if (_usableByDemon == isDemon)
+        //Checkeo distancia
+        if (Vector3.Distance(actualPlayer.transform.position, transform.position) > _distanceToInteract) return false;
+
+        //Checkeo si no hay nada en medio
+        Vector3 dir = actualPlayer.transform.position - transform.position;
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, dir.normalized, out hit, Mathf.Infinity, _ignoreInteractableMask))
         {
-            _player = actualPlayer;
+            if (hit.collider.tag != "Player")
+                return false;
+        }
+
+        if (_isUsableByDemon == isDemon)
+        {
+            _actualPlayer = actualPlayer;
             return true;
         }
-        else
-            return false;
+
+        return false;
     }
 
     public bool Inter_OnUse()
     {
-        return _isConnect;
+        return _isOnUse;
     }
 
     public void Inter_SetParent(Transform weapon)

@@ -2,17 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Breakable : MonoBehaviour, IWeaponInteractable
+public class Breakable : BaseInteractable, IWeaponInteractable
 {
     public List<MeshDestroy> myMesh;
-    public bool _usableByDemon;
-    public bool _isConnect;
 
     public void Inter_DoWeaponAction(BulletSystem bullet)
     {
         bullet.Bullet_Reset();
         bullet.transform.parent = null;
-        //Destroy(gameObject);
+
         foreach (var mesh in myMesh)
         {
             mesh.DestroyMesh();
@@ -30,7 +28,7 @@ public class Breakable : MonoBehaviour, IWeaponInteractable
 
     public bool Inter_CheckCanUse(Player actualPlayer, bool isDemon)
     {
-        if (_usableByDemon == isDemon)
+        if (_isUsableByDemon == isDemon)
         {
             return true;
         }
@@ -40,7 +38,7 @@ public class Breakable : MonoBehaviour, IWeaponInteractable
 
     public bool Inter_OnUse()
     {
-        return _isConnect;
+        return _isOnUse;
     }
 
     public void Inter_SetParent(Transform weapon)

@@ -11,13 +11,10 @@ public class CameraController : MonoBehaviour
     public Transform rotationAxiesX;
 
     public Vector3 midCamera;
-    Vector3 pointToView;
 
-    LayerMask collisionRaycast;
+    public LayerMask collisionRaycast;
 
     bool seeDemon = true;
-
-    bool rotateRight = true;
 
     public float speed;
     public float rotationSpeed;
@@ -26,6 +23,8 @@ public class CameraController : MonoBehaviour
     public float cameraDist;
     public float maxDistX;
     public float maxDistZ;
+
+    public float distanceToAim;
 
     public float nearClip;
     public float farClip;
@@ -58,8 +57,6 @@ public class CameraController : MonoBehaviour
         actualTransform = demon.transform;
         myMain.transform.LookAt(actualTransform);
         actualMovement = FollowPlayer;
-
-        collisionRaycast = demon.mouseCollisions;
     }
 
     private void Update()
@@ -114,7 +111,6 @@ public class CameraController : MonoBehaviour
 
     public void SetRotate(bool _rotateRight, float _pointToRotate)
     {
-        rotateRight = _rotateRight;
         rotateToPoint = _pointToRotate;
         ChangeControllers(false);
         actualMovement = RotateCamera;
@@ -153,49 +149,43 @@ public class CameraController : MonoBehaviour
         if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, Mathf.Infinity, collisionRaycast))
         {
             Vector3 rayPoint = new Vector3(hit.point.x, transform.position.y, hit.point.z);
-            Vector3 dist = (rayPoint - actualTransform.position) * 0.5f;
-            midCamera = actualTransform.position + dist;
+            Vector3 dir = (rayPoint - actualTransform.position).normalized;
+            midCamera = actualTransform.position + dir * distanceToAim;
 
-            float distanceX = actualTransform.position.x - midCamera.x;
-            float distanceZ = actualTransform.position.z - midCamera.z;
+            //float distanceX = actualTransform.position.x - midCamera.x;
+            //float distanceZ = actualTransform.position.z - midCamera.z;
 
-            distanceX = Mathf.Abs(distanceX);
-            distanceZ = Mathf.Abs(distanceZ);
+            //distanceX = Mathf.Abs(distanceX);
+            //distanceZ = Mathf.Abs(distanceZ);
 
-            if (distanceX > maxDistX)
-            {
-                if (midCamera.x > actualTransform.position.x)
-                {
-                    midCamera.x = actualTransform.position.x + maxDistX;
-                }
-                else if (midCamera.x < actualTransform.position.x)
-                {
-                    midCamera.x = actualTransform.position.x - maxDistX;
-                }
-            }
+            //if (distanceX > maxDistX)
+            //{
+            //    if (midCamera.x > actualTransform.position.x)
+            //    {
+            //        midCamera.x = actualTransform.position.x + maxDistX;
+            //    }
+            //    else if (midCamera.x < actualTransform.position.x)
+            //    {
+            //        midCamera.x = actualTransform.position.x - maxDistX;
+            //    }
+            //}
 
-            if (distanceZ > maxDistZ)
-            {
-                if (midCamera.z > actualTransform.position.z)
-                {
-                    midCamera.z = actualTransform.position.z + maxDistZ;
-                }
-                else if (midCamera.z < actualTransform.position.z)
-                {
-                    midCamera.z = actualTransform.position.z - maxDistZ;
-                }
-            }
+            //if (distanceZ > maxDistZ)
+            //{
+            //    if (midCamera.z > actualTransform.position.z)
+            //    {
+            //        midCamera.z = actualTransform.position.z + maxDistZ;
+            //    }
+            //    else if (midCamera.z < actualTransform.position.z)
+            //    {
+            //        midCamera.z = actualTransform.position.z - maxDistZ;
+            //    }
+            //}
 
             midCamera.y = actualTransform.position.y;
 
             transform.position += (midCamera - transform.position) * speed * Time.deltaTime;
         }
-    }
-
-    //Mira un punto exacto que se le haya pasado
-    void SeePoint()
-    {
-        transform.position += (pointToView - transform.position) * speed * Time.deltaTime;
     }
 
     //rota al rededor del eje Y

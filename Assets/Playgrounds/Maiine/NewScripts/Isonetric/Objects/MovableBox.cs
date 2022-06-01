@@ -2,12 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovableBox : MonoBehaviour, IWeaponInteractable
+public class MovableBox : BaseInteractable, IWeaponInteractable
 {
     public delegate void MovableBoxDelegate();
     MovableBoxDelegate actualMovement = delegate { };
-
-    bool isOnPlayer = false;
+    MovableBoxDelegate pullMovement = delegate { };
 
     public float speed;
     public float maxSpeed;
@@ -15,16 +14,7 @@ public class MovableBox : MonoBehaviour, IWeaponInteractable
     public float aceleration;
     public float deaceleration;
 
-    [SerializeField]
-    bool _isConnect;
-
-    [SerializeField]
-    bool _usableByDemon;
-
     public float maxConnectDistance;
-
-    Player _followPlayer;
-    BulletSystem _bullet;
 
     [SerializeField]
     LineRenderer _lineRenderer;
@@ -34,52 +24,58 @@ public class MovableBox : MonoBehaviour, IWeaponInteractable
     void Update()
     {
         actualMovement();
-
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, Vector3.down, out hit, 1f, breakableLayer))
-        {
-            Destroy(hit.collider.gameObject);
-        }
+        pullMovement();
+        CheckBreackable();
     }
 
     #region Interfaces Con Arma
     public void Inter_DoWeaponAction(BulletSystem bullet)
     {
-        _bullet = bullet;
+        _actualBullet = bullet;
         _lineRenderer.enabled = true;
-        _isConnect = true;
+        _isOnUse = true;
         actualMovement = Delegate_FollowPlayer;
     }
 
     public void Inter_DoConnectAction(IWeaponInteractable otherObject)
     {
 
-        _isConnect = true;
+        _isOnUse = true;
     }
 
     public void Inter_ResetObject()
     {
         _lineRenderer.enabled = false;
         actualMovement = delegate { };
-        _isConnect = false;
+        _isOnUse = false;
     }
 
     public bool Inter_CheckCanUse(Player actualPlayer, bool isDemon)
     {
-        if (_usableByDemon == isDemon)
+        //Checkeo distancia
+        if (Vector3.Distance(actualPlayer.transform.position, transform.position) > _distanceToInteract) return false;
+
+        //Checkeo si no hay nada en medio
+        Vector3 dir = actualPlayer.transform.position - transform.position;
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, dir.normalized, out hit, Mathf.Infinity, _ignoreInteractableMask))
         {
-            
-            
-            _followPlayer = actualPlayer;
+            if (hit.collider.tag != "Player")
+                return false;
+        }
+
+        if (_isUsableByDemon == isDemon)
+        {
+            _actualPlayer = actualPlayer;
             return true;
         }
-        else
-            return false;
+
+        return false;
     }
 
     public bool Inter_OnUse()
     {
-        return _isConnect;
+        return _isOnUse;
     }
 
     public void Inter_SetParent(Transform weapon)
@@ -97,7 +93,7 @@ public class MovableBox : MonoBehaviour, IWeaponInteractable
 
     void Delegate_FollowPlayer()
     {
-        if (Vector3.Distance(transform.position, _followPlayer.transform.position) > minDistaceToFollow)
+        if (Vector3.Distance(transform.position, _actualPlayer.transform.position) > minDistaceToFollow)
         {
             speed += aceleration * Time.deltaTime;
         }
@@ -108,18 +104,25 @@ public class MovableBox : MonoBehaviour, IWeaponInteractable
 
         speed = Mathf.Clamp(speed, 0, maxSpeed);
 
-        Vector3 dir = (_followPlayer.transform.position - transform.position).normalized;
+        Vector3 dir = (_actualPlayer.transform.position - transform.position).normalized;
 
         transform.position += dir * speed * Time.deltaTime;
 
         _lineRenderer.SetPosition(0, transform.position);
-        _lineRenderer.SetPosition(1, _followPlayer.transform.position);
+        _lineRenderer.SetPosition(1, _actualPlayer.transform.position);
     }
 
-
-    void Delegate_Swing()
+    void Delegate_Pull()
     {
 
     }
 
+    void CheckBreackable()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, 1f, breakableLayer))
+        {
+            Destroy(hit.collider.gameObject);
+        }
+    }
 }
