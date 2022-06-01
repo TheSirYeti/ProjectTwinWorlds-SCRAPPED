@@ -129,7 +129,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a42eb75dfd543d4448661b01d7a7efea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _usableByDemon: 0
+  _ignoreInteractableMask:
+    serializedVersion: 2
+    m_Bits: 1807745023
+  _distanceToInteract: 20
+  _isUsableByDemon: 0
   _speed: 3
   initialSpeed: 10
   minDist: 0.2

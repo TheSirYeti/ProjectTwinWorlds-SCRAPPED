@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 86819987683662337}
   m_Layer: 3
   m_Name: Demon
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 86819988078973364}
   m_Layer: 3
   m_Name: Angel
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

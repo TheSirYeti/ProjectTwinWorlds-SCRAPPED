@@ -2,12 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Climb : MonoBehaviour, IWeaponInteractable
+public class Climb : BaseInteractable, IWeaponInteractable
 {
     delegate void ClimbDelegate();
     ClimbDelegate actualMove = delegate { };
 
-    public bool _usableByDemon;
     bool _isConnect = false;
 
     bool canRight;
@@ -18,9 +17,6 @@ public class Climb : MonoBehaviour, IWeaponInteractable
 
     public float initialSpeed;
     public float minDist;
-
-    Player _actualPlayer;
-    BulletSystem _actualBullet;
 
     public LayerMask wallMaks;
     public LayerMask blockMask;
@@ -44,7 +40,7 @@ public class Climb : MonoBehaviour, IWeaponInteractable
     {
         if (!canLeft || !canRight)
         {
-            if(Vector3.Distance(grapPoint.position, _pointToGo) > minDist)
+            if (Vector3.Distance(grapPoint.position, _pointToGo) > minDist)
             {
                 _actualBullet.Bullet_Reset();
                 grapPoint.localPosition = Vector3.zero;
@@ -67,14 +63,14 @@ public class Climb : MonoBehaviour, IWeaponInteractable
     public void MoveGrapPoint(float rightMovement)
     {
         rightMovement = RayCastGrapCheck(rightMovement);
-        
+
         if (!canRight && rightMovement > 0)
             rightMovement = 0;
 
         if (!canLeft && rightMovement < 0)
             rightMovement = 0;
 
-        Vector3 grapMovement = transform.right * rightMovement; 
+        Vector3 grapMovement = transform.right * rightMovement;
 
         grapPoint.position += grapMovement * _speed * Time.deltaTime;
     }
@@ -104,8 +100,8 @@ public class Climb : MonoBehaviour, IWeaponInteractable
     public void Inter_DoWeaponAction(BulletSystem bullet)
     {
         _actualBullet = bullet;
-        
-        _isConnect = true;
+
+        _isOnUse = true;
         lineRenderer.enabled = true;
         _pointToGo = new Vector3(_actualPlayer.transform.position.x, grapPoint.position.y, _actualPlayer.transform.position.z);
         actualMove += Delegate_LineRendererWork;
@@ -120,7 +116,7 @@ public class Climb : MonoBehaviour, IWeaponInteractable
 
     public void Inter_ResetObject()
     {
-        _isConnect = false;
+        _isOnUse = false;
         lineRenderer.enabled = false;
         _actualPlayer.myMovementController.ChangeToMove();
         _actualPlayer.myButtonController.ChangeAxies(false);
@@ -131,14 +127,28 @@ public class Climb : MonoBehaviour, IWeaponInteractable
 
     public bool Inter_CheckCanUse(Player actualPlayer, bool isDemon)
     {
-        _actualPlayer = actualPlayer;
+        //Checkeo distancia
+        Debug.Log(Vector3.Distance(actualPlayer.transform.position, transform.position));
+        if (Vector3.Distance(actualPlayer.transform.position, transform.position) > _distanceToInteract) return false;
 
+        //Checkeo si no hay nada en medio
+        Vector3 dir = actualPlayer.transform.position - transform.position;
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, dir.normalized, out hit, Mathf.Infinity, _ignoreInteractableMask))
+        {
+            if (hit.collider.tag != "Player")
+                return false;
+        }
+
+        //Checkeo que te pegado a la pared
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, 1, wallMaks);
 
         foreach (Collider collider in hitColliders)
         {
-            if (collider.gameObject.layer == LayerMask.NameToLayer("Wall") && myWall == collider.gameObject && _usableByDemon == isDemon)
+            if (collider.gameObject.layer == LayerMask.NameToLayer("Wall") && myWall == collider.gameObject
+                && _isUsableByDemon == isDemon)
             {
+                _actualPlayer = actualPlayer;
                 return true;
             }
         }
@@ -148,7 +158,7 @@ public class Climb : MonoBehaviour, IWeaponInteractable
 
     public bool Inter_OnUse()
     {
-        return _isConnect;
+        return _isOnUse;
     }
 
     public void Inter_SetParent(Transform weapon)

@@ -68,6 +68,8 @@ public class MovableBox : MonoBehaviour, IWeaponInteractable
     {
         if (_usableByDemon == isDemon)
         {
+            
+            
             _followPlayer = actualPlayer;
             return true;
         }
