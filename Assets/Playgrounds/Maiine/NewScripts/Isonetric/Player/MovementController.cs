@@ -41,7 +41,6 @@ public class MovementController
     {
         LookAt();
         _playerTransform.position += _dir * _speed * Time.deltaTime;
-        Debug.Log(canUp);
     }
 
     void Swing()
