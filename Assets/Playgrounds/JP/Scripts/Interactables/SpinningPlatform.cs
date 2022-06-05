@@ -7,6 +7,7 @@ public class SpinningPlatform : BaseInteractable, IWeaponInteractable
 {
     [SerializeField] private LayerMask obstacleMask;
     [SerializeField] private Vector3 rotationValues;
+    [SerializeField] private Transform objectToRotate;
     
     public delegate void PlatformMovementDelegate();
     public PlatformMovementDelegate currentSpin = delegate {  };
@@ -26,13 +27,16 @@ public class SpinningPlatform : BaseInteractable, IWeaponInteractable
     
     public void Inter_DoConnectAction(IWeaponInteractable otherObject)
     {
-        throw new System.NotImplementedException();
+        //throw new System.NotImplementedException();
     }
 
 
     public void Inter_ResetObject()
     {
+        Debug.Log("Inter_ResetObject");
         currentSpin = delegate {  };
+        /*if(_actualBullet != null)
+            _actualBullet.Bullet_Reset();*/
         _actualPlayer.myMovementController.ChangeToMove();
         _isOnUse = false;
     }
@@ -52,6 +56,7 @@ public class SpinningPlatform : BaseInteractable, IWeaponInteractable
         
         Vector3 dir = actualPlayer.transform.position - transform.position;
         RaycastHit hit;
+        
         if (!Physics.Raycast(transform.position, dir,  dir.magnitude, _ignoreInteractableMask) && _isUsableByDemon == isDemon)
         {
             _actualPlayer = actualPlayer;
@@ -80,7 +85,7 @@ public class SpinningPlatform : BaseInteractable, IWeaponInteractable
 
         if (h != 0 && _isOnUse)
         {
-            transform.Rotate(rotationValues * h * Time.deltaTime);
+            objectToRotate.Rotate(rotationValues * h * Time.deltaTime);
         }
     }
 }
