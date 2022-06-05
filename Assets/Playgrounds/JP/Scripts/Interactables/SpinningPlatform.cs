@@ -35,8 +35,6 @@ public class SpinningPlatform : BaseInteractable, IWeaponInteractable
     {
         Debug.Log("Inter_ResetObject");
         currentSpin = delegate {  };
-        /*if(_actualBullet != null)
-            _actualBullet.Bullet_Reset();*/
         _actualPlayer.myMovementController.ChangeToMove();
         _isOnUse = false;
     }
@@ -55,7 +53,6 @@ public class SpinningPlatform : BaseInteractable, IWeaponInteractable
         if (Vector3.Distance(actualPlayer.transform.position, transform.position) > _distanceToInteract) return false;
         
         Vector3 dir = actualPlayer.transform.position - transform.position;
-        RaycastHit hit;
         
         if (!Physics.Raycast(transform.position, dir,  dir.magnitude, _ignoreInteractableMask) && _isUsableByDemon == isDemon)
         {

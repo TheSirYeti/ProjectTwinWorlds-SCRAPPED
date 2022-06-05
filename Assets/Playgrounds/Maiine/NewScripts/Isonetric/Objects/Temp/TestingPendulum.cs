@@ -16,7 +16,7 @@ public class TestingPendulum : MonoBehaviour
         float angle = MaxAngleDeflection * Mathf.Sin(Time.time * SpeedOfPendulum);
         transform.localRotation = Quaternion.Euler(0, 0, angle);
 
-        Debug.Log(angle);
+        //Debug.Log(angle);
 
         CheckInitialDir();
 

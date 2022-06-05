@@ -152,39 +152,16 @@ public class CameraController : MonoBehaviour
             Vector3 dir = (rayPoint - actualTransform.position).normalized;
             midCamera = actualTransform.position + dir * distanceToAim;
 
-            //float distanceX = actualTransform.position.x - midCamera.x;
-            //float distanceZ = actualTransform.position.z - midCamera.z;
-
-            //distanceX = Mathf.Abs(distanceX);
-            //distanceZ = Mathf.Abs(distanceZ);
-
-            //if (distanceX > maxDistX)
-            //{
-            //    if (midCamera.x > actualTransform.position.x)
-            //    {
-            //        midCamera.x = actualTransform.position.x + maxDistX;
-            //    }
-            //    else if (midCamera.x < actualTransform.position.x)
-            //    {
-            //        midCamera.x = actualTransform.position.x - maxDistX;
-            //    }
-            //}
-
-            //if (distanceZ > maxDistZ)
-            //{
-            //    if (midCamera.z > actualTransform.position.z)
-            //    {
-            //        midCamera.z = actualTransform.position.z + maxDistZ;
-            //    }
-            //    else if (midCamera.z < actualTransform.position.z)
-            //    {
-            //        midCamera.z = actualTransform.position.z - maxDistZ;
-            //    }
-            //}
 
             midCamera.y = actualTransform.position.y;
 
-            transform.position += (midCamera - transform.position) * speed * Time.deltaTime;
+            float midDist = Vector3.Distance(actualTransform.position, midCamera);
+            float rayDist = Vector3.Distance(actualTransform.position, rayPoint);
+
+            if (midDist <= rayDist)
+                transform.position += (midCamera - transform.position) * speed * Time.deltaTime;
+            else
+                transform.position += (actualTransform.position - transform.position) * speed * Time.deltaTime;
         }
     }
 
