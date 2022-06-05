@@ -8,9 +8,9 @@ public class SpinningPlatform : BaseInteractable, IWeaponInteractable
     [SerializeField] private LayerMask obstacleMask;
     [SerializeField] private Vector3 rotationValues;
     [SerializeField] private Transform objectToRotate;
-    
+
     public delegate void PlatformMovementDelegate();
-    public PlatformMovementDelegate currentSpin = delegate {  };
+    public PlatformMovementDelegate currentSpin = delegate { };
 
     private void Update()
     {
@@ -24,7 +24,7 @@ public class SpinningPlatform : BaseInteractable, IWeaponInteractable
         currentSpin = SpinLogicDelegate;
         _isOnUse = true;
     }
-    
+
     public void Inter_DoConnectAction(IWeaponInteractable otherObject)
     {
         //throw new System.NotImplementedException();
@@ -34,7 +34,7 @@ public class SpinningPlatform : BaseInteractable, IWeaponInteractable
     public void Inter_ResetObject()
     {
         Debug.Log("Inter_ResetObject");
-        currentSpin = delegate {  };
+        currentSpin = delegate { };
         _actualPlayer.myMovementController.ChangeToMove();
         _isOnUse = false;
     }
@@ -51,10 +51,17 @@ public class SpinningPlatform : BaseInteractable, IWeaponInteractable
     public bool Inter_CheckCanUse(Player actualPlayer, bool isDemon)
     {
         if (Vector3.Distance(actualPlayer.transform.position, transform.position) > _distanceToInteract) return false;
-        
+
         Vector3 dir = actualPlayer.transform.position - transform.position;
-        
-        if (!Physics.Raycast(transform.position, dir,  dir.magnitude, _ignoreInteractableMask) && _isUsableByDemon == isDemon)
+        RaycastHit hit;
+
+        if (Physics.Raycast(transform.position, dir.normalized, out hit, Mathf.Infinity, _ignoreInteractableMask))
+        {
+            if (hit.collider.tag != "Player")
+                return false;
+        }
+
+        if (_isUsableByDemon == isDemon)
         {
             _actualPlayer = actualPlayer;
             _actualPlayer.myMovementController.ChangeToStay();
