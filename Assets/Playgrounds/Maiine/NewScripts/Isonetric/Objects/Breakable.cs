@@ -11,10 +11,11 @@ public class Breakable : BaseInteractable, IWeaponInteractable
         bullet.Bullet_Reset();
         bullet.transform.parent = null;
 
-        foreach (var mesh in myMesh)
+        /*foreach (var mesh in myMesh)
         {
             mesh.DestroyMesh();
-        }
+        }*/
+        SoundManager.instance.PlaySound(SoundID.WOOD_BREAK);
         gameObject.SetActive(false);
     }
 

@@ -65,10 +65,12 @@ public class MeshDestroy : MonoBehaviour
         {
             parts[i].MakeGameobject(this);
             parts[i].GameObject.GetComponent<Rigidbody>().AddForceAtPosition(parts[i].Bounds.center * ExplodeForce, transform.position);
-            Destroy(parts[i].GameObject, lifetime);
+            parts[i].GameObject.SetActive(false);
+            //Destroy(parts[i].GameObject, lifetime);
         }
 
-        Destroy(gameObject);
+        gameObject.SetActive(false);
+        //Destroy(gameObject);
     }
 
     private PartMesh GenerateMesh(PartMesh original, Plane plane, bool left)
@@ -278,7 +280,7 @@ public class MeshDestroy : MonoBehaviour
             
             var renderer = GameObject.AddComponent<MeshRenderer>();
             renderer.materials = original.GetComponent<MeshRenderer>().materials;
-
+  
             var filter = GameObject.AddComponent<MeshFilter>();
             filter.mesh = mesh;
 

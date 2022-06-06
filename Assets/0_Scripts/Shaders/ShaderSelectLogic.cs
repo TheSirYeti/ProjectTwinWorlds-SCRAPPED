@@ -9,8 +9,6 @@ public class ShaderSelectLogic : MonoBehaviour
     public bool isActive;
 
     public Material activeMat, clearMat, originalMat;
-
-    public int matPositionID;
     private void Start()
     {
         EventManager.Subscribe("OnPlayerChange", SwapMaterial);
