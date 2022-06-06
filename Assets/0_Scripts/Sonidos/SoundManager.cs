@@ -201,7 +201,8 @@ public enum SoundID
     SPARK,
     STEP_1,
     STEP_2,
-    THROW_HIT
+    THROW_HIT,
+    HEARTBEAT
 }
 
 public enum MusicID
