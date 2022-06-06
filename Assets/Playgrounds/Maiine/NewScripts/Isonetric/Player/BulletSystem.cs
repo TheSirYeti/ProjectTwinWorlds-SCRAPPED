@@ -121,6 +121,7 @@ public class BulletSystem : MonoBehaviour
 
         if (objectAimed.Inter_CheckCanUse(_myPlayer, _isDemon) && !_actualCollider.Inter_OnUse())
         {
+            SoundManager.instance.PlaySound(SoundID.THROW_HIT);
             if (_actualCollider == objectAimed)
             {
                 objectAimed.Inter_DoWeaponAction(this);

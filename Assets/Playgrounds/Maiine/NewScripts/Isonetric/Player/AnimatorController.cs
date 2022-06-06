@@ -2,13 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AnimatorController : MonoBehaviour
+public class AnimatorController
 {
-    Animator _animator;
-    public AnimatorController(Animator animator)
-    {
-        _animator = animator;
-    }
+    protected Animator _animator;
 
     public void ChangeBool(string boolName, bool state)
     {
@@ -28,5 +24,13 @@ public class AnimatorController : MonoBehaviour
     public void SetInt(string intName, int value)
     {
         _animator.SetInteger(intName, value);
+    }
+
+    public bool CheckAnimationState(string animationName)
+    {
+        if (_animator.GetCurrentAnimatorStateInfo(0).IsName(animationName))
+            return true;
+        else
+            return false;
     }
 }

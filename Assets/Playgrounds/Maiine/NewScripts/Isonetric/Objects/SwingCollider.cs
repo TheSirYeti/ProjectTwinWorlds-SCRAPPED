@@ -4,26 +4,26 @@ using UnityEngine;
 
 public class SwingCollider : MonoBehaviour
 {
-    Player _actualPlayer;
     public Swing mySwing;
-    public bool rigth;
-    public bool mid;
+    public bool usableByDemon;
 
     private void OnTriggerEnter(Collider other)
     {
-        _actualPlayer = other.GetComponent<Player>();
+        Player _actualPlayer = other.GetComponent<Player>();
 
-
-        if(_actualPlayer != null)
+        if(_actualPlayer != null && _actualPlayer.isDemon == usableByDemon)
         {
-            if (!mid)
-            {
-                mySwing.SetBackState(rigth, true);
-            }
-            else if (mid)
-            {
-                mySwing.CancelMovement();
-            }
+            mySwing.canSwing = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        Player _actualPlayer = other.GetComponent<Player>();
+
+        if (_actualPlayer != null && _actualPlayer.isDemon == usableByDemon)
+        {
+            mySwing.canSwing = false;
         }
     }
 }

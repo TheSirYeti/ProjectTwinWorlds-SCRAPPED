@@ -92,7 +92,6 @@ MonoBehaviour:
   handPoint: {fileID: 7322190412248177609}
   myAnimator: {fileID: 2517894968330883847}
   lookAtPoint: {fileID: 4316948312670006807}
-  myAnimatorController: {fileID: 0}
   cameraController: {fileID: 86819988458903150}
   usableItems:
     serializedVersion: 2
@@ -195,7 +194,6 @@ MonoBehaviour:
   handPoint: {fileID: 7966384348773830774}
   myAnimator: {fileID: 4893779927015213299}
   lookAtPoint: {fileID: 9158631685044594499}
-  myAnimatorController: {fileID: 0}
   cameraController: {fileID: 86819988458903150}
   usableItems:
     serializedVersion: 2
@@ -630,6 +628,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4818359827430848279, guid: c75fe4624708ce1429ac29e23bdac0cc, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 1ecfd683a2df2814c943a6396b6453b9, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c75fe4624708ce1429ac29e23bdac0cc, type: 3}
 --- !u!1 &1697529014946382010 stripped
@@ -741,7 +743,7 @@ Animator:
   m_GameObject: {fileID: 8136140274875504976}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 1463130f5208f4c44ae943a6012a1697, type: 2}
+  m_Controller: {fileID: 9100000, guid: e5232f8f098cb2f4dbcb837091bbb4ce, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

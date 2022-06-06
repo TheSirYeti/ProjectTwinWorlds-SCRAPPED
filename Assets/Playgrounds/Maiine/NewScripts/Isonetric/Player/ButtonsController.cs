@@ -74,7 +74,7 @@ public class ButtonsController
 
         Vector3 myMovement = new Vector3(horizontalAxie, 0, verticalAxie);
         _movementContoller.SetDir(myMovement);
-        _animatoContoller.SetFloat("MovementMagnitud", myMovement.magnitude);
+        _animatoContoller.SetFloat("MoveMagnitud", myMovement.magnitude);
     }
 
 
@@ -93,7 +93,7 @@ public class ButtonsController
             myMovement.Normalize();
 
         _movementContoller.SetDir(myMovement);
-        _animatoContoller.SetFloat("MovementMagnitud", myMovement.magnitude);
+        _animatoContoller.SetFloat("MoveMagnitud", myMovement.magnitude);
     }
 
     void RayCastCheck()
@@ -116,21 +116,26 @@ public class ButtonsController
             _cameraController.ChangeAimState(true);
             isAiming = true;
             _movementContoller.SetAim(isAiming);
-            _animatoContoller.ChangeBool("Aim", isAiming);
+            _animatoContoller.ChangeBool("IsAiming", isAiming);
         }
         else if (Input.GetMouseButtonUp(1))
         {
             _cameraController.ChangeAimState(false);
             isAiming = false;
             _movementContoller.SetAim(isAiming);
-            _animatoContoller.ChangeBool("Aim", isAiming);
+            _animatoContoller.ChangeBool("IsAiming", isAiming);
         }
     }
 
     void ShootButton()
     {
         if (Input.GetMouseButtonDown(0) && isAiming)
+        {
+            if (_animatoContoller.CheckAnimationState("Ani_AimIdle"))
+                _animatoContoller.SetTrigger("Shoot");
+
             _shootingController.Shoot();
+        }
     }
 
     void InteractableButton()

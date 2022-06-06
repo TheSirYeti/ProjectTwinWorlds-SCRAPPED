@@ -22,6 +22,11 @@ public class MovementController
     bool canUp = true;
     LayerMask _layerMask;
 
+    float _maxForce = 40;
+    float _actualForce = 0;
+    float _deacelerationForce = 30;
+    Vector3 _forceDir = Vector3.zero;
+
     Vector3 _dir;
 
     public MovementController(Player player)
@@ -40,6 +45,7 @@ public class MovementController
     void InputMovement()
     {
         LookAt();
+        Force();
         _playerTransform.position += _dir * _speed * Time.deltaTime;
     }
 
@@ -52,7 +58,7 @@ public class MovementController
             _dir.z = 0;
         }
 
-        _playerTransform.up = _actualSwing.transform.position - _player.transform.position;
+        //_playerTransform.up = _actualSwing.transform.position - _player.transform.position;
         _player.transform.position += (_actualSwing.transform.position - _player.transform.position) * _dir.z * Time.deltaTime;
 
         _actualSwing.SetDir(_dir.x);
@@ -60,7 +66,10 @@ public class MovementController
 
     void Force()
     {
+        _actualForce = Mathf.Clamp(_actualForce, 0, _maxForce);
 
+        _playerTransform.position += _forceDir * _actualForce * Time.deltaTime;
+        _actualForce -= _deacelerationForce * Time.deltaTime;
     }
 
 
@@ -110,9 +119,10 @@ public class MovementController
         _dir = movementVector;
     }
 
-    public void SetForce(Vector3 dir, float force)
+    public void SetForce(Vector3 dir, float forcePorcent)
     {
-
+        _actualForce = _maxForce * forcePorcent;
+        _forceDir = dir;
     }
 
     public void ChangeToMove()

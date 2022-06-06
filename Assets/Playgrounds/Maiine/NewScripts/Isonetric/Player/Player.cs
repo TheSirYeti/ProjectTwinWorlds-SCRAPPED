@@ -62,7 +62,12 @@ public class Player : MonoBehaviour, ITakeDamage
         myShootingController = new ShootingController(actualProjectil, mouseCollisions);
 
         myMovementController = new MovementController(this);
-        myAnimatorController = new AnimatorController(myAnimator);
+
+        if (isDemon)
+            myAnimatorController = new AnimatorDemon(myAnimator);
+        else
+            myAnimatorController = new AnimatorAngel(myAnimator);
+
         myButtonController = new ButtonsController(this);
         _lifeController = new LifeController(isDemon);
 
@@ -80,9 +85,6 @@ public class Player : MonoBehaviour, ITakeDamage
         myButtonController.actualAxies();
         myButtonController.actualButtons();
         myMovementController.actualMovement();
-
-        if (Input.GetKeyDown(KeyCode.T))
-            TakeDmg();
     }
 
 
