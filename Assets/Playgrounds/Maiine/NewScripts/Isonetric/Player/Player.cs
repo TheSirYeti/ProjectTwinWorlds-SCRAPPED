@@ -85,6 +85,9 @@ public class Player : MonoBehaviour, ITakeDamage
         myButtonController.actualAxies();
         myButtonController.actualButtons();
         myMovementController.actualMovement();
+
+        if (Input.GetKeyDown(KeyCode.T))
+            TakeDmg();
     }
 
 

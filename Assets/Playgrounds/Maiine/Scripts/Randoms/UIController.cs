@@ -17,6 +17,9 @@ public class UIController : MonoBehaviour
     [SerializeField] private GameObject _demonPlayer;
     [SerializeField] private GameObject _angelPlayer;
 
+    [SerializeField] private GameObject _demonHearthBeatUI;
+    [SerializeField] private GameObject _angelHearthBeatUI;
+
     private bool _isDemond = true;
     private int _uiDemondLife = 3;
     private int _uiAngelLife = 3;
@@ -64,15 +67,19 @@ public class UIController : MonoBehaviour
 
     public void TakeUIDMG(object[] parameters)
     {
-        if((bool)parameters[0])
+        if ((bool)parameters[0])
         {
             _uiDemondLife--;
             _demonHearths[_uiDemondLife].gameObject.SetActive(false);
+            if (_uiDemondLife == 1)
+                _demonHearthBeatUI.SetActive(true);
         }
         else
         {
             _uiAngelLife--;
             _angelHearths[_uiAngelLife].gameObject.SetActive(false);
+            if (_uiAngelLife == 1)
+                _angelHearthBeatUI.SetActive(true);
         }
     }
 
@@ -82,11 +89,13 @@ public class UIController : MonoBehaviour
         {
             _demonHearths[_uiDemondLife].gameObject.SetActive(true);
             _uiDemondLife++;
+            _demonHearthBeatUI.SetActive(false);
         }
         else
         {
             _angelHearths[_uiAngelLife].gameObject.SetActive(true);
             _uiAngelLife++;
+            _angelHearthBeatUI.SetActive(false);
         }
     }
 }

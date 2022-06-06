@@ -929,6 +929,10 @@ PrefabInstance:
       propertyPath: _demonPlayer
       value: 
       objectReference: {fileID: 672425376}
+    - target: {fileID: 7982073368999848460, guid: dea599acffe539d439c96c306259350e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dea599acffe539d439c96c306259350e, type: 3}
 --- !u!1 &672425376 stripped
