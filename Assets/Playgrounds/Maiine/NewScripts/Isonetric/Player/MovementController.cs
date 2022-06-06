@@ -58,8 +58,8 @@ public class MovementController
             _dir.z = 0;
         }
 
-        //_playerTransform.up = _actualSwing.transform.position - _player.transform.position;
-        _player.transform.position += (_actualSwing.transform.position - _player.transform.position) * _dir.z * Time.deltaTime;
+        if (Vector3.Distance(_actualSwing.transform.position, _player.transform.position) > 1)
+            _player.transform.position += (_actualSwing.transform.position - _player.transform.position).normalized * _dir.z * Time.deltaTime;
 
         _actualSwing.SetDir(_dir.x);
     }

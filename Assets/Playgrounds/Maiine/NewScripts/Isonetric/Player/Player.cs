@@ -128,12 +128,12 @@ public class Player : MonoBehaviour, ITakeDamage
 
     IEnumerator CorrutinaTurnOn()
     {
+        myCollider.isTrigger = false;
         yield return new WaitForEndOfFrame();
         myMovementController.ChangeToMove();
         myButtonController.ButtonsOn();
         realCharacter.SetActive(true);
         totemCharacter.SetActive(false);
-        myCollider.isTrigger = false;
         myRigidbody.useGravity = true;
     }
     #endregion

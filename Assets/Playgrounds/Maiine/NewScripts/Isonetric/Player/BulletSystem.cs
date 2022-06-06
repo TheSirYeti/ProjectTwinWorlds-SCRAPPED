@@ -7,6 +7,9 @@ public class BulletSystem : MonoBehaviour
     delegate void BulletMovement();
     BulletMovement actualMovement = delegate { };
 
+    public LineRenderer lineRenderer;
+    Transform actualLineTransform; 
+
     Player _myPlayer;
     Transform _handPoint;
     bool _isDemon;
@@ -38,11 +41,20 @@ public class BulletSystem : MonoBehaviour
         transform.parent = _handPoint;
         transform.localPosition = Vector3.zero;
         transform.localRotation = Quaternion.Euler(Vector3.zero);
+        actualLineTransform = _handPoint.transform;
     }
 
     void Update()
     {
         actualMovement();
+
+        LineRenderer();
+    }
+
+    void LineRenderer()
+    {
+        lineRenderer.SetPosition(0, transform.position);
+        lineRenderer.SetPosition(1, actualLineTransform.position);
     }
 
     void Delegate_ReturnPlayer()
@@ -56,6 +68,7 @@ public class BulletSystem : MonoBehaviour
         if (Vector3.Distance(_myPlayer.transform.position, transform.position) < _distanceToInteract)
         {
             _isOnPlayer = true;
+            actualLineTransform = _handPoint.transform;
             transform.parent = _myPlayer.handPoint;
             transform.localPosition = Vector3.zero;
             transform.localRotation = Quaternion.Euler(Vector3.zero);
@@ -129,6 +142,7 @@ public class BulletSystem : MonoBehaviour
             else
             {
                 _connectedCollider = objectAimed;
+                actualLineTransform = _connectedCollider.Inter_GetGameObject().transform;
                 objectAimed.Inter_DoConnectAction(_actualCollider);
             }
         }
