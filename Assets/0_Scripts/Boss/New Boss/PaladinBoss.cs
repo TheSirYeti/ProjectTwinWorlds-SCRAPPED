@@ -70,7 +70,7 @@ public class PaladinBoss : MonoBehaviour
 
     void ChangeTarget(object[] parameters)
     {
-        isDemon = !isDemon
+        isDemon = !isDemon;
         if (target == demon)
         {
             target = angel;
