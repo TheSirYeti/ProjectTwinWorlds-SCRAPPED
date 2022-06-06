@@ -132,11 +132,11 @@ MonoBehaviour:
   _ignoreInteractableMask:
     serializedVersion: 2
     m_Bits: 1673527295
-  _distanceToInteract: 20
+  _distanceToInteract: 25
   _isUsableByDemon: 0
-  _speed: 3
+  _speed: 6
   initialSpeed: 10
-  minDist: 0.2
+  minDist: 3
   wallMaks:
     serializedVersion: 2
     m_Bits: 128
@@ -166,7 +166,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 7a5303bab731e054c892c49068af44f5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -192,7 +192,7 @@ LineRenderer:
   - {x: 0, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 1
+    widthMultiplier: 0.25
     widthCurve:
       serializedVersion: 2
       m_Curve:
