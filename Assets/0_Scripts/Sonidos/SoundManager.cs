@@ -198,7 +198,9 @@ public enum SoundID
     SUCCESS,
     CRASH,
     POWER_ON,
-    SPARK
+    SPARK,
+    STEP_1,
+    STEP_2
 }
 
 public enum MusicID
@@ -209,5 +211,7 @@ public enum MusicID
     CHINESE,
     SAD_SONG,
     MAIN_MENU,
-    SEWER
+    SEWER,
+    LVL1_AMBIENCE_ANGEL,
+    LVL1_AMBIENCE_DEMON
 }
