@@ -45,6 +45,7 @@ public class PaladinBoss : MonoBehaviour
     private void Start()
     {
         EventManager.Subscribe("OnPlayerChange", ChangeTarget);
+        
         target = demon;
         fsm = new FiniteStateMachine();
         fsm.AddState(FSM_State.PALADIN_CAST, new PaladinShootingState(fsm, this, animator, 10, 
@@ -70,8 +71,10 @@ public class PaladinBoss : MonoBehaviour
 
     void ChangeTarget(object[] parameters)
     {
+        Debug.Log("cambio");
         isDemon = !isDemon;
-        if (target == demon)
+        
+        if (isDemon)
         {
             target = angel;
         }
