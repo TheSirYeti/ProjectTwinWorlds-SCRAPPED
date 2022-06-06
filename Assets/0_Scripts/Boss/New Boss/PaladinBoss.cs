@@ -19,6 +19,10 @@ public class PaladinBoss : MonoBehaviour
     [SerializeField] private Transform centerPosition;
     [SerializeField] private Transform topPosition;
 
+    [Header("References")] 
+    [SerializeField] private Transform demon, angel;
+    private bool isDemon = true;
+    
     [Header("VFX")]
     [SerializeField] private Animator animator;
     [SerializeField] private ParticleSystem poof1, poof2;
@@ -40,6 +44,8 @@ public class PaladinBoss : MonoBehaviour
 
     private void Start()
     {
+        EventManager.Subscribe("OnPlayerChange", ChangeTarget);
+        target = demon;
         fsm = new FiniteStateMachine();
         fsm.AddState(FSM_State.PALADIN_CAST, new PaladinShootingState(fsm, this, animator, 10, 
             1f, 3f, transform, target, centerPosition, topPosition, bulletPrefab, poof1, poof2));
@@ -57,9 +63,18 @@ public class PaladinBoss : MonoBehaviour
         fsm.OnUpdate();
     }
 
-
     public GameObject InstantiateBullet(GameObject bullet)
     {
         return Instantiate(bullet);
+    }
+
+    void ChangeTarget(object[] parameters)
+    {
+        isDemon = !isDemon
+        if (target == demon)
+        {
+            target = angel;
+        }
+        else target = demon;
     }
 }
