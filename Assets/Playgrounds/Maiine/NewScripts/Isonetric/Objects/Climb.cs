@@ -24,6 +24,11 @@ public class Climb : BaseInteractable, IWeaponInteractable
     public GameObject myWall = null;
     public Transform grapPoint;
 
+    private void Awake()
+    {
+        myWall = null;
+    }
+
     void Update()
     {
         actualMove();
@@ -175,7 +180,7 @@ public class Climb : BaseInteractable, IWeaponInteractable
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == 7 && myWall == null)
+        if (other.gameObject.tag == "Wall" && myWall == null)
         {
             myWall = other.gameObject;
         }

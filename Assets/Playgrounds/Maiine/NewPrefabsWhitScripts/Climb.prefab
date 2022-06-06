@@ -433,8 +433,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 192
   lineRenderer: {fileID: 2709341102368261950}
-  myWall: {fileID: 8519126624363984023}
-  grapPoint: {fileID: 0}
+  myWall: {fileID: 0}
+  grapPoint: {fileID: 8519126624363984020}
 --- !u!114 &873416326034846596
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -756,7 +756,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myClimb: {fileID: 858977683453023097}
-  myGide: {fileID: 8519126623244394589}
+  myGide: {fileID: 4635203472693426576}
   rigth: 1
   down: 0
 --- !u!114 &8519126623881192742
@@ -900,7 +900,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myClimb: {fileID: 858977683453023097}
-  myGide: {fileID: 8519126623244394589}
+  myGide: {fileID: 4635203472693426576}
   rigth: 0
   down: 0
 --- !u!114 &8519126624128509542
@@ -1093,7 +1093,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myClimb: {fileID: 858977683453023097}
-  myGide: {fileID: 8519126623244394589}
+  myGide: {fileID: 4635203472693426576}
   rigth: 0
   down: 1
 --- !u!114 &8519126624430226683
