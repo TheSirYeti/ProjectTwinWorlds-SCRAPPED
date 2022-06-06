@@ -200,7 +200,8 @@ public enum SoundID
     POWER_ON,
     SPARK,
     STEP_1,
-    STEP_2
+    STEP_2,
+    THROW_HIT
 }
 
 public enum MusicID
