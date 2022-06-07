@@ -24,6 +24,7 @@ public class MovableBox : BaseInteractable, IWeaponInteractable
     public float maxConnectDistance;
 
     public LayerMask breakableLayer;
+    public LayerMask floorLayer;
 
     void Update()
     {
@@ -128,10 +129,14 @@ public class MovableBox : BaseInteractable, IWeaponInteractable
 
     void CheckBreackable()
     {
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, Vector3.down, out hit, 1f, breakableLayer))
+        if (!Physics.Raycast(transform.position, Vector3.down, 1f, floorLayer))
         {
-            Destroy(hit.collider.gameObject);
+            Collider[] hitColliders = Physics.OverlapSphere(transform.position, 2, breakableLayer);
+
+            foreach (Collider collider in hitColliders)
+            {
+                Destroy(collider.gameObject);
+            }
         }
     }
 

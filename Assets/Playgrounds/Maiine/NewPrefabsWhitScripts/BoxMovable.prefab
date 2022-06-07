@@ -133,6 +133,9 @@ MonoBehaviour:
   breakableLayer:
     serializedVersion: 2
     m_Bits: 536870912
+  floorLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!54 &2509145273636715859
 Rigidbody:
   m_ObjectHideFlags: 0
