@@ -15,13 +15,13 @@ public class PaladinBoss : MonoBehaviour
     [SerializeField] private List<GameObject> shields;
 
     [Header("Transforms")] 
-    [SerializeField] private Transform target;
+    public Transform target;
     [SerializeField] private Transform centerPosition;
     [SerializeField] private Transform topPosition;
 
     [Header("References")] 
-    [SerializeField] private Transform demon, angel;
-    private bool isDemon = true;
+    public Transform demon, angel;
+    public bool isDemon = true;
     
     [Header("VFX")]
     [SerializeField] private Animator animator;
@@ -58,12 +58,17 @@ public class PaladinBoss : MonoBehaviour
         fsm.AddState(FSM_State.PALADIN_REST, new PaladinRestState(fsm, this, animator, 10f));
         fsm.ChangeState(FSM_State.PALADIN_TACKLE);
     }
-
+    
     private void Update()
     {
         fsm.OnUpdate();
     }
 
+    public void SetFSM()
+    {
+        
+    }
+    
     public GameObject InstantiateBullet(GameObject bullet)
     {
         return Instantiate(bullet);

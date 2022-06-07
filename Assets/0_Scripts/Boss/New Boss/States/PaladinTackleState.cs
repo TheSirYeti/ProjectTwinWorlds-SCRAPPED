@@ -25,6 +25,9 @@ public class PaladinTackleState : IState
 
     public void OnStart()
     {
+        target = paladin.target;
+        EventManager.UnSubscribe("OnPlayerChange", ChangeTarget);
+        EventManager.Subscribe("OnPlayerChange", ChangeTarget);
         pathToTake.SetActive(true);
         isReady = false;
         waitCooldown1 = waitTime;
@@ -58,5 +61,17 @@ public class PaladinTackleState : IState
     public void OnExit()
     {
         
+    }
+    
+    void ChangeTarget(object[] parameters)
+    {
+        Debug.Log("cambio");
+        paladin.isDemon = !paladin.isDemon;
+        
+        if (paladin.isDemon)
+        {
+            target = paladin.angel;
+        }
+        else target = paladin.demon;
     }
 }

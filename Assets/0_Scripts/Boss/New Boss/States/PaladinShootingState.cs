@@ -39,6 +39,10 @@ public class PaladinShootingState : IState
 
     public void OnStart()
     {
+        target = paladin.target;
+        EventManager.UnSubscribe("OnPlayerChange", ChangeTarget);
+        EventManager.Subscribe("OnPlayerChange", ChangeTarget);
+        
         isShooting = false;
         poof1.transform.position = centerPosition.position;
         poof2.transform.position = topPosition.transform.position;
@@ -96,5 +100,17 @@ public class PaladinShootingState : IState
         poof2.Emit(100);
 
         paladin.transform.position = centerPosition.position;
+    }
+    
+    void ChangeTarget(object[] parameters)
+    {
+        Debug.Log("cambio");
+        paladin.isDemon = !paladin.isDemon;
+        
+        if (paladin.isDemon)
+        {
+            target = paladin.angel;
+        }
+        else target = paladin.demon;
     }
 }

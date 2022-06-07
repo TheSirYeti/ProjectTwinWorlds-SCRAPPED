@@ -25,6 +25,7 @@ public class PaladinSummonState : IState
 
     public void OnStart()
     {
+
         animator.Play("Paladin_Summon");
         swordSummoning.DoSwordElevation(amountOfSwords, loopAmount);
         waitCooldown = waitTime;
@@ -43,4 +44,6 @@ public class PaladinSummonState : IState
     {
         //
     }
+    
+    
 }
