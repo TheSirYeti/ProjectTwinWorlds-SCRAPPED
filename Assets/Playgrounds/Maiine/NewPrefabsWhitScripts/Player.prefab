@@ -92,6 +92,8 @@ MonoBehaviour:
   handPoint: {fileID: 7322190412248177609}
   myAnimator: {fileID: 2517894968330883847}
   lookAtPoint: {fileID: 4316948312670006807}
+  isUsingGravity: 1
+  ignoreGO: []
   cameraController: {fileID: 86819988458903150}
   usableItems:
     serializedVersion: 2
@@ -101,7 +103,7 @@ MonoBehaviour:
     m_Bits: 272629952
   mouseCollisions:
     serializedVersion: 2
-    m_Bits: 201326591
+    m_Bits: 201326335
 --- !u!1 &86819988078973354
 GameObject:
   m_ObjectHideFlags: 0
@@ -194,6 +196,8 @@ MonoBehaviour:
   handPoint: {fileID: 7966384348773830774}
   myAnimator: {fileID: 4893779927015213299}
   lookAtPoint: {fileID: 9158631685044594499}
+  isUsingGravity: 1
+  ignoreGO: []
   cameraController: {fileID: 86819988458903150}
   usableItems:
     serializedVersion: 2
@@ -203,7 +207,7 @@ MonoBehaviour:
     m_Bits: 272629952
   mouseCollisions:
     serializedVersion: 2
-    m_Bits: 201326591
+    m_Bits: 201326335
 --- !u!1 &86819988197197279
 GameObject:
   m_ObjectHideFlags: 0
