@@ -31,6 +31,7 @@ public class Player : MonoBehaviour, ITakeDamage
 
     IPlayerInteractable _playerInteractable = null;
     public List<GameObject> ignoreGO = new List<GameObject>();
+    bool isPickingItem =false;
 
     [HideInInspector]
     public ShootingController myShootingController;
@@ -99,7 +100,13 @@ public class Player : MonoBehaviour, ITakeDamage
         if (_playerInteractable == null) return;
 
         if (keyDown == KeyCode.F)
+        {
+            isPickingItem = !isPickingItem;
             _playerInteractable.Inter_DoPlayerAction(this, isDemon);
+
+            if (!isPickingItem)
+                _playerInteractable = null;
+        }
         else if (keyDown == KeyCode.Space)
             _playerInteractable.Inter_DoJumpAction(this, isDemon);
     }
@@ -185,7 +192,7 @@ public class Player : MonoBehaviour, ITakeDamage
     private void OnTriggerEnter(Collider other)
     {
         IPlayerInteractable actualPlayerInteractable = other.gameObject.GetComponent<IPlayerInteractable>();
-        if (actualPlayerInteractable != null)
+        if (actualPlayerInteractable != null && _playerInteractable != null)
         {
             _playerInteractable = actualPlayerInteractable;
         }
@@ -194,7 +201,7 @@ public class Player : MonoBehaviour, ITakeDamage
     private void OnTriggerExit(Collider other)
     {
         IPlayerInteractable actualPlayerInteractable = other.gameObject.GetComponent<IPlayerInteractable>();
-        if (actualPlayerInteractable != null)
+        if (actualPlayerInteractable != null && !isPickingItem)
             _playerInteractable = null;
     }
 

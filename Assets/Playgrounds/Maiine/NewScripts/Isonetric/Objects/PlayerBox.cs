@@ -8,6 +8,15 @@ public class PlayerBox : MonoBehaviour, IPlayerInteractable
 
     public GameObject myBox;
     public Transform climbPoint;
+    public float minDistanceToStay;
+    Player _actualPlayer;
+    bool isParent;
+
+    private void Update()
+    {
+        if (Vector3.Distance(_actualPlayer.transform.position, transform.position) > minDistanceToStay && isParent)
+            StopParent();
+    }
 
     public void Inter_DoJumpAction(Player actualPlayer, bool isDemon)
     {
@@ -24,19 +33,32 @@ public class PlayerBox : MonoBehaviour, IPlayerInteractable
 
         if (!isOnPlayer)
         {
-            actualPlayer.transform.forward = transform.position - actualPlayer.transform.position;
-            myBox.transform.parent = actualPlayer.gameObject.transform;
-            actualPlayer.AddIgnore(myBox);
-            actualPlayer.AddIgnore(this.gameObject);
-            isOnPlayer = true;
+            _actualPlayer = actualPlayer;
+            StartParent();
         }
         else
         {
-            myBox.transform.parent = null;
-            actualPlayer.RemoveIgnore(myBox);
-            actualPlayer.RemoveIgnore(this.gameObject);
-            isOnPlayer = false;
+            StopParent();
         }
+    }
+
+    void StartParent()
+    {
+        isParent = true;
+        _actualPlayer.transform.forward = transform.position - _actualPlayer.transform.position;
+        myBox.transform.parent = _actualPlayer.gameObject.transform;
+        _actualPlayer.AddIgnore(myBox);
+        _actualPlayer.AddIgnore(this.gameObject);
+        isOnPlayer = true;
+    }
+
+    void StopParent()
+    {
+        isParent = false;
+        myBox.transform.parent = null;
+        _actualPlayer.RemoveIgnore(myBox);
+        _actualPlayer.RemoveIgnore(this.gameObject);
+        isOnPlayer = false;
     }
 
 }
