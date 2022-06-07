@@ -51,21 +51,27 @@ public class MovementController
 
     void Swing()
     {
-        Collider[] hitColliders = Physics.OverlapSphere(_playerTransform.position, 1, _layerMask);
+        //Collider[] hitColliders = Physics.OverlapSphere(_playerTransform.position, 1, _layerMask);
 
-        if (hitColliders.Length > 0 && _dir.z < 0)
-        {
-            _dir.z = 0;
-        }
+        //if (hitColliders.Length > 0 && _dir.z < 0)
+        //{
+        //    _dir.z = 0;
+        //}
 
-        if (Vector3.Distance(_actualSwing.transform.position, _player.transform.position) > 1)
-            _player.transform.position += (_actualSwing.transform.position - _player.transform.position).normalized * _dir.z * Time.deltaTime;
+        //if (Vector3.Distance(_actualSwing.transform.position, _player.transform.position) > 1)
+        //    _player.transform.position += (_actualSwing.transform.position - _player.transform.position).normalized * _dir.z * Time.deltaTime;
 
         _actualSwing.SetDir(_dir.x);
     }
 
     void Force()
     {
+        if (Physics.Raycast(_playerTransform.position, _forceDir, 1f, _layerMask))
+        {
+            _actualForce = 0;
+            Debug.Log("Colisione");
+        }
+
         _actualForce = Mathf.Clamp(_actualForce, 0, _maxForce);
 
         _playerTransform.position += _forceDir * _actualForce * Time.deltaTime;
@@ -121,6 +127,7 @@ public class MovementController
 
     public void SetForce(Vector3 dir, float forcePorcent)
     {
+        Debug.Log("sonic");
         _actualForce = _maxForce * forcePorcent;
         _forceDir = dir;
     }

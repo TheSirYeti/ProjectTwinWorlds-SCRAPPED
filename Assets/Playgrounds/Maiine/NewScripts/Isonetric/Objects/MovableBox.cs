@@ -14,6 +14,13 @@ public class MovableBox : BaseInteractable, IWeaponInteractable
     public float aceleration;
     public float deaceleration;
 
+    public float maxForce;
+    public float actualForce;
+    public float deacelerationForce;
+    public Vector3 dirForce;
+
+    public LayerMask _layerMask;
+
     public float maxConnectDistance;
 
     [SerializeField]
@@ -26,6 +33,7 @@ public class MovableBox : BaseInteractable, IWeaponInteractable
         actualMovement();
         pullMovement();
         CheckBreackable();
+        Force();
     }
 
     #region Interfaces Con Arma
@@ -124,5 +132,22 @@ public class MovableBox : BaseInteractable, IWeaponInteractable
         {
             Destroy(hit.collider.gameObject);
         }
+    }
+
+    void Force()
+    {
+        if (Physics.Raycast(transform.position, dirForce, 1f, _layerMask))
+            actualForce = 0;
+
+        actualForce = Mathf.Clamp(actualForce, 0, maxForce);
+
+        transform.position += dirForce * actualForce * Time.deltaTime;
+        actualForce -= deacelerationForce * Time.deltaTime;
+    }
+
+    public void SetForce(Vector3 dir, float forcePorcent)
+    {
+        actualForce = maxForce * forcePorcent;
+        dirForce = dir;
     }
 }

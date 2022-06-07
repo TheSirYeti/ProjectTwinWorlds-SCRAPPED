@@ -19,9 +19,15 @@ public class Swing : BaseInteractable, IWeaponInteractable
     public Transform rotationPoint;
     public Transform playerPosition;
 
+    public Transform actualLook;
+    public Transform rigthLook, leftLook;
+
     public LayerMask collisionFloor;
 
     public int actualDir = 0;
+
+    bool isPlayer = true;
+    IWeaponInteractable connectedObject;
 
 
     delegate void SwingDelegate();
@@ -34,7 +40,9 @@ public class Swing : BaseInteractable, IWeaponInteractable
 
     public void Inter_DoWeaponAction(BulletSystem bullet)
     {
+        Debug.Log("aca?");
         _isOnUse = true;
+        isPlayer = true;
         _actualBullet = bullet;
         _actualPlayer.transform.parent = rotationPoint;
         _actualPlayer.transform.position = playerPosition.position;
@@ -45,32 +53,51 @@ public class Swing : BaseInteractable, IWeaponInteractable
 
     public void Inter_DoConnectAction(IWeaponInteractable otherObject)
     {
+        Debug.Log("aasdasd");
+        _isOnUse = true;
+        isPlayer = false;
+        otherObject.Inter_GetGameObject().transform.parent = rotationPoint;
+        otherObject.Inter_GetGameObject().transform.parent.position = playerPosition.position;
+        _actualPlayer.myMovementController.ChangeToSwing(this);
+        _actualPlayer.myButtonController.ChangeAxies(true);
+        actualMove = Delegate_Swing;
     }
 
     public void Inter_ResetObject()
     {
-        Debug.Log("a?");
-        maxAngleDeflection = 0;
-        actualDir = 0;
-        rotationPoint.localRotation = Quaternion.Euler(0, 0, 0);
+        Debug.Log("o aca?");
         _isOnUse = false;
         _actualPlayer.myMovementController.ChangeToMove();
         _actualPlayer.myButtonController.ChangeAxies(false);
 
         if (actualDir == 1)
-            _actualPlayer.myMovementController.SetForce(_actualPlayer.transform.forward * -1, (maxAngleDeflection / maxAngle));
+        {
+            if (isPlayer)
+                _actualPlayer.myMovementController.SetForce(rigthLook.position - playerPosition.position, (maxAngleDeflection / maxAngle));
+            else
+                connectedObject.Inter_GetGameObject().GetComponent<MovableBox>().SetForce(rigthLook.position - playerPosition.position, (maxAngleDeflection / maxAngle));
+        }
         else if (actualDir == 2)
-            _actualPlayer.myMovementController.SetForce(_actualPlayer.transform.forward, (maxAngleDeflection / maxAngle));
+        {
+            if (isPlayer)
+                _actualPlayer.myMovementController.SetForce(leftLook.position - playerPosition.position, (maxAngleDeflection / maxAngle));
+            else
+                connectedObject.Inter_GetGameObject().GetComponent<MovableBox>().SetForce(leftLook.position - playerPosition.position, (maxAngleDeflection / maxAngle));
+        }
 
         _actualPlayer.transform.parent = null;
+        maxAngleDeflection = 0;
+        rotationPoint.localRotation = Quaternion.Euler(0, 0, 0);
+        actualDir = 0;
         actualMove = delegate { };
     }
 
     public bool Inter_CheckCanUse(Player actualPlayer, bool isDemon)
     {
         //Checkeo si esta en Spot
+        Debug.Log("1");
         if (!canSwing && !_isOnUse) return false;
-
+        Debug.Log("2");
         //Checkeo si no hay nada en medio
         Vector3 dir = actualPlayer.transform.position - transform.position;
         RaycastHit hit;
@@ -83,6 +110,7 @@ public class Swing : BaseInteractable, IWeaponInteractable
         if (_isUsableByDemon == isDemon)
         {
             _actualPlayer = actualPlayer;
+            Debug.Log("true?");
             return true;
         }
 
@@ -104,15 +132,15 @@ public class Swing : BaseInteractable, IWeaponInteractable
         return this.gameObject;
     }
 
+
     public void SetDir(float dir)
     {
         _horizontal = dir;
     }
 
+
     void Delegate_Swing()
     {
-        if (Physics.Raycast(playerPosition.position, Vector3.down, 1f, collisionFloor)) return;
-
         float angle = maxAngleDeflection * Mathf.Sin(Time.time * speedOfPendulum);
         rotationPoint.localRotation = Quaternion.Euler(0, 0, angle);
 
@@ -124,10 +152,12 @@ public class Swing : BaseInteractable, IWeaponInteractable
             if (angle > 0)
             {
                 actualDir = 2;
+                actualLook = leftLook;
             }
             else if (angle < 0)
             {
                 actualDir = 1;
+                actualLook = rigthLook;
             }
         }
 
@@ -157,6 +187,7 @@ public class Swing : BaseInteractable, IWeaponInteractable
         }
 
 
+
         maxAngleDeflection = Mathf.Clamp(maxAngleDeflection, 0, maxAngle);
     }
 
@@ -167,10 +198,12 @@ public class Swing : BaseInteractable, IWeaponInteractable
             if (_horizontal > 0)
             {
                 actualDir = 1;
+                actualLook = rigthLook;
             }
             else if (_horizontal < 0)
             {
                 actualDir = 2;
+                actualLook = leftLook;
             }
         }
     }

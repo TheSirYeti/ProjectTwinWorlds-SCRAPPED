@@ -123,6 +123,13 @@ MonoBehaviour:
   minDistaceToFollow: 10
   aceleration: 6
   deaceleration: 7
+  maxForce: 30
+  actualForce: 0
+  deacelerationForce: 20
+  dirForce: {x: 0, y: 0, z: 0}
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 192
   maxConnectDistance: 25
   _lineRenderer: {fileID: 1817344445665305766}
   breakableLayer:
