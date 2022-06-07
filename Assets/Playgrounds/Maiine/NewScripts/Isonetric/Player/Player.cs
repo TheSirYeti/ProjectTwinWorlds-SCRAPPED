@@ -101,11 +101,7 @@ public class Player : MonoBehaviour, ITakeDamage
 
         if (keyDown == KeyCode.F)
         {
-            isPickingItem = !isPickingItem;
             _playerInteractable.Inter_DoPlayerAction(this, isDemon);
-
-            if (!isPickingItem)
-                _playerInteractable = null;
         }
         else if (keyDown == KeyCode.Space)
             _playerInteractable.Inter_DoJumpAction(this, isDemon);
@@ -201,7 +197,7 @@ public class Player : MonoBehaviour, ITakeDamage
     private void OnTriggerExit(Collider other)
     {
         IPlayerInteractable actualPlayerInteractable = other.gameObject.GetComponent<IPlayerInteractable>();
-        if (actualPlayerInteractable != null && !isPickingItem)
+        if (actualPlayerInteractable != null)
             _playerInteractable = null;
     }
 
