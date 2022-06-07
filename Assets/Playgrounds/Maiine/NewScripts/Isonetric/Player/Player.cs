@@ -118,6 +118,7 @@ public class Player : MonoBehaviour, ITakeDamage
 
     void TurnOff()
     {
+        myMovementController.SetDir(Vector3.zero);
         myMovementController.ChangeToStay();
         myButtonController.ButtonsOff();
         realCharacter.SetActive(false);
