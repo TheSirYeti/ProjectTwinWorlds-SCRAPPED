@@ -210,11 +210,13 @@ public class Swing : BaseInteractable, IWeaponInteractable
             if (_horizontal > 0)
             {
                 actualDir = 1;
+                maxAngleDeflection = 15;
                 actualLook = rigthLook;
             }
             else if (_horizontal < 0)
             {
                 actualDir = 2;
+                maxAngleDeflection = 15;
                 actualLook = leftLook;
             }
         }

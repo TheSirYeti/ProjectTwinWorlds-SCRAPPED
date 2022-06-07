@@ -32,7 +32,9 @@ public class PlayerBox : MonoBehaviour, IPlayerInteractable
 
     public void Inter_DoPlayerAction(Player actualPlayer, bool isDemon)
     {
+        Debug.Log("a");
         if (!isDemon) return;
+        Debug.Log("b");
 
         if (!isOnPlayer)
         {
