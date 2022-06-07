@@ -49,7 +49,7 @@ public class Climb : BaseInteractable, IWeaponInteractable
 
         if (Vector3.Distance(grapPoint.position, _pointToGo) < minDist)
         {
-            actualMove -= Delegate_GoToPlayer;
+            actualMove = delegate { };
             _actualPlayer.myMovementController.ChangeToClimb(this, grapPoint);
             _actualPlayer.transform.parent = grapPoint;
             _actualPlayer.myButtonController.ChangeAxies(true);
