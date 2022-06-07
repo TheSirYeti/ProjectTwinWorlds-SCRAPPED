@@ -47,7 +47,7 @@ public class Swing : BaseInteractable, IWeaponInteractable
         _actualPlayer.transform.position = playerPosition.position;
         _actualPlayer.myMovementController.ChangeToSwing(this);
         _actualPlayer.myButtonController.ChangeAxies(true);
-        _actualPlayer.isUsingGravity = false;
+        _actualPlayer.lastState = "S";
         actualMove = Delegate_Swing;
     }
 
@@ -75,7 +75,7 @@ public class Swing : BaseInteractable, IWeaponInteractable
         if (isPlayer)
         {
             _actualPlayer.transform.parent = null;
-            _actualPlayer.isUsingGravity = true;
+            _actualPlayer.lastState = "B";
         }
         else
         {

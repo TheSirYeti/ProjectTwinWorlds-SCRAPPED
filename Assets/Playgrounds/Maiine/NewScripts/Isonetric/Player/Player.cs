@@ -27,11 +27,11 @@ public class Player : MonoBehaviour, ITakeDamage
     public Animator myAnimator;
     public Transform lookAtPoint;
 
-    public bool isUsingGravity = true;
-
     IPlayerInteractable _playerInteractable = null;
     public List<GameObject> ignoreGO = new List<GameObject>();
-    bool isPickingItem =false;
+    bool isPickingItem = false;
+
+    public string lastState = "B";
 
     [HideInInspector]
     public ShootingController myShootingController;
@@ -138,13 +138,23 @@ public class Player : MonoBehaviour, ITakeDamage
     {
         myCollider.isTrigger = false;
         yield return new WaitForEndOfFrame();
-        myMovementController.ChangeToMove();
+        if (lastState == "B")
+        {
+            myMovementController.ChangeToMove();
+            myRigidbody.useGravity = true;
+        }
+        else if(lastState == "C")
+        {
+            myMovementController.ChangeToClimb(myMovementController._actualClimb, myMovementController._grabPoint);
+        }
+        else if (lastState == "S")
+        {
+            myMovementController.ChangeToSwing(myMovementController._actualSwing);
+        }
+
         myButtonController.ButtonsOn();
         realCharacter.SetActive(true);
         totemCharacter.SetActive(false);
-
-        if (isUsingGravity)
-            myRigidbody.useGravity = true;
     }
     #endregion
 

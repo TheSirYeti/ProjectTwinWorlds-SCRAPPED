@@ -424,14 +424,13 @@ MonoBehaviour:
   _isUsableByDemon: 0
   _speed: 6
   initialSpeed: 10
-  minDist: 3
+  minDist: 0.5
   wallMaks:
     serializedVersion: 2
     m_Bits: 128
   blockMask:
     serializedVersion: 2
     m_Bits: 192
-  lineRenderer: {fileID: 0}
   myWall: {fileID: 0}
   grapPoint: {fileID: 8519126624363984020}
 --- !u!114 &873416326034846596

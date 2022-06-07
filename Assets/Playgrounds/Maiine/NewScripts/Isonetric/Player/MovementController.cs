@@ -7,9 +7,9 @@ public class MovementController
     public delegate void Movement();
     public Movement actualMovement;
 
-    Swing _actualSwing;
-    Climb _actualClimb;
-    Transform _grabPoint;
+    public Swing _actualSwing;
+    public Climb _actualClimb;
+    public Transform _grabPoint;
 
     Player _player;
     CameraController _cameraController;

@@ -68,6 +68,7 @@ public class PlayerBox : MonoBehaviour, IPlayerInteractable
         myBox.transform.parent = null;
         _actualPlayer.RemoveIgnore(myBox);
         _actualPlayer.RemoveIgnore(this.gameObject);
+        _actualPlayer = null;
         isOnPlayer = false;
     }
 
