@@ -63,7 +63,7 @@ public class MovableBox : BaseInteractable, IWeaponInteractable
         RaycastHit hit;
         if (Physics.Raycast(transform.position, dir.normalized, out hit, Mathf.Infinity, _ignoreInteractableMask))
         {
-            if (hit.collider.tag != "Player")
+            if (hit.collider.tag != "Player" && !_isOnUse)
                 return false;
         }
 
@@ -108,6 +108,15 @@ public class MovableBox : BaseInteractable, IWeaponInteractable
         speed = Mathf.Clamp(speed, 0, maxSpeed);
 
         Vector3 dir = (_actualPlayer.transform.position - transform.position).normalized;
+
+        Vector3 raycastZ = new Vector3(0, 0, dir.z);
+        Vector3 raycastX = new Vector3(dir.x, 0, 0);
+
+        if (Physics.Raycast(transform.position, raycastZ, 1f, _layerMask))
+            dir.z = 0;
+
+        if (Physics.Raycast(transform.position, raycastX, 1f, _layerMask))
+            dir.x = 0;
 
         transform.position += dir * speed * Time.deltaTime;
     }
