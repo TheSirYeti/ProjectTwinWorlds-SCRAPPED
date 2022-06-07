@@ -20,7 +20,6 @@ public class Climb : BaseInteractable, IWeaponInteractable
 
     public LayerMask wallMaks;
     public LayerMask blockMask;
-    public LineRenderer lineRenderer;
     public GameObject myWall = null;
     public Transform grapPoint;
 
@@ -35,12 +34,6 @@ public class Climb : BaseInteractable, IWeaponInteractable
     }
 
     #region Interiores del delegate
-    void Delegate_LineRendererWork()
-    {
-        lineRenderer.SetPosition(0, grapPoint.position);
-        lineRenderer.SetPosition(1, _actualPlayer.transform.position);
-    }
-
     void Delegate_GoToPlayer()
     {
         if (!canLeft || !canRight)
@@ -107,10 +100,8 @@ public class Climb : BaseInteractable, IWeaponInteractable
         _actualBullet = bullet;
 
         _isOnUse = true;
-        lineRenderer.enabled = true;
         _pointToGo = new Vector3(_actualPlayer.transform.position.x, grapPoint.position.y, _actualPlayer.transform.position.z);
-        actualMove += Delegate_LineRendererWork;
-        actualMove += Delegate_GoToPlayer;
+        actualMove = Delegate_GoToPlayer;
         _actualPlayer.isUsingGravity = false;
         _actualPlayer.myMovementController.ChangeToStay();
     }
@@ -123,7 +114,6 @@ public class Climb : BaseInteractable, IWeaponInteractable
     public void Inter_ResetObject()
     {
         _isOnUse = false;
-        lineRenderer.enabled = false;
         _actualPlayer.myMovementController.ChangeToMove();
         _actualPlayer.myButtonController.ChangeAxies(false);
         _actualPlayer.myMovementController.SetUp(true);

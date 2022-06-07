@@ -16,32 +16,33 @@ public class WorldObject : MonoBehaviour
     private void Start()
     {
         EventManager.Subscribe("OnPlayerChange", SwapMaterial);
-        
-        if(GetComponent<Renderer>() != null)
+
+        if (GetComponent<Renderer>() != null)
             defaultMaterial = GetComponent<Renderer>().material;
-        
-        if(GetComponent<Collider>() != null)
+
+        if (GetComponent<Collider>() != null)
             collider = GetComponent<Collider>();
 
         if (!isWorldActive)
         {
             isWorldActive = false;
-            
+
             if (!invisible)
             {
                 GetComponent<Renderer>().enabled = true;
                 if (isDemon)
                 {
                     GetComponent<Renderer>().material = demonOffMaterial;
-                } 
+                }
                 else GetComponent<Renderer>().material = angelOffMaterial;
             }
             else
             {
-                GetComponent<Renderer>().enabled = false;
+                if (GetComponent<Renderer>() != null)
+                    GetComponent<Renderer>().enabled = false;
             }
 
-            if (collider != null) 
+            if (collider != null)
                 collider.enabled = false;
         }
         else
@@ -49,7 +50,7 @@ public class WorldObject : MonoBehaviour
             isWorldActive = true;
             GetComponent<Renderer>().enabled = true;
             GetComponent<Renderer>().material = defaultMaterial;
-            if (collider != null) 
+            if (collider != null)
                 collider.enabled = true;
         }
     }
@@ -73,7 +74,7 @@ public class WorldObject : MonoBehaviour
                 }
 
                 isWorldActive = false;
-                if (collider != null) 
+                if (collider != null)
                     collider.enabled = false;
             }
             else
@@ -81,7 +82,7 @@ public class WorldObject : MonoBehaviour
                 isWorldActive = true;
                 GetComponent<Renderer>().enabled = true;
                 GetComponent<Renderer>().material = defaultMaterial;
-                if (collider != null) 
+                if (collider != null)
                     collider.enabled = true;
             }
         }
