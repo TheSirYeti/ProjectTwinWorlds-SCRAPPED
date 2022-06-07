@@ -46,4 +46,12 @@ public class ActivateObjects : MonoBehaviour
             myPlayer = other.gameObject;
         }
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            myPlayer = collision.gameObject;
+        }
+    }
 }

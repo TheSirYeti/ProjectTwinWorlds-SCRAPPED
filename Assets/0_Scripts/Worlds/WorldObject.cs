@@ -16,8 +16,12 @@ public class WorldObject : MonoBehaviour
     private void Start()
     {
         EventManager.Subscribe("OnPlayerChange", SwapMaterial);
-        defaultMaterial = GetComponent<Renderer>().material;
-        collider = GetComponent<Collider>();
+        
+        if(GetComponent<Renderer>() != null)
+            defaultMaterial = GetComponent<Renderer>().material;
+        
+        if(GetComponent<Collider>() != null)
+            collider = GetComponent<Collider>();
 
         if (!isWorldActive)
         {
