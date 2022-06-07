@@ -53,7 +53,6 @@ public class Swing : BaseInteractable, IWeaponInteractable
 
     public void Inter_DoConnectAction(IWeaponInteractable otherObject)
     {
-        Debug.Log("aasdasd");
         _isOnUse = true;
         isPlayer = false;
         connectedObject = otherObject;
@@ -67,7 +66,6 @@ public class Swing : BaseInteractable, IWeaponInteractable
 
     public void Inter_ResetObject()
     {
-        Debug.Log("o aca?");
         _isOnUse = false;
 
         _actualPlayer.myMovementController.ChangeToMove();

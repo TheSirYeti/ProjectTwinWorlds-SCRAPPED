@@ -30,6 +30,7 @@ public class Player : MonoBehaviour, ITakeDamage
     public bool isUsingGravity = true;
 
     IPlayerInteractable _playerInteractable = null;
+    public List<GameObject> ignoreGO = new List<GameObject>();
 
     [HideInInspector]
     public ShootingController myShootingController;
@@ -169,7 +170,16 @@ public class Player : MonoBehaviour, ITakeDamage
     public void GoToTransform(params object[] parameter)
     {
         transform.position = (Vector3)parameter[0];
+    }
 
+    public void AddIgnore(GameObject itemToAdd)
+    {
+        ignoreGO.Add(itemToAdd);
+    }
+
+    public void RemoveIgnore(GameObject itemToRemove)
+    {
+        ignoreGO.Remove(itemToRemove);
     }
 
     private void OnTriggerEnter(Collider other)

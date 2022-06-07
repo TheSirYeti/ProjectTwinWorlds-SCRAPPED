@@ -102,15 +102,33 @@ public class ButtonsController
 
     void RayCastCheck()
     {
-        if (Physics.Raycast(_player.transform.position, _horizontal, 0.5f, _collisionLayers))
+        RaycastHit hit;
+        if (Physics.Raycast(_player.transform.position, _horizontal, out hit, 0.5f, _collisionLayers))
         {
-            _horizontal = Vector3.zero;
+            if (CheckList(hit.collider.gameObject, _horizontal))
+                _horizontal = Vector3.zero;
         }
 
-        if (Physics.Raycast(_player.transform.position, _vertical, 0.5f, _collisionLayers))
+        if (Physics.Raycast(_player.transform.position, _vertical, out hit, 0.5f, _collisionLayers))
         {
-            _vertical = Vector3.zero;
+            if (CheckList(hit.collider.gameObject, _vertical))
+                _vertical = Vector3.zero;
         }
+    }
+
+    bool CheckList(GameObject collider, Vector3 dir)
+    {
+        foreach (GameObject skipItems in _player.ignoreGO)
+        {
+            if (skipItems == collider)
+            {
+                if (!Physics.Raycast(collider.transform.position, dir, 1f, _collisionLayers))
+                    return false;
+                else
+                    return true;
+            }
+        }
+        return true;
     }
 
     void AimButton()

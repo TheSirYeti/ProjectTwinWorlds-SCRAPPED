@@ -6,7 +6,7 @@ public class PlayerBox : MonoBehaviour, IPlayerInteractable
 {
     bool isOnPlayer = false;
 
-    public Transform myBox;
+    public GameObject myBox;
     public Transform climbPoint;
 
     public void Inter_DoJumpAction(Player actualPlayer, bool isDemon)
@@ -24,12 +24,17 @@ public class PlayerBox : MonoBehaviour, IPlayerInteractable
 
         if (!isOnPlayer)
         {
+            actualPlayer.transform.forward = transform.position - actualPlayer.transform.position;
             myBox.transform.parent = actualPlayer.gameObject.transform;
+            actualPlayer.AddIgnore(myBox);
+            actualPlayer.AddIgnore(this.gameObject);
             isOnPlayer = true;
         }
         else
         {
             myBox.transform.parent = null;
+            actualPlayer.RemoveIgnore(myBox);
+            actualPlayer.RemoveIgnore(this.gameObject);
             isOnPlayer = false;
         }
     }
