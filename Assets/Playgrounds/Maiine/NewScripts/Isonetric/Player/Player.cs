@@ -183,6 +183,8 @@ public class Player : MonoBehaviour, ITakeDamage
 
     public void TakeDmg()
     {
+        if (!isActive) return;
+        
         StopAllCoroutines();
         SoundManager.instance.PlaySound(SoundID.GRUNT_1);
         _lifeController.TakeDamage();
