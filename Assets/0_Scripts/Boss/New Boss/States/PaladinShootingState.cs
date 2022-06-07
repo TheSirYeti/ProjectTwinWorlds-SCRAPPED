@@ -39,7 +39,6 @@ public class PaladinShootingState : IState
 
     public void OnStart()
     {
-        target = paladin.target;
         EventManager.UnSubscribe("OnPlayerChange", ChangeTarget);
         EventManager.Subscribe("OnPlayerChange", ChangeTarget);
         
@@ -61,6 +60,7 @@ public class PaladinShootingState : IState
 
     public void OnUpdate()
     {
+        target = paladin.target;
         startCooldown -= Time.deltaTime;
         attackCooldown -= Time.deltaTime;
         
@@ -77,7 +77,7 @@ public class PaladinShootingState : IState
 
             GameObject bullet = paladin.InstantiateBullet(bulletPrefab);
             bullet.transform.position = startPoint.position;
-            bullet.transform.LookAt(target);
+            bullet.transform.LookAt(target.transform.position + new Vector3(0, 0.5f, 0));
             
             if (attackNumber <= 0)
             {
@@ -104,13 +104,13 @@ public class PaladinShootingState : IState
     
     void ChangeTarget(object[] parameters)
     {
-        Debug.Log("cambio");
+        /*Debug.Log("cambio");
         paladin.isDemon = !paladin.isDemon;
         
         if (paladin.isDemon)
         {
             target = paladin.angel;
         }
-        else target = paladin.demon;
+        else target = paladin.demon;*/
     }
 }

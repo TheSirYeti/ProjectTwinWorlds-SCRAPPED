@@ -78,8 +78,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lineRenderer: {fileID: 3941444056466242856}
-  _speed: 20
-  _backSpeed: 40
+  _speed: 50
+  _backSpeed: 70
   _distanceToInteract: 1
   _radius: 1
   _interactableItems:
@@ -131,7 +131,7 @@ LineRenderer:
   - {x: 0, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 1
+    widthMultiplier: 0.25
     widthCurve:
       serializedVersion: 2
       m_Curve:

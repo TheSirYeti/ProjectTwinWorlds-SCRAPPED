@@ -79,12 +79,12 @@ public class PaladinBoss : MonoBehaviour
     {
         Debug.Log("cambio");
         isDemon = !isDemon;
-        
+
         if (isDemon)
         {
-            target = angel;
+            target = demon;
         }
-        else target = demon;
+        else target = angel;
     }
 
     private void OnTriggerEnter(Collider other)
