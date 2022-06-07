@@ -91,8 +91,15 @@ public class PaladinBoss : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("BossDamagable"))
         {
+            
+            SoundManager.instance.PlaySound(SoundID.PLAYER_DAMAGE);
             Destroy(other.gameObject);
             hp--;
+            if (hp <= 0)
+            {
+                LevelManager.instance.LoadNextScene(0);
+            }
+            DoHPStatusCheck();
         }
     }
 
@@ -100,8 +107,13 @@ public class PaladinBoss : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("BossDamagable"))
         {
+            SoundManager.instance.PlaySound(SoundID.PLAYER_DAMAGE);
             Destroy(collision.gameObject);
             hp--;
+            if (hp <= 0)
+            {
+                LevelManager.instance.LoadNextScene(0);
+            }
             DoHPStatusCheck();
         }
     }
