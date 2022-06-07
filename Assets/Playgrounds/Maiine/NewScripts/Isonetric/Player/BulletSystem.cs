@@ -67,7 +67,6 @@ public class BulletSystem : MonoBehaviour
 
         if (Vector3.Distance(_myPlayer.transform.position, transform.position) < _distanceToInteract)
         {
-            Debug.Log("X");
             _isOnPlayer = true;
             actualLineTransform = _handPoint.transform;
             transform.parent = _myPlayer.handPoint;

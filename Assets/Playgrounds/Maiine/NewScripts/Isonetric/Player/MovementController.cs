@@ -127,7 +127,6 @@ public class MovementController
 
     public void SetForce(Vector3 dir, float forcePorcent)
     {
-        Debug.Log("sonic");
         _actualForce = _maxForce * forcePorcent;
         _forceDir = dir;
     }

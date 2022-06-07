@@ -23,9 +23,6 @@ public class MovableBox : BaseInteractable, IWeaponInteractable
 
     public float maxConnectDistance;
 
-    [SerializeField]
-    LineRenderer _lineRenderer;
-
     public LayerMask breakableLayer;
 
     void Update()
@@ -40,7 +37,6 @@ public class MovableBox : BaseInteractable, IWeaponInteractable
     public void Inter_DoWeaponAction(BulletSystem bullet)
     {
         _actualBullet = bullet;
-        _lineRenderer.enabled = true;
         _isOnUse = true;
         actualMovement = Delegate_FollowPlayer;
     }
@@ -53,7 +49,6 @@ public class MovableBox : BaseInteractable, IWeaponInteractable
 
     public void Inter_ResetObject()
     {
-        _lineRenderer.enabled = false;
         actualMovement = delegate { };
         _isOnUse = false;
     }
@@ -115,9 +110,6 @@ public class MovableBox : BaseInteractable, IWeaponInteractable
         Vector3 dir = (_actualPlayer.transform.position - transform.position).normalized;
 
         transform.position += dir * speed * Time.deltaTime;
-
-        _lineRenderer.SetPosition(0, transform.position);
-        _lineRenderer.SetPosition(1, _actualPlayer.transform.position);
     }
 
     void Delegate_Pull()

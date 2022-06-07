@@ -56,8 +56,10 @@ public class Swing : BaseInteractable, IWeaponInteractable
         Debug.Log("aasdasd");
         _isOnUse = true;
         isPlayer = false;
+        connectedObject = otherObject;
         otherObject.Inter_GetGameObject().transform.parent = rotationPoint;
-        otherObject.Inter_GetGameObject().transform.parent.position = playerPosition.position;
+        otherObject.Inter_GetGameObject().transform.position = playerPosition.position;
+        otherObject.Inter_GetGameObject().GetComponent<Rigidbody>().useGravity = false;
         _actualPlayer.myMovementController.ChangeToSwing(this);
         _actualPlayer.myButtonController.ChangeAxies(true);
         actualMove = Delegate_Swing;
@@ -67,8 +69,21 @@ public class Swing : BaseInteractable, IWeaponInteractable
     {
         Debug.Log("o aca?");
         _isOnUse = false;
+
         _actualPlayer.myMovementController.ChangeToMove();
         _actualPlayer.myButtonController.ChangeAxies(false);
+
+
+        if (isPlayer)
+        {
+            _actualPlayer.transform.parent = null;
+        }
+        else
+        {
+            connectedObject.Inter_GetGameObject().transform.parent = null;
+            connectedObject.Inter_GetGameObject().GetComponent<Rigidbody>().useGravity = true;
+        }
+
 
         if (actualDir == 1)
         {
@@ -85,7 +100,7 @@ public class Swing : BaseInteractable, IWeaponInteractable
                 connectedObject.Inter_GetGameObject().GetComponent<MovableBox>().SetForce(leftLook.position - playerPosition.position, (maxAngleDeflection / maxAngle));
         }
 
-        _actualPlayer.transform.parent = null;
+
         maxAngleDeflection = 0;
         rotationPoint.localRotation = Quaternion.Euler(0, 0, 0);
         actualDir = 0;
