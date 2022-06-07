@@ -28,6 +28,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/0_Scripts/Camera/ChangeCameraFocus.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/0_Scripts/Worlds/PlayerWorlds.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/0_Scripts/Generics/InvisibleCollider.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Playgrounds/JP/Scripts/Interactables/DropBallInteractable.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/0_Scripts/Interactable Objects/InteractableManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/0_Scripts/Interactable Objects/PressurePlate.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/0_Scripts/Interactable Objects/Switch.cs" root0="FORCE_HIGHLIGHTING" />
@@ -39,6 +40,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Playgrounds/JP/Scripts/Doors/IDoorTriggerable.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Playgrounds/JP/Scripts/PlayerTempPortal.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Playgrounds/JP/Scripts/FRadius.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/0_Scripts/Boss/New Boss pt2/GiantPaladin.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Playgrounds/JP/Scripts/LaserToggler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Playgrounds/JP/Scripts/MainDoorTrigger.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/0_Scripts/Generics/GenericLever.cs" root0="FORCE_HIGHLIGHTING" />
@@ -232,7 +234,8 @@
       <workItem from="1654398321520" duration="4455000" />
       <workItem from="1654453152104" duration="5351000" />
       <workItem from="1654480698879" duration="795000" />
-      <workItem from="1654537421890" duration="1030000" />
+      <workItem from="1654537421890" duration="2195000" />
+      <workItem from="1654548928223" duration="17718000" />
     </task>
     <servers />
   </component>
@@ -250,13 +253,13 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/0_Scripts/Z_temp/MeshDestroy.cs</url>
-          <line>97</line>
+          <line>99</line>
           <properties documentPath="D:\Users\jprsh\Documents\GitHub\ProjectTwinWorlds\Assets\0_Scripts\Z_temp\MeshDestroy.cs" initialLine="94" containingFunctionPresentation="method 'GenerateMesh'">
             <startOffsets>
-              <option value="3292" />
+              <option value="3383" />
             </startOffsets>
             <endOffsets>
-              <option value="3301" />
+              <option value="3392" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="1" />
