@@ -125,6 +125,7 @@ public class Player : MonoBehaviour, ITakeDamage
         totemCharacter.SetActive(true);
         myCollider.isTrigger = true;
         myRigidbody.useGravity = false;
+        myRigidbody.velocity = Vector3.zero;
     }
 
     IEnumerator CorrutinaTurnOn()
@@ -164,6 +165,7 @@ public class Player : MonoBehaviour, ITakeDamage
     public void GoToTransform(params object[] parameter)
     {
         transform.position = (Vector3)parameter[0];
+        
     }
 
     private void OnTriggerEnter(Collider other)
