@@ -19,7 +19,7 @@ public class PaladinBoss : MonoBehaviour
     [SerializeField] private Transform centerPosition;
     [SerializeField] private Transform topPosition;
 
-    [Header("References")] 
+    [Header("References")] public List<GameObject> wave1Objects, wave2Objects, wave3Objects;
     public Transform demon, angel;
     public bool isDemon = true;
     
@@ -44,6 +44,7 @@ public class PaladinBoss : MonoBehaviour
 
     private void Start()
     {
+        DoHPStatusCheck();
         EventManager.Subscribe("OnPlayerChange", ChangeTarget);
         
         target = demon;
@@ -84,5 +85,65 @@ public class PaladinBoss : MonoBehaviour
             target = angel;
         }
         else target = demon;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("BossDamagable"))
+        {
+            Destroy(other.gameObject);
+            hp--;
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("BossDamagable"))
+        {
+            Destroy(collision.gameObject);
+            hp--;
+            DoHPStatusCheck();
+        }
+    }
+
+    public void DoHPStatusCheck()
+    {
+        foreach (var obj in wave1Objects)
+        {
+            obj.SetActive(false);
+        } 
+        foreach (var obj in wave2Objects)
+        {
+            obj.SetActive(false);
+        }
+        foreach (var obj in wave3Objects)
+        {
+            obj.SetActive(false);
+        }
+        
+        if (hp > 0)
+        {
+            switch (hp)
+            {
+                case 3:
+                    foreach (var obj in wave1Objects)
+                    {
+                        obj.SetActive(true);
+                    }
+                    break;
+                case 2:
+                    foreach (var obj in wave2Objects)
+                    {
+                        obj.SetActive(true);
+                    }
+                    break;
+                case 1:
+                    foreach (var obj in wave3Objects)
+                    {
+                        obj.SetActive(true);
+                    }
+                    break;
+            }
+        }
     }
 }

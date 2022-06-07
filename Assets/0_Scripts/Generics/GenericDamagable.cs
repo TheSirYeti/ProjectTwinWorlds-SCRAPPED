@@ -5,11 +5,15 @@ using UnityEngine;
 
 public class GenericDamagable : MonoBehaviour
 {
+    public bool isOneTime;
     private void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<ITakeDamage>() != null)
         {
             other.GetComponent<ITakeDamage>().TakeDmg();
+            
+            if(isOneTime)
+                Destroy(gameObject);
         }
     }
 
@@ -18,6 +22,9 @@ public class GenericDamagable : MonoBehaviour
         if (collision.gameObject.GetComponent<ITakeDamage>() != null)
         {
             collision.gameObject.GetComponent<ITakeDamage>().TakeDmg();
+            
+            if(isOneTime)
+                Destroy(gameObject);
         }
     }
 }

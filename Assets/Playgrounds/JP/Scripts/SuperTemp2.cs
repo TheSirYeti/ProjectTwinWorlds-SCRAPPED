@@ -1,19 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Sockets;
 using UnityEngine;
 
 public class SuperTemp2 : MonoBehaviour
 {
     private bool isSpinning;
     private bool canPress;
-    public GameObject objectToDisable;
+    public GameObject objectToReplicate;
+    public Transform myPosition;
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.F) && canPress)
         {
+            Debug.Log("hit");
             StartCoroutine(DoSpin());
-            objectToDisable.SetActive(true);
+            GameObject obj = Instantiate(objectToReplicate);
+            obj.transform.position = myPosition.position;
         }
 
         if (isSpinning)
