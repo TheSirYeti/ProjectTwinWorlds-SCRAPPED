@@ -27,6 +27,8 @@ public class Player : MonoBehaviour, ITakeDamage
     public Animator myAnimator;
     public Transform lookAtPoint;
 
+    public bool isUsingGravity = true;
+
     IPlayerInteractable _playerInteractable = null;
 
     [HideInInspector]
@@ -136,7 +138,9 @@ public class Player : MonoBehaviour, ITakeDamage
         myButtonController.ButtonsOn();
         realCharacter.SetActive(true);
         totemCharacter.SetActive(false);
-        myRigidbody.useGravity = true;
+
+        if (isUsingGravity)
+            myRigidbody.useGravity = true;
     }
     #endregion
 
@@ -165,7 +169,7 @@ public class Player : MonoBehaviour, ITakeDamage
     public void GoToTransform(params object[] parameter)
     {
         transform.position = (Vector3)parameter[0];
-        
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -187,7 +191,7 @@ public class Player : MonoBehaviour, ITakeDamage
     public void TakeDmg()
     {
         if (!isActive) return;
-        
+
         StopAllCoroutines();
         SoundManager.instance.PlaySound(SoundID.GRUNT_1);
         _lifeController.TakeDamage();

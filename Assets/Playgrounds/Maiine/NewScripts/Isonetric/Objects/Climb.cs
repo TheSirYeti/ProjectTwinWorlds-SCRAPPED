@@ -111,6 +111,7 @@ public class Climb : BaseInteractable, IWeaponInteractable
         _pointToGo = new Vector3(_actualPlayer.transform.position.x, grapPoint.position.y, _actualPlayer.transform.position.z);
         actualMove += Delegate_LineRendererWork;
         actualMove += Delegate_GoToPlayer;
+        _actualPlayer.isUsingGravity = false;
         _actualPlayer.myMovementController.ChangeToStay();
     }
 
@@ -127,6 +128,7 @@ public class Climb : BaseInteractable, IWeaponInteractable
         _actualPlayer.myButtonController.ChangeAxies(false);
         _actualPlayer.myMovementController.SetUp(true);
         _actualPlayer.transform.parent = null;
+        _actualPlayer.isUsingGravity = true;
         actualMove = delegate { };
     }
 

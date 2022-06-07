@@ -40,7 +40,6 @@ public class Swing : BaseInteractable, IWeaponInteractable
 
     public void Inter_DoWeaponAction(BulletSystem bullet)
     {
-        Debug.Log("aca?");
         _isOnUse = true;
         isPlayer = true;
         _actualBullet = bullet;
@@ -48,6 +47,7 @@ public class Swing : BaseInteractable, IWeaponInteractable
         _actualPlayer.transform.position = playerPosition.position;
         _actualPlayer.myMovementController.ChangeToSwing(this);
         _actualPlayer.myButtonController.ChangeAxies(true);
+        _actualPlayer.isUsingGravity = false;
         actualMove = Delegate_Swing;
     }
 
@@ -77,6 +77,7 @@ public class Swing : BaseInteractable, IWeaponInteractable
         if (isPlayer)
         {
             _actualPlayer.transform.parent = null;
+            _actualPlayer.isUsingGravity = true;
         }
         else
         {
@@ -110,9 +111,8 @@ public class Swing : BaseInteractable, IWeaponInteractable
     public bool Inter_CheckCanUse(Player actualPlayer, bool isDemon)
     {
         //Checkeo si esta en Spot
-        Debug.Log("1");
         if (!canSwing && !_isOnUse) return false;
-        Debug.Log("2");
+
         //Checkeo si no hay nada en medio
         Vector3 dir = actualPlayer.transform.position - transform.position;
         RaycastHit hit;
@@ -125,7 +125,6 @@ public class Swing : BaseInteractable, IWeaponInteractable
         if (_isUsableByDemon == isDemon)
         {
             _actualPlayer = actualPlayer;
-            Debug.Log("true?");
             return true;
         }
 
