@@ -8,6 +8,8 @@ public class MovableBox : BaseInteractable, IWeaponInteractable
     MovableBoxDelegate actualMovement = delegate { };
     MovableBoxDelegate pullMovement = delegate { };
 
+    public bool isCaught = false;
+
     public float speed;
     public float maxSpeed;
     public float minDistaceToFollow;
@@ -31,6 +33,10 @@ public class MovableBox : BaseInteractable, IWeaponInteractable
         actualMovement();
         pullMovement();
         CheckBreackable();
+    }
+
+    private void FixedUpdate()
+    {
         Force();
     }
 
@@ -56,6 +62,8 @@ public class MovableBox : BaseInteractable, IWeaponInteractable
 
     public bool Inter_CheckCanUse(Player actualPlayer, bool isDemon)
     {
+        if (isCaught) return false;
+        
         //Checkeo distancia
         if (Vector3.Distance(actualPlayer.transform.position, transform.position) > _distanceToInteract) return false;
 

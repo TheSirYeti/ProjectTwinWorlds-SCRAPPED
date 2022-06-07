@@ -117,6 +117,7 @@ MonoBehaviour:
     m_Bits: 573014271
   _distanceToInteract: 20
   _isUsableByDemon: 1
+  isCaught: 0
   speed: 0
   maxSpeed: 10
   minDistaceToFollow: 10
@@ -231,7 +232,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myBox: {fileID: 1817344445665305756}
   climbPoint: {fileID: 778313443324666321}
-  minDistanceToStay: 2
+  minDistanceToStay: 4
 --- !u!65 &4759350719029228472
 BoxCollider:
   m_ObjectHideFlags: 0

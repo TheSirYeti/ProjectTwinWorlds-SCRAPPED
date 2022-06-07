@@ -15,7 +15,10 @@ public class PlayerBox : MonoBehaviour, IPlayerInteractable
     private void Update()
     {
         if (_actualPlayer != null && Vector3.Distance(_actualPlayer.transform.position, transform.position) > minDistanceToStay && isParent)
+        {
+            Debug.Log("aca");
             StopParent();
+        }
     }
 
     public void Inter_DoJumpAction(Player actualPlayer, bool isDemon)
@@ -44,9 +47,10 @@ public class PlayerBox : MonoBehaviour, IPlayerInteractable
 
     void StartParent()
     {
+        myBox.GetComponent<MovableBox>().isCaught = true;
         isParent = true;
-        myBox.GetComponent<Rigidbody>().useGravity = false;
-        myBox.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        Rigidbody actualBoxRigidbody = myBox.GetComponent<Rigidbody>();
+        actualBoxRigidbody.Sleep();
         _actualPlayer.transform.forward = transform.position - _actualPlayer.transform.position;
         myBox.transform.parent = _actualPlayer.gameObject.transform;
         _actualPlayer.AddIgnore(myBox);
@@ -56,8 +60,9 @@ public class PlayerBox : MonoBehaviour, IPlayerInteractable
 
     void StopParent()
     {
+        myBox.GetComponent<MovableBox>().isCaught = false;
         isParent = false;
-        myBox.GetComponent<Rigidbody>().useGravity = true;
+        myBox.GetComponent<Rigidbody>().WakeUp();
         myBox.transform.parent = null;
         _actualPlayer.RemoveIgnore(myBox);
         _actualPlayer.RemoveIgnore(this.gameObject);
