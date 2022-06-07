@@ -45,6 +45,8 @@ public class PlayerBox : MonoBehaviour, IPlayerInteractable
     void StartParent()
     {
         isParent = true;
+        myBox.GetComponent<Rigidbody>().useGravity = false;
+        myBox.GetComponent<Rigidbody>().velocity = Vector3.zero;
         _actualPlayer.transform.forward = transform.position - _actualPlayer.transform.position;
         myBox.transform.parent = _actualPlayer.gameObject.transform;
         _actualPlayer.AddIgnore(myBox);
@@ -55,6 +57,7 @@ public class PlayerBox : MonoBehaviour, IPlayerInteractable
     void StopParent()
     {
         isParent = false;
+        myBox.GetComponent<Rigidbody>().useGravity = true;
         myBox.transform.parent = null;
         _actualPlayer.RemoveIgnore(myBox);
         _actualPlayer.RemoveIgnore(this.gameObject);
