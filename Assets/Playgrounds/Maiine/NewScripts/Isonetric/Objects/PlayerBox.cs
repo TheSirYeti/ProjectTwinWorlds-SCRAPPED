@@ -14,7 +14,7 @@ public class PlayerBox : MonoBehaviour, IPlayerInteractable
 
     private void Update()
     {
-        if (Vector3.Distance(_actualPlayer.transform.position, transform.position) > minDistanceToStay && isParent)
+        if (_actualPlayer != null && Vector3.Distance(_actualPlayer.transform.position, transform.position) > minDistanceToStay && isParent)
             StopParent();
     }
 

@@ -191,7 +191,7 @@ GameObject:
   - component: {fileID: 4163389048911839051}
   - component: {fileID: 4059901451181819609}
   - component: {fileID: 4759350719029228472}
-  m_Layer: 28
+  m_Layer: 8
   m_Name: PlayerInteractive
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -228,6 +228,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myBox: {fileID: 1817344445665305756}
   climbPoint: {fileID: 778313443324666321}
+  minDistanceToStay: 2
 --- !u!65 &4759350719029228472
 BoxCollider:
   m_ObjectHideFlags: 0

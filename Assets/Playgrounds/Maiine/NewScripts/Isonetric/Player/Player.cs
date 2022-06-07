@@ -192,7 +192,7 @@ public class Player : MonoBehaviour, ITakeDamage
     private void OnTriggerEnter(Collider other)
     {
         IPlayerInteractable actualPlayerInteractable = other.gameObject.GetComponent<IPlayerInteractable>();
-        if (actualPlayerInteractable != null && _playerInteractable != null)
+        if (actualPlayerInteractable != null)
         {
             _playerInteractable = actualPlayerInteractable;
         }
