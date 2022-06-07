@@ -58,7 +58,7 @@ public class Swing : BaseInteractable, IWeaponInteractable
         connectedObject = otherObject;
         otherObject.Inter_GetGameObject().transform.parent = rotationPoint;
         otherObject.Inter_GetGameObject().transform.position = playerPosition.position;
-        otherObject.Inter_GetGameObject().GetComponent<Rigidbody>().useGravity = false;
+        otherObject.Inter_GetGameObject().GetComponent<Rigidbody>().Sleep();
         _actualPlayer.myMovementController.ChangeToSwing(this);
         _actualPlayer.myButtonController.ChangeAxies(true);
         actualMove = Delegate_Swing;
@@ -80,7 +80,7 @@ public class Swing : BaseInteractable, IWeaponInteractable
         else
         {
             connectedObject.Inter_GetGameObject().transform.parent = null;
-            connectedObject.Inter_GetGameObject().GetComponent<Rigidbody>().useGravity = true;
+            connectedObject.Inter_GetGameObject().GetComponent<Rigidbody>().WakeUp();
         }
 
 
